@@ -1,7 +1,7 @@
 # Scan Source Files
 
 - Kind: task
-- Status: pending
+- Status: done
 - Tracked in: docs/roadmap/v0-dogfood.md
 
 - Scan `docs/**/*.md`.
