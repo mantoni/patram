@@ -2,7 +2,7 @@ import type { GraphNode } from './build-graph.types.ts';
 
 export interface OutputViewSummary {
   count: number;
-  kind: 'result_list' | 'stored_query_list';
+  kind: 'resolved_link_list' | 'result_list' | 'stored_query_list';
 }
 
 export interface OutputNodeItem {
@@ -20,14 +20,44 @@ export interface OutputStoredQueryItem {
   where: string;
 }
 
-export type OutputViewItem = OutputNodeItem | OutputStoredQueryItem;
+export interface OutputResolvedLinkTarget {
+  kind?: string;
+  path: string;
+  status?: string;
+  title: string;
+}
 
-export interface OutputView {
-  command: 'query' | 'queries' | 'show';
+export interface OutputResolvedLinkItem {
+  kind: 'resolved_link';
+  label: string;
+  reference: number;
+  target: OutputResolvedLinkTarget;
+}
+
+export interface QueryOutputView {
+  command: 'query';
   hints: string[];
-  items: OutputViewItem[];
+  items: OutputNodeItem[];
   summary: OutputViewSummary;
 }
+
+export interface QueriesOutputView {
+  command: 'queries';
+  hints: string[];
+  items: OutputStoredQueryItem[];
+  summary: OutputViewSummary;
+}
+
+export interface ShowOutputView {
+  command: 'show';
+  hints: string[];
+  items: OutputResolvedLinkItem[];
+  rendered_source: string;
+  source: string;
+  summary: OutputViewSummary;
+}
+
+export type OutputView = QueryOutputView | QueriesOutputView | ShowOutputView;
 
 export interface ResolvedOutputMode {
   color_enabled: boolean;

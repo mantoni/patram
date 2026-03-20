@@ -114,6 +114,17 @@ export function createValidLinkSource() {
 }
 
 /**
+ * @returns {string}
+ */
+export function createShowSource() {
+  return [
+    '# Patram',
+    '',
+    'See [guide](./guide.md), [query language](./decisions/query-language-v0.md), and [implement query command](./tasks/v0/query-command.md).',
+  ].join('\n');
+}
+
+/**
  * @param {{ original_working_directory: string, project_directory: string | null }} test_context
  */
 export async function cleanupTestContext(test_context) {
@@ -158,6 +169,28 @@ export async function writeProjectFile(
 
   await mkdir(directory_path, { recursive: true });
   await writeFile(file_path, source_text);
+}
+
+/**
+ * @param {string} project_directory
+ */
+export async function writeShowProject(project_directory) {
+  await writeProjectFile(
+    project_directory,
+    'docs/patram.md',
+    createShowSource(),
+  );
+  await writeProjectFile(project_directory, 'docs/guide.md', '# Some Guide\n');
+  await writeProjectFile(
+    project_directory,
+    'docs/decisions/query-language-v0.md',
+    createDecisionSource(),
+  );
+  await writeProjectFile(
+    project_directory,
+    'docs/tasks/v0/query-command.md',
+    createTaskSource('pending'),
+  );
 }
 
 /**

@@ -18,6 +18,7 @@ import {
   stripAnsi,
   writeProjectConfig,
   writeProjectFile,
+  writeShowProject,
 } from './patram.test-helpers.js';
 import { main } from './patram.js';
 
@@ -181,6 +182,98 @@ it('prints stored queries', async () => {
     'blocked kind=task and status=blocked\n' +
       'pending kind=task and status=pending\n',
   ]);
+});
+
+it('prints resolved source and links for show', async () => {
+  test_context.project_directory = await createTempProjectDirectory();
+  const io_context = createIoContext();
+
+  await writeProjectConfig(test_context.project_directory);
+  await writeShowProject(test_context.project_directory);
+  process.chdir(test_context.project_directory);
+
+  const exit_code = await main(['show', 'docs/patram.md'], {
+    stderr: io_context.stderr,
+    stdout: io_context.stdout,
+  });
+
+  expect(exit_code).toBe(0);
+  expect(io_context.stderr_chunks).toEqual([]);
+  expect(io_context.stdout_chunks).toEqual([
+    '# Patram\n' +
+      '\n' +
+      'See [Some Guide][1], [Query Language v0][2], and [Implement query command][3].\n' +
+      '\n' +
+      '----------------\n' +
+      '[1] Some Guide\n' +
+      '    docs/guide.md\n' +
+      '[2] Query Language v0\n' +
+      '    docs/decisions/query-language-v0.md\n' +
+      '    kind: decision  status: accepted\n' +
+      '[3] Implement query command\n' +
+      '    docs/tasks/v0/query-command.md\n' +
+      '    kind: task  status: pending\n',
+  ]);
+});
+
+it('prints show results as json', async () => {
+  test_context.project_directory = await createTempProjectDirectory();
+  const io_context = createIoContext();
+
+  await writeProjectConfig(test_context.project_directory);
+  await writeProjectFile(
+    test_context.project_directory,
+    'docs/patram.md',
+    createValidLinkSource(),
+  );
+  await writeProjectFile(
+    test_context.project_directory,
+    'docs/guide.md',
+    '# Some Guide\n',
+  );
+  process.chdir(test_context.project_directory);
+
+  const exit_code = await main(['show', 'docs/patram.md', '--json'], {
+    stderr: io_context.stderr,
+    stdout: io_context.stdout,
+  });
+
+  expect(exit_code).toBe(0);
+  expect(io_context.stderr_chunks).toEqual([]);
+  expect(io_context.stdout_chunks).toEqual([
+    '{\n' +
+      '  "source": "# Patram\\n\\nSee [guide](./guide.md).",\n' +
+      '  "resolved_links": [\n' +
+      '    {\n' +
+      '      "reference": 1,\n' +
+      '      "label": "Some Guide",\n' +
+      '      "target": {\n' +
+      '        "title": "Some Guide",\n' +
+      '        "path": "docs/guide.md"\n' +
+      '      }\n' +
+      '    }\n' +
+      '  ]\n' +
+      '}\n',
+  ]);
+});
+
+it('reports a missing show file on stderr', async () => {
+  test_context.project_directory = await createTempProjectDirectory();
+  const io_context = createIoContext();
+
+  await writeProjectConfig(test_context.project_directory);
+  process.chdir(test_context.project_directory);
+
+  const exit_code = await main(['show', 'docs/missing.md'], {
+    stderr: io_context.stderr,
+    stdout: io_context.stdout,
+  });
+
+  expect(exit_code).toBe(1);
+  expect(io_context.stderr_chunks).toEqual([
+    'docs/missing.md:1:1 error show.file_not_found File "docs/missing.md" was not found.\n',
+  ]);
+  expect(io_context.stdout_chunks).toEqual([]);
 });
 
 it('prints query results as json', async () => {

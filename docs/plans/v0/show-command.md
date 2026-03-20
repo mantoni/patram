@@ -1,7 +1,7 @@
 # Show Command Plan
 
 - Kind: plan
-- Status: active
+- Status: done
 - Tracked in: docs/roadmap/v0-dogfood.md
 - Decided by: docs/decisions/show-output.md
 - Decided by: docs/decisions/cli-output-architecture.md
