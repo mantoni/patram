@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * @import { BuildGraphResult, GraphNode } from '../lib/build-graph.types.ts';
+ * @import { BuildGraphResult } from '../lib/build-graph.types.ts';
  * @import { PatramClaim } from '../lib/parse-claims.types.ts';
  * @import { ParsedCliArguments } from '../lib/parse-cli-arguments.types.ts';
  * @import { PatramDiagnostic, PatramRepoConfig } from '../lib/load-patram-config.types.ts';
@@ -20,7 +20,12 @@ import { loadPatramConfig } from '../lib/load-patram-config.js';
 import { parseClaims } from '../lib/parse-claims.js';
 import { parseCliArguments } from '../lib/parse-cli-arguments.js';
 import { queryGraph } from '../lib/query-graph.js';
+import {
+  renderOutputView,
+  createOutputView,
+} from '../lib/render-output-view.js';
 import { resolveWhereClause } from '../lib/resolve-where-clause.js';
+import { resolveOutputMode } from '../lib/resolve-output-mode.js';
 import { resolvePatramGraphConfig } from '../lib/resolve-patram-graph-config.js';
 
 if (await isEntrypoint(import.meta.url, process.argv[1])) {
@@ -34,7 +39,7 @@ if (await isEntrypoint(import.meta.url, process.argv[1])) {
  * Run the Patram CLI.
  *
  * @param {string[]} cli_arguments
- * @param {{ stderr: { write(chunk: string): boolean }, stdout: { write(chunk: string): boolean } }} io_context
+ * @param {{ stderr: { write(chunk: string): boolean }, stdout: { isTTY?: boolean, write(chunk: string): boolean } }} io_context
  * @returns {Promise<number>}
  */
 export async function main(cli_arguments, io_context) {
@@ -53,11 +58,11 @@ export async function main(cli_arguments, io_context) {
   }
 
   if (parsed_command.command_name === 'query') {
-    return runQueryCommand(parsed_command.command_arguments, io_context);
+    return runQueryCommand(parsed_command, io_context);
   }
 
   if (parsed_command.command_name === 'queries') {
-    return runQueriesCommand(io_context);
+    return runQueriesCommand(parsed_command, io_context);
   }
 
   io_context.stderr.write('Unknown command.\n');
@@ -67,7 +72,7 @@ export async function main(cli_arguments, io_context) {
 
 /**
  * @param {string[]} command_arguments
- * @param {{ stderr: { write(chunk: string): boolean }, stdout: { write(chunk: string): boolean } }} io_context
+ * @param {{ stderr: { write(chunk: string): boolean }, stdout: { isTTY?: boolean, write(chunk: string): boolean } }} io_context
  * @returns {Promise<number>}
  */
 async function runCheckCommand(command_arguments, io_context) {
@@ -95,11 +100,11 @@ async function runCheckCommand(command_arguments, io_context) {
 }
 
 /**
- * @param {string[]} command_arguments
- * @param {{ stderr: { write(chunk: string): boolean }, stdout: { write(chunk: string): boolean } }} io_context
+ * @param {ParsedCliArguments} parsed_command
+ * @param {{ stderr: { write(chunk: string): boolean }, stdout: { isTTY?: boolean, write(chunk: string): boolean } }} io_context
  * @returns {Promise<number>}
  */
-async function runQueryCommand(command_arguments, io_context) {
+async function runQueryCommand(parsed_command, io_context) {
   const project_graph_result = await loadProjectGraph(process.cwd());
 
   if (project_graph_result.diagnostics.length > 0) {
@@ -110,7 +115,7 @@ async function runQueryCommand(command_arguments, io_context) {
 
   const where_clause = resolveWhereClause(
     project_graph_result.config,
-    command_arguments,
+    parsed_command.command_arguments,
   );
 
   if (!where_clause.success) {
@@ -130,16 +135,21 @@ async function runQueryCommand(command_arguments, io_context) {
     return 1;
   }
 
-  writeQueryResults(io_context.stdout, query_result.nodes);
+  writeCommandOutput(
+    io_context.stdout,
+    parsed_command,
+    createOutputView('query', query_result.nodes),
+  );
 
   return 0;
 }
 
 /**
- * @param {{ stderr: { write(chunk: string): boolean }, stdout: { write(chunk: string): boolean } }} io_context
+ * @param {ParsedCliArguments} parsed_command
+ * @param {{ stderr: { write(chunk: string): boolean }, stdout: { isTTY?: boolean, write(chunk: string): boolean } }} io_context
  * @returns {Promise<number>}
  */
-async function runQueriesCommand(io_context) {
+async function runQueriesCommand(parsed_command, io_context) {
   const load_result = await loadPatramConfig(process.cwd());
 
   if (load_result.diagnostics.length > 0) {
@@ -154,7 +164,11 @@ async function runQueriesCommand(io_context) {
     throw new Error('Expected a valid Patram repo config.');
   }
 
-  writeStoredQueries(io_context.stdout, listQueries(repo_config.queries));
+  writeCommandOutput(
+    io_context.stdout,
+    parsed_command,
+    createOutputView('queries', listQueries(repo_config.queries)),
+  );
 
   return 0;
 }
@@ -239,56 +253,22 @@ function writeDiagnostics(output_stream, diagnostics) {
 }
 
 /**
- * @param {{ write(chunk: string): boolean }} output_stream
- * @param {GraphNode[]} graph_nodes
+ * @param {{ isTTY?: boolean, write(chunk: string): boolean }} output_stream
+ * @param {ParsedCliArguments} parsed_command
+ * @param {import('../lib/output-view.types.ts').OutputView} output_view
  */
-function writeQueryResults(output_stream, graph_nodes) {
-  for (const graph_node of graph_nodes) {
-    output_stream.write(formatQueryResult(graph_node));
-  }
-}
-
-/**
- * @param {{ write(chunk: string): boolean }} output_stream
- * @param {{ name: string, where: string }[]} stored_queries
- */
-function writeStoredQueries(output_stream, stored_queries) {
-  for (const stored_query of stored_queries) {
-    output_stream.write(formatStoredQuery(stored_query));
-  }
-}
-
-/**
- * @param {import('../lib/load-patram-config.types.ts').PatramDiagnostic} diagnostic
- * @returns {string}
- */
-function formatDiagnostic(diagnostic) {
-  return `${diagnostic.path}:${diagnostic.line}:${diagnostic.column} ${diagnostic.level} ${diagnostic.code} ${diagnostic.message}\n`;
-}
-
-/**
- * @param {GraphNode} graph_node
- * @returns {string}
- */
-function formatQueryResult(graph_node) {
-  const label =
-    graph_node.title ?? graph_node.label ?? graph_node.path ?? graph_node.key;
-
-  if (!label) {
-    throw new Error(
-      `Expected graph node "${graph_node.id}" to have a display label.`,
-    );
-  }
-
-  return `${graph_node.id} ${graph_node.kind} ${label}\n`;
-}
-
-/**
- * @param {{ name: string, where: string }} stored_query
- * @returns {string}
- */
-function formatStoredQuery(stored_query) {
-  return `${stored_query.name} ${stored_query.where}\n`;
+function writeCommandOutput(output_stream, parsed_command, output_view) {
+  output_stream.write(
+    renderOutputView(
+      output_view,
+      resolveOutputMode(parsed_command, {
+        is_tty: output_stream.isTTY === true,
+        no_color: process.env.NO_COLOR !== undefined,
+        term: process.env.TERM,
+      }),
+      parsed_command,
+    ),
+  );
 }
 
 /**
@@ -305,4 +285,12 @@ async function isEntrypoint(module_url, process_entry_path) {
   const entry_path = await realpath(process_entry_path);
 
   return module_path === entry_path;
+}
+
+/**
+ * @param {import('../lib/load-patram-config.types.ts').PatramDiagnostic} diagnostic
+ * @returns {string}
+ */
+function formatDiagnostic(diagnostic) {
+  return `${diagnostic.path}:${diagnostic.line}:${diagnostic.column} ${diagnostic.level} ${diagnostic.code} ${diagnostic.message}\n`;
 }
