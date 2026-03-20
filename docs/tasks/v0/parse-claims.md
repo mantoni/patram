@@ -1,7 +1,7 @@
 # Parse Claims
 
 - Kind: task
-- Status: pending
+- Status: done
 - Tracked in: docs/roadmap/v0-dogfood.md
 
 - Parse markdown titles.
