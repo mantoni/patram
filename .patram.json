@@ -1,0 +1,14 @@
+{
+  "include": ["docs/**/*.md"],
+  "queries": {
+    "pending": {
+      "where": "kind=task and status=pending"
+    },
+    "blocked": {
+      "where": "kind=task and status=blocked"
+    },
+    "accepted-decisions": {
+      "where": "kind=decision and status=accepted"
+    }
+  }
+}
