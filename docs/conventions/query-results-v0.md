@@ -1,5 +1,8 @@
 # Query Results v0 Proposal
 
+- Kind: convention
+- Status: active
+
 ## Default Output
 
 - One result per line.
@@ -16,6 +19,7 @@ decision:query-language-v0 decision Query Language v0
 ```txt
 pending kind=task and status=pending
 blocked kind=task and status=blocked
+accepted-decisions kind=decision and status=accepted
 ```
 
 ## Empty Output

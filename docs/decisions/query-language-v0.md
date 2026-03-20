@@ -1,5 +1,9 @@
 # Query Language v0 Proposal
 
+- Kind: decision
+- Status: accepted
+- Tracked in: docs/roadmap/v0-dogfood.md
+
 - Query language is string-based.
 - Query language is config-stored.
 - Query language is CLI-accepted.

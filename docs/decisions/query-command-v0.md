@@ -1,5 +1,9 @@
 # Query Command v0 Proposal
 
+- Kind: decision
+- Status: accepted
+- Tracked in: docs/roadmap/v0-dogfood.md
+
 - Command name: `query`.
 - Do not add a built-in `pending` command.
 - Treat `pending` as a stored query name.

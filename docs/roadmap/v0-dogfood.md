@@ -1,5 +1,8 @@
 # v0 Dogfood Roadmap Proposal
 
+- Kind: roadmap
+- Status: active
+
 ## Goal
 
 - Dogfood `patram` in this repo.
@@ -73,27 +76,27 @@ graph LR
 
 ### M1
 
-- Config loads.
-- Files scan.
-- Claims parse.
+- [Add repo config](../tasks/v0/add-repo-config.md)
+- [Load config](../tasks/v0/load-config.md)
+- [Scan source files](../tasks/v0/scan-source-files.md)
+- [Parse claims](../tasks/v0/parse-claims.md)
 - Tests pass.
 
 ### M2
 
-- Graph materializes.
-- `patram check` reports diagnostics.
+- [Materialize graph](../tasks/v0/materialize-graph.md)
+- [Implement check command](../tasks/v0/check-command.md)
 - Tests pass.
 
 ### M3
 
-- `patram query --where ...` filters graph nodes.
-- `patram query <name>` executes stored queries.
-- `patram queries` lists stored queries.
+- [Implement query command](../tasks/v0/query-command.md)
+- [Implement stored queries](../tasks/v0/stored-queries.md)
 - Tests pass.
 
 ### M4
 
-- `patram show <file>` prints source and resolved summary.
+- [Implement show command](../tasks/v0/show-command.md)
 - Dogfood on repo docs.
 - Tests pass.
 
