@@ -1,10 +1,13 @@
 # Implement Show Command
 
 - Kind: task
-- Status: blocked
+- Status: pending
 - Tracked in: docs/roadmap/v0-dogfood.md
-- Blocked by: docs/decisions/show-output.md
+- Decided by: docs/decisions/show-output.md
+- Decided by: docs/decisions/cli-output-architecture.md
+- Decided by: docs/decisions/cli-output-modes.md
 
 - Implement `show <file>`.
-- Print source.
-- Print resolved summary.
+- Render source first.
+- Render resolved link summaries second.
+- Support the shared output pipeline for `plain`, `rich`, and `json`.

@@ -11,6 +11,7 @@
 - Run `patram query --where "kind=task and status=pending"`.
 - Run `patram query pending`.
 - Run `patram show docs/patram.md`.
+- Run `patram show docs/patram.md --json`.
 
 ## Scope
 
@@ -18,6 +19,7 @@
 - JSON config only.
 - CLI only.
 - `check`, `query`, `queries`, and `show` only.
+- Shared `plain`, `rich`, and `json` output modes.
 - Node filtering only.
 - Relation existence checks only.
 - Stored queries in config.
@@ -42,8 +44,10 @@
 9. Implement `query --where`.
 10. Implement `query <name>`.
 11. Implement `queries`.
-12. Implement `show`.
-13. Dogfood in this repo.
+12. Implement the CLI argument parser.
+13. Implement the CLI output renderers.
+14. Implement `show`.
+15. Dogfood in this repo.
 
 ```mermaid
 graph LR
@@ -52,11 +56,23 @@ graph LR
   C --> D["scan"]
   D --> E["claims"]
   E --> F["graph"]
+  B --> L["cli parser"]
+  B --> M["renderers"]
   F --> G["check"]
   F --> H["query --where"]
   F --> I["query <name>"]
   F --> J["queries"]
   F --> K["show"]
+  L --> G
+  L --> H
+  L --> I
+  L --> J
+  L --> K
+  M --> G
+  M --> H
+  M --> I
+  M --> J
+  M --> K
 ```
 
 ## Proposed Changes
@@ -69,7 +85,14 @@ graph LR
 - Add `lib/check-graph.js`.
 - Add `lib/query-graph.js`.
 - Add `lib/list-queries.js`.
+- Add `lib/parse-cli-arguments.js`.
+- Add `lib/resolve-output-mode.js`.
+- Add `lib/render-output-view.js`.
+- Add `lib/render-plain-output.js`.
+- Add `lib/render-rich-output.js`.
+- Add `lib/render-json-output.js`.
 - Add `lib/render-show.js`.
+- Update runtime formatting dependencies in `package.json`.
 - Wire commands in `bin/patram.js`.
 
 ## Milestones
@@ -96,6 +119,8 @@ graph LR
 
 ### M4
 
+- [Implement CLI argument parser](../tasks/v0/cli-argument-parser.md)
+- [Implement CLI output renderers](../tasks/v0/cli-output-renderers.md)
 - [Implement show command](../tasks/v0/show-command.md)
 - Dogfood on repo docs.
 - Tests pass.
@@ -108,4 +133,5 @@ graph LR
 - `patram query pending` works.
 - `patram queries` works.
 - `patram show docs/patram.md` works from repo root.
+- `patram show docs/patram.md --json` works from repo root.
 - `npm run all` passes.

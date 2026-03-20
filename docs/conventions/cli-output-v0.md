@@ -1,9 +1,9 @@
 # CLI Output v0 Proposal
 
 - Kind: convention
-- Status: proposed
+- Status: active
 
-- Applies to the proposed `plain`, `rich`, and `json` renderers.
+- Applies to the `plain`, `rich`, and `json` renderers.
 - Preserves the current plain-text baseline from `query-results-v0`.
 - Preserves the current `show` order of source first and resolved summary
   second.

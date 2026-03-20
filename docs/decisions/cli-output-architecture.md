@@ -1,7 +1,7 @@
 # CLI Output Architecture Proposal
 
 - Kind: decision
-- Status: proposed
+- Status: accepted
 - Tracked in: docs/roadmap/v0-dogfood.md
 
 - Separate command execution from output rendering.
