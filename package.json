@@ -2,9 +2,22 @@
   "name": "patram",
   "version": "0.0.1",
   "type": "module",
+  "files": [
+    "bin/",
+    "lib/"
+  ],
   "bin": {
     "patram": "./bin/patram.js"
   },
+  "homepage": "https://github.com/mantoni/patram",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mantoni/patram.git"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT",
   "scripts": {
     "all": "npm run check:lint && npm run check:format && npm run check:types && npm run test:unit && npm run test:coverage && npm run check:dupes",
     "check:dupes": "jscpd --min-tokens 100 --min-lines 6 --mode mild --threshold 0 --reporters console --gitignore .",
