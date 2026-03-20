@@ -1,11 +1,14 @@
-import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
+import { execFile as execFileCallback } from 'node:child_process';
+import { mkdtemp, mkdir, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { promisify } from 'node:util';
 
 import { afterEach, expect, it } from 'vitest';
 
 import { main } from './patram.js';
 
+const execFile = promisify(execFileCallback);
 const test_context = createTestContext();
 
 afterEach(async () => {
@@ -75,6 +78,23 @@ it('defaults check to the current working directory and exits 0 on valid input',
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual([]);
+});
+
+it('runs the CLI when invoked through a symlinked executable path', async () => {
+  test_context.project_directory = await createTempProjectDirectory();
+  const executable_path = join(test_context.project_directory, 'patram');
+
+  await symlink(join(import.meta.dirname, 'patram.js'), executable_path);
+
+  await expect(
+    execFile(executable_path, ['nope'], {
+      encoding: 'utf8',
+    }),
+  ).rejects.toMatchObject({
+    code: 1,
+    stderr: 'Unknown command.\n',
+    stdout: '',
+  });
 });
 
 /**

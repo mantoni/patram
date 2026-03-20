@@ -4,10 +4,10 @@
  * @import { PatramClaim } from '../lib/parse-claims.types.ts';
  */
 
-import { readFile } from 'node:fs/promises';
+import { readFile, realpath } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import process from 'node:process';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath } from 'node:url';
 
 import { buildGraph } from '../lib/build-graph.js';
 import { checkGraph } from '../lib/check-graph.js';
@@ -47,7 +47,7 @@ const CHECK_GRAPH_CONFIG = parsePatramConfig({
   },
 });
 
-if (isEntrypoint(import.meta.url, process.argv[1])) {
+if (await isEntrypoint(import.meta.url, process.argv[1])) {
   process.exitCode = await main(process.argv.slice(2), {
     stderr: process.stderr,
     stdout: process.stdout,
@@ -158,12 +158,15 @@ function formatDiagnostic(diagnostic) {
 /**
  * @param {string} module_url
  * @param {string | undefined} process_entry_path
- * @returns {boolean}
+ * @returns {Promise<boolean>}
  */
-function isEntrypoint(module_url, process_entry_path) {
+async function isEntrypoint(module_url, process_entry_path) {
   if (!process_entry_path) {
     return false;
   }
 
-  return module_url === pathToFileURL(process_entry_path).href;
+  const module_path = await realpath(fileURLToPath(module_url));
+  const entry_path = await realpath(process_entry_path);
+
+  return module_path === entry_path;
 }
