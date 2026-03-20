@@ -117,16 +117,86 @@ it('prints matching nodes for query --where', async () => {
   ]);
 });
 
-it('rejects query without a where flag', async () => {
+it('runs a stored query by name', async () => {
+  test_context.project_directory = await createTempProjectDirectory();
   const io_context = createIoContext();
+
+  await writeProjectConfig(test_context.project_directory);
+  await writeProjectFile(
+    test_context.project_directory,
+    'docs/tasks/v0/query-command.md',
+    createTaskSource('pending'),
+  );
+  await writeProjectFile(
+    test_context.project_directory,
+    'docs/tasks/v0/show-command.md',
+    createBlockedTaskSource(),
+  );
+  process.chdir(test_context.project_directory);
 
   const exit_code = await main(['query', 'pending'], {
     stderr: io_context.stderr,
     stdout: io_context.stdout,
   });
 
+  expect(exit_code).toBe(0);
+  expect(io_context.stderr_chunks).toEqual([]);
+  expect(io_context.stdout_chunks).toEqual([
+    'doc:docs/tasks/v0/query-command.md task Implement query command\n',
+  ]);
+});
+
+it('prints stored queries', async () => {
+  test_context.project_directory = await createTempProjectDirectory();
+  const io_context = createIoContext();
+
+  await writeProjectConfig(test_context.project_directory);
+  process.chdir(test_context.project_directory);
+
+  const exit_code = await main(['queries'], {
+    stderr: io_context.stderr,
+    stdout: io_context.stdout,
+  });
+
+  expect(exit_code).toBe(0);
+  expect(io_context.stderr_chunks).toEqual([]);
+  expect(io_context.stdout_chunks).toEqual([
+    'blocked kind=task and status=blocked\n',
+    'pending kind=task and status=pending\n',
+  ]);
+});
+
+it('rejects an unknown stored query name', async () => {
+  test_context.project_directory = await createTempProjectDirectory();
+  const io_context = createIoContext();
+
+  await writeProjectConfig(test_context.project_directory);
+  process.chdir(test_context.project_directory);
+
+  const exit_code = await main(['query', 'missing'], {
+    stderr: io_context.stderr,
+    stdout: io_context.stdout,
+  });
+
   expect(exit_code).toBe(1);
-  expect(io_context.stderr_chunks).toEqual(['Query requires "--where".\n']);
+  expect(io_context.stderr_chunks).toEqual([
+    'Stored query "missing" was not found.\n',
+  ]);
+  expect(io_context.stdout_chunks).toEqual([]);
+});
+
+it('rejects query without a where clause or query name', async () => {
+  const io_context = createIoContext();
+
+  const exit_code = await main(['query'], {
+    stderr: io_context.stderr,
+    stdout: io_context.stdout,
+  });
+
+  expect(exit_code).toBe(1);
+  expect(io_context.stderr_chunks).toEqual([
+    'Query requires "--where" or a stored query name.\n',
+  ]);
   expect(io_context.stdout_chunks).toEqual([]);
 });
 
@@ -343,8 +413,22 @@ function createProjectConfig() {
       },
     },
     mappings: createProjectMappings(),
-    queries: {},
+    queries: createProjectQueries(),
     relations: createProjectRelations(),
+  };
+}
+
+/**
+ * @returns {object}
+ */
+function createProjectQueries() {
+  return {
+    blocked: {
+      where: 'kind=task and status=blocked',
+    },
+    pending: {
+      where: 'kind=task and status=pending',
+    },
   };
 }
 

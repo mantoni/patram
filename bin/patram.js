@@ -3,7 +3,7 @@
 /**
  * @import { BuildGraphResult, GraphNode } from '../lib/build-graph.types.ts';
  * @import { PatramClaim } from '../lib/parse-claims.types.ts';
- * @import { PatramDiagnostic } from '../lib/load-patram-config.types.ts';
+ * @import { PatramDiagnostic, PatramRepoConfig } from '../lib/load-patram-config.types.ts';
  */
 
 import { readFile, realpath } from 'node:fs/promises';
@@ -13,10 +13,12 @@ import { fileURLToPath } from 'node:url';
 
 import { buildGraph } from '../lib/build-graph.js';
 import { checkGraph } from '../lib/check-graph.js';
+import { listQueries } from '../lib/list-queries.js';
 import { listSourceFiles } from '../lib/list-source-files.js';
 import { loadPatramConfig } from '../lib/load-patram-config.js';
 import { parseClaims } from '../lib/parse-claims.js';
 import { queryGraph } from '../lib/query-graph.js';
+import { resolveWhereClause } from '../lib/resolve-where-clause.js';
 import { resolvePatramGraphConfig } from '../lib/resolve-patram-graph-config.js';
 
 if (await isEntrypoint(import.meta.url, process.argv[1])) {
@@ -42,6 +44,10 @@ export async function main(cli_arguments, io_context) {
 
   if (command_name === 'query') {
     return runQueryCommand(cli_arguments.slice(1), io_context);
+  }
+
+  if (command_name === 'queries') {
+    return runQueriesCommand(io_context);
   }
 
   io_context.stderr.write('Unknown command.\n');
@@ -84,20 +90,6 @@ async function runCheckCommand(command_arguments, io_context) {
  * @returns {Promise<number>}
  */
 async function runQueryCommand(command_arguments, io_context) {
-  if (command_arguments[0] !== '--where') {
-    io_context.stderr.write('Query requires "--where".\n');
-
-    return 1;
-  }
-
-  const where_clause = command_arguments.slice(1).join(' ').trim();
-
-  if (where_clause.length === 0) {
-    io_context.stderr.write('Query requires a where clause.\n');
-
-    return 1;
-  }
-
   const project_graph_result = await loadProjectGraph(process.cwd());
 
   if (project_graph_result.diagnostics.length > 0) {
@@ -106,7 +98,21 @@ async function runQueryCommand(command_arguments, io_context) {
     return 1;
   }
 
-  const query_result = queryGraph(project_graph_result.graph, where_clause);
+  const where_clause = resolveWhereClause(
+    project_graph_result.config,
+    command_arguments,
+  );
+
+  if (!where_clause.success) {
+    io_context.stderr.write(`${where_clause.message}\n`);
+
+    return 1;
+  }
+
+  const query_result = queryGraph(
+    project_graph_result.graph,
+    where_clause.value,
+  );
 
   if (query_result.diagnostics.length > 0) {
     writeDiagnostics(io_context.stderr, query_result.diagnostics);
@@ -120,14 +126,42 @@ async function runQueryCommand(command_arguments, io_context) {
 }
 
 /**
+ * @param {{ stderr: { write(chunk: string): boolean }, stdout: { write(chunk: string): boolean } }} io_context
+ * @returns {Promise<number>}
+ */
+async function runQueriesCommand(io_context) {
+  const load_result = await loadPatramConfig(process.cwd());
+
+  if (load_result.diagnostics.length > 0) {
+    writeDiagnostics(io_context.stderr, load_result.diagnostics);
+
+    return 1;
+  }
+
+  const repo_config = load_result.config;
+
+  if (!repo_config) {
+    throw new Error('Expected a valid Patram repo config.');
+  }
+
+  writeStoredQueries(io_context.stdout, listQueries(repo_config.queries));
+
+  return 0;
+}
+
+/**
  * @param {string} project_directory
- * @returns {Promise<{ diagnostics: PatramDiagnostic[], graph: BuildGraphResult, source_file_paths: string[] }>}
+ * @returns {Promise<{ config: PatramRepoConfig, diagnostics: PatramDiagnostic[], graph: BuildGraphResult, source_file_paths: string[] }>}
  */
 async function loadProjectGraph(project_directory) {
   const load_result = await loadPatramConfig(project_directory);
 
   if (load_result.diagnostics.length > 0) {
     return {
+      config: {
+        include: [],
+        queries: {},
+      },
       diagnostics: load_result.diagnostics,
       graph: {
         edges: [],
@@ -151,6 +185,7 @@ async function loadProjectGraph(project_directory) {
   const graph_config = resolvePatramGraphConfig(repo_config);
 
   return {
+    config: repo_config,
     diagnostics: [],
     graph: buildGraph(graph_config, claims),
     source_file_paths,
@@ -204,6 +239,16 @@ function writeQueryResults(output_stream, graph_nodes) {
 }
 
 /**
+ * @param {{ write(chunk: string): boolean }} output_stream
+ * @param {{ name: string, where: string }[]} stored_queries
+ */
+function writeStoredQueries(output_stream, stored_queries) {
+  for (const stored_query of stored_queries) {
+    output_stream.write(formatStoredQuery(stored_query));
+  }
+}
+
+/**
  * @param {import('../lib/load-patram-config.types.ts').PatramDiagnostic} diagnostic
  * @returns {string}
  */
@@ -226,6 +271,14 @@ function formatQueryResult(graph_node) {
   }
 
   return `${graph_node.id} ${graph_node.kind} ${label}\n`;
+}
+
+/**
+ * @param {{ name: string, where: string }} stored_query
+ * @returns {string}
+ */
+function formatStoredQuery(stored_query) {
+  return `${stored_query.name} ${stored_query.where}\n`;
 }
 
 /**
