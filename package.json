@@ -1,0 +1,34 @@
+{
+  "name": "patram",
+  "version": "0.0.0",
+  "type": "module",
+  "bin": {
+    "patram": "./bin/patram.js"
+  },
+  "scripts": {
+    "all": "npm run check:lint && npm run check:format && npm run test:unit && npm run test:coverage && npm run check:dupes",
+    "check:dupes": "jscpd --min-tokens 100 --min-lines 6 --mode mild --threshold 0 --reporters console --gitignore .",
+    "check:format": "prettier --check .",
+    "check:lint": "eslint .",
+    "check:types": "tsc",
+    "test": "npm run test:unit && npm run test:coverage",
+    "test:unit": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.12.0",
+    "@vitest/coverage-v8": "^4.1.0",
+    "ansis": "^4.2.0",
+    "eslint": "^10.0.3",
+    "eslint-plugin-jsdoc": "^62.8.0",
+    "globals": "^17.4.0",
+    "jscpd": "^4.0.8",
+    "prettier": "^3.5.3",
+    "slice-ansi": "^8.0.0",
+    "string-width": "^8.2.0",
+    "typescript": "^5.8.2",
+    "vitest": "^4.1.0",
+    "wrap-ansi": "^10.0.0"
+  }
+}
