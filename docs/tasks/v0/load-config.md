@@ -1,7 +1,7 @@
 # Load Config
 
 - Kind: task
-- Status: pending
+- Status: done
 - Tracked in: docs/roadmap/v0-dogfood.md
 
 - Load `.patram.json`.
