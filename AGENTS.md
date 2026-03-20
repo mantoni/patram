@@ -1,7 +1,8 @@
 # Agents
 
 Patram is a CLI (`patram`) for humans and agents to explore docs and how they
-link to sources. Patram uses patram. Always read `docs/patram.md`.
+link to sources. Patram uses patram. Always read `docs/patram.md` and
+`docs/structure.md`.
 
 ## Repo Map
 
@@ -20,7 +21,7 @@ link to sources. Patram uses patram. Always read `docs/patram.md`.
 
 - Docs first.
 - Record decisions in `docs/decisions/`.
-- Record implementation plans in `docs/roadmap/`.
+- Record implementation plans in `docs/plans/<version>/`.
 - Record conventions in `docs/conventions/`.
 - Do not implement before decisions are documented.
 - TDD is required.

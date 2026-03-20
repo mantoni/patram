@@ -1,4 +1,4 @@
-# Show Output v0 Proposal
+# Show Output Proposal
 
 - Kind: decision
 - Status: proposed

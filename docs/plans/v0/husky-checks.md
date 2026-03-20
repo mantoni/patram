@@ -1,6 +1,6 @@
-# Husky Checks v0 Roadmap
+# Husky Checks Plan
 
-- Kind: roadmap
+- Kind: plan
 - Status: active
 
 ## Goal

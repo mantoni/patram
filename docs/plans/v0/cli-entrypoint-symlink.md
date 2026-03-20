@@ -1,6 +1,6 @@
-# CLI Entrypoint Symlink v0 Roadmap
+# CLI Entrypoint Symlink Plan
 
-- Kind: roadmap
+- Kind: plan
 - Status: active
 
 ## Goal

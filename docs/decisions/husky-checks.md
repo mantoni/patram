@@ -1,8 +1,8 @@
-# Husky Checks v0 Proposal
+# Husky Checks Proposal
 
 - Kind: decision
 - Status: accepted
-- Tracked in: docs/roadmap/husky-checks-v0.md
+- Tracked in: docs/plans/v0/husky-checks.md
 
 - Use Husky for repository-managed Git hooks.
 - Install Husky as a development dependency.

@@ -1,4 +1,4 @@
-# Query Command v0 Proposal
+# Query Command Proposal
 
 - Kind: decision
 - Status: accepted

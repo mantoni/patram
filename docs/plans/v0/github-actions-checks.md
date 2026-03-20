@@ -1,6 +1,6 @@
-# GitHub Actions Checks v0 Roadmap
+# GitHub Actions Checks Plan
 
-- Kind: roadmap
+- Kind: plan
 - Status: active
 
 ## Goal

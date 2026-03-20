@@ -1,6 +1,6 @@
-# Release Automation v0 Roadmap
+# Release Automation Plan
 
-- Kind: roadmap
+- Kind: plan
 - Status: active
 
 ## Goal

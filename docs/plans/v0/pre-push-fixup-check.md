@@ -1,6 +1,6 @@
-# Pre-Push Fixup Check v0 Roadmap
+# Pre-Push Fixup Check Plan
 
-- Kind: roadmap
+- Kind: plan
 - Status: active
 
 ## Goal

@@ -1,4 +1,4 @@
-# Single Config File v0 Proposal
+# Single Config File Proposal
 
 - Kind: decision
 - Status: accepted

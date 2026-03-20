@@ -1,4 +1,4 @@
-# Check Command v0 Proposal
+# Check Command Proposal
 
 - Kind: decision
 - Status: accepted

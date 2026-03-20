@@ -1,8 +1,8 @@
-# Pre-Push Fixup Check v0 Proposal
+# Pre-Push Fixup Check Proposal
 
 - Kind: decision
 - Status: accepted
-- Tracked in: docs/roadmap/pre-push-fixup-check-v0.md
+- Tracked in: docs/plans/v0/pre-push-fixup-check.md
 
 - Use a Husky `pre-push` hook to block pushes that include `fixup!` commits.
 - Implement the check directly in the hook shell script.

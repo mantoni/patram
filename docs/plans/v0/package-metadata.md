@@ -1,6 +1,6 @@
-# Package Metadata v0 Roadmap
+# Package Metadata Plan
 
-- Kind: roadmap
+- Kind: plan
 - Status: active
 
 ## Goal

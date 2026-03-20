@@ -1,4 +1,4 @@
-# Graph Materialization v0 Proposal
+# Graph Materialization Proposal
 
 - Kind: decision
 - Status: accepted

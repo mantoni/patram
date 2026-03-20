@@ -1,4 +1,4 @@
-# Source Scan v0 Proposal
+# Source Scan Proposal
 
 - Kind: decision
 - Status: accepted

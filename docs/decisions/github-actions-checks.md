@@ -1,8 +1,8 @@
-# GitHub Actions Checks v0 Proposal
+# GitHub Actions Checks Proposal
 
 - Kind: decision
 - Status: accepted
-- Tracked in: docs/roadmap/github-actions-checks-v0.md
+- Tracked in: docs/plans/v0/github-actions-checks.md
 
 - Add a GitHub Actions workflow for repository validation.
 - Run the workflow on `push` and `pull_request`.

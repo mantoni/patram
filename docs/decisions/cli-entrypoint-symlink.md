@@ -1,8 +1,8 @@
-# CLI Entrypoint Symlink v0 Proposal
+# CLI Entrypoint Symlink Proposal
 
 - Kind: decision
 - Status: accepted
-- Tracked in: docs/roadmap/cli-entrypoint-symlink-v0.md
+- Tracked in: docs/plans/v0/cli-entrypoint-symlink.md
 
 - The CLI entrypoint guard must treat symlinked executable paths as the same
   entrypoint as the real `bin/patram.js` file.

@@ -3,7 +3,7 @@
 - Kind: task
 - Status: done
 - Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/check-command-v0.md
+- Decided by: docs/decisions/check-command.md
 
 - Report config diagnostics.
 - Report broken document links.

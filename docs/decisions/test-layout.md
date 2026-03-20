@@ -1,8 +1,8 @@
-# Test Layout v0 Proposal
+# Test Layout Proposal
 
 - Kind: decision
 - Status: accepted
-- Tracked in: docs/roadmap/test-layout-v0.md
+- Tracked in: docs/plans/v0/test-layout.md
 
 - Keep implementation-coupled tests next to their `lib` modules.
 - Move repo-level contract tests out of `lib/` and into a top-level `test/`

@@ -19,6 +19,9 @@ The `patram` CLI has three groups of commands:
    - `patram stop`: Stop serving.
    - `patram status`: Check if server is running.
 
+For repository documentation layout and where to put new docs, see
+`docs/structure.md`.
+
 ## Indexing
 
 - Follows common practices.

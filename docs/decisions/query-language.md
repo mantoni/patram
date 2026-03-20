@@ -1,4 +1,4 @@
-# Query Language v0 Proposal
+# Query Language Proposal
 
 - Kind: decision
 - Status: accepted

@@ -1,6 +1,6 @@
-# Test Layout v0 Roadmap
+# Test Layout Plan
 
-- Kind: roadmap
+- Kind: plan
 - Status: active
 
 ## Goal

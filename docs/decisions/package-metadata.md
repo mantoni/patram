@@ -1,8 +1,8 @@
-# Package Metadata v0 Proposal
+# Package Metadata Proposal
 
 - Kind: decision
 - Status: accepted
-- Tracked in: docs/roadmap/package-metadata-v0.md
+- Tracked in: docs/plans/v0/package-metadata.md
 
 - Add a `files` allowlist to the package manifest.
 - Publish only the CLI runtime directories.

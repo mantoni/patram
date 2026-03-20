@@ -5,11 +5,19 @@
 
 ## Kinds
 
-- `task`
 - `decision`
+- `plan`
 - `roadmap`
+- `task`
 - `convention`
-- `roadmap_item`
+
+## Kind Placement
+
+- `decision`: `docs/decisions/`
+- `plan`: `docs/plans/<version>/`
+- `roadmap`: `docs/roadmap/`
+- `task`: `docs/tasks/<version>/`
+- `convention`: `docs/conventions/`
 
 ## Common Fields
 
@@ -39,13 +47,11 @@
 ## Suggested Markdown Pattern
 
 ```md
-# Implement query command
+# Release automation v0 plan
 
-- Kind: task
-- Status: pending
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/query-command-v0.md
-- Decided by: docs/decisions/query-language-v0.md
+- Kind: plan
+- Status: active
+- Decided by: docs/decisions/release-automation.md
 ```
 
 ## Placement
