@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.2 - 2026-03-20
+
+- Publish with explicit public access
+  ([`005ba48`](https://github.com/mantoni/patram/commit/005ba488204e2ffcf1bcbe31d6885671c703e6f5))
+- Add package metadata hygiene
+  ([`711d0fb`](https://github.com/mantoni/patram/commit/711d0fb0945177c025e7b38ca7fefeee39d56fc9))
+
 ## 0.0.1 - 2026-03-20
 
 - Add Release automation
