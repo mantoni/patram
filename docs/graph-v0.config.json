@@ -1,0 +1,63 @@
+{
+  "$schema": "https://example.com/patram.schema.json",
+  "kinds": {
+    "document": {
+      "builtin": true,
+      "label": "Document"
+    },
+    "term": {
+      "label": "Term"
+    }
+  },
+  "relations": {
+    "links_to": {
+      "builtin": true,
+      "from": ["document"],
+      "to": ["document"]
+    },
+    "defines": {
+      "from": ["document"],
+      "to": ["term"]
+    },
+    "mentions": {
+      "from": ["document"],
+      "to": ["term"]
+    }
+  },
+  "mappings": {
+    "document.title": {
+      "node": {
+        "kind": "document",
+        "field": "title"
+      }
+    },
+    "markdown.link": {
+      "emit": {
+        "relation": "links_to",
+        "target_kind": "document",
+        "target": "path"
+      }
+    },
+    "html.link": {
+      "emit": {
+        "relation": "links_to",
+        "target_kind": "document",
+        "target": "path"
+      }
+    },
+    "jsdoc.link": {
+      "emit": {
+        "relation": "links_to",
+        "target_kind": "document",
+        "target": "path"
+      }
+    },
+    "markdown.directive.defined_by": {
+      "emit": {
+        "relation": "defines",
+        "target_kind": "term",
+        "target": "path"
+      }
+    }
+  }
+}
