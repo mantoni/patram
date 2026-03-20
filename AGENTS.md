@@ -16,6 +16,16 @@ link to sources. Patram uses patram. Always read `docs/patram.md`.
 - Never repurpose existing files unless explicitly approved by the user.
 - Change size should align with the request. Simple request = simple change.
 
+## Process
+
+- Docs first.
+- Record decisions in `docs/decisions/`.
+- Record implementation plans in `docs/roadmap/`.
+- Record conventions in `docs/conventions/`.
+- Do not implement before decisions are documented.
+- TDD is required.
+- Use red, green, refactor.
+
 ## Coding Standards
 
 - Use **ECMAScript modules** and modern JavaScript (ES2023+) features.
