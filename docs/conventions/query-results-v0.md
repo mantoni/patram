@@ -10,8 +10,8 @@
 - Stable column order.
 
 ```txt
-task:query-command task Implement query command
-decision:query-language-v0 decision Query Language v0
+doc:docs/tasks/v0/query-command.md task Implement query command
+doc:docs/decisions/query-language-v0.md decision Query Language v0
 ```
 
 ## Named Query Output

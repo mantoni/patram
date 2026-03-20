@@ -1,10 +1,19 @@
+import type {
+  KindDefinition,
+  MappingDefinition,
+  RelationDefinition,
+} from './patram-config.types.ts';
+
 export interface StoredQueryConfig {
   where: string;
 }
 
 export interface PatramRepoConfig {
   include: string[];
+  kinds?: Record<string, KindDefinition>;
+  mappings?: Record<string, MappingDefinition>;
   queries: Record<string, StoredQueryConfig>;
+  relations?: Record<string, RelationDefinition>;
 }
 
 export interface PatramDiagnostic {

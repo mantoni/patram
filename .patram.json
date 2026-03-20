@@ -10,5 +10,88 @@
     "accepted-decisions": {
       "where": "kind=decision and status=accepted"
     }
+  },
+  "kinds": {
+    "document": {
+      "builtin": true
+    }
+  },
+  "relations": {
+    "links_to": {
+      "builtin": true,
+      "from": ["document"],
+      "to": ["document"]
+    },
+    "blocked_by": {
+      "from": ["document"],
+      "to": ["document"]
+    },
+    "decided_by": {
+      "from": ["document"],
+      "to": ["document"]
+    },
+    "implements": {
+      "from": ["document"],
+      "to": ["document"]
+    },
+    "tracked_in": {
+      "from": ["document"],
+      "to": ["document"]
+    }
+  },
+  "mappings": {
+    "document.title": {
+      "node": {
+        "field": "title",
+        "kind": "document"
+      }
+    },
+    "markdown.directive.kind": {
+      "node": {
+        "field": "kind",
+        "kind": "document"
+      }
+    },
+    "markdown.directive.status": {
+      "node": {
+        "field": "status",
+        "kind": "document"
+      }
+    },
+    "markdown.directive.blocked_by": {
+      "emit": {
+        "relation": "blocked_by",
+        "target": "path",
+        "target_kind": "document"
+      }
+    },
+    "markdown.directive.decided_by": {
+      "emit": {
+        "relation": "decided_by",
+        "target": "path",
+        "target_kind": "document"
+      }
+    },
+    "markdown.directive.implements": {
+      "emit": {
+        "relation": "implements",
+        "target": "path",
+        "target_kind": "document"
+      }
+    },
+    "markdown.directive.tracked_in": {
+      "emit": {
+        "relation": "tracked_in",
+        "target": "path",
+        "target_kind": "document"
+      }
+    },
+    "markdown.link": {
+      "emit": {
+        "relation": "links_to",
+        "target": "path",
+        "target_kind": "document"
+      }
+    }
   }
 }
