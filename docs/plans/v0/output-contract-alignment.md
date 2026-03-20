@@ -6,6 +6,8 @@
 
 ## Goal
 
+- Adopt entity-summary output blocks for `query` and resolved-link footnotes in
+  `show`.
 - Bring `check` and `queries` back in line with the documented v0 CLI output
   contract.
 - Make the `rich` renderer style metadata consistently.
@@ -13,6 +15,7 @@
 
 ## Scope
 
+- Update `query` and `show` conventions to use entity-summary blocks.
 - Make `check` match the canonical `plain`, `rich`, and `json` layouts from
   `docs/conventions/cli-output-v0.md`.
 - Specify canonical `queries` output and remove conflicting guidance from
@@ -24,17 +27,22 @@
 
 ## Order
 
-1. Document the missing `queries` output contract and consolidate the canonical
-   conventions source.
-2. Add failing tests for `check` output, `queries` output, and rich metadata
+1. Document entity-summary output for `query` and `show`, and consolidate the
+   canonical `queries` conventions source.
+2. Add failing tests for `query`, `show`, `check`, `queries`, and rich metadata
    styling.
-3. Align `check` rendering and summaries with `cli-output-v0`.
-4. Align `queries` rendering with the canonical conventions.
-5. Fix the repo dogfood failures in docs or markdown claim parsing.
-6. Run validation and dogfood on this repo.
+3. Align `query` and `show` rendering with the entity-summary conventions.
+4. Align `check` rendering and summaries with `cli-output-v0`.
+5. Align `queries` rendering with the canonical conventions.
+6. Fix the repo dogfood failures in docs or markdown claim parsing.
+7. Run validation and dogfood on this repo.
 
 ## Acceptance
 
+- `patram query` plain output matches the entity-summary layout in
+  `docs/conventions/cli-output-v0.md`.
+- `patram show` resolved-link footnotes match the entity-summary layout in
+  `docs/conventions/cli-output-v0.md`.
 - `patram check` plain output matches `docs/conventions/cli-output-v0.md`.
 - `patram check --json` emits the documented diagnostics shape.
 - Successful `patram check` prints the documented success summary.

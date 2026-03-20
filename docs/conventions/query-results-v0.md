@@ -3,31 +3,13 @@
 - Kind: convention
 - Status: active
 
-## Default Output
+- Canonical `query` and `queries` output now lives in
+  `docs/conventions/cli-output-v0.md`.
+- Keep this file as a stable path for older links into the conventions set.
+- Do not add separate `query` or `queries` layout examples here.
 
-- One result per line.
-- Human-readable text.
-- Stable column order.
+## Source Of Truth
 
-```txt
-doc:docs/tasks/v0/query-command.md task Implement query command
-doc:docs/decisions/query-language-v0.md decision Query Language v0
-```
-
-## Named Query Output
-
-```txt
-pending kind=task and status=pending
-blocked kind=task and status=blocked
-accepted-decisions kind=decision and status=accepted
-```
-
-## Empty Output
-
-- Print no result lines.
-- Exit `0`.
-
-## Failure Output
-
-- Print diagnostics.
-- Exit `1`.
+- Use `docs/conventions/cli-output-v0.md` for `query` examples.
+- Use `docs/conventions/cli-output-v0.md` for `queries` examples.
+- Use `docs/conventions/cli-output-v0.md` for empty and failure output rules.

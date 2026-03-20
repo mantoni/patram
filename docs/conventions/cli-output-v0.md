@@ -4,7 +4,8 @@
 - Status: active
 
 - Applies to the `plain`, `rich`, and `json` renderers.
-- Preserves the current plain-text baseline from `query-results-v0`.
+- Defines the canonical plain-text baseline for `query`, `queries`, `check`, and
+  `show`.
 - Preserves the current `show` order of source first and resolved summary
   second.
 - Documents canonical plain-text output examples only.
@@ -29,13 +30,15 @@
 ### Plain
 
 ```txt
-Implement query command
-docs/tasks/v0/query-command.md
+document docs/tasks/v0/query-command.md
 kind: task  status: pending
 
-Query Language v0
-docs/decisions/query-language-v0.md
+    Implement query command
+
+document docs/decisions/query-language-v0.md
 kind: decision  status: accepted
+
+    Query Language v0
 ```
 
 ### JSON
@@ -113,14 +116,17 @@ Scanned 12 files. Found 0 errors.
 See [Some Guide][1].
 
 ----------------
-[1] Some Guide
-    docs/guide.md
-[2] Query Language v0
-    docs/decisions/query-language-v0.md
+[1] document docs/guide.md
+
+    Some Guide
+[2] document docs/decisions/query-language-v0.md
     kind: decision  status: accepted
-[3] Implement query command
-    docs/tasks/v0/query-command.md
+
+    Query Language v0
+[3] document docs/tasks/v0/query-command.md
     kind: task  status: pending
+
+    Implement query command
 ```
 
 ### JSON
@@ -168,22 +174,31 @@ See [Some Guide][1].
 - Keep reference numbering stable within one rendered document.
 - Separate rendered prose from resolved references with an unlabeled divider.
 - Prefer document titles over path-derived aliases for rendered link labels.
-- Start each resolved-link footnote with the numbered reference token such as
-  `[1]`.
-- Align resolved-link footnotes by reference number instead of by label width.
-- Always show the resolved target title in the resolved summary.
-- Always show the resolved target path on its own line.
+- Start each resolved-link footnote with the numbered reference token plus the
+  identity header, such as `[1] document docs/guide.md`.
+- Use `document` as the v0 header type for file-backed graph nodes.
+- Render metadata immediately under the identity header when present.
+- Leave one blank line between the metadata block and the indented content
+  block.
+- Always show the resolved target title in the indented content block.
 - Show `kind`, `status`, and other target metadata only when present and useful.
 - Treat resolved links as compact entity summaries, not path lookups.
+- Render an indented description paragraph only when the resolved target carries
+  one.
 
 ## Query Rendering
 
-- Render each query result as a three-line search-style block:
-  - title
-  - path
-  - metadata
+- Render each query result as an entity-summary block:
+  - identity header
+  - metadata row
+  - indented content block
 - Separate adjacent query results with one blank line.
-- Render the path on its own line with no `path:` label.
+- Render the identity header as `document <path>`.
+- Render metadata immediately under the identity header when present.
+- Leave one blank line between the metadata block and the indented content
+  block.
+- Render the title in the indented content block.
+- Render an indented description paragraph only when the node carries one.
 - Use the same metadata row shape as `show` footnotes.
 
 ## Error Writing
@@ -206,7 +221,8 @@ See [Some Guide][1].
 
 - Use one accent color for structure and links.
 - Use red for errors and yellow for warnings.
-- Use dim styling for metadata keys, paths, and reference numbers only.
+- Use dim styling for paths, reference numbers, metadata keys, and `kind` and
+  `status` metadata values.
 - Make inline link labels clickable when the terminal supports hyperlinks.
 - Render inline link references from `[Some Guide][1]` as `Some Guide 1` while
   preserving the same ordering and reference number.
