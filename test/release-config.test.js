@@ -26,7 +26,9 @@ it('defines the tag-based publish and release workflow contract', async () => {
   expect(workflow_text).toContain("registry-url: 'https://registry.npmjs.org'");
   expect(workflow_text).toContain('run: npm ci');
   expect(workflow_text).toContain('run: npm run all');
-  expect(workflow_text).toContain('run: npm publish');
+  expect(workflow_text).toContain(
+    'run: npm publish --provenance --access public',
+  );
   expect(workflow_text).toContain('gh release create');
 });
 

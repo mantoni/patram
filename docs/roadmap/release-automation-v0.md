@@ -36,6 +36,7 @@
 - `CHANGELOG.md` exists and uses the generated section format.
 - The generated changelog output passes the staged-file Prettier check.
 - `.github/workflows/release.yml` publishes on version tag pushes.
+- `.github/workflows/release.yml` publishes with `--access public`.
 - `.github/workflows/release.yml` creates a GitHub release from the latest
   changelog section.
 - `npm run all` passes.

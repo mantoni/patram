@@ -15,6 +15,8 @@
 - Push the release commit and tag from the `postversion` lifecycle script.
 - Publish from GitHub Actions on tag pushes instead of from a developer
   workstation.
+- Publish with explicit public access so first releases can succeed with npm
+  provenance enabled.
 - Create the GitHub release from the latest `CHANGELOG.md` section.
 - Use npm trusted publishing on GitHub-hosted runners.
 
