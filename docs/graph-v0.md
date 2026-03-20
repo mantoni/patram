@@ -3,8 +3,8 @@
 This document defines a simple v0 internal structure for patram.
 
 Patram has built-in parsers for markdown, HTML and JSDoc-style source comments.
-Those parsers emit neutral claims. Project-specific meaning comes from JSON
-configuration.
+Those parsers emit neutral claims. Project-specific meaning comes from the
+project JSON configuration in `.patram.json`.
 
 ## Layers
 
@@ -32,7 +32,7 @@ graph LR
 - `claim`: A parser-produced fact before semantic mapping.
 
 The schema is not part of the content graph. It defines the vocabulary the graph
-uses.
+uses and lives in the project config file.
 
 ## Design Constraints
 
