@@ -12,10 +12,13 @@
     "check:lint": "eslint .",
     "check:staged": "lint-staged --quiet",
     "check:types": "tsc",
+    "postversion": "git push && git push --tags",
+    "preversion": "npm run all",
     "prepare": "husky",
     "test": "npm run test:unit && npm run test:coverage",
+    "test:coverage": "vitest run --coverage",
     "test:unit": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "version": "node scripts/update-changelog.js && git add CHANGELOG.md package.json package-lock.json"
   },
   "lint-staged": {
     "*.{js,ts,json,md}": "prettier --check",
