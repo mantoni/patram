@@ -1,7 +1,7 @@
 # Implement CLI Argument Parser
 
 - Kind: task
-- Status: pending
+- Status: done
 - Tracked in: docs/roadmap/v0-dogfood.md
 - Decided by: docs/decisions/cli-argument-parser.md
 - Decided by: docs/decisions/cli-output-modes.md

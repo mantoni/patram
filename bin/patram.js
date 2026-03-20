@@ -3,6 +3,7 @@
 /**
  * @import { BuildGraphResult, GraphNode } from '../lib/build-graph.types.ts';
  * @import { PatramClaim } from '../lib/parse-claims.types.ts';
+ * @import { ParsedCliArguments } from '../lib/parse-cli-arguments.types.ts';
  * @import { PatramDiagnostic, PatramRepoConfig } from '../lib/load-patram-config.types.ts';
  */
 
@@ -17,6 +18,7 @@ import { listQueries } from '../lib/list-queries.js';
 import { listSourceFiles } from '../lib/list-source-files.js';
 import { loadPatramConfig } from '../lib/load-patram-config.js';
 import { parseClaims } from '../lib/parse-claims.js';
+import { parseCliArguments } from '../lib/parse-cli-arguments.js';
 import { queryGraph } from '../lib/query-graph.js';
 import { resolveWhereClause } from '../lib/resolve-where-clause.js';
 import { resolvePatramGraphConfig } from '../lib/resolve-patram-graph-config.js';
@@ -36,17 +38,25 @@ if (await isEntrypoint(import.meta.url, process.argv[1])) {
  * @returns {Promise<number>}
  */
 export async function main(cli_arguments, io_context) {
-  const command_name = cli_arguments[0];
+  const parsed_arguments = parseCliArguments(cli_arguments);
 
-  if (command_name === 'check') {
-    return runCheckCommand(cli_arguments.slice(1), io_context);
+  if (!parsed_arguments.success) {
+    io_context.stderr.write(`${parsed_arguments.message}\n`);
+
+    return 1;
   }
 
-  if (command_name === 'query') {
-    return runQueryCommand(cli_arguments.slice(1), io_context);
+  const parsed_command = parsed_arguments.value;
+
+  if (parsed_command.command_name === 'check') {
+    return runCheckCommand(parsed_command.command_arguments, io_context);
   }
 
-  if (command_name === 'queries') {
+  if (parsed_command.command_name === 'query') {
+    return runQueryCommand(parsed_command.command_arguments, io_context);
+  }
+
+  if (parsed_command.command_name === 'queries') {
     return runQueriesCommand(io_context);
   }
 
