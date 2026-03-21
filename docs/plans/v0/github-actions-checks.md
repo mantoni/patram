@@ -33,6 +33,6 @@
 - The workflow runs `npm run check:lint` in its own step.
 - The workflow runs `npm run check:format` in its own step.
 - The workflow runs `npm run check:types` in its own step.
-- The workflow runs `npm run test:unit` in its own step.
+- The workflow runs `npm run test` in its own step.
 - The workflow runs `npm run test:coverage` in its own step.
 - The workflow runs `npm run check:dupes` in its own step.

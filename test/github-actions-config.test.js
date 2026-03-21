@@ -17,7 +17,7 @@ it('defines the checks workflow contract', async () => {
   expect(workflow_text).toContain('run: npm run check:lint');
   expect(workflow_text).toContain('run: npm run check:format');
   expect(workflow_text).toContain('run: npm run check:types');
-  expect(workflow_text).toContain('run: npm run test:unit');
+  expect(workflow_text).toContain('run: npm run test');
   expect(workflow_text).toContain('run: npm run test:coverage');
   expect(workflow_text).toContain('run: npm run check:dupes');
 });
