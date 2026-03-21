@@ -48,22 +48,26 @@ it('defines publish metadata for the npm package', async () => {
   );
 });
 
-it('excludes test artifacts from the packed npm tarball', async () => {
-  const temp_directory = await createTempDirectory();
+it(
+  'excludes test artifacts from the packed npm tarball',
+  { tags: ['integration'] },
+  async () => {
+    const temp_directory = await createTempDirectory();
 
-  try {
-    const packed_file_paths = await listPackedFilePaths(temp_directory);
+    try {
+      const packed_file_paths = await listPackedFilePaths(temp_directory);
 
-    expect(packed_file_paths).toContain('bin/patram.js');
-    expect(packed_file_paths).toContain('lib/patram-cli.js');
-    expect(packed_file_paths).not.toContain('bin/patram.test.js');
-    expect(packed_file_paths).not.toContain('bin/patram.test-helpers.js');
-    expect(packed_file_paths).not.toContain('lib/build-graph.test.js');
-    expect(packed_file_paths).not.toContain('lib/render-output-view.test.js');
-  } finally {
-    await rm(temp_directory, { force: true, recursive: true });
-  }
-});
+      expect(packed_file_paths).toContain('bin/patram.js');
+      expect(packed_file_paths).toContain('lib/patram-cli.js');
+      expect(packed_file_paths).not.toContain('bin/patram.test.js');
+      expect(packed_file_paths).not.toContain('bin/patram.test-helpers.js');
+      expect(packed_file_paths).not.toContain('lib/build-graph.test.js');
+      expect(packed_file_paths).not.toContain('lib/render-output-view.test.js');
+    } finally {
+      await rm(temp_directory, { force: true, recursive: true });
+    }
+  },
+);
 
 /**
  * Reads a UTF-8 text file.

@@ -1,3 +1,5 @@
+// @module-tag integration
+
 import { execFile as execFileCallback } from 'node:child_process';
 import { join } from 'node:path';
 import { promisify } from 'node:util';

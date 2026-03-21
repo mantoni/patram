@@ -1,3 +1,5 @@
+// @module-tag integration
+
 import process from 'node:process';
 
 import { afterEach, expect, it } from 'vitest';

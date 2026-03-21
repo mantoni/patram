@@ -1,3 +1,5 @@
+// @module-tag integration
+
 import { afterEach, expect, it } from 'vitest';
 
 import {
