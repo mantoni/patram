@@ -6,7 +6,7 @@
 - Canonical `query` and `queries` output now lives in
   `docs/conventions/cli-output-v0.md`.
 - Keep this file as a stable path for older links into the conventions set.
-- Do not add separate `query` or `queries` layout examples here.
+- Do not duplicate `query` or `queries` layout examples here.
 
 ## Source Of Truth
 

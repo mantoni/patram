@@ -27,6 +27,6 @@
 ## Acceptance
 
 - `patram query pending` runs the `pending` stored query.
-- `patram queries` prints `<name> <where>` lines in stable order.
+- `patram queries` matches `docs/conventions/cli-output-v0.md` in stable order.
 - Missing stored query names fail with a clear error.
 - `npm run all` passes.

@@ -71,6 +71,36 @@ No matches.
 Try: patram query --where "kind=task"
 ```
 
+## Queries
+
+### Plain
+
+```txt
+blocked kind=task and status=blocked
+pending kind=task and status=pending
+```
+
+### JSON
+
+```json
+{
+  "queries": [
+    {
+      "name": "blocked",
+      "where": "kind=task and status=blocked"
+    },
+    {
+      "name": "pending",
+      "where": "kind=task and status=pending"
+    }
+  ]
+}
+```
+
+### Empty
+
+- Print no lines when no stored queries are defined.
+
 ## Check
 
 ### Plain
@@ -200,6 +230,15 @@ See [Some Guide][1].
 - Render the title in the indented content block.
 - Render an indented description paragraph only when the node carries one.
 - Use the same metadata row shape as `show` footnotes.
+
+## Stored Query Rendering
+
+- Keep `queries` distinct from the entity-summary layout used by `query` and
+  `show`.
+- Render each stored query on one line as `<name> <where>`.
+- Keep stored queries in stable name order.
+- Print no lines when no stored queries are defined in `plain` and `rich`
+  output.
 
 ## Error Writing
 
