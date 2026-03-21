@@ -202,7 +202,7 @@ it('prints resolved source and links for show', async () => {
   expect(io_context.stdout_chunks).toEqual([
     '# Patram\n' +
       '\n' +
-      'See [Some Guide][1], [Query Language v0][2], and [Implement query command][3].\n' +
+      'See [guide][1], [query language][2], and [implement query command][3].\n' +
       '\n' +
       '----------------\n' +
       '[1] Some Guide\n' +
@@ -246,7 +246,7 @@ it('prints show results as json', async () => {
       '  "resolved_links": [\n' +
       '    {\n' +
       '      "reference": 1,\n' +
-      '      "label": "Some Guide",\n' +
+      '      "label": "guide",\n' +
       '      "target": {\n' +
       '        "title": "Some Guide",\n' +
       '        "path": "docs/guide.md"\n' +
