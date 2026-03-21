@@ -39,8 +39,6 @@ document docs/decisions/query-language-v0.md
 kind: decision  status: accepted
 
     Query Language v0
-
-Showing 2 of 2 matches.
 ```
 
 ### JSON
@@ -91,7 +89,6 @@ Hint: use --offset <n> or --limit <n> to page through more matches.
 
 ```txt
 No matches.
-Showing 0 of 0 matches.
 Try: patram query --where "kind=task"
 ```
 
@@ -257,7 +254,9 @@ See [Some Guide][1].
 - Use the same metadata row shape as `show` footnotes.
 - Default query output to `25` results.
 - Apply `--offset` and `--limit` after filtering and stable ordering.
-- End query output with `Showing <shown> of <total> matches.`.
+- End paginated query output with `Showing <shown> of <total> matches.`.
+- Omit the summary footer when `offset` is `0` and the visible page already
+  includes every match.
 - When the default limit hides more results and no pagination flags were set,
   render `Hint: use --offset <n> or --limit <n> to page through more matches.`.
 

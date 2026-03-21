@@ -5,6 +5,13 @@ export interface OutputViewSummary {
   kind: 'resolved_link_list' | 'result_list' | 'stored_query_list';
 }
 
+export interface QueryOutputViewSummary extends OutputViewSummary {
+  kind: 'result_list';
+  limit: number;
+  offset: number;
+  total_count: number;
+}
+
 export interface OutputNodeItem {
   id: string;
   kind: 'node';
@@ -38,7 +45,7 @@ export interface QueryOutputView {
   command: 'query';
   hints: string[];
   items: OutputNodeItem[];
-  summary: OutputViewSummary;
+  summary: QueryOutputViewSummary;
 }
 
 export interface QueriesOutputView {

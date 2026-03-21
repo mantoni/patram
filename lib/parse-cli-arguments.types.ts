@@ -9,6 +9,8 @@ export interface ParsedCliArguments {
   command_arguments: string[];
   command_name: CliCommandName;
   output_mode: CliOutputMode;
+  query_limit?: number;
+  query_offset?: number;
 }
 
 export type ParseCliArgumentsResult =

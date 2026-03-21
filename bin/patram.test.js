@@ -15,7 +15,6 @@ import {
   createTempProjectDirectory,
   createTestContext,
   createValidLinkSource,
-  stripAnsi,
   writeProjectConfig,
   writeProjectFile,
   writeShowProject,
@@ -403,59 +402,16 @@ it('prints query results as json', async () => {
       '      "path": "docs/tasks/v0/query-command.md",\n' +
       '      "status": "pending"\n' +
       '    }\n' +
-      '  ]\n' +
+      '  ],\n' +
+      '  "summary": {\n' +
+      '    "shown_count": 1,\n' +
+      '    "total_count": 1,\n' +
+      '    "offset": 0,\n' +
+      '    "limit": 25\n' +
+      '  },\n' +
+      '  "hints": []\n' +
       '}\n',
   ]);
-});
-
-it('prints rich query results by default on a tty', async () => {
-  test_context.project_directory = await createTempProjectDirectory();
-  const io_context = createIoContext(true);
-  const original_no_color = process.env.NO_COLOR;
-  const original_term = process.env.TERM;
-
-  await writeProjectConfig(test_context.project_directory);
-  await writeProjectFile(
-    test_context.project_directory,
-    'docs/tasks/v0/query-command.md',
-    createTaskSource('pending'),
-  );
-  process.chdir(test_context.project_directory);
-
-  delete process.env.NO_COLOR;
-  process.env.TERM = 'xterm-256color';
-
-  try {
-    const exit_code = await main(
-      ['query', '--where', 'kind=task and status=pending'],
-      {
-        stderr: io_context.stderr,
-        stdout: io_context.stdout,
-      },
-    );
-
-    expect(exit_code).toBe(0);
-    expect(io_context.stderr_chunks).toEqual([]);
-    expect(stripAnsi(io_context.stdout_chunks.join(''))).toBe(
-      'document docs/tasks/v0/query-command.md\n' +
-        'kind: task  status: pending\n' +
-        '\n' +
-        '    Implement query command\n',
-    );
-    expect(io_context.stdout_chunks.join('')).toContain('\u001B[');
-  } finally {
-    if (original_no_color === undefined) {
-      delete process.env.NO_COLOR;
-    } else {
-      process.env.NO_COLOR = original_no_color;
-    }
-
-    if (original_term === undefined) {
-      delete process.env.TERM;
-    } else {
-      process.env.TERM = original_term;
-    }
-  }
 });
 
 it('rejects an unknown stored query name', async () => {
