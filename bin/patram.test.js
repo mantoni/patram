@@ -117,6 +117,42 @@ it('prints check diagnostics as json', async () => {
   expect(io_context.stdout_chunks).toEqual([]);
 });
 
+it('ignores fenced-example links and external urls during check', async () => {
+  test_context.project_directory = await createTempProjectDirectory();
+  const io_context = createIoContext();
+
+  await writeProjectConfig(test_context.project_directory);
+  await writeProjectFile(
+    test_context.project_directory,
+    'docs/patram.md',
+    [
+      '# Patram',
+      '',
+      'See [missing](./missing.md), [usage](#usage), and [clig.dev](https://clig.dev/).',
+      '',
+      '```json',
+      '{',
+      '  "source": "See [guide](./guide.md) and [query language](./query-language-v0.md)."',
+      '}',
+      '```',
+    ].join('\n'),
+  );
+
+  const exit_code = await main(['check', test_context.project_directory], {
+    stderr: io_context.stderr,
+    stdout: io_context.stdout,
+  });
+
+  expect(exit_code).toBe(1);
+  expect(io_context.stderr_chunks).toEqual([
+    'document docs/patram.md\n' +
+      '  3:5  error  Document link target "docs/missing.md" was not found.  graph.link_broken\n' +
+      '\n' +
+      '\u2716 1 problem (1 error, 0 warnings)\n',
+  ]);
+  expect(io_context.stdout_chunks).toEqual([]);
+});
+
 it('defaults check to the current working directory and exits 0 on valid input', async () => {
   test_context.project_directory = await createTempProjectDirectory();
   const io_context = createIoContext();

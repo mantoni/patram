@@ -1,8 +1,9 @@
 # Fix Repo Dogfood Check
 
 - Kind: task
-- Status: pending
-- Tracked in: docs/plans/v0/output-contract-alignment.md
+- Status: done
+- Tracked in: docs/plans/v0/fix-repo-dogfood-check.md
+- Decided by: docs/decisions/markdown-link-claim-scope.md
 - Blocked by: docs/tasks/v0/align-check-output.md
 - Blocked by: docs/tasks/v0/spec-queries-output.md
 
