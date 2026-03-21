@@ -1,3 +1,5 @@
+import type { PatramDiagnostic } from './load-patram-config.types.ts';
+
 export interface ParseClaimsInput {
   path: string;
   source: string;
@@ -25,3 +27,8 @@ export type PatramClaimFields = Omit<
 > & {
   origin?: ClaimOrigin;
 };
+
+export interface ParseSourceFileResult {
+  claims: PatramClaim[];
+  diagnostics: PatramDiagnostic[];
+}
