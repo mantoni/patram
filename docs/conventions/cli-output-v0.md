@@ -39,6 +39,8 @@ document docs/decisions/query-language-v0.md
 kind: decision  status: accepted
 
     Query Language v0
+
+Showing 2 of 2 matches.
 ```
 
 ### JSON
@@ -60,14 +62,36 @@ kind: decision  status: accepted
       "path": "docs/decisions/query-language-v0.md",
       "status": "accepted"
     }
-  ]
+  ],
+  "summary": {
+    "shown_count": 2,
+    "total_count": 2,
+    "offset": 0,
+    "limit": 25
+  },
+  "hints": []
 }
+```
+
+### Limited
+
+```txt
+document docs/tasks/v0/query-command.md
+kind: task  status: pending
+
+    Implement query command
+
+...
+
+Showing 25 of 40 matches.
+Hint: use --offset <n> or --limit <n> to page through more matches.
 ```
 
 ### Empty
 
 ```txt
 No matches.
+Showing 0 of 0 matches.
 Try: patram query --where "kind=task"
 ```
 
@@ -231,6 +255,11 @@ See [Some Guide][1].
 - Render the title in the indented content block.
 - Render an indented description paragraph only when the node carries one.
 - Use the same metadata row shape as `show` footnotes.
+- Default query output to `25` results.
+- Apply `--offset` and `--limit` after filtering and stable ordering.
+- End query output with `Showing <shown> of <total> matches.`.
+- When the default limit hides more results and no pagination flags were set,
+  render `Hint: use --offset <n> or --limit <n> to page through more matches.`.
 
 ## Stored Query Rendering
 
