@@ -9,24 +9,29 @@ import { promisify } from 'node:util';
 import { it } from 'vitest';
 
 const exec_file = promisify(execFile);
+const PACKAGE_INSTALL_SMOKE_TEST_TIMEOUT = 20_000;
 const repo_directory = dirname(
   fileURLToPath(new URL('../package.json', import.meta.url)),
 );
 
-it('installs and imports the packed npm package in a consumer project', async () => {
-  const temp_directory = await createTempDirectory();
+it(
+  'installs and imports the packed npm package in a consumer project',
+  async () => {
+    const temp_directory = await createTempDirectory();
 
-  try {
-    const tarball_path = await packRepo(temp_directory);
-    const consumer_directory = join(temp_directory, 'consumer');
+    try {
+      const tarball_path = await packRepo(temp_directory);
+      const consumer_directory = join(temp_directory, 'consumer');
 
-    await createConsumerProject(consumer_directory);
-    await installTarball(consumer_directory, tarball_path);
-    await importPackedCli(consumer_directory);
-  } finally {
-    await rm(temp_directory, { force: true, recursive: true });
-  }
-});
+      await createConsumerProject(consumer_directory);
+      await installTarball(consumer_directory, tarball_path);
+      await importPackedCli(consumer_directory);
+    } finally {
+      await rm(temp_directory, { force: true, recursive: true });
+    }
+  },
+  PACKAGE_INSTALL_SMOKE_TEST_TIMEOUT,
+);
 
 /**
  * @param {string} parent_directory
