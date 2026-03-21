@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { promisify } from 'node:util';
 import { symlink } from 'node:fs/promises';
 
+import ansis from 'ansis';
 import { afterEach, expect, it } from 'vitest';
 
 import {
@@ -19,6 +20,7 @@ import {
   writeProjectFile,
   writeShowProject,
 } from './patram.test-helpers.js';
+import { createPagedIoContext } from './patram-pager.test-helpers.js';
 import { main } from './patram.js';
 
 const execFile = promisify(execFileCallback);
@@ -311,6 +313,29 @@ it('prints resolved source and links for show', async () => {
       '\n' +
       '    Implement query command\n',
   ]);
+});
+
+it('sends tty show output through the pager', async () => {
+  test_context.project_directory = await createTempProjectDirectory();
+  const io_context = createPagedIoContext();
+
+  await writeProjectConfig(test_context.project_directory);
+  await writeShowProject(test_context.project_directory);
+  process.chdir(test_context.project_directory);
+
+  const exit_code = await main(['show', 'docs/patram.md'], {
+    stderr: io_context.stderr,
+    stdout: io_context.stdout,
+    write_paged_output: io_context.write_paged_output,
+  });
+  const output = io_context.paged_output_chunks.join('');
+  const stripped_output = ansis.strip(output);
+
+  expect(exit_code).toBe(0);
+  expect(io_context.stderr_chunks).toEqual([]);
+  expect(io_context.stdout_chunks).toEqual([]);
+  expect(stripped_output).toContain('# Patram\n');
+  expect(stripped_output).toContain('[1] document docs/guide.md\n');
 });
 
 it('prints show results as json', async () => {

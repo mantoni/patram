@@ -12,6 +12,7 @@ import {
   writeProjectConfig,
   writeProjectFile,
 } from './patram.test-helpers.js';
+import { createPagedIoContext } from './patram-pager.test-helpers.js';
 import { main } from './patram.js';
 
 const test_context = createTestContext();
@@ -70,7 +71,7 @@ it('applies query offset and limit without the default pagination hint', async (
 
 it('prints rich query results by default on a tty', async () => {
   test_context.project_directory = await createTempProjectDirectory();
-  const io_context = createIoContext(true);
+  const io_context = createPagedIoContext();
   const original_no_color = process.env.NO_COLOR;
   const original_term = process.env.TERM;
 
@@ -91,8 +92,56 @@ it('prints rich query results by default on a tty', async () => {
   }
 });
 
+it('sends tty query output through the pager and removes the default limit', async () => {
+  test_context.project_directory = await createTempProjectDirectory();
+  const io_context = createPagedIoContext();
+
+  await writePendingTaskQueryProject(test_context.project_directory, 26);
+  process.chdir(test_context.project_directory);
+
+  const exit_code = await main(['query', 'pending'], {
+    stderr: io_context.stderr,
+    stdout: io_context.stdout,
+    write_paged_output: io_context.write_paged_output,
+  });
+  const output = io_context.paged_output_chunks.join('');
+
+  expect(exit_code).toBe(0);
+  expect(io_context.stderr_chunks).toEqual([]);
+  expect(io_context.stdout_chunks).toEqual([]);
+  expect(output).toContain('document docs/tasks/v0/task-01.md');
+  expect(output).toContain('document docs/tasks/v0/task-26.md');
+  expect(output).not.toContain('Showing 26 of 26 matches.\n');
+  expect(output).not.toContain(
+    'Hint: use --offset <n> or --limit <n> to page through more matches.\n',
+  );
+});
+
+it('keeps an explicit limit when tty query output is paged', async () => {
+  test_context.project_directory = await createTempProjectDirectory();
+  const io_context = createPagedIoContext();
+
+  await writePendingTaskQueryProject(test_context.project_directory, 26);
+  process.chdir(test_context.project_directory);
+
+  const exit_code = await main(['query', 'pending', '--limit', '5'], {
+    stderr: io_context.stderr,
+    stdout: io_context.stdout,
+    write_paged_output: io_context.write_paged_output,
+  });
+  const output = io_context.paged_output_chunks.join('');
+
+  expect(exit_code).toBe(0);
+  expect(io_context.stderr_chunks).toEqual([]);
+  expect(io_context.stdout_chunks).toEqual([]);
+  expect(output).toContain('document docs/tasks/v0/task-01.md');
+  expect(output).toContain('document docs/tasks/v0/task-05.md');
+  expect(output).not.toContain('document docs/tasks/v0/task-06.md');
+  expect(output).toContain('Showing 5 of 26 matches.\n');
+});
+
 /**
- * @param {{ stderr: { write(chunk: string): boolean }, stderr_chunks: string[], stdout: { isTTY: boolean, write(chunk: string): boolean }, stdout_chunks: string[] }} io_context
+ * @param {{ paged_output_chunks: string[], stderr: { write(chunk: string): boolean }, stderr_chunks: string[], stdout: { isTTY: boolean, write(chunk: string): boolean }, stdout_chunks: string[], write_paged_output(output_text: string): Promise<void> }} io_context
  */
 async function expectRichQueryOutput(io_context) {
   const exit_code = await main(
@@ -100,18 +149,20 @@ async function expectRichQueryOutput(io_context) {
     {
       stderr: io_context.stderr,
       stdout: io_context.stdout,
+      write_paged_output: io_context.write_paged_output,
     },
   );
 
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
-  expect(stripAnsi(io_context.stdout_chunks.join(''))).toBe(
+  expect(stripAnsi(io_context.paged_output_chunks.join(''))).toBe(
     'document docs/tasks/v0/query-command.md\n' +
       'kind: task  status: pending\n' +
       '\n' +
       '    Implement query command\n',
   );
-  expect(io_context.stdout_chunks.join('')).toContain('\u001B[');
+  expect(io_context.stdout_chunks).toEqual([]);
+  expect(io_context.paged_output_chunks.join('')).toContain('\u001B[');
 }
 
 /**

@@ -2,7 +2,6 @@ import { afterEach, expect, it } from 'vitest';
 
 import {
   cleanupTestContext,
-  createIoContext,
   createTempProjectDirectory,
   createTestContext,
   createValidLinkSource,
@@ -10,6 +9,7 @@ import {
   writeProjectConfig,
   writeProjectFile,
 } from './patram.test-helpers.js';
+import { createPagedIoContext } from './patram-pager.test-helpers.js';
 import { main } from './patram.js';
 
 const FULL_WIDTH_DIVIDER = ` ${'─'.repeat(78)} `;
@@ -22,7 +22,7 @@ afterEach(async () => {
 
 it('renders markdown show output with custom formatting in rich mode', async () => {
   test_context.project_directory = await createTempProjectDirectory();
-  const io_context = createIoContext(true);
+  const io_context = createPagedIoContext();
 
   await writeProjectConfig(test_context.project_directory);
   await writeProjectFile(
@@ -50,25 +50,27 @@ it('renders markdown show output with custom formatting in rich mode', async () 
     {
       stderr: io_context.stderr,
       stdout: io_context.stdout,
+      write_paged_output: io_context.write_paged_output,
     },
   );
 
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
-  expect(stripAnsi(io_context.stdout_chunks[0])).toContain(
+  expect(stripAnsi(io_context.paged_output_chunks[0])).toContain(
     '# Patram\n\nSee guide[1].\n\n' +
       ` ${'ts [app.ts]'.padStart(78, ' ')} \n` +
       ` ${` ${'const value = 1;'}`.padEnd(78, ' ')} \n` +
       ` ${' '.padEnd(78, ' ')} \n`,
   );
-  expect(stripAnsi(io_context.stdout_chunks[0])).toContain(
+  expect(stripAnsi(io_context.paged_output_chunks[0])).toContain(
     `${FULL_WIDTH_DIVIDER}\n\n[1] document docs/guide.md\n\n    Some Guide\n`,
   );
+  expect(io_context.stdout_chunks).toEqual([]);
 });
 
 it('renders non-markdown source files with syntax highlighting in rich mode', async () => {
   test_context.project_directory = await createTempProjectDirectory();
-  const io_context = createIoContext(true);
+  const io_context = createPagedIoContext();
 
   await writeProjectConfig(test_context.project_directory);
   await writeProjectFile(
@@ -91,12 +93,14 @@ it('renders non-markdown source files with syntax highlighting in rich mode', as
   const exit_code = await main(['show', 'src/demo.js', '--color', 'always'], {
     stderr: io_context.stderr,
     stdout: io_context.stdout,
+    write_paged_output: io_context.write_paged_output,
   });
 
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
-  expect(stripAnsi(io_context.stdout_chunks[0])).toBe(
+  expect(stripAnsi(io_context.paged_output_chunks[0])).toBe(
     ` ${'javascript'.padStart(78, ' ')} \n ${'export const value = 1;'.padEnd(78, ' ')} \n`,
   );
-  expect(io_context.stdout_chunks[0]).toContain('\u001B[');
+  expect(io_context.stdout_chunks).toEqual([]);
+  expect(io_context.paged_output_chunks[0]).toContain('\u001B[');
 });
