@@ -233,8 +233,8 @@ it('prints stored queries', async () => {
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual([
-    'blocked kind=task and status=blocked\n' +
-      'pending kind=task and status=pending\n',
+    'blocked  kind=task and status=blocked\n' +
+      'pending  kind=task and status=pending\n',
   ]);
 });
 

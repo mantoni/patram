@@ -18,7 +18,7 @@
 - Keep metadata keys uncolored in `rich` output.
 - Parse stored query terms before styling them in `rich` output.
 - Use semantic highlighting for stored query terms in `queries`:
-  - field names use cyan
+  - field names keep the default foreground color
   - query operators use gray
   - boolean keywords such as `and`, `or`, and `not` use yellow
   - literal values keep the default foreground color
@@ -34,5 +34,6 @@
   on common terminal themes.
 - Semantic term highlighting makes stored queries easier to scan without
   changing the plain-text layout.
+- Keeping field names uncolored reduces noise in dense stored query lists.
 - Highlighting from parsed query structure is more robust than styling raw text
   after rendering.

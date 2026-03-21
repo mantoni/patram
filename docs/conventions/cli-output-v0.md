@@ -282,7 +282,7 @@ See [Some Guide][1].
   - the secondary success-summary line in `check`
 - Keep metadata keys uncolored.
 - Parse stored query terms before styling them.
-- Use cyan for stored query field names.
+- Keep stored query field names on the default foreground color.
 - Use gray for stored query operators.
 - Use yellow for stored query boolean keywords such as `and`, `or`, and `not`.
 - Keep stored query literal values on the default foreground color.
