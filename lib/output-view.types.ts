@@ -59,6 +59,7 @@ export interface ShowOutputView {
   command: 'show';
   hints: string[];
   items: OutputResolvedLinkItem[];
+  path: string;
   rendered_source: string;
   source: string;
   summary: OutputViewSummary;

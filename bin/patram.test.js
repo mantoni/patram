@@ -281,10 +281,13 @@ it('prints resolved source and links for show', async () => {
   await writeShowProject(test_context.project_directory);
   process.chdir(test_context.project_directory);
 
-  const exit_code = await main(['show', 'docs/patram.md'], {
-    stderr: io_context.stderr,
-    stdout: io_context.stdout,
-  });
+  const exit_code = await main(
+    ['show', 'docs/patram.md', '--color', 'always'],
+    {
+      stderr: io_context.stderr,
+      stdout: io_context.stdout,
+    },
+  );
 
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);

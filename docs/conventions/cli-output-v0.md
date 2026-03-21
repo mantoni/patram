@@ -11,12 +11,14 @@
 - Documents canonical plain-text output examples only.
 - Defines `rich` as a sibling renderer that preserves the canonical plain
   layout.
+- Defers `show` rich source styling details to
+  `docs/conventions/source-rendering-v0.md`.
 
 ## Global Rules
 
 - The documented examples in this file are `plain` output.
 - `rich` mode must preserve the same line order, line breaks, numbering, and
-  alignment as `plain`.
+  alignment as `plain`, except for the formatted source block in `show`.
 - `rich` and `plain` both render directly from the same structured output view
   model.
 - Keep labels lowercase: `task`, `decision`, `doc`, `error`, `warning`.
