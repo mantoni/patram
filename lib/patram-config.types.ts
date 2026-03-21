@@ -11,12 +11,13 @@ export interface RelationDefinition {
 
 export interface MappingNodeDefinition {
   field: string;
+  key?: 'path' | 'value';
   kind: string;
 }
 
 export interface MappingEmitDefinition {
   relation: string;
-  target: 'path';
+  target: 'path' | 'value';
   target_kind: string;
 }
 

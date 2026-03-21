@@ -20,7 +20,7 @@
       "where": "implements_command:*"
     },
     "command-taxonomy": {
-      "where": "kind=command and path^=docs/reference/commands/"
+      "where": "id^=command:"
     },
     "source-entrypoints": {
       "where": "kind=entrypoint"
@@ -53,7 +53,7 @@
       "where": "uses_term:*"
     },
     "term-taxonomy": {
-      "where": "kind=term and path^=docs/reference/terms/"
+      "where": "id^=term:"
     }
   },
   "kinds": {
@@ -68,6 +68,10 @@
     }
   },
   "relations": {
+    "defines": {
+      "from": ["document"],
+      "to": ["command", "term"]
+    },
     "about_command": {
       "from": ["document"],
       "to": ["command"]
@@ -178,8 +182,14 @@
       }
     },
     "markdown.directive.command": {
+      "emit": {
+        "relation": "defines",
+        "target": "value",
+        "target_kind": "command"
+      },
       "node": {
         "field": "title",
+        "key": "value",
         "kind": "command"
       }
     },
@@ -230,8 +240,14 @@
       }
     },
     "markdown.directive.term": {
+      "emit": {
+        "relation": "defines",
+        "target": "value",
+        "target_kind": "term"
+      },
       "node": {
         "field": "title",
+        "key": "value",
         "kind": "term"
       }
     },

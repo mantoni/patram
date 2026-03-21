@@ -55,31 +55,25 @@ function createExpectedRepoConfig() {
  */
 function createExpectedRepoMappings() {
   return {
+    ...createExpectedDocumentMappings(),
+    ...createExpectedJsdocTaxonomyMappings(),
+    ...createExpectedRepoDirectiveNodeMappings(),
+    ...createExpectedRepoRelationMappings(),
+    ...createExpectedMarkdownTaxonomyMappings(),
+  };
+}
+
+/**
+ * @returns {object}
+ */
+function createExpectedDocumentMappings() {
+  return {
     'document.title': {
       node: {
         field: 'title',
         kind: 'document',
       },
     },
-    'jsdoc.directive.about_command': createTaxonomyRelationMapping(
-      'about_command',
-      'command',
-    ),
-    ...createExpectedRepoDirectiveNodeMappings(),
-    ...createExpectedRepoRelationMappings(),
-    'jsdoc.directive.uses_term': createTaxonomyRelationMapping(
-      'uses_term',
-      'term',
-    ),
-    'markdown.directive.about_command': createTaxonomyRelationMapping(
-      'about_command',
-      'command',
-    ),
-    'markdown.directive.command': createTaxonomyNodeMapping('command', 'title'),
-    'markdown.directive.command_summary': createTaxonomyNodeMapping(
-      'command',
-      'summary',
-    ),
     'markdown.link': {
       emit: {
         relation: 'links_to',
@@ -87,7 +81,43 @@ function createExpectedRepoMappings() {
         target_kind: 'document',
       },
     },
-    'markdown.directive.term': createTaxonomyNodeMapping('term', 'title'),
+  };
+}
+
+/**
+ * @returns {object}
+ */
+function createExpectedJsdocTaxonomyMappings() {
+  return {
+    'jsdoc.directive.about_command': createTaxonomyRelationMapping(
+      'about_command',
+      'command',
+    ),
+    'jsdoc.directive.uses_term': createTaxonomyRelationMapping(
+      'uses_term',
+      'term',
+    ),
+  };
+}
+
+/**
+ * @returns {object}
+ */
+function createExpectedMarkdownTaxonomyMappings() {
+  return {
+    'markdown.directive.about_command': createTaxonomyRelationMapping(
+      'about_command',
+      'command',
+    ),
+    'markdown.directive.command': createTaxonomyDefinitionMapping(
+      'command',
+      'title',
+    ),
+    'markdown.directive.command_summary': createTaxonomyNodeMapping(
+      'command',
+      'summary',
+    ),
+    'markdown.directive.term': createTaxonomyDefinitionMapping('term', 'title'),
     'markdown.directive.term_definition': createTaxonomyNodeMapping(
       'term',
       'definition',
@@ -153,14 +183,14 @@ function createExpectedRepoQueries() {
       where: 'implements_command:*',
     },
     'command-taxonomy': {
-      where: 'kind=command and path^=docs/reference/commands/',
+      where: 'id^=command:',
     },
     ...createExpectedSourceQueries(),
     'term-usage': {
       where: 'uses_term:*',
     },
     'term-taxonomy': {
-      where: 'kind=term and path^=docs/reference/terms/',
+      where: 'id^=term:',
     },
   };
 }
@@ -170,6 +200,10 @@ function createExpectedRepoQueries() {
  */
 function createExpectedRepoRelations() {
   return {
+    defines: {
+      from: ['document'],
+      to: ['command', 'term'],
+    },
     about_command: {
       from: ['document'],
       to: ['command'],
@@ -242,6 +276,26 @@ function createTaxonomyNodeMapping(kind, field) {
   return {
     node: {
       field,
+      kind,
+    },
+  };
+}
+
+/**
+ * @param {string} kind
+ * @param {string} field
+ * @returns {object}
+ */
+function createTaxonomyDefinitionMapping(kind, field) {
+  return {
+    emit: {
+      relation: 'defines',
+      target: 'value',
+      target_kind: kind,
+    },
+    node: {
+      field,
+      key: 'value',
       kind,
     },
   };

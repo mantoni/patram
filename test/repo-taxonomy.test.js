@@ -31,15 +31,15 @@ it('indexes the canonical command taxonomy nodes', async () => {
 
   expect(project_graph_result.diagnostics).toEqual([]);
   expect(
-    selectPaths(
+    selectIds(
       project_graph_result.graph,
       repo_config.queries['command-taxonomy'].where,
     ),
   ).toEqual([
-    'docs/reference/commands/check.md',
-    'docs/reference/commands/queries.md',
-    'docs/reference/commands/query.md',
-    'docs/reference/commands/show.md',
+    'command:check',
+    'command:queries',
+    'command:query',
+    'command:show',
   ]);
 });
 
@@ -48,18 +48,18 @@ it('indexes the canonical term taxonomy nodes', async () => {
 
   expect(project_graph_result.diagnostics).toEqual([]);
   expect(
-    selectPaths(
+    selectIds(
       project_graph_result.graph,
       repo_config.queries['term-taxonomy'].where,
     ),
   ).toEqual([
-    'docs/reference/terms/claim.md',
-    'docs/reference/terms/document.md',
-    'docs/reference/terms/graph.md',
-    'docs/reference/terms/kind.md',
-    'docs/reference/terms/mapping.md',
-    'docs/reference/terms/query.md',
-    'docs/reference/terms/relation.md',
+    'term:claim',
+    'term:document',
+    'term:graph',
+    'term:kind',
+    'term:mapping',
+    'term:query',
+    'term:relation',
   ]);
 });
 
@@ -101,5 +101,16 @@ it('indexes stored term usage entrypoints', async () => {
 function selectPaths(graph, where_clause) {
   return queryGraph(graph, where_clause).nodes.flatMap((graph_node) =>
     graph_node.path ? [graph_node.path] : [],
+  );
+}
+
+/**
+ * @param {import('../lib/build-graph.types.ts').BuildGraphResult} graph
+ * @param {string} where_clause
+ * @returns {string[]}
+ */
+function selectIds(graph, where_clause) {
+  return queryGraph(graph, where_clause).nodes.map(
+    (graph_node) => graph_node.id,
   );
 }
