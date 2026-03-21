@@ -76,8 +76,9 @@ Try: patram query --where "kind=task"
 ### Plain
 
 ```txt
-blocked kind=task and status=blocked
-pending kind=task and status=pending
+blocked              kind=task and status=blocked
+pending              kind=task and status=pending
+accepted-decisions   kind=decision and status=accepted
 ```
 
 ### JSON
@@ -235,8 +236,15 @@ See [Some Guide][1].
 
 - Keep `queries` distinct from the entity-summary layout used by `query` and
   `show`.
-- Render each stored query on one line as `<name> <where>`.
+- Render `queries` as two aligned columns:
+  - stored query name
+  - canonical rendered query term
+- Do not use ASCII table borders or box-drawing characters.
 - Keep stored queries in stable name order.
+- Separate the name and term columns with at least two spaces.
+- Compute the term column from the widest visible query name in the result set.
+- Wrap only the query-term column when needed.
+- Use a hanging indent under the query-term column for wrapped terms.
 - Print no lines when no stored queries are defined in `plain` and `rich`
   output.
 
@@ -273,7 +281,11 @@ See [Some Guide][1].
   - diagnostic codes
   - the secondary success-summary line in `check`
 - Keep metadata keys uncolored.
-- Keep stored query filters uncolored.
+- Parse stored query terms before styling them.
+- Use cyan for stored query field names.
+- Use gray for stored query operators.
+- Use yellow for stored query boolean keywords such as `and`, `or`, and `not`.
+- Keep stored query literal values on the default foreground color.
 - Keep diagnostic file group headers on the same accent color as entity-summary
   identity headers.
 - Make inline link labels clickable when the terminal supports hyperlinks.
@@ -283,6 +295,8 @@ See [Some Guide][1].
   span the available content width.
 - Keep diagnostic tables identical to plain output and add color only.
 - Keep footnotes identical to plain output and add color or hyperlinking only.
+- Keep `queries` column widths and wrapped line breaks identical to plain
+  output.
 - Do not introduce indentation changes in `rich` mode that are not already
   present in `plain`.
 - Do not generate `rich` output by parsing rendered `plain` text.

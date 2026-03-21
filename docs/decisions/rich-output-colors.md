@@ -16,7 +16,12 @@
   - diagnostic codes
   - the secondary success-summary line in `check`
 - Keep metadata keys uncolored in `rich` output.
-- Keep stored query filters uncolored in `rich` output.
+- Parse stored query terms before styling them in `rich` output.
+- Use semantic highlighting for stored query terms in `queries`:
+  - field names use cyan
+  - query operators use gray
+  - boolean keywords such as `and`, `or`, and `not` use yellow
+  - literal values keep the default foreground color
 - Keep severity colors unchanged:
   - red for errors
   - yellow for warnings and empty query summaries
@@ -27,5 +32,7 @@
   competing with severity colors.
 - Gray preserves the visual hierarchy for secondary text more clearly than dim
   on common terminal themes.
-- Uncolored metadata keys and stored query filters keep structural text closer
-  to established CLI conventions such as Git output.
+- Semantic term highlighting makes stored queries easier to scan without
+  changing the plain-text layout.
+- Highlighting from parsed query structure is more robust than styling raw text
+  after rendering.
