@@ -13,6 +13,8 @@ link to sources. Patram uses patram. Always read `docs/patram.md` and
 
 ## Interaction Style
 
+- Do not make code changes when the users wants your opinion, suggestions or
+  asks a question.
 - Use code, JSON and mermaid graphs in communication and documentation.
 - Never repurpose existing files unless explicitly approved by the user.
 - Change size should align with the request. Simple request = simple change.
@@ -24,7 +26,7 @@ link to sources. Patram uses patram. Always read `docs/patram.md` and
 - Record implementation plans in `docs/plans/<version>/`.
 - Record conventions in `docs/conventions/`.
 - Do not implement before decisions are documented.
-- TDD is required.
+- TDD is required for code changes.
 - Use red, green, refactor.
 
 ## Coding Standards
@@ -77,7 +79,7 @@ Before handing off always run `npm run all`.
 
 ## Committing
 
-- Always commit your work unless for brainstorming or discussion-only turns.
+- Commit your work.
 - Create separate commits for every unit of work.
 - Commit message subject must use the imperative mood and start with a capital
   letter.
