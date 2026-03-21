@@ -3,21 +3,20 @@
 Patram is a CLI for exploring an entity-centric knowledge graph from ordinary
 markdown, source code and HTML.
 
-The `patram` CLI has three groups of commands:
+The `patram` CLI has two groups of commands:
 
 1. Knowledge graph indexing and exploration
-   - `patram show <file>`: Print a file with resolved links.
+   - [`patram show <file>`](./reference/commands/show.md): Print a file with
+     resolved links.
+   - [`patram check [<path>]`](./reference/commands/check.md): Validate a
+     project, directory or file.
 
-2. Configuration and knowledge graph validation
-   - `patram check [<path>]`: Validate a project, directory or file.
-   - `patram add ...`: TBD
-   - `patram remove ...`: TBD
-   - `patram define ...`: TBD
-
-3. Local web application control
-   - `patram start`: Start serving files from the current working directory.
-   - `patram stop`: Stop serving.
-   - `patram status`: Check if server is running.
+2. Querying
+   - [`patram query <name>`](./reference/commands/query.md): Run a stored query
+     by name.
+   - [`patram query --where "<clause>"`](./reference/commands/query.md): Run an
+     ad hoc query.
+   - [`patram queries`](./reference/commands/queries.md): List stored queries.
 
 For repository documentation layout and where to put new docs, see
 `docs/structure.md`.
@@ -36,3 +35,8 @@ For repository documentation layout and where to put new docs, see
   - A `@patram` tag adds a comment block to the index.
   - Use JSDoc `@link` and `@see` tags into a directory added to patram for
     references.
+
+[patram about-command=reference/commands/check.md]: #
+[patram about-command=reference/commands/query.md]: #
+[patram about-command=reference/commands/queries.md]: #
+[patram about-command=reference/commands/show.md]: #

@@ -102,6 +102,7 @@ Example:
       "id": "term:docs/patram.md",
       "kind": "term",
       "key": "docs/patram.md",
+      "path": "docs/patram.md",
       "label": "Patram"
     }
   },
@@ -170,3 +171,11 @@ This means:
 - a configuration mini-language
 
 v0 should prefer a small set of explicit mappings over rich inference.
+
+[patram uses-term=reference/terms/claim.md]: #
+[patram uses-term=reference/terms/document.md]: #
+[patram uses-term=reference/terms/graph.md]: #
+[patram uses-term=reference/terms/kind.md]: #
+[patram uses-term=reference/terms/mapping.md]: #
+[patram uses-term=reference/terms/query.md]: #
+[patram uses-term=reference/terms/relation.md]: #

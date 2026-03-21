@@ -34,8 +34,14 @@ function createExpectedRepoConfig() {
       'test/**/*.js',
     ],
     kinds: {
+      command: {
+        label: 'Command',
+      },
       document: {
         builtin: true,
+      },
+      term: {
+        label: 'Term',
       },
     },
     mappings: createExpectedRepoMappings(),
@@ -55,8 +61,25 @@ function createExpectedRepoMappings() {
         kind: 'document',
       },
     },
+    'jsdoc.directive.about_command': createTaxonomyRelationMapping(
+      'about_command',
+      'command',
+    ),
     ...createExpectedRepoDirectiveNodeMappings(),
     ...createExpectedRepoRelationMappings(),
+    'jsdoc.directive.uses_term': createTaxonomyRelationMapping(
+      'uses_term',
+      'term',
+    ),
+    'markdown.directive.about_command': createTaxonomyRelationMapping(
+      'about_command',
+      'command',
+    ),
+    'markdown.directive.command': createTaxonomyNodeMapping('command', 'title'),
+    'markdown.directive.command_summary': createTaxonomyNodeMapping(
+      'command',
+      'summary',
+    ),
     'markdown.link': {
       emit: {
         relation: 'links_to',
@@ -64,6 +87,15 @@ function createExpectedRepoMappings() {
         target_kind: 'document',
       },
     },
+    'markdown.directive.term': createTaxonomyNodeMapping('term', 'title'),
+    'markdown.directive.term_definition': createTaxonomyNodeMapping(
+      'term',
+      'definition',
+    ),
+    'markdown.directive.uses_term': createTaxonomyRelationMapping(
+      'uses_term',
+      'term',
+    ),
   };
 }
 
@@ -89,9 +121,17 @@ function createExpectedRepoRelationMappings() {
     'jsdoc.directive.blocked_by': createRelationMapping('blocked_by'),
     'jsdoc.directive.decided_by': createRelationMapping('decided_by'),
     'jsdoc.directive.implements': createRelationMapping('implements'),
+    'jsdoc.directive.implements_command': createTaxonomyRelationMapping(
+      'implements_command',
+      'command',
+    ),
     'markdown.directive.blocked_by': createRelationMapping('blocked_by'),
     'markdown.directive.decided_by': createRelationMapping('decided_by'),
     'markdown.directive.implements': createRelationMapping('implements'),
+    'markdown.directive.implements_command': createTaxonomyRelationMapping(
+      'implements_command',
+      'command',
+    ),
   };
 }
 
@@ -109,7 +149,13 @@ function createExpectedRepoQueries() {
     'accepted-decisions': {
       where: 'kind=decision and status=accepted',
     },
+    'command-taxonomy': {
+      where: 'kind=command and path^=docs/reference/commands/',
+    },
     ...createExpectedSourceQueries(),
+    'term-taxonomy': {
+      where: 'kind=term and path^=docs/reference/terms/',
+    },
   };
 }
 
@@ -118,6 +164,10 @@ function createExpectedRepoQueries() {
  */
 function createExpectedRepoRelations() {
   return {
+    about_command: {
+      from: ['document'],
+      to: ['command'],
+    },
     blocked_by: {
       from: ['document'],
       to: ['document'],
@@ -135,9 +185,17 @@ function createExpectedRepoRelations() {
       from: ['document'],
       to: ['document'],
     },
+    implements_command: {
+      from: ['document'],
+      to: ['command'],
+    },
     tracked_in: {
       from: ['document'],
       to: ['document'],
+    },
+    uses_term: {
+      from: ['document'],
+      to: ['term'],
     },
   };
 }
@@ -165,6 +223,35 @@ function createRelationMapping(relation) {
       relation,
       target: 'path',
       target_kind: 'document',
+    },
+  };
+}
+
+/**
+ * @param {string} kind
+ * @param {string} field
+ * @returns {object}
+ */
+function createTaxonomyNodeMapping(kind, field) {
+  return {
+    node: {
+      field,
+      kind,
+    },
+  };
+}
+
+/**
+ * @param {string} relation
+ * @param {string} target_kind
+ * @returns {object}
+ */
+function createTaxonomyRelationMapping(relation, target_kind) {
+  return {
+    emit: {
+      relation,
+      target: 'path',
+      target_kind,
     },
   };
 }

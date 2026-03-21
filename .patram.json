@@ -16,6 +16,9 @@
     "accepted-decisions": {
       "where": "kind=decision and status=accepted"
     },
+    "command-taxonomy": {
+      "where": "kind=command and path^=docs/reference/commands/"
+    },
     "source-entrypoints": {
       "where": "kind=entrypoint"
     },
@@ -42,14 +45,27 @@
     },
     "source-release": {
       "where": "kind=release"
+    },
+    "term-taxonomy": {
+      "where": "kind=term and path^=docs/reference/terms/"
     }
   },
   "kinds": {
+    "command": {
+      "label": "Command"
+    },
     "document": {
       "builtin": true
+    },
+    "term": {
+      "label": "Term"
     }
   },
   "relations": {
+    "about_command": {
+      "from": ["document"],
+      "to": ["command"]
+    },
     "links_to": {
       "builtin": true,
       "from": ["document"],
@@ -67,9 +83,17 @@
       "from": ["document"],
       "to": ["document"]
     },
+    "implements_command": {
+      "from": ["document"],
+      "to": ["command"]
+    },
     "tracked_in": {
       "from": ["document"],
       "to": ["document"]
+    },
+    "uses_term": {
+      "from": ["document"],
+      "to": ["term"]
     }
   },
   "mappings": {
@@ -77,6 +101,13 @@
       "node": {
         "field": "title",
         "kind": "document"
+      }
+    },
+    "jsdoc.directive.about_command": {
+      "emit": {
+        "relation": "about_command",
+        "target": "path",
+        "target_kind": "command"
       }
     },
     "jsdoc.directive.kind": {
@@ -112,11 +143,44 @@
         "target_kind": "document"
       }
     },
+    "jsdoc.directive.implements_command": {
+      "emit": {
+        "relation": "implements_command",
+        "target": "path",
+        "target_kind": "command"
+      }
+    },
     "jsdoc.directive.tracked_in": {
       "emit": {
         "relation": "tracked_in",
         "target": "path",
         "target_kind": "document"
+      }
+    },
+    "jsdoc.directive.uses_term": {
+      "emit": {
+        "relation": "uses_term",
+        "target": "path",
+        "target_kind": "term"
+      }
+    },
+    "markdown.directive.about_command": {
+      "emit": {
+        "relation": "about_command",
+        "target": "path",
+        "target_kind": "command"
+      }
+    },
+    "markdown.directive.command": {
+      "node": {
+        "field": "title",
+        "kind": "command"
+      }
+    },
+    "markdown.directive.command_summary": {
+      "node": {
+        "field": "summary",
+        "kind": "command"
       }
     },
     "markdown.directive.kind": {
@@ -152,11 +216,37 @@
         "target_kind": "document"
       }
     },
+    "markdown.directive.implements_command": {
+      "emit": {
+        "relation": "implements_command",
+        "target": "path",
+        "target_kind": "command"
+      }
+    },
+    "markdown.directive.term": {
+      "node": {
+        "field": "title",
+        "kind": "term"
+      }
+    },
+    "markdown.directive.term_definition": {
+      "node": {
+        "field": "definition",
+        "kind": "term"
+      }
+    },
     "markdown.directive.tracked_in": {
       "emit": {
         "relation": "tracked_in",
         "target": "path",
         "target_kind": "document"
+      }
+    },
+    "markdown.directive.uses_term": {
+      "emit": {
+        "relation": "uses_term",
+        "target": "path",
+        "target_kind": "term"
       }
     },
     "markdown.link": {
