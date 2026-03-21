@@ -1,7 +1,7 @@
 # Markdown Metadata Directive Syntax Plan
 
 - Kind: plan
-- Status: active
+- Status: done
 - Tracked in: docs/roadmap/v0-dogfood.md
 - Decided by: docs/decisions/markdown-metadata-directive-syntax.md
 
