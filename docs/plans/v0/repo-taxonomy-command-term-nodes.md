@@ -1,9 +1,10 @@
 # Repo Taxonomy Command And Term Nodes Plan
 
 - Kind: plan
-- Status: active
+- Status: superseded
 - Tracked in: docs/roadmap/v0-dogfood.md
 - Decided by: docs/decisions/repo-taxonomy-command-term-nodes.md
+- Superseded by: docs/plans/v0/non-document-semantic-ids.md
 
 ## Goal
 

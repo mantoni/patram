@@ -1,8 +1,9 @@
 # Repo Taxonomy Command And Term Nodes Proposal
 
 - Kind: decision
-- Status: accepted
+- Status: superseded
 - Tracked in: docs/roadmap/v0-dogfood.md
+- Superseded by: docs/decisions/non-document-semantic-ids.md
 
 - Add repo-specific `command` and `term` kinds for agent-facing exploration.
 - Keep taxonomy nodes path-backed in v0 by using canonical markdown documents as

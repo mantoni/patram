@@ -6,7 +6,9 @@
 
 - Render `query` results as expandable entity-summary blocks.
 - Render resolved-link footnotes in `show` with the same entity-summary shape.
-- Start each v0 entity-summary header with `document <path>`.
+- Start each v0 entity-summary header with the primary entity identity:
+  `document <path>` for documents and `<kind> <id>` for semantic non-document
+  nodes.
 - Prefix `show` footnote headers with the stable reference number such as `[1]`.
 - Render metadata immediately under the header on one row when present.
 - Leave one blank line before the indented title and optional description.

@@ -47,24 +47,26 @@ This repo adds two custom kinds on top of Patram's built-in `document` kind:
 - `term`: Canonical graph vocabulary nodes backed by markdown files in
   `docs/reference/terms/`.
 
-The repo also uses three relations to connect docs and source anchors to those
+The repo also uses four relations to connect docs and source anchors to those
 taxonomy nodes:
 
+- `defines`: A canonical reference document defines one semantic entity.
 - `about_command`: A document explains one or more commands.
 - `implements_command`: A source anchor implements one or more commands.
 - `uses_term`: A document or source anchor depends on one or more core terms.
 
-These nodes are path-backed in v0. The canonical markdown path is the node key,
-so `docs/reference/commands/query.md` is the source of truth for the `query`
-command node.
-
-The planned next step is a hybrid identity model:
+Patram uses a hybrid identity model for this repo:
 
 - Keep `document` nodes path-backed.
+- Keep canonical reference markdown files as `document` nodes.
 - Move non-document taxonomy nodes to semantic ids such as `command:query` and
   `term:claim`.
+- Treat canonical command and term docs as the source of truth for those
+  semantic nodes.
+- Resolve path-based command and term references through the canonical defining
+  documents.
 
-That future direction is tracked in
+This direction is tracked in
 [`docs/decisions/non-document-semantic-ids.md`](./decisions/non-document-semantic-ids.md)
 and
 [`docs/plans/v0/non-document-semantic-ids.md`](./plans/v0/non-document-semantic-ids.md).

@@ -24,7 +24,8 @@
   model.
 - Keep labels lowercase: `task`, `decision`, `doc`, `error`, `warning`.
 - Use one shared metadata row format when metadata is shown:
-  - `kind: <kind>  status: <status>`
+  - document headers: `kind: <kind>  status: <status>`
+  - semantic non-document headers: `path: <path>  status: <status>`
 - Do not rely on wrapping or color in `plain` mode.
 - Pager-backed TTY output uses `less -FIRXS`.
 - Keep diagnostic layout structurally aligned between `plain` and `rich` modes.
@@ -43,6 +44,11 @@ document docs/decisions/query-language-v0.md
 kind: decision  status: accepted
 
     Query Language v0
+
+command command:query
+path: docs/reference/commands/query.md
+
+    query
 ```
 
 ### JSON
@@ -267,13 +273,16 @@ See [Some Guide][1].
   - metadata row
   - indented content block
 - Separate adjacent query results with one blank line.
-- Render the identity header as `document <path>`.
+- Render the identity header as `document <path>` for documents and
+  `<kind> <id>` for semantic non-document nodes.
 - Render metadata immediately under the identity header when present.
 - Leave one blank line between the metadata block and the indented content
   block.
 - Render the title in the indented content block.
 - Render an indented description paragraph only when the node carries one.
 - Use the same metadata row shape as `show` footnotes.
+- Render the defining `path` in semantic non-document query results when it is
+  known.
 - Default query output to `25` results.
 - Apply `--offset` and `--limit` after filtering and stable ordering.
 - End paginated query output with `Showing <shown> of <total> matches.`.

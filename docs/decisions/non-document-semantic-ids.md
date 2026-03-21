@@ -1,7 +1,7 @@
 # Non-Document Semantic Ids Proposal
 
 - Kind: decision
-- Status: proposed
+- Status: accepted
 - Tracked in: docs/plans/v0/non-document-semantic-ids.md
 
 - Keep `document` nodes path-backed.
@@ -12,6 +12,10 @@
 - Materialize term nodes as ids like `term:claim`.
 - Keep canonical reference markdown files as the source of truth for entity
   fields and descriptions.
+- Resolve path-based command and term references through the canonical defining
+  documents so source anchors can keep linking to reference docs.
+- Let `patram query` filter semantic ids directly.
+- Show semantic ids and defining document paths together in query output.
 
 ## Rationale
 
