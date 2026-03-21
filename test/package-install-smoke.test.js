@@ -19,10 +19,10 @@ import { it } from 'vitest';
  * Kind: support
  * Status: active
  * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/package-install-smoke.md
+ * Decided by: ../docs/decisions/package-install-smoke-test.md
  * @patram
  * @see {@link ./package-metadata.test.js}
- * @see {@link ../docs/decisions/package-install-smoke.md}
+ * @see {@link ../docs/decisions/package-install-smoke-test.md}
  */
 
 const exec_file = promisify(execFile);

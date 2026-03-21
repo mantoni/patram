@@ -25,10 +25,12 @@ it('installs husky and wires pre-commit to the package checks', async () => {
     'lint-staged': expect.any(String),
   });
   expect(package_json.scripts).toMatchObject({
+    'check:patram': 'patram check',
     'check:staged': 'lint-staged --quiet',
     prepare: 'husky',
   });
   expect(package_json.scripts.all).toContain('npm run check:types');
+  expect(package_json.scripts.all).toContain('npm run check:patram');
   expect(package_json['lint-staged']).toEqual({
     '*.{js,ts,json,md}': 'prettier --check',
     '*.{js,ts}': ['eslint', 'vitest related --run --passWithNoTests'],

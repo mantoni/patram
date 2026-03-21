@@ -34,6 +34,9 @@ jobs:
       - name: Check types
         run: npm run check:types
 
+      - name: Check Patram
+        run: npm run check:patram
+
       - name: Run unit tests
         run: npm run test
 
