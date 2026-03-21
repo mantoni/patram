@@ -14,6 +14,22 @@ import {
 import { createPagedIoContext } from './patram-pager.test-helpers.js';
 import { main } from './patram.js';
 
+/**
+ * Rich show output coverage.
+ *
+ * Covers source formatting, resolved-link summaries, and pager output for the
+ * rich show renderer.
+ *
+ * Kind: support
+ * Status: active
+ * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * Decided by: ../docs/decisions/source-rendering.md
+ * Decided by: ../docs/decisions/source-rendering-terminal-surfaces.md
+ * @patram
+ * @see {@link ../lib/show-document.js}
+ * @see {@link ../lib/render-output-view.js}
+ */
+
 const FULL_WIDTH_DIVIDER = ` ${'─'.repeat(78)} `;
 
 const test_context = createTestContext();

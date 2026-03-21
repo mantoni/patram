@@ -4,6 +4,21 @@ import { expect, it } from 'vitest';
 
 import package_json from '../package.json' with { type: 'json' };
 
+/**
+ * Husky and lint-staged contract coverage.
+ *
+ * Verifies local pre-commit wiring stays aligned with package scripts and
+ * staged-file checks.
+ *
+ * Kind: support
+ * Status: active
+ * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * Decided by: ../docs/decisions/husky-checks.md
+ * @patram
+ * @see {@link ./package-metadata.test.js}
+ * @see {@link ../docs/decisions/husky-checks.md}
+ */
+
 it('installs husky and wires pre-commit to the package checks', async () => {
   expect(package_json.devDependencies).toMatchObject({
     husky: expect.any(String),

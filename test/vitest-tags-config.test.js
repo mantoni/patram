@@ -4,6 +4,21 @@ import { expect, it } from 'vitest';
 
 import vitest_config from '../vitest.config.js';
 
+/**
+ * Vitest tag profile coverage.
+ *
+ * Verifies tagged test timeouts and slow-test thresholds for integration and
+ * smoke suites.
+ *
+ * Kind: support
+ * Status: active
+ * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * Decided by: ../docs/decisions/integration-test-tags.md
+ * @patram
+ * @see {@link ../bin/patram.test.js}
+ * @see {@link ../docs/decisions/integration-test-tags.md}
+ */
+
 const integration_tagged_files = [
   'bin/patram-check-paths.test.js',
   'bin/patram-query.test.js',

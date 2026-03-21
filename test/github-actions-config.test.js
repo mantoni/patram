@@ -2,6 +2,21 @@ import { readFile } from 'node:fs/promises';
 
 import { expect, it } from 'vitest';
 
+/**
+ * GitHub Actions workflow contract coverage.
+ *
+ * Verifies the checks workflow keeps the documented CI matrix and validation
+ * steps.
+ *
+ * Kind: support
+ * Status: active
+ * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * Decided by: ../docs/decisions/github-actions-checks.md
+ * @patram
+ * @see {@link ./repo-config.test.js}
+ * @see {@link ../docs/decisions/github-actions-checks.md}
+ */
+
 it('defines the checks workflow contract', async () => {
   const workflow_text = await readTextFile(
     new URL('../.github/workflows/checks.yml', import.meta.url),

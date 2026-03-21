@@ -17,6 +17,22 @@ import {
 import { createPagedIoContext } from './patram-pager.test-helpers.js';
 import { main } from './patram.js';
 
+/**
+ * Query command behavior coverage.
+ *
+ * Covers default pagination, pager integration, and named-query execution
+ * through the CLI boundary.
+ *
+ * Kind: support
+ * Status: active
+ * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * Decided by: ../docs/decisions/query-command.md
+ * Decided by: ../docs/decisions/tty-pager-output.md
+ * @patram
+ * @see {@link ../lib/query-graph.js}
+ * @see {@link ./patram.js}
+ */
+
 const test_context = createTestContext();
 
 afterEach(async () => {

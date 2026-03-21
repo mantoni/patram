@@ -13,6 +13,21 @@ import {
 } from './patram.test-helpers.js';
 import { main } from './patram.js';
 
+/**
+ * Check target resolution coverage.
+ *
+ * Covers file and directory check selection from repo-root and nested working
+ * directories.
+ *
+ * Kind: support
+ * Status: active
+ * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * Decided by: ../docs/decisions/check-target-resolution.md
+ * @patram
+ * @see {@link ../lib/patram-cli.js}
+ * @see {@link ../docs/decisions/check-target-resolution.md}
+ */
+
 const test_context = createTestContext();
 
 afterEach(async () => {

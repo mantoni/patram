@@ -24,6 +24,21 @@ import {
 import { createPagedIoContext } from './patram-pager.test-helpers.js';
 import { main } from './patram.js';
 
+/**
+ * CLI integration coverage.
+ *
+ * Exercises end-to-end command flow, pager behavior, and resolved-link output
+ * through the public CLI boundary.
+ *
+ * Kind: support
+ * Status: active
+ * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * Decided by: ../docs/decisions/cli-output-architecture.md
+ * @patram
+ * @see {@link ./patram.test-helpers.js}
+ * @see {@link ../lib/patram-cli.js}
+ */
+
 const execFile = promisify(execFileCallback);
 const test_context = createTestContext();
 

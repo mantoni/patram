@@ -1,8 +1,23 @@
+/* eslint-disable max-lines */
 import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 import ansis from 'ansis';
+
+/**
+ * CLI integration test fixtures.
+ *
+ * Provides temporary project builders and IO helpers shared by command-level
+ * integration tests.
+ *
+ * Kind: support
+ * Status: active
+ * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * @patram
+ * @see {@link ./patram.test.js}
+ * @see {@link ./patram-query.test.js}
+ */
 
 /**
  * @returns {string}

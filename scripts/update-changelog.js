@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { execFile } from 'node:child_process';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -6,6 +7,21 @@ import { pathToFileURL } from 'node:url';
 import { promisify } from 'node:util';
 
 const exec_file = promisify(execFile);
+
+/**
+ * Release changelog generation.
+ *
+ * Collects commits since the previous tag and prepends the next release
+ * section to `CHANGELOG.md`.
+ *
+ * Kind: release
+ * Status: active
+ * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * Decided by: ../docs/decisions/release-automation.md
+ * @patram
+ * @see {@link ../test/release-config.test.js}
+ * @see {@link ../docs/decisions/release-automation.md}
+ */
 
 if (isEntrypoint(import.meta.url, process.argv[1])) {
   await main();

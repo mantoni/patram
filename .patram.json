@@ -1,5 +1,11 @@
 {
-  "include": ["docs/**/*.md"],
+  "include": [
+    "docs/**/*.md",
+    "bin/**/*.js",
+    "lib/**/*.js",
+    "scripts/**/*.js",
+    "test/**/*.js"
+  ],
   "queries": {
     "pending": {
       "where": "kind=task and status=pending"
@@ -9,6 +15,33 @@
     },
     "accepted-decisions": {
       "where": "kind=decision and status=accepted"
+    },
+    "source-entrypoints": {
+      "where": "kind=entrypoint"
+    },
+    "source-cli": {
+      "where": "kind=cli"
+    },
+    "source-config": {
+      "where": "kind=config"
+    },
+    "source-scan": {
+      "where": "kind=scan"
+    },
+    "source-parse": {
+      "where": "kind=parse"
+    },
+    "source-graph": {
+      "where": "kind=graph"
+    },
+    "source-output": {
+      "where": "kind=output"
+    },
+    "source-support": {
+      "where": "kind=support"
+    },
+    "source-release": {
+      "where": "kind=release"
     }
   },
   "kinds": {
@@ -44,6 +77,46 @@
       "node": {
         "field": "title",
         "kind": "document"
+      }
+    },
+    "jsdoc.directive.kind": {
+      "node": {
+        "field": "kind",
+        "kind": "document"
+      }
+    },
+    "jsdoc.directive.status": {
+      "node": {
+        "field": "status",
+        "kind": "document"
+      }
+    },
+    "jsdoc.directive.blocked_by": {
+      "emit": {
+        "relation": "blocked_by",
+        "target": "path",
+        "target_kind": "document"
+      }
+    },
+    "jsdoc.directive.decided_by": {
+      "emit": {
+        "relation": "decided_by",
+        "target": "path",
+        "target_kind": "document"
+      }
+    },
+    "jsdoc.directive.implements": {
+      "emit": {
+        "relation": "implements",
+        "target": "path",
+        "target_kind": "document"
+      }
+    },
+    "jsdoc.directive.tracked_in": {
+      "emit": {
+        "relation": "tracked_in",
+        "target": "path",
+        "target_kind": "document"
       }
     },
     "markdown.directive.kind": {

@@ -11,6 +11,21 @@ import { expect, it } from 'vitest';
 
 import package_json from '../package.json' with { type: 'json' };
 
+/**
+ * Package metadata contract coverage.
+ *
+ * Verifies published files, homepage, engine range, and packed metadata for
+ * npm consumers.
+ *
+ * Kind: support
+ * Status: active
+ * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * Decided by: ../docs/decisions/package-metadata.md
+ * @patram
+ * @see {@link ./package-install-smoke.test.js}
+ * @see {@link ../docs/decisions/package-metadata.md}
+ */
+
 const exec_file = promisify(execFile);
 const repo_directory = dirname(
   fileURLToPath(new URL('../package.json', import.meta.url)),

@@ -13,6 +13,21 @@ import {
 } from './patram.test-helpers.js';
 import { main } from './patram.js';
 
+/**
+ * Check command behavior coverage.
+ *
+ * Covers config diagnostics and broken-link validation through the public CLI
+ * boundary.
+ *
+ * Kind: support
+ * Status: active
+ * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * Decided by: ../docs/decisions/check-command.md
+ * @patram
+ * @see {@link ../lib/check-graph.js}
+ * @see {@link ./patram.js}
+ */
+
 const test_context = createTestContext();
 
 afterEach(async () => {

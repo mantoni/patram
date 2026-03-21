@@ -4,6 +4,21 @@ import { expect, it } from 'vitest';
 
 import package_json from '../package.json' with { type: 'json' };
 
+/**
+ * Release workflow contract coverage.
+ *
+ * Verifies npm version scripts and the tag-based release workflow stay
+ * aligned.
+ *
+ * Kind: support
+ * Status: active
+ * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * Decided by: ../docs/decisions/release-automation.md
+ * @patram
+ * @see {@link ../scripts/update-changelog.js}
+ * @see {@link ../docs/decisions/release-automation.md}
+ */
+
 it('defines npm version lifecycle scripts for releases', () => {
   expect(package_json.scripts).toMatchObject({
     postversion: 'git push && git push --tags',

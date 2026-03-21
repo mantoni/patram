@@ -10,6 +10,21 @@ import { promisify } from 'node:util';
 
 import { it } from 'vitest';
 
+/**
+ * Published package smoke coverage.
+ *
+ * Packs the repo, installs it in a consumer project, and verifies the
+ * published CLI can be imported.
+ *
+ * Kind: support
+ * Status: active
+ * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * Decided by: ../docs/decisions/package-install-smoke.md
+ * @patram
+ * @see {@link ./package-metadata.test.js}
+ * @see {@link ../docs/decisions/package-install-smoke.md}
+ */
+
 const exec_file = promisify(execFile);
 const repo_directory = dirname(
   fileURLToPath(new URL('../package.json', import.meta.url)),
