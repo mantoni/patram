@@ -1,15 +1,21 @@
 # Agents
 
 Patram is a CLI (`patram`) for humans and agents to explore docs and how they
-link to sources. Patram uses patram. Always read `docs/patram.md` and
-`docs/structure.md`.
+link to sources.
 
-## Repo Map
+Always read `docs/patram.md` and `docs/structure.md`.
 
-- `bin`: Home of the `patram` executable.
-- `docs`: Documentation
-- `lib`: Sources and tests for sources.
-- `test`: Tests that don't belong to a file.
+Use `docs/patram.md` for product behavior and the repo's command and term
+taxonomy. Use `docs/structure.md` for the documentation map and file-placement
+rules.
+
+When orienting in the repo, start with these queries:
+
+- `patram query command-taxonomy`
+- `patram query command-implementations`
+- `patram query term-taxonomy`
+- `patram query term-usage`
+- `patram query --where "about_command:*"`
 
 ## Interaction Style
 

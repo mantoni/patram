@@ -63,6 +63,36 @@ it('indexes the canonical term taxonomy nodes', async () => {
   ]);
 });
 
+it('indexes stored command implementation entrypoints', async () => {
+  const project_graph_result = await loadProjectGraph(repo_directory);
+
+  expect(project_graph_result.diagnostics).toEqual([]);
+  expect(
+    selectPaths(
+      project_graph_result.graph,
+      repo_config.queries['command-implementations'].where,
+    ),
+  ).toEqual(['lib/patram-cli.js']);
+});
+
+it('indexes stored term usage entrypoints', async () => {
+  const project_graph_result = await loadProjectGraph(repo_directory);
+
+  expect(project_graph_result.diagnostics).toEqual([]);
+  expect(
+    selectPaths(
+      project_graph_result.graph,
+      repo_config.queries['term-usage'].where,
+    ),
+  ).toEqual([
+    'docs/graph-v0.md',
+    'lib/build-graph.js',
+    'lib/load-project-graph.js',
+    'lib/parse-claims.js',
+    'lib/query-graph.js',
+  ]);
+});
+
 /**
  * @param {import('../lib/build-graph.types.ts').BuildGraphResult} graph
  * @param {string} where_clause

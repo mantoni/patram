@@ -149,10 +149,16 @@ function createExpectedRepoQueries() {
     'accepted-decisions': {
       where: 'kind=decision and status=accepted',
     },
+    'command-implementations': {
+      where: 'implements_command:*',
+    },
     'command-taxonomy': {
       where: 'kind=command and path^=docs/reference/commands/',
     },
     ...createExpectedSourceQueries(),
+    'term-usage': {
+      where: 'uses_term:*',
+    },
     'term-taxonomy': {
       where: 'kind=term and path^=docs/reference/terms/',
     },
