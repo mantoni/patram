@@ -6,10 +6,10 @@ link to sources. Patram uses patram. Always read `docs/patram.md` and
 
 ## Repo Map
 
-- `app`: Local web frontend for `patram`.
 - `bin`: Home of the `patram` executable.
 - `docs`: Documentation
-- `lib`: Sources
+- `lib`: Sources and tests for sources.
+- `test`: Tests that don't belong to a file.
 
 ## Interaction Style
 
@@ -79,8 +79,7 @@ Before handing off always run `npm run all`.
 
 ## Committing
 
-- Commit your work.
-- Create separate commits for every unit of work.
-- Commit message subject must use the imperative mood and start with a capital
-  letter.
+- Commit your work. Create separate commits for every unit of work.
+- Commit message subject must use the imperative mood. The first word must start
+  with a capital letter.
 - When asked to make corrections, create fixup commits.
