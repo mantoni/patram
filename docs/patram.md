@@ -58,6 +58,17 @@ These nodes are path-backed in v0. The canonical markdown path is the node key,
 so `docs/reference/commands/query.md` is the source of truth for the `query`
 command node.
 
+The planned next step is a hybrid identity model:
+
+- Keep `document` nodes path-backed.
+- Move non-document taxonomy nodes to semantic ids such as `command:query` and
+  `term:claim`.
+
+That future direction is tracked in
+[`docs/decisions/non-document-semantic-ids.md`](./decisions/non-document-semantic-ids.md)
+and
+[`docs/plans/v0/non-document-semantic-ids.md`](./plans/v0/non-document-semantic-ids.md).
+
 ## Agent Workflow
 
 Agents working in this repo should use the taxonomy queries first and then drill
