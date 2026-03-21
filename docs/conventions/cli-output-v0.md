@@ -8,6 +8,7 @@
   `show`.
 - Preserves the current `show` order of source first and resolved summary
   second.
+- `show` and `query` send rendered output through a pager in TTY mode.
 - Documents canonical plain-text output examples only.
 - Defines `rich` as a sibling renderer that preserves the canonical plain
   layout.
@@ -25,6 +26,7 @@
 - Use one shared metadata row format when metadata is shown:
   - `kind: <kind>  status: <status>`
 - Do not rely on wrapping or color in `plain` mode.
+- Pager-backed TTY output uses `less -FIRX`.
 - Keep diagnostic layout structurally aligned between `plain` and `rich` modes.
 
 ## Query
@@ -85,6 +87,24 @@ kind: task  status: pending
 
 Showing 25 of 40 matches.
 Hint: use --offset <n> or --limit <n> to page through more matches.
+```
+
+### TTY Pager
+
+```txt
+document docs/tasks/v0/task-01.md
+kind: task  status: pending
+
+    Implement query command
+
+...
+
+document docs/tasks/v0/task-40.md
+kind: task  status: pending
+
+    Implement query command
+
+Showing 40 of 40 matches.
 ```
 
 ### Empty
