@@ -190,6 +190,34 @@ it('defaults check to the current working directory and exits 0 on valid input',
   ]);
 });
 
+it('accepts markdown links to existing repo files outside the indexed source set', async () => {
+  test_context.project_directory = await createTempProjectDirectory();
+  const io_context = createIoContext();
+
+  await writeProjectFile(
+    test_context.project_directory,
+    'docs/nested/deeper/source.md',
+    ['# Source', '', 'See [test](../../../some/test.js).'].join('\n'),
+  );
+  await writeProjectFile(
+    test_context.project_directory,
+    'some/test.js',
+    'export const TEST_VALUE = 1;\n',
+  );
+  process.chdir(test_context.project_directory);
+
+  const exit_code = await main(['check'], {
+    stderr: io_context.stderr,
+    stdout: io_context.stdout,
+  });
+
+  expect(exit_code).toBe(0);
+  expect(io_context.stderr_chunks).toEqual([]);
+  expect(io_context.stdout_chunks).toEqual([
+    'Check passed.\nScanned 1 file. Found 0 errors.\n',
+  ]);
+});
+
 it('prints matching nodes for query --where', async () => {
   test_context.project_directory = await createTempProjectDirectory();
   const io_context = createIoContext();
