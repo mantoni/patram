@@ -53,6 +53,13 @@
 - Fenced markdown code blocks add one empty shaded spacer row below content.
 - Fenced markdown code content is indented by one extra leading surface cell.
 - Fenced code-block labels align to the right edge of the block.
+- Fenced `mermaid` blocks render as Mermaid diagrams in Unicode ASCII-art form.
+- Fenced `mermaid` blocks keep the same shaded block framing as other fenced
+  markdown blocks.
+- Fenced `mermaid` blocks may tighten node-box padding, but keep Mermaid's
+  default inter-node spacing.
+- Fenced `mermaid` blocks do not emit Mermaid-owned ANSI colors; Patram's block
+  surface styling stays responsible for rich-mode coloring.
 - Fenced code content uses Shiki colors when the language is supported.
 - Unsupported fenced code languages fall back to Patram's unhighlighted shaded
   code block.
