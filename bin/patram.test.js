@@ -40,12 +40,47 @@ it('prints config diagnostics for check failures', async () => {
 
   expect(exit_code).toBe(1);
   expect(io_context.stderr_chunks).toEqual([
-    '.patram.json:1:1 error config.not_found Config file ".patram.json" was not found.\n',
+    'file .patram.json\n' +
+      '  1:1  error  Config file ".patram.json" was not found.  config.not_found\n' +
+      '\n' +
+      '\u2716 1 problem (1 error, 0 warnings)\n',
   ]);
   expect(io_context.stdout_chunks).toEqual([]);
 });
 
-it('prints broken link diagnostics for check failures', async () => {
+it('prints grouped broken link diagnostics for check failures', async () => {
+  test_context.project_directory = await createTempProjectDirectory();
+  const io_context = createIoContext();
+
+  await writeProjectConfig(test_context.project_directory);
+  await writeProjectFile(
+    test_context.project_directory,
+    'docs/patram.md',
+    [
+      '# Patram',
+      '',
+      'See [missing](./missing.md).',
+      'See [missing too](./missing-too.md).',
+    ].join('\n'),
+  );
+
+  const exit_code = await main(['check', test_context.project_directory], {
+    stderr: io_context.stderr,
+    stdout: io_context.stdout,
+  });
+
+  expect(exit_code).toBe(1);
+  expect(io_context.stderr_chunks).toEqual([
+    'document docs/patram.md\n' +
+      '  3:5  error  Document link target "docs/missing.md" was not found.      graph.link_broken\n' +
+      '  4:5  error  Document link target "docs/missing-too.md" was not found.  graph.link_broken\n' +
+      '\n' +
+      '\u2716 2 problems (2 errors, 0 warnings)\n',
+  ]);
+  expect(io_context.stdout_chunks).toEqual([]);
+});
+
+it('prints check diagnostics as json', async () => {
   test_context.project_directory = await createTempProjectDirectory();
   const io_context = createIoContext();
 
@@ -56,15 +91,30 @@ it('prints broken link diagnostics for check failures', async () => {
     createBrokenLinkSource(),
   );
 
-  const exit_code = await main(['check', test_context.project_directory], {
-    stderr: io_context.stderr,
-    stdout: io_context.stdout,
-  });
+  const exit_code = await main(
+    ['check', test_context.project_directory, '--json'],
+    {
+      stderr: io_context.stderr,
+      stdout: io_context.stdout,
+    },
+  );
 
   expect(exit_code).toBe(1);
   expect(io_context.stderr_chunks).toEqual([
-    'docs/patram.md:3:5 error graph.link_broken Document link target "docs/missing.md" was not found.\n',
+    '{\n' +
+      '  "diagnostics": [\n' +
+      '    {\n' +
+      '      "path": "docs/patram.md",\n' +
+      '      "line": 3,\n' +
+      '      "column": 5,\n' +
+      '      "level": "error",\n' +
+      '      "code": "graph.link_broken",\n' +
+      '      "message": "Document link target \\"docs/missing.md\\" was not found."\n' +
+      '    }\n' +
+      '  ]\n' +
+      '}\n',
   ]);
+  expect(io_context.stdout_chunks).toEqual([]);
 });
 
 it('defaults check to the current working directory and exits 0 on valid input', async () => {
@@ -91,7 +141,9 @@ it('defaults check to the current working directory and exits 0 on valid input',
 
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
-  expect(io_context.stdout_chunks).toEqual([]);
+  expect(io_context.stdout_chunks).toEqual([
+    'Check passed.\nScanned 2 files. Found 0 errors.\n',
+  ]);
 });
 
 it('prints matching nodes for query --where', async () => {

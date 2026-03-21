@@ -76,7 +76,7 @@ Try: patram query --where "kind=task"
 ### Plain
 
 ```txt
-docs/patram.md
+document docs/patram.md
   3:5  error  Document link target "docs/missing.md" was not found.  graph.link_broken
 
 ✖ 1 problem (1 error, 0 warnings)
@@ -204,6 +204,9 @@ See [Some Guide][1].
 ## Error Writing
 
 - Put the most actionable line last.
+- Render each diagnostic file group header as `{type} {path}`:
+  - Use `document` for scanned source files.
+  - Use `file` for non-indexed files such as `.patram.json`.
 - Group repeated diagnostics by file in `rich` mode.
 - Group repeated diagnostics by file in `plain` mode when multiple diagnostics
   share a file.
@@ -223,6 +226,9 @@ See [Some Guide][1].
 - Use red for errors and yellow for warnings.
 - Use dim styling for paths, reference numbers, metadata keys, and `kind` and
   `status` metadata values.
+- Keep diagnostic file group headers on the same accent color as entity-summary
+  identity headers.
+- Render diagnostic codes gray in `rich` mode.
 - Make inline link labels clickable when the terminal supports hyperlinks.
 - Render inline link references from `[Some Guide][1]` as `Some Guide 1` while
   preserving the same ordering and reference number.
