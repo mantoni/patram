@@ -127,9 +127,10 @@ it('prints matching nodes for query --where', async () => {
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual([
-    'Implement query command\n' +
-      'docs/tasks/v0/query-command.md\n' +
-      'kind: task  status: pending\n',
+    'document docs/tasks/v0/query-command.md\n' +
+      'kind: task  status: pending\n' +
+      '\n' +
+      '    Implement query command\n',
   ]);
 });
 
@@ -158,9 +159,10 @@ it('runs a stored query by name', async () => {
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual([
-    'Implement query command\n' +
-      'docs/tasks/v0/query-command.md\n' +
-      'kind: task  status: pending\n',
+    'document docs/tasks/v0/query-command.md\n' +
+      'kind: task  status: pending\n' +
+      '\n' +
+      '    Implement query command\n',
   ]);
 });
 
@@ -205,14 +207,19 @@ it('prints resolved source and links for show', async () => {
       'See [guide][1], [query language][2], and [implement query command][3].\n' +
       '\n' +
       '----------------\n' +
-      '[1] Some Guide\n' +
-      '    docs/guide.md\n' +
-      '[2] Query Language v0\n' +
-      '    docs/decisions/query-language-v0.md\n' +
+      '[1] document docs/guide.md\n' +
+      '\n' +
+      '    Some Guide\n' +
+      '\n' +
+      '[2] document docs/decisions/query-language-v0.md\n' +
       '    kind: decision  status: accepted\n' +
-      '[3] Implement query command\n' +
-      '    docs/tasks/v0/query-command.md\n' +
-      '    kind: task  status: pending\n',
+      '\n' +
+      '    Query Language v0\n' +
+      '\n' +
+      '[3] document docs/tasks/v0/query-command.md\n' +
+      '    kind: task  status: pending\n' +
+      '\n' +
+      '    Implement query command\n',
   ]);
 });
 
@@ -342,9 +349,10 @@ it('prints rich query results by default on a tty', async () => {
     expect(exit_code).toBe(0);
     expect(io_context.stderr_chunks).toEqual([]);
     expect(stripAnsi(io_context.stdout_chunks.join(''))).toBe(
-      'Implement query command\n' +
-        'docs/tasks/v0/query-command.md\n' +
-        'kind: task  status: pending\n',
+      'document docs/tasks/v0/query-command.md\n' +
+        'kind: task  status: pending\n' +
+        '\n' +
+        '    Implement query command\n',
     );
     expect(io_context.stdout_chunks.join('')).toContain('\u001B[');
   } finally {

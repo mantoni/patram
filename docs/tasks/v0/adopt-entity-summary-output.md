@@ -1,7 +1,7 @@
 # Adopt Entity Summary Output
 
 - Kind: task
-- Status: pending
+- Status: done
 - Tracked in: docs/plans/v0/output-contract-alignment.md
 - Decided by: docs/decisions/entity-summary-output.md
 - Decided by: docs/decisions/cli-output-architecture.md
