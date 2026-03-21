@@ -20,8 +20,8 @@
   `docs/conventions/cli-output-v0.md`.
 - Specify canonical `queries` output and remove conflicting guidance from
   `docs/conventions/query-results-v0.md`.
-- Dim both metadata keys and metadata values for `kind` and `status` in `rich`
-  output.
+- Finalize the `rich` color conventions for node references, metadata, and
+  secondary structural text.
 - Fix the remaining repo dogfood failures only after the output contract is
   testable on the repo itself.
 
@@ -49,8 +49,7 @@
 - `patram queries` has one canonical documented layout.
 - `docs/conventions/query-results-v0.md` no longer conflicts with
   `docs/conventions/cli-output-v0.md`.
-- `rich` output dims both metadata labels and metadata values for `kind` and
-  `status`.
+- `rich` output color conventions match `docs/conventions/cli-output-v0.md`.
 - `patram check` exits `0` on this repo.
 - `patram query pending` lists the remaining follow-up tasks until the plan is
   complete.

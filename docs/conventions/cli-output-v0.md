@@ -222,13 +222,21 @@ See [Some Guide][1].
 
 ## Rich Rendering Rules
 
-- Use one accent color for structure and links.
+- Use green as the shared accent color for Patram node references:
+  - `document <path>` headers in `query`, `show`, and `check`
+  - stored query names in `queries`
 - Use red for errors and yellow for warnings.
-- Use dim styling for paths, reference numbers, metadata keys, and `kind` and
-  `status` metadata values.
+- Use gray for secondary structural text:
+  - query hints such as `Try: ...`
+  - plain dividers such as `----------------`
+  - resolved-link reference numbers
+  - diagnostic locations
+  - diagnostic codes
+  - the secondary success-summary line in `check`
+- Keep metadata keys uncolored.
+- Keep stored query filters uncolored.
 - Keep diagnostic file group headers on the same accent color as entity-summary
   identity headers.
-- Render diagnostic codes gray in `rich` mode.
 - Make inline link labels clickable when the terminal supports hyperlinks.
 - Render inline link references from `[Some Guide][1]` as `Some Guide 1` while
   preserving the same ordering and reference number.
