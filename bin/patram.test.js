@@ -30,9 +30,17 @@ afterEach(async () => {
   await cleanupTestContext(test_context);
 });
 
-it('prints config diagnostics for check failures', async () => {
+it('prints config diagnostics for invalid config files', async () => {
   test_context.project_directory = await createTempProjectDirectory();
   const io_context = createIoContext();
+  await writeProjectFile(
+    test_context.project_directory,
+    '.patram.json',
+    JSON.stringify({
+      include: [],
+      queries: {},
+    }),
+  );
 
   const exit_code = await main(['check', test_context.project_directory], {
     stderr: io_context.stderr,
@@ -42,7 +50,7 @@ it('prints config diagnostics for check failures', async () => {
   expect(exit_code).toBe(1);
   expect(io_context.stderr_chunks).toEqual([
     'file .patram.json\n' +
-      '  1:1  error  Config file ".patram.json" was not found.  config.not_found\n' +
+      '  1:1  error  Invalid config at "include": Include must contain at least one glob.  config.invalid\n' +
       '\n' +
       '\u2716 1 problem (1 error, 0 warnings)\n',
   ]);
@@ -158,7 +166,6 @@ it('defaults check to the current working directory and exits 0 on valid input',
   test_context.project_directory = await createTempProjectDirectory();
   const io_context = createIoContext();
 
-  await writeProjectConfig(test_context.project_directory);
   await writeProjectFile(
     test_context.project_directory,
     'docs/patram.md',
