@@ -26,7 +26,7 @@
 - Use one shared metadata row format when metadata is shown:
   - `kind: <kind>  status: <status>`
 - Do not rely on wrapping or color in `plain` mode.
-- Pager-backed TTY output uses `less -FIRX`.
+- Pager-backed TTY output uses `less -FIRXS`.
 - Keep diagnostic layout structurally aligned between `plain` and `rich` modes.
 
 ## Query
