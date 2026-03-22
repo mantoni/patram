@@ -26,22 +26,28 @@ jobs:
         run: npm ci
 
       - name: Lint
+        if: matrix.node-version == 24
         run: npm run check:lint
 
       - name: Check format
+        if: matrix.node-version == 24
         run: npm run check:format
 
       - name: Check types
+        if: matrix.node-version == 24
         run: npm run check:types
 
       - name: Check Patram
+        if: matrix.node-version == 24
         run: npm run check:patram
 
       - name: Run unit tests
         run: npm run test
 
       - name: Run coverage tests
+        if: matrix.node-version == 24
         run: npm run test:coverage
 
       - name: Check duplicates
+        if: matrix.node-version == 24
         run: npm run check:dupes

@@ -12,11 +12,11 @@ import package_json from '../package.json' with { type: 'json' };
  *
  * Kind: support
  * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/husky-checks.md
+ * Tracked in: ../docs/plans/v0/validation-test-deduplication.md
+ * Decided by: ../docs/decisions/validation-test-deduplication.md
  * @patram
  * @see {@link ./package-metadata.test.js}
- * @see {@link ../docs/decisions/husky-checks.md}
+ * @see {@link ../docs/decisions/validation-test-deduplication.md}
  */
 
 it('installs husky and wires pre-commit to the package checks', async () => {
@@ -29,8 +29,12 @@ it('installs husky and wires pre-commit to the package checks', async () => {
     'check:staged': 'lint-staged --quiet',
     prepare: 'husky',
   });
-  expect(package_json.scripts.all).toContain('npm run check:types');
-  expect(package_json.scripts.all).toContain('npm run check:patram');
+  const all_script = package_json.scripts.all;
+
+  expect(all_script).toContain('npm run check:types');
+  expect(all_script).toContain('npm run check:patram');
+  expect(all_script).toContain('npm run test:coverage');
+  expect(all_script).not.toMatch(/(^|&& )npm run test($| &&)/);
   expect(package_json['lint-staged']).toEqual({
     '*.{js,ts,json,md}': 'prettier --check',
     '*.{js,ts}': ['eslint', 'vitest related --run --passWithNoTests'],
