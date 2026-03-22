@@ -75,6 +75,15 @@ it('indexes stored command implementation entrypoints', async () => {
   ).toEqual(['lib/patram-cli.js']);
 });
 
+it('filters source anchors by exact semantic command target', async () => {
+  const project_graph_result = await loadProjectGraph(repo_directory);
+
+  expect(project_graph_result.diagnostics).toEqual([]);
+  expect(
+    selectPaths(project_graph_result.graph, 'implements_command=command:query'),
+  ).toEqual(['lib/patram-cli.js']);
+});
+
 it('indexes stored term usage entrypoints', async () => {
   const project_graph_result = await loadProjectGraph(repo_directory);
 
@@ -89,6 +98,20 @@ it('indexes stored term usage entrypoints', async () => {
     'lib/build-graph.js',
     'lib/load-project-graph.js',
     'lib/parse-claims.js',
+    'lib/query-graph.js',
+  ]);
+});
+
+it('filters source anchors by exact semantic term target', async () => {
+  const project_graph_result = await loadProjectGraph(repo_directory);
+
+  expect(project_graph_result.diagnostics).toEqual([]);
+  expect(
+    selectPaths(project_graph_result.graph, 'uses_term=term:graph'),
+  ).toEqual([
+    'docs/graph-v0.md',
+    'lib/build-graph.js',
+    'lib/load-project-graph.js',
     'lib/query-graph.js',
   ]);
 });
