@@ -25,7 +25,7 @@ it('installs husky and wires pre-commit to the package checks', async () => {
     'lint-staged': expect.any(String),
   });
   expect(package_json.scripts).toMatchObject({
-    'check:patram': 'patram check',
+    'check:patram': './bin/patram.js check',
     'check:staged': 'lint-staged --quiet',
     prepare: 'husky',
   });

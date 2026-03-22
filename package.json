@@ -28,7 +28,7 @@
     "check:dupes": "jscpd --min-tokens 100 --min-lines 6 --mode mild --threshold 0 --reporters console --gitignore .",
     "check:format": "prettier --check .",
     "check:lint": "eslint .",
-    "check:patram": "patram check",
+    "check:patram": "./bin/patram.js check",
     "check:staged": "lint-staged --quiet",
     "check:types": "tsc",
     "postversion": "git push && git push --tags",
