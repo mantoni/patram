@@ -26,6 +26,8 @@ it('defines the checks workflow contract', async () => {
   expect(workflow_text).toContain('push:');
   expect(workflow_text).toContain('pull_request:');
   expect(workflow_text).toContain('checks:');
+  expect(workflow_text).toContain('uses: actions/checkout@v6');
+  expect(workflow_text).toContain('uses: actions/setup-node@v6');
   expect(workflow_text).toContain('node-version: ${{ matrix.node-version }}');
   expect(workflow_text).toContain('node-version: [22, 24, 25]');
   expect(workflow_text).toContain("cache: 'npm'");

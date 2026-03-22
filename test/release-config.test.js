@@ -37,6 +37,8 @@ it('defines the tag-based publish and release workflow contract', async () => {
   expect(workflow_text).toContain("tags:\n      - 'v*'");
   expect(workflow_text).toContain('contents: write');
   expect(workflow_text).toContain('id-token: write');
+  expect(workflow_text).toContain('uses: actions/checkout@v6');
+  expect(workflow_text).toContain('uses: actions/setup-node@v6');
   expect(workflow_text).toContain('node-version: 24');
   expect(workflow_text).toContain("registry-url: 'https://registry.npmjs.org'");
   expect(workflow_text).toContain('run: npm ci');
