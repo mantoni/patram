@@ -21,6 +21,7 @@ import {
   writeProjectFile,
   writeShowProject,
 } from './patram.test-helpers.js';
+import { loadHelpFixture } from './patram-help.test-helpers.js';
 import { createPagedIoContext } from './patram-pager.test-helpers.js';
 import { main } from './patram.js';
 
@@ -426,7 +427,7 @@ it('rejects query without a where clause or query name', async () => {
 
   expect(exit_code).toBe(1);
   expect(io_context.stderr_chunks).toEqual([
-    'Query requires "--where" or a stored query name.\n',
+    await loadHelpFixture('error-missing-query-argument'),
   ]);
   expect(io_context.stdout_chunks).toEqual([]);
 });
@@ -441,7 +442,7 @@ it('rejects query with an empty where clause', async () => {
 
   expect(exit_code).toBe(1);
   expect(io_context.stderr_chunks).toEqual([
-    'Query requires a where clause.\n',
+    await loadHelpFixture('error-missing-query-argument'),
   ]);
   expect(io_context.stdout_chunks).toEqual([]);
 });
@@ -458,17 +459,14 @@ it('prints query diagnostics for invalid where clauses', async () => {
   );
   process.chdir(test_context.project_directory);
 
-  const exit_code = await main(
-    ['query', '--where', 'kind=task or status=done'],
-    {
-      stderr: io_context.stderr,
-      stdout: io_context.stdout,
-    },
-  );
+  const exit_code = await main(['query', '--where', 'kind:decision'], {
+    stderr: io_context.stderr,
+    stdout: io_context.stdout,
+  });
 
   expect(exit_code).toBe(1);
   expect(io_context.stderr_chunks).toEqual([
-    '<query>:1:11 error query.invalid Unsupported query token "or".\n',
+    await loadHelpFixture('error-invalid-where'),
   ]);
   expect(io_context.stdout_chunks).toEqual([]);
 });
@@ -480,12 +478,12 @@ it('runs the CLI when invoked through a symlinked executable path', async () => 
   await symlink(join(import.meta.dirname, 'patram.js'), executable_path);
 
   await expect(
-    execFile(executable_path, ['nope'], {
+    execFile(executable_path, ['frob'], {
       encoding: 'utf8',
     }),
   ).rejects.toMatchObject({
     code: 1,
-    stderr: 'Unknown command.\n',
+    stderr: await loadHelpFixture('error-unknown-command'),
     stdout: '',
   });
 });

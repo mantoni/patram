@@ -6,6 +6,8 @@
 - Applies to the `plain`, `rich`, and `json` renderers.
 - Defines the canonical plain-text baseline for `query`, `queries`, `check`, and
   `show`.
+- Defers canonical `help` and usage-error copy to
+  `docs/decisions/cli-help-copy-v0.md`.
 - Preserves the current `show` order of source first and resolved summary
   second.
 - `show` and `query` send rendered output through a pager in TTY mode.
@@ -18,6 +20,10 @@
 ## Global Rules
 
 - The documented examples in this file are `plain` output.
+- Root help, command help, help topics, and usage errors stay plain text only in
+  v0.
+- Use `docs/decisions/cli-help-copy-v0.md` as the canonical fixture source for
+  `patram`, `patram help <target>`, and parse/usage error copy.
 - `rich` mode must preserve the same line order, line breaks, numbering, and
   alignment as `plain`, except for the formatted source block in `show`.
 - `rich` and `plain` both render directly from the same structured output view

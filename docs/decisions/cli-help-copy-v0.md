@@ -13,6 +13,8 @@
 
 ## Root Help
 
+[patram fixture=root-help role=output]: #
+
 ```text
 Usage:
   patram <command> [options]
@@ -41,6 +43,8 @@ Next:
 
 ### `check`
 
+[patram fixture=command-help-check role=output]: #
+
 ```text
 Usage:
   patram check [path] [options]
@@ -62,6 +66,8 @@ Related:
 ```
 
 ### `query`
+
+[patram fixture=command-help-query role=output]: #
 
 ```text
 Usage:
@@ -93,6 +99,8 @@ Help topics:
 
 ### `queries`
 
+[patram fixture=command-help-queries role=output]: #
+
 ```text
 Usage:
   patram queries [options]
@@ -111,6 +119,8 @@ Related:
 ```
 
 ### `show`
+
+[patram fixture=command-help-show role=output]: #
 
 ```text
 Usage:
@@ -134,6 +144,8 @@ Related:
 ## Help Topic
 
 ### `query-language`
+
+[patram fixture=help-topic-query-language role=output]: #
 
 ```text
 Query language filters graph nodes with field and relation terms.
@@ -178,6 +190,8 @@ Examples:
 
 ### Unknown command without close match
 
+[patram fixture=error-unknown-command role=output]: #
+
 ```text
 Unknown command: frob
 
@@ -193,6 +207,8 @@ Next:
 
 ### Unknown command with close match
 
+[patram fixture=error-unknown-command-suggestion role=output]: #
+
 ```text
 Unknown command: qurey
 
@@ -204,6 +220,8 @@ Next:
 ```
 
 ### Unknown option
+
+[patram fixture=error-unknown-option role=output]: #
 
 ```text
 Unknown option: --wat
@@ -218,6 +236,8 @@ Next:
 
 ### Unknown option with close match
 
+[patram fixture=error-unknown-option-suggestion role=output]: #
+
 ```text
 Unknown option: --ofset
 
@@ -229,6 +249,8 @@ Next:
 ```
 
 ### Option not valid for command
+
+[patram fixture=error-invalid-command-option role=output]: #
 
 ```text
 Option not valid for command: --where
@@ -242,6 +264,8 @@ Next:
 
 ### Missing required argument for `show`
 
+[patram fixture=error-missing-show-argument role=output]: #
+
 ```text
 Missing required argument: <file>
 
@@ -254,6 +278,8 @@ Examples:
 ```
 
 ### Missing required argument for `query`
+
+[patram fixture=error-missing-query-argument role=output]: #
 
 ```text
 Missing required argument: <name> or --where "<clause>"
@@ -269,6 +295,8 @@ Examples:
 
 ### Invalid `--where`
 
+[patram fixture=error-invalid-where role=output]: #
+
 ```text
 Invalid where clause:
   <query>:1:1 error query.invalid Unsupported query token "kind:decision".
@@ -278,6 +306,8 @@ Next:
 ```
 
 ### Unknown help target without close match
+
+[patram fixture=error-unknown-help-target role=output]: #
 
 ```text
 Unknown help topic or command: frob
@@ -297,6 +327,8 @@ Next:
 
 ### Unknown help target with command match
 
+[patram fixture=error-unknown-help-target-command-suggestion role=output]: #
+
 ```text
 Unknown help topic or command: qurey
 
@@ -308,6 +340,8 @@ Next:
 ```
 
 ### Unknown help target with topic match
+
+[patram fixture=error-unknown-help-target-topic-suggestion role=output]: #
 
 ```text
 Unknown help topic or command: query-lang

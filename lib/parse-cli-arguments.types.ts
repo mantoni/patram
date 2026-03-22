@@ -1,10 +1,13 @@
 export type CliCommandName = 'check' | 'query' | 'queries' | 'show';
+export type CliHelpTopicName = 'query-language';
+export type CliHelpTargetKind = 'root' | 'command' | 'topic';
 
 export type CliOutputMode = 'default' | 'plain' | 'json';
 
 export type CliColorMode = 'auto' | 'always' | 'never';
 
-export interface ParsedCliArguments {
+export interface ParsedCliCommandRequest {
+  kind?: 'command';
   color_mode: CliColorMode;
   command_arguments: string[];
   command_name: CliCommandName;
@@ -13,12 +16,53 @@ export interface ParsedCliArguments {
   query_offset?: number;
 }
 
+export interface ParsedCliHelpRequest {
+  kind: 'help';
+  target_kind: CliHelpTargetKind;
+  target_name?: CliCommandName | CliHelpTopicName;
+}
+
+export type ParsedCliArguments = ParsedCliCommandRequest;
+export type ParsedCliRequest = ParsedCliCommandRequest | ParsedCliHelpRequest;
+
+export type CliParseError =
+  | {
+      code: 'message';
+      message: string;
+    }
+  | {
+      code: 'missing_required_argument';
+      argument_label: string;
+      command_name: 'query' | 'show';
+    }
+  | {
+      code: 'option_not_valid_for_command';
+      command_name: CliCommandName;
+      token: string;
+    }
+  | {
+      code: 'unknown_command';
+      suggestion?: CliCommandName;
+      token: string;
+    }
+  | {
+      code: 'unknown_help_target';
+      suggestion?: CliCommandName | CliHelpTopicName;
+      token: string;
+    }
+  | {
+      code: 'unknown_option';
+      command_name?: CliCommandName;
+      suggestion?: string;
+      token: string;
+    };
+
 export type ParseCliArgumentsResult =
   | {
       success: true;
-      value: ParsedCliArguments;
+      value: ParsedCliRequest;
     }
   | {
-      message: string;
+      error: CliParseError;
       success: false;
     };
