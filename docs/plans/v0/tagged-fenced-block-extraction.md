@@ -1,7 +1,7 @@
 # Tagged Fenced Block Extraction Plan
 
 - Kind: plan
-- Status: active
+- Status: done
 - Tracked in: docs/roadmap/v0-dogfood.md
 - Decided by: docs/decisions/tagged-fenced-block-extraction.md
 
