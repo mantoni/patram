@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.1 - 2026-03-22
+
+- Support exact relation target queries
+  ([`17e70ad`](https://github.com/mantoni/patram/commit/17e70ad19766308b551bcd0987bbddeee4a074f8))
+- Accept relation target query terms
+  ([`5d6d03f`](https://github.com/mantoni/patram/commit/5d6d03f1226a79ea9ca4f524aad3237b9e9edb99))
+- Deduplicate validation test runs
+  ([`934caca`](https://github.com/mantoni/patram/commit/934caca69670063e91951b0e452c2b9dd2ea3772))
+- Use direct Patram entrypoint in CI scripts
+  ([`94a05a6`](https://github.com/mantoni/patram/commit/94a05a65809ecb68ba123af7be8d73ac80cc6fa8))
+- Materialize semantic taxonomy ids
+  ([`bed22ab`](https://github.com/mantoni/patram/commit/bed22abc321bc4048d3da69d1c2f1fdc86689c04))
+- Accept semantic taxonomy ids
+  ([`f82f4c5`](https://github.com/mantoni/patram/commit/f82f4c5bc334df787a9afdd46c8f600fa8a29fd1))
+
 ## 0.1.0 - 2026-03-21
 
 - Add Patram validation step
