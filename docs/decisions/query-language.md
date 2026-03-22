@@ -11,13 +11,17 @@
 
 ## Supported Terms
 
+- `id=<value>`
+- `id^=<prefix>`
 - `kind=<value>`
 - `status=<value>`
 - `path=<value>`
 - `path^=<prefix>`
 - `title~<text>`
 - `<relation>:*`
+- `<relation>=<target-id>`
 - `not <relation>:*`
+- `not <relation>=<target-id>`
 
 ## Supported Operators
 
@@ -41,4 +45,6 @@ kind=task and status=blocked
 kind=task and not blocked_by:*
 kind=decision and status=accepted
 path^=docs/roadmap/
+implements_command=command:query
+uses_term=term:graph
 ```
