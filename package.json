@@ -2,6 +2,11 @@
   "name": "patram",
   "version": "0.1.1",
   "type": "module",
+  "main": "./lib/patram.js",
+  "exports": {
+    ".": "./lib/patram.js",
+    "./bin/patram.js": "./bin/patram.js"
+  },
   "files": [
     "bin/patram.js",
     "lib/**/*.js",

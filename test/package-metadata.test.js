@@ -36,6 +36,10 @@ it('defines publish metadata for the npm package', async () => {
     engines: {
       node: '>=22',
     },
+    exports: {
+      '.': './lib/patram.js',
+      './bin/patram.js': './bin/patram.js',
+    },
     files: [
       'bin/patram.js',
       'lib/**/*.js',
@@ -47,6 +51,7 @@ it('defines publish metadata for the npm package', async () => {
     ],
     homepage: 'https://github.com/mantoni/patram',
     license: 'MIT',
+    main: './lib/patram.js',
     repository: {
       type: 'git',
       url: 'git+https://github.com/mantoni/patram.git',
@@ -73,6 +78,7 @@ it(
       const packed_file_paths = await listPackedFilePaths(temp_directory);
 
       expect(packed_file_paths).toContain('bin/patram.js');
+      expect(packed_file_paths).toContain('lib/patram.js');
       expect(packed_file_paths).toContain('lib/patram-cli.js');
       expect(packed_file_paths).not.toContain('bin/patram.test.js');
       expect(packed_file_paths).not.toContain('bin/patram.test-helpers.js');

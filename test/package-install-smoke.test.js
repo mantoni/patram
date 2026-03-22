@@ -39,6 +39,7 @@ it('installs and imports the packed npm package in a consumer project', async ()
 
     await createConsumerProject(consumer_directory);
     await installTarball(consumer_directory, tarball_path);
+    await importPackedLibrary(consumer_directory);
     await importPackedCli(consumer_directory);
   } finally {
     await rm(temp_directory, { force: true, recursive: true });
@@ -121,6 +122,26 @@ async function importPackedCli(consumer_directory) {
       '--input-type=module',
       '--eval',
       "await import('./node_modules/patram/bin/patram.js')",
+    ],
+    consumer_directory,
+  );
+}
+
+/**
+ * @param {string} consumer_directory
+ */
+async function importPackedLibrary(consumer_directory) {
+  await runCommand(
+    'node',
+    [
+      '--input-type=module',
+      '--eval',
+      [
+        "const package_module = await import('patram');",
+        "if (typeof package_module.extractTaggedFencedBlocks !== 'function') {",
+        "  throw new Error('Expected extractTaggedFencedBlocks export.');",
+        '}',
+      ].join('\n'),
     ],
     consumer_directory,
   );
