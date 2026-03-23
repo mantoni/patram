@@ -47,9 +47,9 @@
 - `patram completion zsh` prints a shell completion script for Patram.
 - Completion covers command names, global flags, command flags, and stored query
   names where applicable.
-- `patram query pending --explain` reports the resolved where clause and query
-  execution options without changing the query result model.
-- `patram query --where "kind=plan and none(in:tracked_in, kind=task and status not in [done, dropped, superseded])" --explain`
+- `patram query ready-tasks --explain` reports the resolved where clause and
+  query execution options without changing the query result model.
+- `patram query --where "kind=plan and none(in:tracked_in, kind=decision)" --explain`
   reports the nested traversal and aggregate structure without executing the
   result renderers.
 - Query inspection works for both stored-query and `--where` inputs.

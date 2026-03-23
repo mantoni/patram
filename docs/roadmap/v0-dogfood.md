@@ -9,7 +9,7 @@
 - Index `docs/**/*.md`.
 - Run `patram check`.
 - Run `patram query --where "kind=task and status=pending"`.
-- Run `patram query pending`.
+- Run `patram query pending-tasks`.
 - Run `patram show docs/patram.md`.
 - Run `patram show docs/patram.md --json`.
 
@@ -130,7 +130,7 @@ graph LR
 - `patram check` exits `0` on valid repo state.
 - `patram check` exits `1` on diagnostics.
 - `patram query --where "kind=task and status=pending"` works.
-- `patram query pending` works.
+- `patram query pending-tasks` works.
 - `patram queries` works.
 - `patram show docs/patram.md` works from repo root.
 - `patram show docs/patram.md --json` works from repo root.

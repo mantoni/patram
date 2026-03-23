@@ -141,13 +141,57 @@ graph TD
   `decision`, `plan`, and `roadmap` documents once traversal-backed output
   summaries exist.
 
-## Query Patterns
+## Stored Queries
+
+```json
+{
+  "ideas": {
+    "where": "kind=idea and status in [captured, exploring, planned]"
+  },
+  "active-roadmaps": {
+    "where": "kind=roadmap and status=active"
+  },
+  "active-plans": {
+    "where": "kind=plan and status=active"
+  },
+  "plans-without-decisions": {
+    "where": "kind=plan and status=active and none(in:tracked_in, kind=decision)"
+  },
+  "decision-review-queue": {
+    "where": "kind=decision and status=proposed"
+  },
+  "accepted-decisions": {
+    "where": "kind=decision and status=accepted"
+  },
+  "decisions-needing-tasks": {
+    "where": "kind=decision and status=accepted and count(in:decided_by, kind=task) = 0"
+  },
+  "pending-tasks": {
+    "where": "kind=task and status=pending"
+  },
+  "in-progress-tasks": {
+    "where": "kind=task and status=in_progress"
+  },
+  "blocked-tasks": {
+    "where": "kind=task and status=blocked"
+  },
+  "plans-with-open-tasks": {
+    "where": "kind=plan and status=active and any(in:tracked_in, kind=task and status not in [done, dropped, superseded])"
+  },
+  "decisions-with-open-tasks": {
+    "where": "kind=decision and status=accepted and any(in:decided_by, kind=task and status not in [done, dropped, superseded])"
+  }
+}
+```
+
+## Ad Hoc Query Patterns
 
 - Use `doc:<path>` relation targets when querying document-to-document
   relations.
 
 ```bash
 patram query --where "kind=task and status=pending"
-patram query --where "kind=task and tracked_in=doc:docs/plans/v0/patram-worktracking.md and not status=done and not status=dropped and not status=superseded"
-patram query --where "kind=task and decided_by=doc:docs/decisions/patram-worktracking.md and not status=done and not status=dropped and not status=superseded"
+patram query --where "tracked_in=doc:docs/plans/v0/patram-worktracking.md and status not in [done, dropped, superseded]"
+patram query --where "decided_by=doc:docs/decisions/patram-worktracking.md and status not in [done, dropped, superseded]"
+patram query --where "kind=plan and none(in:tracked_in, kind=decision)"
 ```

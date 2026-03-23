@@ -38,6 +38,61 @@ For repository documentation layout and where to put new docs, see
   - Use JSDoc `@link` and `@see` tags into a directory added to patram for
     references.
 
+## Agent Workflow
+
+Agents working in this repo should start from stored queries, then inspect
+matching files with `show`, and then validate touched paths with `check`.
+
+```bash
+patram queries
+patram query active-plans
+patram query decision-review-queue
+patram query decisions-needing-tasks
+patram query ready-tasks
+patram query --where "tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md"
+patram query active-plans --explain
+patram query --where "kind=plan and none(in:tracked_in, kind=decision)" --lint
+patram show docs/conventions/worktracking-v0.md
+patram check docs
+```
+
+Recommended flow:
+
+- Run `patram queries` first to see the repo's named entrypoints.
+- Use `patram query <name>` for queue discovery and repeatable repo workflows.
+- Use `patram query <name> --explain` when you want the resolved clause tree.
+- Use `patram query --where "<clause>" --lint` before saving a new ad hoc or
+  stored query.
+- Use `patram show <path>` after a query to read the matched document or source
+  anchor in context.
+- Use `patram check <path>` before handing off doc or code changes.
+
+## Query Identities
+
+- Documents use exact ids in the form `doc:<repo-relative-path>`.
+- Canonical command nodes use exact ids in the form `command:<name>`.
+- Canonical term nodes use exact ids in the form `term:<name>`.
+
+Examples:
+
+```bash
+patram query --where "tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md"
+patram query --where "implements_command=command:query"
+patram query --where "uses_term=term:graph"
+```
+
+## Stored Query Families
+
+- Worktracking queries: `ideas`, `active-roadmaps`, `active-plans`,
+  `plans-without-decisions`, `decision-review-queue`, `decisions-needing-tasks`,
+  `pending-tasks`, `ready-tasks`, `in-progress-tasks`, `blocked-tasks`,
+  `plans-with-open-tasks`, `decisions-with-open-tasks`.
+- Taxonomy queries: `command-taxonomy`, `command-implementations`,
+  `term-taxonomy`, `term-usage`.
+- Source queries: `source-entrypoints`, `source-cli`, `source-config`,
+  `source-scan`, `source-parse`, `source-graph`, `source-output`,
+  `source-support`, `source-release`.
+
 ## Repo Taxonomy
 
 This repo adds two custom kinds on top of Patram's built-in `document` kind:
@@ -70,32 +125,6 @@ This direction is tracked in
 [`docs/decisions/non-document-semantic-ids.md`](./decisions/non-document-semantic-ids.md)
 and
 [`docs/plans/v0/non-document-semantic-ids.md`](./plans/v0/non-document-semantic-ids.md).
-
-## Agent Workflow
-
-Agents working in this repo should use the taxonomy queries first and then drill
-into matching files with `show`.
-
-```bash
-patram query command-taxonomy
-patram query command-implementations
-patram query term-taxonomy
-patram query term-usage
-patram query --where "about_command:*"
-patram show docs/patram.md
-patram show lib/patram-cli.js
-```
-
-Typical uses:
-
-- Start from `command-taxonomy` to find the canonical command docs.
-- Use `command-implementations` to jump from command concepts to code
-  entrypoints.
-- Start from `term-taxonomy` to find the canonical vocabulary docs.
-- Use `term-usage` to find docs and source anchors that depend on the core graph
-  model.
-- Use `about_command:*` as an ad hoc query when you want product-facing command
-  docs rather than implementation files.
 
 [patram about-command=reference/commands/check.md]: #
 [patram about-command=reference/commands/query.md]: #

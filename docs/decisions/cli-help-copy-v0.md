@@ -95,14 +95,14 @@ Options:
   --json             Print JSON output
 
 Examples:
-  patram query command-taxonomy
-  patram query --where "about_command:*"
+  patram query active-plans
+  patram query --where "tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md"
   patram query --where "status not in [done, dropped, superseded]"
-  patram query --where "none(in:tracked_in, kind=task and status not in [done, dropped, superseded])"
+  patram query --where "kind=plan and none(in:tracked_in, kind=decision)"
   patram query --where "count(in:decided_by, kind=task) = 0"
-  patram query pending --explain
-  patram query --where "kind=plan and none(in:tracked_in, kind=task and status not in [done, dropped, superseded])" --lint
-  patram query pending --limit 10 --offset 20
+  patram query ready-tasks --explain
+  patram query --where "kind=decision and status=accepted and count(in:decided_by, kind=task) = 0" --lint
+  patram query active-plans --limit 10 --offset 20
 
 Related:
   patram queries
@@ -204,13 +204,13 @@ Operators:
 
 Examples:
   kind=decision and status=accepted
-  path^=docs/reference/commands/
+  path^=docs/plans/
   title~query
-  about_command:*
+  tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md
   implements_command=command:query
   status not in [done, dropped, superseded]
-  any(out:tracked_in, kind=plan and status=active)
-  none(in:decided_by, kind=task and status not in [done, dropped, superseded])
+  any(in:tracked_in, kind=task and status in [pending, ready, in_progress, blocked])
+  none(in:tracked_in, kind=decision)
   count(in:decided_by, kind=task) = 0
   not uses_term=term:graph
 ```
@@ -318,8 +318,8 @@ Usage:
   patram query --where "<clause>" [options]
 
 Examples:
-  patram query command-taxonomy
-  patram query --where "about_command:*"
+  patram query active-plans
+  patram query --where "tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md"
 ```
 
 ### Invalid `--where`

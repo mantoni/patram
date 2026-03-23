@@ -29,9 +29,9 @@
 
 ## Acceptance
 
-- `patram query pending` shows at most `25` results by default.
-- `patram query pending --offset 25` pages into later matches.
-- `patram query pending --limit 5` changes the page size.
+- `patram query pending-tasks` shows at most `25` results by default.
+- `patram query pending-tasks --offset 25` pages into later matches.
+- `patram query pending-tasks --limit 5` changes the page size.
 - Query output ends with `Showing <shown> of <total> matches.`.
 - Default truncation adds a pagination hint.
 - `npm run all` passes.

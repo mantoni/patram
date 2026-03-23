@@ -249,28 +249,71 @@ function createExpectedRepoRelationMappings() {
  */
 function createExpectedRepoQueries() {
   return {
-    pending: {
-      where: 'kind=task and status=pending',
-    },
-    blocked: {
-      where: 'kind=task and status=blocked',
-    },
-    'accepted-decisions': {
-      where: 'kind=decision and status=accepted',
-    },
-    'command-implementations': {
-      where: 'implements_command:*',
-    },
-    'command-taxonomy': {
-      where: 'id^=command:',
-    },
+    ...createExpectedWorktrackingQueries(),
+    ...createExpectedTaxonomyQueries(),
     ...createExpectedSourceQueries(),
-    'term-usage': {
-      where: 'uses_term:*',
-    },
-    'term-taxonomy': {
-      where: 'id^=term:',
-    },
+  };
+}
+
+/**
+ * @returns {object}
+ */
+function createExpectedWorktrackingQueries() {
+  return {
+    ...createExpectedWorktrackingLifecycleQueries(),
+    ...createExpectedWorktrackingTaskQueries(),
+  };
+}
+
+/**
+ * @returns {object}
+ */
+function createExpectedWorktrackingLifecycleQueries() {
+  return {
+    'accepted-decisions': createStoredQuery(
+      'kind=decision and status=accepted',
+    ),
+    'active-plans': createStoredQuery('kind=plan and status=active'),
+    'active-roadmaps': createStoredQuery('kind=roadmap and status=active'),
+    'decision-review-queue': createStoredQuery(
+      'kind=decision and status=proposed',
+    ),
+    'decisions-needing-tasks': createStoredQuery(
+      'kind=decision and status=accepted and count(in:decided_by, kind=task) = 0',
+    ),
+    'decisions-with-open-tasks': createStoredQuery(
+      'kind=decision and status=accepted and any(in:decided_by, kind=task and status not in [done, dropped, superseded])',
+    ),
+    ideas: createStoredQuery(
+      'kind=idea and status in [captured, exploring, planned]',
+    ),
+    'plans-with-open-tasks': createStoredQuery(
+      'kind=plan and status=active and any(in:tracked_in, kind=task and status not in [done, dropped, superseded])',
+    ),
+    'plans-without-decisions': createStoredQuery(
+      'kind=plan and status=active and none(in:tracked_in, kind=decision)',
+    ),
+  };
+}
+
+/**
+ * @returns {object}
+ */
+function createExpectedWorktrackingTaskQueries() {
+  return {
+    'blocked-tasks': createStoredQuery('kind=task and status=blocked'),
+    'in-progress-tasks': createStoredQuery('kind=task and status=in_progress'),
+    'pending-tasks': createStoredQuery('kind=task and status=pending'),
+    'ready-tasks': createStoredQuery('kind=task and status=ready'),
+  };
+}
+
+function createExpectedTaxonomyQueries() {
+  return {
+    'command-implementations': createStoredQuery('implements_command:*'),
+    'command-taxonomy': createStoredQuery('id^=command:'),
+    'term-usage': createStoredQuery('uses_term:*'),
+    'term-taxonomy': createStoredQuery('id^=term:'),
   };
 }
 

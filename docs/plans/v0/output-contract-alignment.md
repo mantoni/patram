@@ -51,5 +51,5 @@
   `docs/conventions/cli-output-v0.md`.
 - `rich` output color conventions match `docs/conventions/cli-output-v0.md`.
 - `patram check` exits `0` on this repo.
-- `patram query pending` lists the remaining follow-up tasks until the plan is
-  complete.
+- `patram query pending-tasks` lists the remaining follow-up tasks until the
+  plan is complete.

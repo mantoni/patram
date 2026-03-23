@@ -55,7 +55,7 @@ it('renders derived execution metadata for plan query results', async () => {
   });
 
   expect(renderPlainOutput(output_view)).toContain(
-    'execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4',
+    'execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 5',
   );
   expect(renderJsonOutput(output_view)).toContain(
     '"derived_summary": "plan_execution"',

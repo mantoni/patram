@@ -153,9 +153,9 @@ Try: patram query --where "kind=task"
 ### Plain
 
 ```txt
-blocked              kind=task and status=blocked
-pending              kind=task and status=pending
-accepted-decisions   kind=decision and status=accepted
+active-plans           kind=plan and status=active
+decision-review-queue  kind=decision and status=proposed
+ready-tasks            kind=task and status=ready
 ```
 
 ### JSON
@@ -164,12 +164,12 @@ accepted-decisions   kind=decision and status=accepted
 {
   "queries": [
     {
-      "name": "blocked",
-      "where": "kind=task and status=blocked"
+      "name": "active-plans",
+      "where": "kind=plan and status=active"
     },
     {
-      "name": "pending",
-      "where": "kind=task and status=pending"
+      "name": "ready-tasks",
+      "where": "kind=task and status=ready"
     }
   ]
 }

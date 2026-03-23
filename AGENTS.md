@@ -5,17 +5,22 @@ link to sources.
 
 Always read `docs/patram.md` and `docs/structure.md`.
 
-Use `docs/patram.md` for product behavior and the repo's command and term
-taxonomy. Use `docs/structure.md` for the documentation map and file-placement
+Use `docs/patram.md` for product behavior, query workflow, and repo-specific
+graph ids. Use `docs/structure.md` for the documentation map and file-placement
 rules.
 
-When orienting in the repo, start with these queries:
+Use `patram` to orient in the repo based on the user's request.
 
-- `patram query command-taxonomy`
-- `patram query command-implementations`
-- `patram query term-taxonomy`
-- `patram query term-usage`
-- `patram query --where "about_command:*"`
+- For planning, decisions, tasks, changes, and queue state, start with
+  `patram queries` and then run the stored query that best matches the workflow
+  stage.
+- For a specific document or work item, use `patram show <repo-path>` and exact
+  relation-target queries such as `tracked_in=doc:<repo-path>` or
+  `decided_by=doc:<repo-path>`.
+- For CLI behavior or graph vocabulary, use taxonomy queries such as
+  `command-taxonomy`, `command-implementations`, `term-taxonomy`, and
+  `term-usage`.
+- For validation, use `patram check <path>`.
 
 ## Interaction Style
 

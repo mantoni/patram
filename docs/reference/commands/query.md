@@ -11,6 +11,9 @@ Use `--explain` to inspect the resolved query and parsed clause tree without
 rendering result rows. Use `--lint` to validate syntax and relation references,
 including nested traversal clauses, without executing the query.
 
+Agents should usually start with `patram queries`, then run a named query, then
+use `patram show <path>` on the matching document or source file.
+
 Supported where-clause forms:
 
 - Exact field matches: `id=<value>`, `kind=<value>`, `path=<value>`,
@@ -33,15 +36,21 @@ Supported fields by operator:
 - Contains text: `title`
 - Set membership: `id`, `kind`, `path`, `status`, `title`
 
+Exact relation-target ids:
+
+- Documents use `doc:<repo-relative-path>`.
+- Commands use `command:<name>`.
+- Terms use `term:<name>`.
+
 Examples:
 
+- `patram query active-plans`
+- `patram query --where "tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md"`
 - `patram query --where "id=command:query"`
-- `patram query --where "about_command:*"`
 - `patram query --where "implements_command=command:query"`
 - `patram query --where "uses_term=term:graph"`
 - `patram query --where "status not in [done, dropped, superseded]"`
-- `patram query --where "any(out:tracked_in, kind=plan and status=active)"`
-- `patram query --where "kind=plan and none(in:tracked_in, kind=task and status not in [done, dropped, superseded])"`
+- `patram query --where "kind=plan and none(in:tracked_in, kind=decision)"`
 - `patram query --where "count(in:decided_by, kind=task) = 0"`
-- `patram query pending --explain`
-- `patram query --where "kind=plan and none(in:tracked_in, kind=task and status not in [done, dropped, superseded])" --lint`
+- `patram query ready-tasks --explain`
+- `patram query --where "kind=decision and status=accepted and count(in:decided_by, kind=task) = 0" --lint`

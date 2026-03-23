@@ -32,8 +32,9 @@
 ## Acceptance
 
 - `patram show docs/patram.md` pages output when run in a TTY.
-- `patram query pending` pages output when run in a TTY.
-- `patram query pending` shows all matches by default in pager mode.
-- `patram query pending --limit 5` still limits paged output.
-- `patram query pending | cat` keeps direct stdout output and the default limit.
+- `patram query pending-tasks` pages output when run in a TTY.
+- `patram query pending-tasks` shows all matches by default in pager mode.
+- `patram query pending-tasks --limit 5` still limits paged output.
+- `patram query pending-tasks | cat` keeps direct stdout output and the default
+  limit.
 - `npm run all` passes.

@@ -7,20 +7,50 @@
     "test/**/*.js"
   ],
   "queries": {
-    "pending": {
-      "where": "kind=task and status=pending"
-    },
-    "blocked": {
-      "where": "kind=task and status=blocked"
-    },
     "accepted-decisions": {
       "where": "kind=decision and status=accepted"
+    },
+    "active-plans": {
+      "where": "kind=plan and status=active"
+    },
+    "active-roadmaps": {
+      "where": "kind=roadmap and status=active"
+    },
+    "blocked-tasks": {
+      "where": "kind=task and status=blocked"
     },
     "command-implementations": {
       "where": "implements_command:*"
     },
     "command-taxonomy": {
       "where": "id^=command:"
+    },
+    "decision-review-queue": {
+      "where": "kind=decision and status=proposed"
+    },
+    "decisions-needing-tasks": {
+      "where": "kind=decision and status=accepted and count(in:decided_by, kind=task) = 0"
+    },
+    "decisions-with-open-tasks": {
+      "where": "kind=decision and status=accepted and any(in:decided_by, kind=task and status not in [done, dropped, superseded])"
+    },
+    "ideas": {
+      "where": "kind=idea and status in [captured, exploring, planned]"
+    },
+    "in-progress-tasks": {
+      "where": "kind=task and status=in_progress"
+    },
+    "pending-tasks": {
+      "where": "kind=task and status=pending"
+    },
+    "plans-with-open-tasks": {
+      "where": "kind=plan and status=active and any(in:tracked_in, kind=task and status not in [done, dropped, superseded])"
+    },
+    "plans-without-decisions": {
+      "where": "kind=plan and status=active and none(in:tracked_in, kind=decision)"
+    },
+    "ready-tasks": {
+      "where": "kind=task and status=ready"
     },
     "source-entrypoints": {
       "where": "kind=entrypoint"
