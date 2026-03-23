@@ -1,5 +1,17 @@
 import type { GraphNode } from './build-graph.types.ts';
 
+export type OutputDerivedValue = boolean | number | string | null;
+
+export interface OutputDerivedField {
+  name: string;
+  value: OutputDerivedValue;
+}
+
+export interface OutputDerivedSummary {
+  fields: OutputDerivedField[];
+  name: string;
+}
+
 export interface OutputViewSummary {
   count: number;
   kind: 'resolved_link_list' | 'result_list' | 'stored_query_list';
@@ -13,6 +25,7 @@ export interface QueryOutputViewSummary extends OutputViewSummary {
 }
 
 export interface OutputNodeItem {
+  derived_summary?: OutputDerivedSummary;
   id: string;
   kind: 'node';
   node_kind: GraphNode['kind'];
@@ -28,6 +41,7 @@ export interface OutputStoredQueryItem {
 }
 
 export interface OutputResolvedLinkTarget {
+  derived_summary?: OutputDerivedSummary;
   kind?: string;
   path: string;
   status?: string;
@@ -57,6 +71,7 @@ export interface QueriesOutputView {
 
 export interface ShowOutputView {
   command: 'show';
+  document?: OutputNodeItem;
   hints: string[];
   items: OutputResolvedLinkItem[];
   path: string;

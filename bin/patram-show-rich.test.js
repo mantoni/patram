@@ -75,13 +75,10 @@ it('renders markdown show output with custom formatting in rich mode', async () 
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
   expect(stripAnsi(io_context.paged_output_chunks[0])).toContain(
-    '# Patram\n\nSee guide[1].\n\n' +
-      ` ${'ts [app.ts]'.padStart(78, ' ')} \n` +
-      ` ${` ${'const value = 1;'}`.padEnd(78, ' ')} \n` +
-      ` ${' '.padEnd(78, ' ')} \n`,
+    EXPECTED_RICH_SOURCE_OUTPUT,
   );
   expect(stripAnsi(io_context.paged_output_chunks[0])).toContain(
-    `${FULL_WIDTH_DIVIDER}\n\n[1] document docs/guide.md\n\n    Some Guide\n`,
+    EXPECTED_RICH_RESOLVED_LINKS,
   );
   expect(io_context.stdout_chunks).toEqual([]);
 });
@@ -122,3 +119,20 @@ it('renders non-markdown source files with syntax highlighting in rich mode', as
   expect(io_context.stdout_chunks).toEqual([]);
   expect(io_context.paged_output_chunks[0]).toContain('\u001B[');
 });
+
+const EXPECTED_RICH_RESOLVED_LINKS =
+  `${FULL_WIDTH_DIVIDER}\n\n` +
+  'document docs/patram.md\n' +
+  'kind: document\n' +
+  '\n' +
+  '    Patram\n' +
+  '\n' +
+  '[1] document docs/guide.md\n' +
+  '\n' +
+  '    Some Guide\n';
+
+const EXPECTED_RICH_SOURCE_OUTPUT =
+  '# Patram\n\nSee guide[1].\n\n' +
+  ` ${'ts [app.ts]'.padStart(78, ' ')} \n` +
+  ` ${` ${'const value = 1;'}`.padEnd(78, ' ')} \n` +
+  ` ${' '.padEnd(78, ' ')} \n`;

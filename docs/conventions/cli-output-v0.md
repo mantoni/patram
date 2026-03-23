@@ -78,6 +78,7 @@ path: docs/reference/commands/query.md
       "title": "Query Traversal And Aggregation Plan",
       "path": "docs/plans/v0/query-traversal-and-aggregation.md",
       "status": "active",
+      "derived_summary": "plan_execution",
       "derived": {
         "execution": "done",
         "open_tasks": 0,
@@ -255,6 +256,7 @@ execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
     "path": "docs/plans/v0/query-traversal-and-aggregation.md",
     "kind": "plan",
     "status": "active",
+    "derived_summary": "plan_execution",
     "derived": {
       "execution": "done",
       "open_tasks": 0,
@@ -279,7 +281,14 @@ execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
         "title": "Query Language v0",
         "path": "docs/decisions/query-language-v0.md",
         "kind": "decision",
-        "status": "accepted"
+        "status": "accepted",
+        "derived_summary": "decision_execution",
+        "derived": {
+          "execution": "done",
+          "open_tasks": 0,
+          "blocked_tasks": 0,
+          "total_tasks": 4
+        }
       }
     },
     {

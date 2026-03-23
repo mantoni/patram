@@ -72,6 +72,7 @@ it('keeps the documented source stored queries useful', async () => {
     ),
   ).toEqual([
     'lib/command-output.js',
+    'lib/derived-summary.js',
     'lib/render-output-view.js',
     'lib/show-document.js',
   ]);
