@@ -3,6 +3,7 @@
 - Kind: task
 - Status: done
 - Tracked in: docs/roadmap/v0-dogfood.md
+- Decided by: docs/decisions/source-scan.md
 
 - Scan `docs/**/*.md`.
 - Normalize repo-relative paths.

@@ -1,7 +1,7 @@
 # Reconcile Worktracking Decision Links
 
 - Kind: task
-- Status: pending
+- Status: done
 - Tracked in: docs/plans/v0/patram-worktracking.md
 - Decided by: docs/decisions/patram-worktracking.md
 - Decided by: docs/decisions/worktracking-agent-guidance.md
