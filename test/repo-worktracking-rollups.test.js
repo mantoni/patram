@@ -68,7 +68,7 @@ it('evaluates count rollups through incoming decision traversal', async () => {
   expect(
     selectPaths(
       project_graph_result.graph,
-      'path=docs/decisions/query-traversal-and-aggregation.md and count(in:decided_by, kind=task) = 0',
+      'path=docs/decisions/query-traversal-and-aggregation.md and count(in:decided_by, kind=task) = 1',
     ),
   ).toEqual(['docs/decisions/query-traversal-and-aggregation.md']);
 });
