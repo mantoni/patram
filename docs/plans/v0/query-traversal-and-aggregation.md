@@ -23,7 +23,9 @@
   `status not in [pending, blocked]`.
 - Keep query results rooted at the original node set.
 - Keep traversal cycle handling trivial by limiting the first pass to one hop.
-- Keep stored-query support and query rendering aligned with the new syntax.
+- Keep stored-query support aligned with the new syntax.
+- Update `query --help`, `patram help query-language`, and the query command
+  reference with traversal and aggregation examples after semantics land.
 - Defer recursive walk syntax, grouping, ordering by aggregate values, and
   projections.
 
@@ -61,14 +63,15 @@ count(in:decided_by, kind=task) = 0
 
 1. Record a traversal-and-aggregation decision that defines syntax, semantics,
    and first-pass limits.
-2. Update the query reference and CLI output conventions with nested-query
-   examples.
-3. Add failing parser, evaluator, rendering, and repo-level tests for aggregate
-   predicates and set-membership terms.
-4. Extend where-clause parsing with nested traversal and membership syntax.
-5. Extend query evaluation to follow one-hop incoming and outgoing relations and
+2. Add failing parser, evaluator, and repo-level tests for aggregate predicates
+   and set-membership terms.
+3. Extend where-clause parsing with nested traversal and membership syntax.
+4. Extend query evaluation to follow one-hop incoming and outgoing relations and
    evaluate aggregate predicates against related nodes.
-6. Update stored-query rendering and query-inspection output for the new syntax.
+5. Update `query --help`, `patram help query-language`, and the query command
+   reference with nested-query examples.
+6. Update stored-query rendering and hand off nested-clause support to
+   query-inspection and output plans.
 7. Run validation.
 
 ## Acceptance
@@ -80,5 +83,6 @@ count(in:decided_by, kind=task) = 0
 - `patram query --where "count(in:decided_by, kind=task) = 0"` returns nodes
   with no related tasks through that relation.
 - Set-membership terms work in root and nested subqueries.
-- Stored queries preserve and render the new clause shapes unchanged.
+- `query --help` and `patram help query-language` document the new syntax.
+- Stored queries preserve the new clause shapes unchanged.
 - `npm run all` passes.

@@ -21,6 +21,8 @@
   positional suggestions.
 - Add a query inspection mode that resolves stored queries and shows the
   effective where clause and execution options.
+- Explain traversal, aggregate predicates, and nested subqueries without
+  rendering result sets.
 - Add a non-result query validation mode for ad hoc and stored queries.
 - Keep normal query execution and output rendering unchanged when inspection is
   not requested.
@@ -35,7 +37,7 @@
    linting flows.
 4. Implement completion script generation from CLI command metadata.
 5. Implement query inspection helpers that resolve stored queries, parse where
-   clauses, and print non-result diagnostics.
+   clauses, explain nested traversal clauses, and print non-result diagnostics.
 6. Refactor shared query metadata helpers if needed.
 7. Run validation.
 
@@ -46,6 +48,9 @@
   names where applicable.
 - `patram query pending --explain` reports the resolved where clause and query
   execution options without changing the query result model.
+- `patram query --where "kind=plan and none(in:tracked_in, kind=task and status not in [done, dropped, superseded])" --explain`
+  reports the nested traversal and aggregate structure without executing the
+  result renderers.
 - Query inspection works for both stored-query and `--where` inputs.
 - Invalid ad hoc or stored queries can be validated without rendering result
   sets.
