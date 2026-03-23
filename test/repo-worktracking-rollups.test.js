@@ -73,6 +73,18 @@ it('evaluates count rollups through incoming decision traversal', async () => {
   ).toEqual(['docs/decisions/query-traversal-and-aggregation.md']);
 });
 
+it('does not materialize duplicated docs-prefixed worktracking targets', async () => {
+  const project_graph_result = await loadProjectGraph(repo_directory);
+
+  expect(project_graph_result.diagnostics).toEqual([]);
+  expect(
+    selectPaths(project_graph_result.graph, 'path^=docs/decisions/docs/'),
+  ).toEqual([]);
+  expect(
+    selectPaths(project_graph_result.graph, 'path^=docs/plans/v0/docs/'),
+  ).toEqual([]);
+});
+
 /**
  * @param {import('../lib/build-graph.types.ts').BuildGraphResult} graph
  * @param {string} where_clause
