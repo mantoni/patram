@@ -137,6 +137,9 @@ graph TD
 - A plan is implemented when no task with `Tracked in: <plan-path>` remains
   outside a terminal task status.
 - A roadmap rollup is deferred until query traversal and aggregation exist.
+- `patram query` and `patram show` should render derived execution summaries for
+  `decision`, `plan`, and `roadmap` documents once traversal-backed output
+  summaries exist.
 
 ## Query Patterns
 

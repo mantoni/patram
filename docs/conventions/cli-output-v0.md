@@ -29,9 +29,11 @@
 - `rich` and `plain` both render directly from the same structured output view
   model.
 - Keep labels lowercase: `task`, `decision`, `doc`, `error`, `warning`.
-- Use one shared metadata row format when metadata is shown:
+- Use one shared stored-metadata row format when metadata is shown:
   - document headers: `kind: <kind>  status: <status>`
   - semantic non-document headers: `path: <path>  status: <status>`
+- When derived execution metadata is present, render one second metadata row:
+  - `execution: <state>  open_tasks: <count>  blocked_tasks: <count>  total_tasks: <count>`
 - Do not rely on wrapping or color in `plain` mode.
 - Pager-backed TTY output uses `less -FIRXS`.
 - Keep diagnostic layout structurally aligned between `plain` and `rich` modes.
@@ -46,10 +48,11 @@ kind: task  status: pending
 
     Implement query command
 
-document docs/decisions/query-language-v0.md
-kind: decision  status: accepted
+document docs/plans/v0/query-traversal-and-aggregation.md
+kind: plan  status: active
+execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
 
-    Query Language v0
+    Query Traversal And Aggregation Plan
 
 command command:query
 path: docs/reference/commands/query.md
@@ -70,11 +73,17 @@ path: docs/reference/commands/query.md
       "status": "pending"
     },
     {
-      "id": "doc:docs/decisions/query-language-v0.md",
-      "kind": "decision",
-      "title": "Query Language v0",
-      "path": "docs/decisions/query-language-v0.md",
-      "status": "accepted"
+      "id": "doc:docs/plans/v0/query-traversal-and-aggregation.md",
+      "kind": "plan",
+      "title": "Query Traversal And Aggregation Plan",
+      "path": "docs/plans/v0/query-traversal-and-aggregation.md",
+      "status": "active",
+      "derived": {
+        "execution": "done",
+        "open_tasks": 0,
+        "blocked_tasks": 0,
+        "total_tasks": 4
+      }
     }
   ],
   "summary": {
@@ -95,6 +104,12 @@ kind: task  status: pending
 
     Implement query command
 
+document docs/plans/v0/query-traversal-and-aggregation.md
+kind: plan  status: active
+execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
+
+    Query Traversal And Aggregation Plan
+
 ...
 
 Showing 25 of 40 matches.
@@ -108,6 +123,12 @@ document docs/tasks/v0/task-01.md
 kind: task  status: pending
 
     Implement query command
+
+document docs/plans/v0/query-traversal-and-aggregation.md
+kind: plan  status: active
+execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
+
+    Query Traversal And Aggregation Plan
 
 ...
 
@@ -197,11 +218,21 @@ Scanned 12 files. Found 0 errors.
 ### Plain
 
 ```txt
-# Patram
+# Query Traversal And Aggregation Plan
 
-See [Some Guide][1].
+- Kind: plan
+- Status: active
+- Tracked in: docs/roadmap/query-language-extensions.md
+
+See [Some Guide][1], [Query Language v0][2], and
+[Implement query command][3].
 
 ----------------
+document docs/plans/v0/query-traversal-and-aggregation.md
+kind: plan  status: active
+execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
+
+    Query Traversal And Aggregation Plan
 [1] document docs/guide.md
 
     Some Guide
@@ -219,7 +250,19 @@ See [Some Guide][1].
 
 ```json
 {
-  "source": "# Patram\n\nSee [guide](./guide.md), [query language](./query-language-v0.md), and [implement query command](./query-command.md).\n",
+  "document": {
+    "title": "Query Traversal And Aggregation Plan",
+    "path": "docs/plans/v0/query-traversal-and-aggregation.md",
+    "kind": "plan",
+    "status": "active",
+    "derived": {
+      "execution": "done",
+      "open_tasks": 0,
+      "blocked_tasks": 0,
+      "total_tasks": 4
+    }
+  },
+  "source": "# Query Traversal And Aggregation Plan\n\n- Kind: plan\n- Status: active\n- Tracked in: docs/roadmap/query-language-extensions.md\n\nSee [Some Guide](../guide.md), [Query Language v0](../decisions/query-language-v0.md), and [Implement query command](../tasks/v0/query-command.md).\n",
   "resolved_links": [
     {
       "reference": 1,
@@ -259,11 +302,14 @@ See [Some Guide][1].
   `[Some Guide][1]`.
 - Keep reference numbering stable within one rendered document.
 - Separate rendered prose from resolved references with an unlabeled divider.
+- When available, render the shown document's own entity summary first in the
+  resolved summary section without a numeric footnote label.
 - Prefer document titles over path-derived aliases for rendered link labels.
 - Start each resolved-link footnote with the numbered reference token plus the
   identity header, such as `[1] document docs/guide.md`.
 - Use `document` as the v0 header type for file-backed graph nodes.
-- Render metadata immediately under the identity header when present.
+- Render stored metadata immediately under the identity header when present.
+- Render derived execution metadata on a second row when present.
 - Leave one blank line between the metadata block and the indented content
   block.
 - Always show the resolved target title in the indented content block.
@@ -281,7 +327,8 @@ See [Some Guide][1].
 - Separate adjacent query results with one blank line.
 - Render the identity header as `document <path>` for documents and
   `<kind> <id>` for semantic non-document nodes.
-- Render metadata immediately under the identity header when present.
+- Render stored metadata immediately under the identity header when present.
+- Render derived execution metadata on a second row when present.
 - Leave one blank line between the metadata block and the indented content
   block.
 - Render the title in the indented content block.

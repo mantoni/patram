@@ -15,6 +15,7 @@
 - Relation-scoped subqueries over incoming and outgoing edges.
 - Aggregate predicates for matching related nodes.
 - Set-membership terms for concise status and kind checks.
+- Derived execution summaries in `query` and `show` for worktracking documents.
 - No recursive walk syntax in the first pass.
 - No grouping.
 - No ordering by aggregate values.
@@ -22,6 +23,7 @@
 
 ## Acceptance
 
-- Query language extensions are documented through one decision and one plan.
+- Query language extensions are documented through decisions and plans for
+  syntax and output.
 - The first traversal design is sufficient to express worktracking rollups.
 - Deferred query-language ideas remain recorded separately for later work.

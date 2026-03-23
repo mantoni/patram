@@ -10,7 +10,8 @@
   `document <path>` for documents and `<kind> <id>` for semantic non-document
   nodes.
 - Prefix `show` footnote headers with the stable reference number such as `[1]`.
-- Render metadata immediately under the header on one row when present.
+- Render stored metadata immediately under the header on one row when present.
+- Render derived execution metadata on a second metadata row when present.
 - Leave one blank line before the indented title and optional description.
 - Keep descriptions optional so the layout works before description extraction
   exists.
@@ -21,5 +22,7 @@
   graph grows beyond markdown docs.
 - One reusable block shape keeps `query` and `show` visually aligned.
 - Immediate metadata keeps the structural facts close to the path they qualify.
+- A dedicated derived row leaves lifecycle metadata readable when execution
+  rollups are shown.
 - Indented content leaves room for longer summaries without changing the block
   contract.
