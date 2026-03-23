@@ -363,6 +363,21 @@ execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
   - `kind=plan and none(in:tracked_in, kind=task and status not in [done, dropped, superseded])`
   - `count(in:decided_by, kind=task) = 0`
 
+## Query Inspection
+
+- Keep `query --explain` separate from normal result rendering.
+- Start explain output with:
+  - `Query explanation`
+  - the query source
+  - the resolved `where` clause
+  - the effective `offset` and `limit`
+- Render explained clauses as a numbered tree.
+- Render aggregates with separate `traversal`, optional `comparison`, and
+  nested-clause lines.
+- Keep `query --lint` success output short and diagnostic-free.
+- Render `query --lint` failures with the same grouped diagnostic layout as
+  `check`.
+
 ## Error Writing
 
 - Put the most actionable line last.

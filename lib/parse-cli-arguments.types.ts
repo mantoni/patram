@@ -12,6 +12,7 @@ export interface ParsedCliCommandRequest {
   command_arguments: string[];
   command_name: CliCommandName;
   output_mode: CliOutputMode;
+  query_inspection_mode?: 'explain' | 'lint';
   query_limit?: number;
   query_offset?: number;
 }

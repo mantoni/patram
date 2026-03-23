@@ -89,6 +89,8 @@ Options:
   --where <clause>   Run an ad hoc query instead of a stored query
   --offset <number>  Skip the first N matches
   --limit <number>   Limit the number of matches
+  --explain          Explain the resolved query without rendering results
+  --lint             Validate syntax and relation references only
   --plain            Print plain text output
   --json             Print JSON output
 
@@ -98,6 +100,8 @@ Examples:
   patram query --where "status not in [done, dropped, superseded]"
   patram query --where "none(in:tracked_in, kind=task and status not in [done, dropped, superseded])"
   patram query --where "count(in:decided_by, kind=task) = 0"
+  patram query pending --explain
+  patram query --where "kind=plan and none(in:tracked_in, kind=task and status not in [done, dropped, superseded])" --lint
   patram query pending --limit 10 --offset 20
 
 Related:

@@ -6,6 +6,7 @@
 - Decided by: docs/decisions/query-command.md
 - Decided by: docs/decisions/query-language.md
 - Decided by: docs/decisions/cli-argument-parser.md
+- Decided by: docs/decisions/query-inspection.md
 
 ## Goal
 

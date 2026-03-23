@@ -17,16 +17,19 @@ export interface ParsedFieldSetTerm {
 }
 
 export interface ParsedTraversalTerm {
+  column: number;
   direction: 'in' | 'out';
   relation_name: string;
 }
 
 export interface ParsedRelationTerm {
+  column: number;
   kind: 'relation';
   relation_name: string;
 }
 
 export interface ParsedRelationTargetTerm {
+  column: number;
   kind: 'relation_target';
   relation_name: string;
   target_id: string;
