@@ -76,6 +76,15 @@ Usage:
 
 Run a stored query or an ad hoc where clause against graph nodes.
 
+Where clause:
+  id=<value> | kind=<value> | path=<value> | status=<value>
+  id^=<prefix> | path^=<prefix> | title~<text>
+  <field> in [<value>, ...] | <field> not in [<value>, ...]
+  <relation>:* | <relation>=<target-id>
+  any(<traversal>, <term> and <term>)
+  none(<traversal>, <term> and <term>)
+  count(<traversal>, <term> and <term>) <comparison> <number>
+
 Options:
   --where <clause>   Run an ad hoc query instead of a stored query
   --offset <number>  Skip the first N matches
@@ -85,8 +94,10 @@ Options:
 
 Examples:
   patram query command-taxonomy
-  patram query term-usage
   patram query --where "about_command:*"
+  patram query --where "status not in [done, dropped, superseded]"
+  patram query --where "none(in:tracked_in, kind=task and status not in [done, dropped, superseded])"
+  patram query --where "count(in:decided_by, kind=task) = 0"
   patram query pending --limit 10 --offset 20
 
 Related:
@@ -148,34 +159,44 @@ Related:
 [patram fixture=help-topic-query-language role=output]: #
 
 ```text
-Query language filters graph nodes with field and relation terms.
+Query language filters graph nodes with field, relation, traversal, and aggregate terms.
 
 Usage:
   <field>=<value>
-  <field>^=<prefix>
-  <field>~<text>
+  id^=<prefix>
+  path^=<prefix>
+  title~<text>
+  <field> in [<value>, ...]
+  <field> not in [<value>, ...]
   <relation>:*
   <relation>=<target-id>
+  any(<traversal>, <term> and <term>)
+  none(<traversal>, <term> and <term>)
+  count(<traversal>, <term> and <term>) <comparison> <number>
   not <term>
   <term> and <term>
 
 Fields:
-  id
-  kind
-  status
-  path
-  title
+  Exact match: id, kind, path, status
+  Prefix match: id, path
+  Contains text: title
+  Set membership: id, kind, path, status, title
 
 Relations:
-  <relation>:*           Match nodes with at least one outgoing relation
-  <relation>=<target-id> Match nodes linked to an exact target id
+  <relation>:*            Match nodes with at least one outgoing relation
+  <relation>=<target-id>  Match nodes linked to an exact target id
+  in:<relation>           Traverse one incoming relation hop
+  out:<relation>          Traverse one outgoing relation hop
 
 Operators:
-  =    Exact match
-  ^=   Prefix match
-  ~    Contains text
-  not  Negation
-  and  Combine terms
+  =             Exact field match or exact count comparison
+  ^=            Prefix match for id and path
+  ~             Contains text for title
+  in            Set membership for supported fields
+  not in        Set exclusion for supported fields
+  not           Negate one term
+  and           Combine terms
+  != < > >= <=  Count comparisons
 
 Examples:
   kind=decision and status=accepted
@@ -183,6 +204,10 @@ Examples:
   title~query
   about_command:*
   implements_command=command:query
+  status not in [done, dropped, superseded]
+  any(out:tracked_in, kind=plan and status=active)
+  none(in:decided_by, kind=task and status not in [done, dropped, superseded])
+  count(in:decided_by, kind=task) = 0
   not uses_term=term:graph
 ```
 
