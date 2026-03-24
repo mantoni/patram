@@ -76,7 +76,9 @@ Recommended flow:
 
 ## Query Identities
 
-- Documents use exact ids in the form `doc:<repo-relative-path>`.
+- Unclassified documents use exact ids in the form `doc:<repo-relative-path>`.
+- Document-backed entities promoted through structural `$class` and `$id`
+  mappings use semantic ids such as `contract:release-flow`.
 - Canonical command nodes use exact ids in the form `command:<name>`.
 - Canonical term nodes use exact ids in the form `term:<name>`.
 
@@ -118,21 +120,24 @@ taxonomy nodes:
 - `implements_command`: A source anchor implements one or more commands.
 - `uses_term`: A document or source anchor depends on one or more core terms.
 
-Patram uses a hybrid identity model for this repo:
+Patram uses a semantic-first identity model for this repo:
 
-- Keep `document` nodes path-backed.
-- Keep canonical reference markdown files as `document` nodes.
-- Move non-document taxonomy nodes to semantic ids such as `command:query` and
-  `term:claim`.
-- Treat canonical command and term docs as the source of truth for those
-  semantic nodes.
-- Resolve path-based command and term references through the canonical defining
-  documents.
+- Keep unclassified source files path-backed as `doc:<path>`.
+- Promote document-backed work items when structural mappings assign semantic
+  `$class` and `$id`.
+- Keep canonical source paths on promoted nodes as `$path`.
+- Resolve path-based references through the canonical node for that document
+  path.
+- Keep command and term taxonomy nodes on semantic ids such as `command:query`
+  and `term:claim`.
+- Treat canonical reference docs as the source of truth for the promoted
+  semantic nodes they define.
 
 This direction is tracked in
-[`docs/decisions/non-document-semantic-ids.md`](./decisions/non-document-semantic-ids.md)
+[`docs/decisions/document-backed-semantic-ids.md`](./decisions/document-backed-semantic-ids.md),
+[`docs/plans/v0/document-backed-semantic-ids.md`](./plans/v0/document-backed-semantic-ids.md),
 and
-[`docs/plans/v0/non-document-semantic-ids.md`](./plans/v0/non-document-semantic-ids.md).
+[`docs/decisions/non-document-semantic-ids.md`](./decisions/non-document-semantic-ids.md).
 
 [patram about-command=reference/commands/check.md]: #
 [patram about-command=reference/commands/query.md]: #

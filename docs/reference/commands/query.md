@@ -40,7 +40,9 @@ Supported fields by operator:
 
 Exact relation-target ids:
 
-- Documents use `doc:<repo-relative-path>`.
+- Unclassified documents use `doc:<repo-relative-path>`.
+- Document-backed entities promoted through structural `$class` and `$id`
+  mappings use semantic ids such as `contract:release-flow`.
 - Commands use `command:<name>`.
 - Terms use `term:<name>`.
 

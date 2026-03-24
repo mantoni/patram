@@ -395,7 +395,7 @@ it('prints query results as json', async () => {
       '  "results": [\n' +
       '    {\n' +
       '      "$class": "task",\n' +
-      '      "$id": "doc:docs/tasks/v0/query-command.md",\n' +
+      '      "$id": "task:docs/tasks/v0/query-command.md",\n' +
       '      "fields": {\n' +
       '        "status": "pending"\n' +
       '      },\n' +

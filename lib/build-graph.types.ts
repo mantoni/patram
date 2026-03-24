@@ -21,6 +21,7 @@ export interface GraphEdge {
 }
 
 export interface BuildGraphResult {
+  document_node_ids?: Record<string, string>;
   edges: GraphEdge[];
   nodes: Record<string, GraphNode>;
 }
