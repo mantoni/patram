@@ -7,7 +7,7 @@
 `patram query <name>` runs a stored query, and `patram query --where "<clause>"`
 evaluates one ad hoc filter.
 
-Use `--explain` to inspect the resolved query and parsed clause tree without
+Use `--explain` to inspect the resolved query and parsed expression tree without
 rendering result rows. Use `--lint` to validate syntax and semantic query
 references, including nested traversal clauses, without executing the query.
 
@@ -27,7 +27,9 @@ Supported where-clause forms:
   `none(<traversal>, <term> and <term>)`
 - Aggregate counts:
   `count(<traversal>, <term> and <term>) <comparison> <number>`
-- Clause composition: `not <term>`, `<term> and <term>`
+- Boolean composition: `not <term>`, `<term> and <term>`, `<term> or <term>`,
+  `(<expression>)`
+- Precedence: `not`, then `and`, then `or`
 
 Supported fields by operator:
 
@@ -50,6 +52,8 @@ Examples:
 - `patram query --where "implements_command=command:query"`
 - `patram query --where "uses_term=term:graph"`
 - `patram query --where "status not in [done, dropped, superseded]"`
+- `patram query --where "$class=task or status=done"`
+- `patram query --where "($class=task or status=blocked) and title~Show"`
 - `patram query --where "$class=plan and none(in:tracked_in, $class=decision)"`
 - `patram query --where "count(in:decided_by, $class=task) = 0"`
 - `patram query ready-tasks --explain`

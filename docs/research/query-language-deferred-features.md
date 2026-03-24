@@ -11,7 +11,6 @@
 ## Deferred Topics
 
 - General recursive walk syntax such as `*`.
-- Grouping.
 - Ordering by aggregate values.
 - Arbitrary projections in the first traversal pass.
 

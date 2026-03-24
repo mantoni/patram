@@ -180,6 +180,8 @@ Usage:
   count(<traversal>, <term> and <term>) <comparison> <number>
   not <term>
   <term> and <term>
+  <term> or <term>
+  (<expression>)
 
 Fields:
   Exact match: $id, $class, $path, status
@@ -201,10 +203,14 @@ Operators:
   not in        Set exclusion for supported fields
   not           Negate one term
   and           Combine terms
+  or            Match either side
+  ( )           Group boolean expressions
   != < > >= <=  Count comparisons
 
 Examples:
   $class=decision and status=accepted
+  $class=task or status=done
+  ($class=task or status=blocked) and title~Show
   $path^=docs/plans/
   title~query
   tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md

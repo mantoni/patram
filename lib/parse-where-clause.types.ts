@@ -42,11 +42,26 @@ export type ParsedAggregateName = 'any' | 'count' | 'none';
 
 export interface ParsedAggregateTerm {
   aggregate_name: ParsedAggregateName;
-  clauses: ParsedClause[];
   comparison?: ParsedAggregateComparison;
+  expression: ParsedExpression;
   kind: 'aggregate';
   traversal: ParsedTraversalTerm;
   value?: number;
+}
+
+export interface ParsedTermExpression {
+  kind: 'term';
+  term: ParsedTerm;
+}
+
+export interface ParsedNotExpression {
+  expression: ParsedExpression;
+  kind: 'not';
+}
+
+export interface ParsedBooleanExpression {
+  expressions: ParsedExpression[];
+  kind: 'and' | 'or';
 }
 
 export type ParsedTerm =
@@ -56,14 +71,14 @@ export type ParsedTerm =
   | ParsedRelationTargetTerm
   | ParsedRelationTerm;
 
-export interface ParsedClause {
-  is_negated: boolean;
-  term: ParsedTerm;
-}
+export type ParsedExpression =
+  | ParsedBooleanExpression
+  | ParsedNotExpression
+  | ParsedTermExpression;
 
 export type ParseWhereClauseResult =
   | {
-      clauses: ParsedClause[];
+      expression: ParsedExpression;
       success: true;
     }
   | {

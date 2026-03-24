@@ -15,9 +15,9 @@
 - Relation-scoped subqueries over incoming and outgoing edges.
 - Aggregate predicates for matching related nodes.
 - Set-membership terms for concise status and kind checks.
+- Boolean alternatives and explicit grouping for mixed query predicates.
 - Derived execution summaries in `query` and `show` for worktracking documents.
 - No recursive walk syntax in the first pass.
-- No grouping.
 - No ordering by aggregate values.
 - No projection language in the first pass.
 
