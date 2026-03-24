@@ -1,5 +1,66 @@
 # Changelog
 
+## 0.2.0 - 2026-03-24
+
+- Fix stored query keyword colors
+  ([`03fa1de`](https://github.com/mantoni/patram/commit/03fa1deaf5888fccc868cfa1e55ccf11d6d7ae8c))
+- Un-silence lint-staged
+  ([`01b7dac`](https://github.com/mantoni/patram/commit/01b7dac276dedf61e6dbce20d84a7b9daf9e1b40))
+- Add stored query keyword color task
+  ([`7a5be9d`](https://github.com/mantoni/patram/commit/7a5be9d3eab5fcd1aade6bab6c957faabb26225d))
+- Reconcile worktracking decision links
+  ([`e89618c`](https://github.com/mantoni/patram/commit/e89618c138822428d3d12cb69ae07d8ee2f94b62))
+- Record cleanup tasks
+  ([`ef17fed`](https://github.com/mantoni/patram/commit/ef17fed3d54a05f778e55113891bf33c2828ff1a))
+- Fix query inspection rich output
+  ([`e8ee8e7`](https://github.com/mantoni/patram/commit/e8ee8e7a559b163f7276fa2513650afb9f566f2a))
+- Record retroactive worktracking tasks
+  ([`978ba12`](https://github.com/mantoni/patram/commit/978ba12d7efef86eec551891030bb740601f30a8))
+- Record pager and help worktracking tasks
+  ([`a11b5e6`](https://github.com/mantoni/patram/commit/a11b5e60a9b778f417598e60a98ec999ac87e3be))
+- Record additional completed worktracking tasks
+  ([`11a197d`](https://github.com/mantoni/patram/commit/11a197da87902cae8cc513ab5d36f6d109e5a911))
+- Record implemented worktracking tasks
+  ([`ef558af`](https://github.com/mantoni/patram/commit/ef558afce85bd1d760415b5dfb64496c9fd00dc2))
+- Add declarative derived summaries
+  ([`4a5ba1e`](https://github.com/mantoni/patram/commit/4a5ba1e73321509ef80402c20e454908749ad424))
+- Fix repo-relative directive target resolution
+  ([`f55e601`](https://github.com/mantoni/patram/commit/f55e601b01e934bb9c5f75d81ea7a5a074fd2f18))
+- Add query inspection modes
+  ([`6bd3ce5`](https://github.com/mantoni/patram/commit/6bd3ce5731e3e1c2690405042267369c3cda1b74))
+- Document Query help contract
+  ([`91f98b0`](https://github.com/mantoni/patram/commit/91f98b0b3cca3ce53ee6262eb23cb4c391542067))
+- Document declarative derived summaries
+  ([`929c6b2`](https://github.com/mantoni/patram/commit/929c6b2616f96d3f8f104568a49045ba53a7c7ca))
+- Record declarative summary idea
+  ([`2d9ddf9`](https://github.com/mantoni/patram/commit/2d9ddf91c9e44af30c9dee72be2d4571d89ae661))
+- Implement Query traversal and aggregation
+  ([`ca58b3a`](https://github.com/mantoni/patram/commit/ca58b3a41b3144f806d46811da79e783734af755))
+- Adjust query implementation order
+  ([`ccfe240`](https://github.com/mantoni/patram/commit/ccfe2400c2982c3067637edfff1d4163b0b76a48))
+- Document execution summary output
+  ([`005a3c4`](https://github.com/mantoni/patram/commit/005a3c45576c865bca1c14a6316509b717b98c57))
+- Record query traversal design
+  ([`a398ac4`](https://github.com/mantoni/patram/commit/a398ac47b69f8e820df081c56a9a8d3ba0fedcd4))
+- Document patram worktracking model
+  ([`183b937`](https://github.com/mantoni/patram/commit/183b93746c70ca1b52962332c2efc9e15c17272f))
+- Implement CLI help system
+  ([`14554ac`](https://github.com/mantoni/patram/commit/14554ac2b8853887925366ac7cb8f21f42d886b0))
+- Add package library entrypoint
+  ([`deaa675`](https://github.com/mantoni/patram/commit/deaa6752e2d30b154396dc3ffcf309dd8ef8c076))
+- Add tagged fenced block extraction
+  ([`3923627`](https://github.com/mantoni/patram/commit/3923627da163fcbdd0acc02961f557a46bb14b18))
+- Document tagged fenced block extraction
+  ([`9f92627`](https://github.com/mantoni/patram/commit/9f92627fd2fea840290b284fc01c3a5a7025f627))
+- Document CLI help decisions
+  ([`c6faab5`](https://github.com/mantoni/patram/commit/c6faab59c76eb7c39ea918605bb3467d41fa6413))
+- Add UX planning docs
+  ([`0673107`](https://github.com/mantoni/patram/commit/0673107a58b1d7b00e79d6909f277250634168c3))
+- Upgrade GitHub Actions dependencies
+  ([`98a0313`](https://github.com/mantoni/patram/commit/98a031310d397ea1242ba5d685d6396cceceb8c2))
+- Fix patram bin in package.json
+  ([`2fb795e`](https://github.com/mantoni/patram/commit/2fb795ed401764cbda6235d1f932d2dc4dec7144))
+
 ## 0.1.1 - 2026-03-22
 
 - Support exact relation target queries
