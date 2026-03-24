@@ -61,6 +61,7 @@ it('keeps the documented source stored queries useful', async () => {
     ),
   ).toEqual([
     'lib/build-graph.js',
+    'lib/check-directive-metadata.js',
     'lib/check-graph.js',
     'lib/load-project-graph.js',
     'lib/query-graph.js',
