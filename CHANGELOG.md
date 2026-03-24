@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.3.0 - 2026-03-24
+
+- Implement field model redesign
+  ([`25eee3e`](https://github.com/mantoni/patram/commit/25eee3ecaaa6cecebaf3ea24f99a71c0f9fa8f20))
+- Refactor materialization output lint
+  ([`dda6504`](https://github.com/mantoni/patram/commit/dda650443d8e07e60519554638255238d9b26499))
+- Plan field model redesign work
+  ([`d3a3071`](https://github.com/mantoni/patram/commit/d3a3071a54426f7f327e1d57ea25a1f3f71b3489))
+- Document field model redesign decisions
+  ([`a256968`](https://github.com/mantoni/patram/commit/a25696839da71d57f041b6fc5955617ad8efd1bc))
+- Implement directive type validation
+  ([`ee79888`](https://github.com/mantoni/patram/commit/ee7988800b163c1cd6e02678ac2d3d58b6b08817))
+- Disable required JSDoc linting
+  ([`14d484b`](https://github.com/mantoni/patram/commit/14d484b1b307fc82ca71a3ab6d815f5b53927647))
+- Update eslint
+  ([`5bd7a7f`](https://github.com/mantoni/patram/commit/5bd7a7f6bc27ea30359ea787b1b3d98f305aec6d))
+- Update vitest and coverage-v8
+  ([`5c36802`](https://github.com/mantoni/patram/commit/5c36802be0ac4600a3a5d9e2f1b485520d5c41af))
+- Update typescript
+  ([`c726008`](https://github.com/mantoni/patram/commit/c726008f1a59ed04ff9064ef87383a0c969140b8))
+- Add directive type validation decision
+  ([`4aa34ab`](https://github.com/mantoni/patram/commit/4aa34aba58ad24938fae98b4ea9cd25b23b6161a))
+
 ## 0.2.0 - 2026-03-24
 
 - Fix stored query keyword colors
