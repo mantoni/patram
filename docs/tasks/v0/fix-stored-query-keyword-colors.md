@@ -1,7 +1,7 @@
 # Fix Stored Query Keyword Colors
 
 - Kind: task
-- Status: pending
+- Status: done
 - Tracked in: docs/plans/v0/fix-stored-query-keyword-colors.md
 - Decided by: docs/decisions/stored-query-keyword-colors.md
 

@@ -423,7 +423,7 @@ execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
 - Parse stored query terms before styling them.
 - Keep stored query field names on the default foreground color.
 - Use gray for stored query operators.
-- Use yellow for stored query boolean keywords such as `and`, `or`, and `not`.
+- Use gray for stored query boolean keywords such as `and`, `or`, and `not`.
 - Keep stored query literal values on the default foreground color.
 - Keep diagnostic file group headers on the same accent color as entity-summary
   identity headers.
