@@ -1,7 +1,7 @@
 # Define Field Model Config Schema
 
 - Kind: task
-- Status: pending
+- Status: done
 - Tracked in: docs/plans/v1/field-model-redesign.md
 - Decided by: docs/decisions/schema-defined-query-fields.md
 - Decided by: docs/decisions/patram-structural-field-namespace.md

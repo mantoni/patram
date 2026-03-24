@@ -1,5 +1,5 @@
 import type {
-  KindDefinition,
+  ClassDefinition,
   MappingDefinition,
   RelationDefinition,
 } from './patram-config.types.ts';
@@ -8,7 +8,7 @@ export interface StoredQueryConfig {
   where: string;
 }
 
-export type DirectiveValueTypeName =
+export type FieldValueTypeName =
   | 'string'
   | 'integer'
   | 'enum'
@@ -17,65 +17,82 @@ export type DirectiveValueTypeName =
   | 'date'
   | 'date_time';
 
-export interface StringDirectiveTypeConfig {
-  path_class?: string;
+export interface FieldDisplayConfig {
+  hidden?: boolean;
+  order?: number;
+}
+
+export interface FieldQueryConfig {
+  contains?: boolean;
+  prefix?: boolean;
+}
+
+export interface StringFieldConfig {
+  display?: FieldDisplayConfig;
+  multiple?: boolean;
+  query?: FieldQueryConfig;
   type: 'string';
 }
 
-export interface IntegerDirectiveTypeConfig {
-  path_class?: string;
+export interface IntegerFieldConfig {
+  display?: FieldDisplayConfig;
+  multiple?: boolean;
   type: 'integer';
 }
 
-export interface EnumDirectiveTypeConfig {
-  path_class?: string;
+export interface EnumFieldConfig {
+  display?: FieldDisplayConfig;
+  multiple?: boolean;
   type: 'enum';
   values: string[];
 }
 
-export interface PathDirectiveTypeConfig {
+export interface PathFieldConfig {
+  display?: FieldDisplayConfig;
+  multiple?: boolean;
   path_class?: string;
   type: 'path';
 }
 
-export interface GlobDirectiveTypeConfig {
-  path_class?: string;
+export interface GlobFieldConfig {
+  display?: FieldDisplayConfig;
+  multiple?: boolean;
   type: 'glob';
 }
 
-export interface DateDirectiveTypeConfig {
-  path_class?: string;
+export interface DateFieldConfig {
+  display?: FieldDisplayConfig;
+  multiple?: boolean;
   type: 'date';
 }
 
-export interface DateTimeDirectiveTypeConfig {
-  path_class?: string;
+export interface DateTimeFieldConfig {
+  display?: FieldDisplayConfig;
+  multiple?: boolean;
   type: 'date_time';
 }
 
-export type DirectiveTypeConfig =
-  | StringDirectiveTypeConfig
-  | IntegerDirectiveTypeConfig
-  | EnumDirectiveTypeConfig
-  | PathDirectiveTypeConfig
-  | GlobDirectiveTypeConfig
-  | DateDirectiveTypeConfig
-  | DateTimeDirectiveTypeConfig;
+export type MetadataFieldConfig =
+  | DateFieldConfig
+  | DateTimeFieldConfig
+  | EnumFieldConfig
+  | GlobFieldConfig
+  | IntegerFieldConfig
+  | PathFieldConfig
+  | StringFieldConfig;
+
+export interface ClassFieldRuleConfig {
+  presence: 'required' | 'optional' | 'forbidden';
+}
+
+export interface ClassSchemaConfig {
+  document_path_class?: string;
+  fields: Record<string, ClassFieldRuleConfig>;
+  unknown_fields?: 'ignore' | 'error';
+}
 
 export interface PathClassConfig {
   prefixes: string[];
-}
-
-export interface MetadataDirectiveRuleConfig {
-  multiple?: boolean;
-  presence: 'required' | 'optional' | 'forbidden';
-  type?: DirectiveTypeConfig;
-}
-
-export interface MetadataSchemaConfig {
-  directives: Record<string, MetadataDirectiveRuleConfig>;
-  document_path_class?: string;
-  unknown_directives?: 'ignore' | 'error';
 }
 
 export type DerivedSummaryScalar = boolean | number | string | null;
@@ -104,17 +121,17 @@ export type DerivedSummaryFieldConfig =
   | DerivedSummarySelectFieldConfig;
 
 export interface DerivedSummaryConfig {
+  classes: string[];
   fields: DerivedSummaryFieldConfig[];
-  kinds: string[];
 }
 
 export interface PatramRepoConfig {
+  class_schemas?: Record<string, ClassSchemaConfig>;
+  classes?: Record<string, ClassDefinition>;
   derived_summaries?: Record<string, DerivedSummaryConfig>;
-  directive_types?: Record<string, DirectiveTypeConfig>;
+  fields?: Record<string, MetadataFieldConfig>;
   include: string[];
-  kinds?: Record<string, KindDefinition>;
   mappings?: Record<string, MappingDefinition>;
-  metadata_schemas?: Record<string, MetadataSchemaConfig>;
   path_classes?: Record<string, PathClassConfig>;
   queries: Record<string, StoredQueryConfig>;
   relations?: Record<string, RelationDefinition>;

@@ -1,4 +1,4 @@
-export interface KindDefinition {
+export interface ClassDefinition {
   builtin?: boolean;
   label?: string;
 }
@@ -10,15 +10,15 @@ export interface RelationDefinition {
 }
 
 export interface MappingNodeDefinition {
+  class: string;
   field: string;
   key?: 'path' | 'value';
-  kind: string;
 }
 
 export interface MappingEmitDefinition {
   relation: string;
   target: 'path' | 'value';
-  target_kind: string;
+  target_class: string;
 }
 
 export interface MappingDefinition {
@@ -28,7 +28,9 @@ export interface MappingDefinition {
 
 export interface PatramConfig {
   $schema?: string;
-  kinds: Record<string, KindDefinition>;
+  classes: Record<string, ClassDefinition>;
+  class_schemas?: Record<string, unknown>;
+  fields?: Record<string, unknown>;
   mappings: Record<string, MappingDefinition>;
   relations: Record<string, RelationDefinition>;
 }

@@ -5,8 +5,8 @@ import repo_config from '../.patram.json' with { type: 'json' };
 /**
  * Repo config contract coverage.
  *
- * Verifies `.patram.json` keeps the documented repo index boundary, mappings,
- * and stored queries.
+ * Verifies `.patram.json` keeps the documented repo index boundary, schema,
+ * mappings, and stored queries.
  *
  * Kind: support
  * Status: active
@@ -23,7 +23,10 @@ it('indexes repo docs and defines the documented stored queries', () => {
 
 function createExpectedRepoConfig() {
   return {
+    class_schemas: createExpectedClassSchemas(),
+    classes: createExpectedClasses(),
     derived_summaries: createExpectedDerivedSummaries(),
+    fields: createExpectedFields(),
     include: [
       'docs/**/*.md',
       'bin/**/*.js',
@@ -31,41 +34,123 @@ function createExpectedRepoConfig() {
       'scripts/**/*.js',
       'test/**/*.js',
     ],
-    kinds: {
-      command: {
-        label: 'Command',
-      },
-      document: {
-        builtin: true,
-      },
-      term: {
-        label: 'Term',
-      },
-    },
     mappings: createExpectedRepoMappings(),
+    path_classes: createExpectedPathClasses(),
     queries: createExpectedRepoQueries(),
     relations: createExpectedRepoRelations(),
   };
 }
 
+function createExpectedClassSchemas() {
+  return {
+    command: createExpectedClassSchema({
+      summary: createOptionalFieldRule(),
+    }),
+    convention: createExpectedDocumentClassSchema('convention_docs'),
+    decision: createExpectedDocumentClassSchema('decision_docs'),
+    document: createExpectedClassSchema({
+      description: createOptionalFieldRule(),
+      kind: createOptionalFieldRule(),
+      status: createOptionalFieldRule(),
+    }),
+    idea: createExpectedDocumentClassSchema('idea_docs'),
+    plan: createExpectedDocumentClassSchema('plan_docs'),
+    roadmap: createExpectedDocumentClassSchema('roadmap_docs'),
+    task: createExpectedDocumentClassSchema('task_docs'),
+    term: createExpectedClassSchema({
+      definition: createOptionalFieldRule(),
+    }),
+  };
+}
+
+function createExpectedClasses() {
+  return {
+    command: {
+      label: 'Command',
+    },
+    convention: {
+      label: 'Convention',
+    },
+    decision: {
+      label: 'Decision',
+    },
+    document: {
+      builtin: true,
+    },
+    idea: {
+      label: 'Idea',
+    },
+    plan: {
+      label: 'Plan',
+    },
+    roadmap: {
+      label: 'Roadmap',
+    },
+    task: {
+      label: 'Task',
+    },
+    term: {
+      label: 'Term',
+    },
+  };
+}
+
 function createExpectedDerivedSummaries() {
   return {
-    decision_execution: createExpectedDecisionExecutionSummary(),
-    plan_execution: createExpectedPlanExecutionSummary(),
+    decision_execution: {
+      classes: ['decision'],
+      fields: createExpectedExecutionFields('decided_by'),
+    },
+    plan_execution: {
+      classes: ['plan'],
+      fields: createExpectedExecutionFields('tracked_in'),
+    },
   };
 }
 
-function createExpectedDecisionExecutionSummary() {
+function createExpectedFields() {
   return {
-    fields: createExpectedExecutionFields('decided_by'),
-    kinds: ['decision'],
-  };
-}
-
-function createExpectedPlanExecutionSummary() {
-  return {
-    fields: createExpectedExecutionFields('tracked_in'),
-    kinds: ['plan'],
+    description: {
+      type: 'string',
+    },
+    definition: {
+      type: 'string',
+    },
+    kind: {
+      type: 'enum',
+      values: [
+        'cli',
+        'config',
+        'entrypoint',
+        'graph',
+        'output',
+        'parse',
+        'release',
+        'scan',
+        'support',
+      ],
+    },
+    status: {
+      type: 'enum',
+      values: [
+        'accepted',
+        'active',
+        'blocked',
+        'captured',
+        'done',
+        'dropped',
+        'exploring',
+        'in_progress',
+        'pending',
+        'planned',
+        'proposed',
+        'ready',
+        'superseded',
+      ],
+    },
+    summary: {
+      type: 'string',
+    },
   };
 }
 
@@ -80,36 +165,36 @@ function createExpectedExecutionFields(relation_name) {
       select: [
         {
           value: 'done',
-          when: `count(in:${relation_name}, kind=task) > 0 and none(in:${relation_name}, kind=task and status not in [done, dropped, superseded])`,
+          when: `count(in:${relation_name}, $class=task) > 0 and none(in:${relation_name}, $class=task and status not in [done, dropped, superseded])`,
         },
         {
           value: 'blocked',
-          when: `any(in:${relation_name}, kind=task and status not in [done, dropped, superseded]) and none(in:${relation_name}, kind=task and status not in [done, dropped, superseded] and not status=blocked)`,
+          when: `any(in:${relation_name}, $class=task and status not in [done, dropped, superseded]) and none(in:${relation_name}, $class=task and status not in [done, dropped, superseded] and not status=blocked)`,
         },
         {
           value: 'in_progress',
-          when: `any(in:${relation_name}, kind=task and not status=pending)`,
+          when: `any(in:${relation_name}, $class=task and not status=pending)`,
         },
       ],
     },
     {
       count: {
         traversal: `in:${relation_name}`,
-        where: 'kind=task and status not in [done, dropped, superseded]',
+        where: '$class=task and status not in [done, dropped, superseded]',
       },
       name: 'open_tasks',
     },
     {
       count: {
         traversal: `in:${relation_name}`,
-        where: 'kind=task and status=blocked',
+        where: '$class=task and status=blocked',
       },
       name: 'blocked_tasks',
     },
     {
       count: {
         traversal: `in:${relation_name}`,
-        where: 'kind=task',
+        where: '$class=task',
       },
       name: 'total_tasks',
     },
@@ -119,10 +204,8 @@ function createExpectedExecutionFields(relation_name) {
 function createExpectedRepoMappings() {
   return {
     ...createExpectedDocumentMappings(),
-    ...createExpectedJsdocTaxonomyMappings(),
-    ...createExpectedRepoDirectiveNodeMappings(),
-    ...createExpectedRepoRelationMappings(),
-    ...createExpectedMarkdownTaxonomyMappings(),
+    ...createExpectedJsdocMappings(),
+    ...createExpectedMarkdownMappings(),
   };
 }
 
@@ -130,26 +213,30 @@ function createExpectedDocumentMappings() {
   return {
     'document.title': {
       node: {
+        class: 'document',
         field: 'title',
-        kind: 'document',
       },
     },
-    'markdown.link': {
-      emit: {
-        relation: 'links_to',
-        target: 'path',
-        target_kind: 'document',
-      },
-    },
+    'markdown.link': createRelationMapping('links_to'),
   };
 }
 
-function createExpectedJsdocTaxonomyMappings() {
+function createExpectedJsdocMappings() {
   return {
     'jsdoc.directive.about_command': createTaxonomyRelationMapping(
       'about_command',
       'command',
     ),
+    'jsdoc.directive.blocked_by': createRelationMapping('blocked_by'),
+    'jsdoc.directive.decided_by': createRelationMapping('decided_by'),
+    'jsdoc.directive.implements': createRelationMapping('implements'),
+    'jsdoc.directive.implements_command': createTaxonomyRelationMapping(
+      'implements_command',
+      'command',
+    ),
+    'jsdoc.directive.kind': createDocumentNodeMapping('kind'),
+    'jsdoc.directive.status': createDocumentNodeMapping('status'),
+    'jsdoc.directive.tracked_in': createRelationMapping('tracked_in'),
     'jsdoc.directive.uses_term': createTaxonomyRelationMapping(
       'uses_term',
       'term',
@@ -157,12 +244,13 @@ function createExpectedJsdocTaxonomyMappings() {
   };
 }
 
-function createExpectedMarkdownTaxonomyMappings() {
+function createExpectedMarkdownMappings() {
   return {
     'markdown.directive.about_command': createTaxonomyRelationMapping(
       'about_command',
       'command',
     ),
+    'markdown.directive.blocked_by': createRelationMapping('blocked_by'),
     'markdown.directive.command': createTaxonomyDefinitionMapping(
       'command',
       'title',
@@ -171,11 +259,20 @@ function createExpectedMarkdownTaxonomyMappings() {
       'command',
       'summary',
     ),
+    'markdown.directive.decided_by': createRelationMapping('decided_by'),
+    'markdown.directive.implements': createRelationMapping('implements'),
+    'markdown.directive.implements_command': createTaxonomyRelationMapping(
+      'implements_command',
+      'command',
+    ),
+    'markdown.directive.kind': createDocumentNodeMapping('$class'),
+    'markdown.directive.status': createDocumentNodeMapping('status'),
     'markdown.directive.term': createTaxonomyDefinitionMapping('term', 'title'),
     'markdown.directive.term_definition': createTaxonomyNodeMapping(
       'term',
       'definition',
     ),
+    'markdown.directive.tracked_in': createRelationMapping('tracked_in'),
     'markdown.directive.uses_term': createTaxonomyRelationMapping(
       'uses_term',
       'term',
@@ -183,103 +280,84 @@ function createExpectedMarkdownTaxonomyMappings() {
   };
 }
 
-function createExpectedRepoDirectiveNodeMappings() {
+function createExpectedPathClasses() {
   return {
-    'jsdoc.directive.kind': createNodeMapping('kind'),
-    'jsdoc.directive.status': createNodeMapping('status'),
-    'jsdoc.directive.tracked_in': createRelationMapping('tracked_in'),
-    'markdown.directive.kind': createNodeMapping('kind'),
-    'markdown.directive.status': createNodeMapping('status'),
-    'markdown.directive.tracked_in': createRelationMapping('tracked_in'),
-  };
-}
-
-function createExpectedRepoRelationMappings() {
-  return {
-    'jsdoc.directive.blocked_by': createRelationMapping('blocked_by'),
-    'jsdoc.directive.decided_by': createRelationMapping('decided_by'),
-    'jsdoc.directive.implements': createRelationMapping('implements'),
-    'jsdoc.directive.implements_command': createTaxonomyRelationMapping(
-      'implements_command',
-      'command',
-    ),
-    'markdown.directive.blocked_by': createRelationMapping('blocked_by'),
-    'markdown.directive.decided_by': createRelationMapping('decided_by'),
-    'markdown.directive.implements': createRelationMapping('implements'),
-    'markdown.directive.implements_command': createTaxonomyRelationMapping(
-      'implements_command',
-      'command',
-    ),
+    convention_docs: {
+      prefixes: ['docs/conventions/'],
+    },
+    decision_docs: {
+      prefixes: ['docs/decisions/'],
+    },
+    idea_docs: {
+      prefixes: ['docs/research/'],
+    },
+    plan_docs: {
+      prefixes: ['docs/plans/'],
+    },
+    roadmap_docs: {
+      prefixes: ['docs/roadmap/'],
+    },
+    task_docs: {
+      prefixes: ['docs/tasks/'],
+    },
   };
 }
 
 function createExpectedRepoQueries() {
   return {
-    ...createExpectedWorktrackingQueries(),
-    ...createExpectedTaxonomyQueries(),
-    ...createExpectedSourceQueries(),
-  };
-}
-
-function createExpectedWorktrackingQueries() {
-  return {
-    ...createExpectedWorktrackingLifecycleQueries(),
-    ...createExpectedWorktrackingTaskQueries(),
-  };
-}
-
-function createExpectedWorktrackingLifecycleQueries() {
-  return {
     'accepted-decisions': createStoredQuery(
-      'kind=decision and status=accepted',
+      '$class=decision and status=accepted',
     ),
-    'active-plans': createStoredQuery('kind=plan and status=active'),
-    'active-roadmaps': createStoredQuery('kind=roadmap and status=active'),
+    'active-plans': createStoredQuery('$class=plan and status=active'),
+    'active-roadmaps': createStoredQuery('$class=roadmap and status=active'),
+    'blocked-tasks': createStoredQuery('$class=task and status=blocked'),
+    'command-implementations': createStoredQuery('implements_command:*'),
+    'command-taxonomy': createStoredQuery('$id^=command:'),
     'decision-review-queue': createStoredQuery(
-      'kind=decision and status=proposed',
+      '$class=decision and status=proposed',
     ),
     'decisions-needing-tasks': createStoredQuery(
-      'kind=decision and status=accepted and count(in:decided_by, kind=task) = 0',
+      '$class=decision and status=accepted and count(in:decided_by, $class=task) = 0',
     ),
     'decisions-with-open-tasks': createStoredQuery(
-      'kind=decision and status=accepted and any(in:decided_by, kind=task and status not in [done, dropped, superseded])',
+      '$class=decision and status=accepted and any(in:decided_by, $class=task and status not in [done, dropped, superseded])',
     ),
     ideas: createStoredQuery(
-      'kind=idea and status in [captured, exploring, planned]',
+      '$class=idea and status in [captured, exploring, planned]',
     ),
+    'in-progress-tasks': createStoredQuery(
+      '$class=task and status=in_progress',
+    ),
+    'pending-tasks': createStoredQuery('$class=task and status=pending'),
     'plans-with-open-tasks': createStoredQuery(
-      'kind=plan and status=active and any(in:tracked_in, kind=task and status not in [done, dropped, superseded])',
+      '$class=plan and status=active and any(in:tracked_in, $class=task and status not in [done, dropped, superseded])',
     ),
     'plans-without-decisions': createStoredQuery(
-      'kind=plan and status=active and none(in:tracked_in, kind=decision)',
+      '$class=plan and status=active and none(in:tracked_in, $class=decision)',
     ),
-  };
-}
-
-function createExpectedWorktrackingTaskQueries() {
-  return {
-    'blocked-tasks': createStoredQuery('kind=task and status=blocked'),
-    'in-progress-tasks': createStoredQuery('kind=task and status=in_progress'),
-    'pending-tasks': createStoredQuery('kind=task and status=pending'),
-    'ready-tasks': createStoredQuery('kind=task and status=ready'),
-  };
-}
-
-function createExpectedTaxonomyQueries() {
-  return {
-    'command-implementations': createStoredQuery('implements_command:*'),
-    'command-taxonomy': createStoredQuery('id^=command:'),
+    'ready-tasks': createStoredQuery('$class=task and status=ready'),
+    ...createExpectedSourceQueries(),
+    'term-taxonomy': createStoredQuery('$id^=term:'),
     'term-usage': createStoredQuery('uses_term:*'),
-    'term-taxonomy': createStoredQuery('id^=term:'),
+  };
+}
+
+function createExpectedSourceQueries() {
+  return {
+    'source-cli': createStoredQuery('kind=cli'),
+    'source-config': createStoredQuery('kind=config'),
+    'source-entrypoints': createStoredQuery('kind=entrypoint'),
+    'source-graph': createStoredQuery('kind=graph'),
+    'source-output': createStoredQuery('kind=output'),
+    'source-parse': createStoredQuery('kind=parse'),
+    'source-release': createStoredQuery('kind=release'),
+    'source-scan': createStoredQuery('kind=scan'),
+    'source-support': createStoredQuery('kind=support'),
   };
 }
 
 function createExpectedRepoRelations() {
   return {
-    defines: {
-      from: ['document'],
-      to: ['command', 'term'],
-    },
     about_command: {
       from: ['document'],
       to: ['command'],
@@ -292,18 +370,22 @@ function createExpectedRepoRelations() {
       from: ['document'],
       to: ['document'],
     },
-    implements: {
+    defines: {
       from: ['document'],
-      to: ['document'],
+      to: ['command', 'term'],
     },
-    links_to: {
-      builtin: true,
+    implements: {
       from: ['document'],
       to: ['document'],
     },
     implements_command: {
       from: ['document'],
       to: ['command'],
+    },
+    links_to: {
+      builtin: true,
+      from: ['document'],
+      to: ['document'],
     },
     tracked_in: {
       from: ['document'],
@@ -317,13 +399,53 @@ function createExpectedRepoRelations() {
 }
 
 /**
+ * @param {Record<string, { presence: 'optional' | 'required' | 'forbidden' }>} fields
+ * @param {string | undefined} [document_path_class]
+ * @returns {{ document_path_class?: string, fields: Record<string, { presence: 'optional' | 'required' | 'forbidden' }>, unknown_fields: 'ignore' }}
+ */
+function createExpectedClassSchema(fields, document_path_class) {
+  /** @type {{ document_path_class?: string, fields: Record<string, { presence: 'optional' | 'required' | 'forbidden' }>, unknown_fields: 'ignore' }} */
+  const class_schema = {
+    fields,
+    unknown_fields: 'ignore',
+  };
+
+  if (document_path_class !== undefined) {
+    class_schema.document_path_class = document_path_class;
+  }
+
+  return class_schema;
+}
+
+/**
+ * @param {string} document_path_class
+ */
+function createExpectedDocumentClassSchema(document_path_class) {
+  return createExpectedClassSchema(
+    {
+      status: createOptionalFieldRule(),
+    },
+    document_path_class,
+  );
+}
+
+/**
+ * @returns {{ presence: 'optional' }}
+ */
+function createOptionalFieldRule() {
+  return {
+    presence: 'optional',
+  };
+}
+
+/**
  * @param {string} field
  */
-function createNodeMapping(field) {
+function createDocumentNodeMapping(field) {
   return {
     node: {
+      class: 'document',
       field,
-      kind: 'document',
     },
   };
 }
@@ -336,77 +458,60 @@ function createRelationMapping(relation) {
     emit: {
       relation,
       target: 'path',
-      target_kind: 'document',
+      target_class: 'document',
     },
   };
 }
 
 /**
- * @param {string} kind
+ * @param {string} class_name
  * @param {string} field
  */
-function createTaxonomyNodeMapping(kind, field) {
+function createTaxonomyNodeMapping(class_name, field) {
   return {
     node: {
+      class: class_name,
       field,
-      kind,
     },
   };
 }
 
 /**
- * @param {string} kind
+ * @param {string} class_name
  * @param {string} field
  */
-function createTaxonomyDefinitionMapping(kind, field) {
+function createTaxonomyDefinitionMapping(class_name, field) {
   return {
     emit: {
       relation: 'defines',
       target: 'value',
-      target_kind: kind,
+      target_class: class_name,
     },
     node: {
+      class: class_name,
       field,
       key: 'value',
-      kind,
     },
   };
 }
 
 /**
  * @param {string} relation
- * @param {string} target_kind
+ * @param {string} target_class
  */
-function createTaxonomyRelationMapping(relation, target_kind) {
+function createTaxonomyRelationMapping(relation, target_class) {
   return {
     emit: {
       relation,
       target: 'path',
-      target_kind,
+      target_class,
     },
-  };
-}
-
-function createExpectedSourceQueries() {
-  return {
-    'source-entrypoints': createStoredQuery('kind=entrypoint'),
-    'source-cli': createStoredQuery('kind=cli'),
-    'source-config': createStoredQuery('kind=config'),
-    'source-scan': createStoredQuery('kind=scan'),
-    'source-parse': createStoredQuery('kind=parse'),
-    'source-graph': createStoredQuery('kind=graph'),
-    'source-output': createStoredQuery('kind=output'),
-    'source-support': createStoredQuery('kind=support'),
-    'source-release': createStoredQuery('kind=release'),
   };
 }
 
 /**
  * @param {string} where
- * @returns {{ where: string }}
  */
 function createStoredQuery(where) {
-  return {
-    where,
-  };
+  return { where };
 }
