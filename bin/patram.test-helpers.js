@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -208,9 +207,6 @@ export async function writeShowProject(project_directory) {
   );
 }
 
-/**
- * @returns {object}
- */
 function createProjectConfig() {
   return {
     include: ['docs/**/*.md'],
@@ -225,9 +221,6 @@ function createProjectConfig() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createProjectQueries() {
   return {
     blocked: {
@@ -239,9 +232,6 @@ function createProjectQueries() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createProjectMappings() {
   return {
     'document.title': {
@@ -286,9 +276,6 @@ function createProjectMappings() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createProjectRelations() {
   return {
     blocked_by: {

@@ -21,9 +21,6 @@ it('indexes repo docs and defines the documented stored queries', () => {
   expect(repo_config).toEqual(createExpectedRepoConfig());
 });
 
-/**
- * @returns {object}
- */
 function createExpectedRepoConfig() {
   return {
     derived_summaries: createExpectedDerivedSummaries(),
@@ -51,9 +48,6 @@ function createExpectedRepoConfig() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createExpectedDerivedSummaries() {
   return {
     decision_execution: createExpectedDecisionExecutionSummary(),
@@ -61,9 +55,6 @@ function createExpectedDerivedSummaries() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createExpectedDecisionExecutionSummary() {
   return {
     fields: createExpectedExecutionFields('decided_by'),
@@ -71,9 +62,6 @@ function createExpectedDecisionExecutionSummary() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createExpectedPlanExecutionSummary() {
   return {
     fields: createExpectedExecutionFields('tracked_in'),
@@ -83,7 +71,6 @@ function createExpectedPlanExecutionSummary() {
 
 /**
  * @param {'decided_by' | 'tracked_in'} relation_name
- * @returns {object[]}
  */
 function createExpectedExecutionFields(relation_name) {
   return [
@@ -129,9 +116,6 @@ function createExpectedExecutionFields(relation_name) {
   ];
 }
 
-/**
- * @returns {object}
- */
 function createExpectedRepoMappings() {
   return {
     ...createExpectedDocumentMappings(),
@@ -142,9 +126,6 @@ function createExpectedRepoMappings() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createExpectedDocumentMappings() {
   return {
     'document.title': {
@@ -163,9 +144,6 @@ function createExpectedDocumentMappings() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createExpectedJsdocTaxonomyMappings() {
   return {
     'jsdoc.directive.about_command': createTaxonomyRelationMapping(
@@ -179,9 +157,6 @@ function createExpectedJsdocTaxonomyMappings() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createExpectedMarkdownTaxonomyMappings() {
   return {
     'markdown.directive.about_command': createTaxonomyRelationMapping(
@@ -208,9 +183,6 @@ function createExpectedMarkdownTaxonomyMappings() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createExpectedRepoDirectiveNodeMappings() {
   return {
     'jsdoc.directive.kind': createNodeMapping('kind'),
@@ -222,9 +194,6 @@ function createExpectedRepoDirectiveNodeMappings() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createExpectedRepoRelationMappings() {
   return {
     'jsdoc.directive.blocked_by': createRelationMapping('blocked_by'),
@@ -244,9 +213,6 @@ function createExpectedRepoRelationMappings() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createExpectedRepoQueries() {
   return {
     ...createExpectedWorktrackingQueries(),
@@ -255,9 +221,6 @@ function createExpectedRepoQueries() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createExpectedWorktrackingQueries() {
   return {
     ...createExpectedWorktrackingLifecycleQueries(),
@@ -265,9 +228,6 @@ function createExpectedWorktrackingQueries() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createExpectedWorktrackingLifecycleQueries() {
   return {
     'accepted-decisions': createStoredQuery(
@@ -296,9 +256,6 @@ function createExpectedWorktrackingLifecycleQueries() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createExpectedWorktrackingTaskQueries() {
   return {
     'blocked-tasks': createStoredQuery('kind=task and status=blocked'),
@@ -317,9 +274,6 @@ function createExpectedTaxonomyQueries() {
   };
 }
 
-/**
- * @returns {object}
- */
 function createExpectedRepoRelations() {
   return {
     defines: {
@@ -364,7 +318,6 @@ function createExpectedRepoRelations() {
 
 /**
  * @param {string} field
- * @returns {object}
  */
 function createNodeMapping(field) {
   return {
@@ -377,7 +330,6 @@ function createNodeMapping(field) {
 
 /**
  * @param {string} relation
- * @returns {object}
  */
 function createRelationMapping(relation) {
   return {
@@ -392,7 +344,6 @@ function createRelationMapping(relation) {
 /**
  * @param {string} kind
  * @param {string} field
- * @returns {object}
  */
 function createTaxonomyNodeMapping(kind, field) {
   return {
@@ -406,7 +357,6 @@ function createTaxonomyNodeMapping(kind, field) {
 /**
  * @param {string} kind
  * @param {string} field
- * @returns {object}
  */
 function createTaxonomyDefinitionMapping(kind, field) {
   return {
@@ -426,7 +376,6 @@ function createTaxonomyDefinitionMapping(kind, field) {
 /**
  * @param {string} relation
  * @param {string} target_kind
- * @returns {object}
  */
 function createTaxonomyRelationMapping(relation, target_kind) {
   return {
@@ -438,9 +387,6 @@ function createTaxonomyRelationMapping(relation, target_kind) {
   };
 }
 
-/**
- * @returns {object}
- */
 function createExpectedSourceQueries() {
   return {
     'source-entrypoints': createStoredQuery('kind=entrypoint'),

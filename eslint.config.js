@@ -39,20 +39,7 @@ const JSDOC_RULES = {
   'jsdoc/check-tag-names': ['error', { definedTags: ['patram'] }],
   'jsdoc/check-types': 'error',
   'jsdoc/prefer-import-tag': 'error',
-  'jsdoc/require-jsdoc': [
-    'warn',
-    {
-      enableFixer: false,
-      require: {
-        ArrowFunctionExpression: false,
-        ClassDeclaration: false,
-        ClassExpression: false,
-        FunctionDeclaration: true,
-        FunctionExpression: false,
-        MethodDefinition: true,
-      },
-    },
-  ],
+  'jsdoc/require-jsdoc': 'off',
   'jsdoc/require-param': 'warn',
   'jsdoc/require-param-name': 'warn',
   'jsdoc/require-param-type': 'warn',
