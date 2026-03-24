@@ -34,7 +34,7 @@
     "check:format": "prettier --check .",
     "check:lint": "eslint .",
     "check:patram": "./bin/patram.js check",
-    "check:staged": "lint-staged --quiet",
+    "check:staged": "lint-staged",
     "check:types": "tsc",
     "postversion": "git push && git push --tags",
     "preversion": "npm run all",
