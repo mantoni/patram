@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.4.0 - 2026-03-24
+
+- Promote document-backed nodes to semantic ids
+  ([`784307c`](https://github.com/mantoni/patram/commit/784307c437f4412e74e94882a93c2f06c0d53517))
+- Add boolean query grouping
+  ([`1849d17`](https://github.com/mantoni/patram/commit/1849d17615b402d16c3ee283b2e59648685b24a2))
+- Fix fenced code block width
+  ([`2bdfe5e`](https://github.com/mantoni/patram/commit/2bdfe5eec2df838a05e71eb5100b43ccb6ad8657))
+- Refine field discovery output
+  ([`518cb52`](https://github.com/mantoni/patram/commit/518cb527b3807e926caa5ca47e4f85234207246d))
+- Preserve rich list group spacing
+  ([`41f5c63`](https://github.com/mantoni/patram/commit/41f5c63bc045e3679233f229cb4380432157ca4c))
+
 ## 0.3.0 - 2026-03-24
 
 - Implement field model redesign
