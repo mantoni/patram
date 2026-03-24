@@ -7,7 +7,10 @@
 `patram fields` scans source claims and reports advisory schema suggestions. It
 does not validate or activate config.
 
-Use `--json` for structured output, or `--plain` for readable text output.
+Use `--json` for structured output, or `--plain` for readable text output. When
+repo config defines metadata fields or relations, `patram fields` omits those
+names from the advisory suggestions. When `stdout` is a TTY, text output opens
+in the pager.
 
 Suggestions include:
 
@@ -18,6 +21,9 @@ Suggestions include:
 - confidence
 - conflicting evidence
 - evidence references
+
+Text output shows up to 5 evidence rows per section and then summarizes the
+remaining rows. JSON output keeps the complete evidence arrays.
 
 Examples:
 
