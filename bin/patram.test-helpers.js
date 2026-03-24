@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -209,12 +210,23 @@ export async function writeShowProject(project_directory) {
 
 function createProjectConfig() {
   return {
-    include: ['docs/**/*.md'],
-    kinds: {
+    classes: {
+      decision: {
+        label: 'Decision',
+      },
       document: {
         builtin: true,
       },
+      task: {
+        label: 'Task',
+      },
     },
+    fields: {
+      status: {
+        type: 'string',
+      },
+    },
+    include: ['docs/**/*.md'],
     mappings: createProjectMappings(),
     queries: createProjectQueries(),
     relations: createProjectRelations(),
@@ -224,10 +236,10 @@ function createProjectConfig() {
 function createProjectQueries() {
   return {
     blocked: {
-      where: 'kind=task and status=blocked',
+      where: '$class=task and status=blocked',
     },
     pending: {
-      where: 'kind=task and status=pending',
+      where: '$class=task and status=pending',
     },
   };
 }
@@ -236,41 +248,41 @@ function createProjectMappings() {
   return {
     'document.title': {
       node: {
+        class: 'document',
         field: 'title',
-        kind: 'document',
       },
     },
     'markdown.directive.blocked_by': {
       emit: {
         relation: 'blocked_by',
         target: 'path',
-        target_kind: 'document',
+        target_class: 'document',
       },
     },
     'markdown.directive.kind': {
       node: {
-        field: 'kind',
-        kind: 'document',
+        class: 'document',
+        field: '$class',
       },
     },
     'markdown.directive.status': {
       node: {
+        class: 'document',
         field: 'status',
-        kind: 'document',
       },
     },
     'markdown.directive.tracked_in': {
       emit: {
         relation: 'tracked_in',
         target: 'path',
-        target_kind: 'document',
+        target_class: 'document',
       },
     },
     'markdown.link': {
       emit: {
         relation: 'links_to',
         target: 'path',
-        target_kind: 'document',
+        target_class: 'document',
       },
     },
   };

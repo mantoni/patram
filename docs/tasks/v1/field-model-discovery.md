@@ -1,7 +1,7 @@
 # Add Field Discovery Workflow
 
 - Kind: task
-- Status: pending
+- Status: done
 - Tracked in: docs/plans/v1/field-model-redesign.md
 - Decided by: docs/decisions/metadata-field-schema.md
 - Decided by: docs/decisions/query-validation-lifecycle.md

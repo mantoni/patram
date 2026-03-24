@@ -29,8 +29,12 @@ export interface MappingDefinition {
 export interface PatramConfig {
   $schema?: string;
   classes: Record<string, ClassDefinition>;
-  class_schemas?: Record<string, unknown>;
-  fields?: Record<string, unknown>;
+  class_schemas?: Record<string, ClassSchemaConfig>;
+  fields?: Record<string, MetadataFieldConfig>;
   mappings: Record<string, MappingDefinition>;
   relations: Record<string, RelationDefinition>;
 }
+import type {
+  ClassSchemaConfig,
+  MetadataFieldConfig,
+} from './load-patram-config.types.ts';

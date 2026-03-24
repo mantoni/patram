@@ -85,11 +85,16 @@ export interface ClassFieldRuleConfig {
   presence: 'required' | 'optional' | 'forbidden';
 }
 
+export type DirectiveTypeConfig = MetadataFieldConfig;
+export type MetadataDirectiveRuleConfig = ClassFieldRuleConfig;
+
 export interface ClassSchemaConfig {
   document_path_class?: string;
   fields: Record<string, ClassFieldRuleConfig>;
   unknown_fields?: 'ignore' | 'error';
 }
+
+export type MetadataSchemaConfig = ClassSchemaConfig;
 
 export interface PathClassConfig {
   prefixes: string[];

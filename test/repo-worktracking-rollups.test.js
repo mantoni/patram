@@ -32,7 +32,8 @@ it('evaluates decision rollups through incoming task traversal', async () => {
   expect(
     selectPaths(
       project_graph_result.graph,
-      'path=docs/decisions/query-traversal-and-aggregation.md and none(in:decided_by, kind=task and status not in [done, dropped, superseded])',
+      project_graph_result.config,
+      '$path=docs/decisions/query-traversal-and-aggregation.md and none(in:decided_by, $class=task and status not in [done, dropped, superseded])',
     ),
   ).toEqual(['docs/decisions/query-traversal-and-aggregation.md']);
 });
@@ -44,7 +45,8 @@ it('evaluates plan rollups through incoming task traversal', async () => {
   expect(
     selectPaths(
       project_graph_result.graph,
-      'path=docs/plans/v0/query-traversal-and-aggregation.md and none(in:tracked_in, kind=task and status not in [done, dropped, superseded])',
+      project_graph_result.config,
+      '$path=docs/plans/v0/query-traversal-and-aggregation.md and none(in:tracked_in, $class=task and status not in [done, dropped, superseded])',
     ),
   ).toEqual(['docs/plans/v0/query-traversal-and-aggregation.md']);
 });
@@ -56,7 +58,8 @@ it('evaluates roadmap rollups through nested traversal aggregates', async () => 
   expect(
     selectPaths(
       project_graph_result.graph,
-      'path=docs/roadmap/query-language-extensions.md and none(in:tracked_in, kind=plan and any(in:tracked_in, kind=task and status not in [done, dropped, superseded]))',
+      project_graph_result.config,
+      '$path=docs/roadmap/query-language-extensions.md and none(in:tracked_in, $class=plan and any(in:tracked_in, $class=task and status not in [done, dropped, superseded]))',
     ),
   ).toEqual(['docs/roadmap/query-language-extensions.md']);
 });
@@ -68,7 +71,8 @@ it('evaluates count rollups through incoming decision traversal', async () => {
   expect(
     selectPaths(
       project_graph_result.graph,
-      'path=docs/decisions/query-traversal-and-aggregation.md and count(in:decided_by, kind=task) = 1',
+      project_graph_result.config,
+      '$path=docs/decisions/query-traversal-and-aggregation.md and count(in:decided_by, $class=task) = 1',
     ),
   ).toEqual(['docs/decisions/query-traversal-and-aggregation.md']);
 });
@@ -78,20 +82,29 @@ it('does not materialize duplicated docs-prefixed worktracking targets', async (
 
   expect(project_graph_result.diagnostics).toEqual([]);
   expect(
-    selectPaths(project_graph_result.graph, 'path^=docs/decisions/docs/'),
+    selectPaths(
+      project_graph_result.graph,
+      project_graph_result.config,
+      '$path^=docs/decisions/docs/',
+    ),
   ).toEqual([]);
   expect(
-    selectPaths(project_graph_result.graph, 'path^=docs/plans/v0/docs/'),
+    selectPaths(
+      project_graph_result.graph,
+      project_graph_result.config,
+      '$path^=docs/plans/v0/docs/',
+    ),
   ).toEqual([]);
 });
 
 /**
  * @param {import('../lib/build-graph.types.ts').BuildGraphResult} graph
+ * @param {import('../lib/load-patram-config.types.ts').PatramRepoConfig} repo_config
  * @param {string} where_clause
  * @returns {string[]}
  */
-function selectPaths(graph, where_clause) {
-  return queryGraph(graph, where_clause).nodes.flatMap((graph_node) =>
-    graph_node.path ? [graph_node.path] : [],
+function selectPaths(graph, repo_config, where_clause) {
+  return queryGraph(graph, where_clause, repo_config).nodes.flatMap(
+    (graph_node) => (graph_node.path ? [graph_node.path] : []),
   );
 }

@@ -1,7 +1,7 @@
 # Implement Field Model Query Semantics
 
 - Kind: task
-- Status: in_progress
+- Status: done
 - Tracked in: docs/plans/v1/field-model-redesign.md
 - Decided by: docs/decisions/schema-defined-query-fields.md
 - Decided by: docs/decisions/patram-structural-field-namespace.md

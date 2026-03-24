@@ -123,7 +123,6 @@ it('renders non-markdown source files with syntax highlighting in rich mode', as
 const EXPECTED_RICH_RESOLVED_LINKS =
   `${FULL_WIDTH_DIVIDER}\n\n` +
   'document docs/patram.md\n' +
-  'kind: document\n' +
   '\n' +
   '    Patram\n' +
   '\n' +

@@ -1,8 +1,5 @@
 # Docs Structure Proposal
 
-- Kind: convention
-- Status: active
-
 - Read this after `docs/patram.md`.
 
 - `docs/patram.md`: Product definition.

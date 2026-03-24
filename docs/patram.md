@@ -13,7 +13,11 @@ The v0 CLI has two groups of commands:
    - [`patram check [<path>]`](./reference/commands/check.md): Validate a
      project, directory or file.
 
-2. Querying
+2. Field discovery
+   - [`patram fields`](./reference/commands/fields.md): Discover likely field
+     schema from source claims.
+
+3. Querying
    - [`patram query <name>`](./reference/commands/query.md): Run a stored query
      by name.
    - [`patram query --where "<clause>"`](./reference/commands/query.md): Run an
@@ -49,9 +53,10 @@ patram query active-plans
 patram query decision-review-queue
 patram query decisions-needing-tasks
 patram query ready-tasks
+patram fields
 patram query --where "tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md"
 patram query active-plans --explain
-patram query --where "kind=plan and none(in:tracked_in, kind=decision)" --lint
+patram query --where "$class=plan and none(in:tracked_in, $class=decision)" --lint
 patram show docs/conventions/worktracking-v0.md
 patram check docs
 ```
@@ -63,6 +68,8 @@ Recommended flow:
 - Use `patram query <name> --explain` when you want the resolved clause tree.
 - Use `patram query --where "<clause>" --lint` before saving a new ad hoc or
   stored query.
+- Use `patram fields` when you want to inspect likely field schema before
+  adopting it into config.
 - Use `patram show <path>` after a query to read the matched document or source
   anchor in context.
 - Use `patram check <path>` before handing off doc or code changes.
@@ -95,7 +102,8 @@ patram query --where "uses_term=term:graph"
 
 ## Repo Taxonomy
 
-This repo adds two custom kinds on top of Patram's built-in `document` kind:
+This repo adds two canonical classes on top of Patram's built-in `document`
+class:
 
 - `command`: Canonical CLI command nodes backed by markdown files in
   `docs/reference/commands/`.

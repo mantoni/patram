@@ -111,6 +111,9 @@ function createExpectedDerivedSummaries() {
 function createExpectedFields() {
   return {
     description: {
+      display: {
+        hidden: true,
+      },
       type: 'string',
     },
     definition: {
@@ -118,17 +121,7 @@ function createExpectedFields() {
     },
     kind: {
       type: 'enum',
-      values: [
-        'cli',
-        'config',
-        'entrypoint',
-        'graph',
-        'output',
-        'parse',
-        'release',
-        'scan',
-        'support',
-      ],
+      values: createExpectedSourceKinds(),
     },
     status: {
       type: 'enum',
@@ -152,6 +145,21 @@ function createExpectedFields() {
       type: 'string',
     },
   };
+}
+
+function createExpectedSourceKinds() {
+  return [
+    'cli',
+    'config',
+    'discovery',
+    'entrypoint',
+    'graph',
+    'output',
+    'parse',
+    'release',
+    'scan',
+    'support',
+  ];
 }
 
 /**

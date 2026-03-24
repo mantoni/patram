@@ -8,49 +8,49 @@
   ],
   "queries": {
     "accepted-decisions": {
-      "where": "kind=decision and status=accepted"
+      "where": "$class=decision and status=accepted"
     },
     "active-plans": {
-      "where": "kind=plan and status=active"
+      "where": "$class=plan and status=active"
     },
     "active-roadmaps": {
-      "where": "kind=roadmap and status=active"
+      "where": "$class=roadmap and status=active"
     },
     "blocked-tasks": {
-      "where": "kind=task and status=blocked"
+      "where": "$class=task and status=blocked"
     },
     "command-implementations": {
       "where": "implements_command:*"
     },
     "command-taxonomy": {
-      "where": "id^=command:"
+      "where": "$id^=command:"
     },
     "decision-review-queue": {
-      "where": "kind=decision and status=proposed"
+      "where": "$class=decision and status=proposed"
     },
     "decisions-needing-tasks": {
-      "where": "kind=decision and status=accepted and count(in:decided_by, kind=task) = 0"
+      "where": "$class=decision and status=accepted and count(in:decided_by, $class=task) = 0"
     },
     "decisions-with-open-tasks": {
-      "where": "kind=decision and status=accepted and any(in:decided_by, kind=task and status not in [done, dropped, superseded])"
+      "where": "$class=decision and status=accepted and any(in:decided_by, $class=task and status not in [done, dropped, superseded])"
     },
     "ideas": {
-      "where": "kind=idea and status in [captured, exploring, planned]"
+      "where": "$class=idea and status in [captured, exploring, planned]"
     },
     "in-progress-tasks": {
-      "where": "kind=task and status=in_progress"
+      "where": "$class=task and status=in_progress"
     },
     "pending-tasks": {
-      "where": "kind=task and status=pending"
+      "where": "$class=task and status=pending"
     },
     "plans-with-open-tasks": {
-      "where": "kind=plan and status=active and any(in:tracked_in, kind=task and status not in [done, dropped, superseded])"
+      "where": "$class=plan and status=active and any(in:tracked_in, $class=task and status not in [done, dropped, superseded])"
     },
     "plans-without-decisions": {
-      "where": "kind=plan and status=active and none(in:tracked_in, kind=decision)"
+      "where": "$class=plan and status=active and none(in:tracked_in, $class=decision)"
     },
     "ready-tasks": {
-      "where": "kind=task and status=ready"
+      "where": "$class=task and status=ready"
     },
     "source-entrypoints": {
       "where": "kind=entrypoint"
@@ -83,26 +83,26 @@
       "where": "uses_term:*"
     },
     "term-taxonomy": {
-      "where": "id^=term:"
+      "where": "$id^=term:"
     }
   },
   "derived_summaries": {
     "decision_execution": {
-      "kinds": ["decision"],
+      "classes": ["decision"],
       "fields": [
         {
           "name": "execution",
           "select": [
             {
-              "when": "count(in:decided_by, kind=task) > 0 and none(in:decided_by, kind=task and status not in [done, dropped, superseded])",
+              "when": "count(in:decided_by, $class=task) > 0 and none(in:decided_by, $class=task and status not in [done, dropped, superseded])",
               "value": "done"
             },
             {
-              "when": "any(in:decided_by, kind=task and status not in [done, dropped, superseded]) and none(in:decided_by, kind=task and status not in [done, dropped, superseded] and not status=blocked)",
+              "when": "any(in:decided_by, $class=task and status not in [done, dropped, superseded]) and none(in:decided_by, $class=task and status not in [done, dropped, superseded] and not status=blocked)",
               "value": "blocked"
             },
             {
-              "when": "any(in:decided_by, kind=task and not status=pending)",
+              "when": "any(in:decided_by, $class=task and not status=pending)",
               "value": "in_progress"
             }
           ],
@@ -112,41 +112,41 @@
           "name": "open_tasks",
           "count": {
             "traversal": "in:decided_by",
-            "where": "kind=task and status not in [done, dropped, superseded]"
+            "where": "$class=task and status not in [done, dropped, superseded]"
           }
         },
         {
           "name": "blocked_tasks",
           "count": {
             "traversal": "in:decided_by",
-            "where": "kind=task and status=blocked"
+            "where": "$class=task and status=blocked"
           }
         },
         {
           "name": "total_tasks",
           "count": {
             "traversal": "in:decided_by",
-            "where": "kind=task"
+            "where": "$class=task"
           }
         }
       ]
     },
     "plan_execution": {
-      "kinds": ["plan"],
+      "classes": ["plan"],
       "fields": [
         {
           "name": "execution",
           "select": [
             {
-              "when": "count(in:tracked_in, kind=task) > 0 and none(in:tracked_in, kind=task and status not in [done, dropped, superseded])",
+              "when": "count(in:tracked_in, $class=task) > 0 and none(in:tracked_in, $class=task and status not in [done, dropped, superseded])",
               "value": "done"
             },
             {
-              "when": "any(in:tracked_in, kind=task and status not in [done, dropped, superseded]) and none(in:tracked_in, kind=task and status not in [done, dropped, superseded] and not status=blocked)",
+              "when": "any(in:tracked_in, $class=task and status not in [done, dropped, superseded]) and none(in:tracked_in, $class=task and status not in [done, dropped, superseded] and not status=blocked)",
               "value": "blocked"
             },
             {
-              "when": "any(in:tracked_in, kind=task and not status=pending)",
+              "when": "any(in:tracked_in, $class=task and not status=pending)",
               "value": "in_progress"
             }
           ],
@@ -156,35 +156,206 @@
           "name": "open_tasks",
           "count": {
             "traversal": "in:tracked_in",
-            "where": "kind=task and status not in [done, dropped, superseded]"
+            "where": "$class=task and status not in [done, dropped, superseded]"
           }
         },
         {
           "name": "blocked_tasks",
           "count": {
             "traversal": "in:tracked_in",
-            "where": "kind=task and status=blocked"
+            "where": "$class=task and status=blocked"
           }
         },
         {
           "name": "total_tasks",
           "count": {
             "traversal": "in:tracked_in",
-            "where": "kind=task"
+            "where": "$class=task"
           }
         }
       ]
     }
   },
-  "kinds": {
+  "classes": {
     "command": {
       "label": "Command"
+    },
+    "convention": {
+      "label": "Convention"
+    },
+    "decision": {
+      "label": "Decision"
     },
     "document": {
       "builtin": true
     },
+    "idea": {
+      "label": "Idea"
+    },
+    "plan": {
+      "label": "Plan"
+    },
+    "roadmap": {
+      "label": "Roadmap"
+    },
+    "task": {
+      "label": "Task"
+    },
     "term": {
       "label": "Term"
+    }
+  },
+  "fields": {
+    "description": {
+      "display": {
+        "hidden": true
+      },
+      "type": "string"
+    },
+    "definition": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "enum",
+      "values": [
+        "cli",
+        "config",
+        "discovery",
+        "entrypoint",
+        "graph",
+        "output",
+        "parse",
+        "release",
+        "scan",
+        "support"
+      ]
+    },
+    "status": {
+      "type": "enum",
+      "values": [
+        "accepted",
+        "active",
+        "blocked",
+        "captured",
+        "done",
+        "dropped",
+        "exploring",
+        "in_progress",
+        "pending",
+        "planned",
+        "proposed",
+        "ready",
+        "superseded"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    }
+  },
+  "class_schemas": {
+    "command": {
+      "fields": {
+        "summary": {
+          "presence": "optional"
+        }
+      },
+      "unknown_fields": "ignore"
+    },
+    "convention": {
+      "document_path_class": "convention_docs",
+      "fields": {
+        "status": {
+          "presence": "optional"
+        }
+      },
+      "unknown_fields": "ignore"
+    },
+    "decision": {
+      "document_path_class": "decision_docs",
+      "fields": {
+        "status": {
+          "presence": "optional"
+        }
+      },
+      "unknown_fields": "ignore"
+    },
+    "document": {
+      "fields": {
+        "description": {
+          "presence": "optional"
+        },
+        "kind": {
+          "presence": "optional"
+        },
+        "status": {
+          "presence": "optional"
+        }
+      },
+      "unknown_fields": "ignore"
+    },
+    "idea": {
+      "document_path_class": "idea_docs",
+      "fields": {
+        "status": {
+          "presence": "optional"
+        }
+      },
+      "unknown_fields": "ignore"
+    },
+    "plan": {
+      "document_path_class": "plan_docs",
+      "fields": {
+        "status": {
+          "presence": "optional"
+        }
+      },
+      "unknown_fields": "ignore"
+    },
+    "roadmap": {
+      "document_path_class": "roadmap_docs",
+      "fields": {
+        "status": {
+          "presence": "optional"
+        }
+      },
+      "unknown_fields": "ignore"
+    },
+    "task": {
+      "document_path_class": "task_docs",
+      "fields": {
+        "status": {
+          "presence": "optional"
+        }
+      },
+      "unknown_fields": "ignore"
+    },
+    "term": {
+      "fields": {
+        "definition": {
+          "presence": "optional"
+        }
+      },
+      "unknown_fields": "ignore"
+    }
+  },
+  "path_classes": {
+    "convention_docs": {
+      "prefixes": ["docs/conventions/"]
+    },
+    "decision_docs": {
+      "prefixes": ["docs/decisions/"]
+    },
+    "idea_docs": {
+      "prefixes": ["docs/research/"]
+    },
+    "plan_docs": {
+      "prefixes": ["docs/plans/"]
+    },
+    "roadmap_docs": {
+      "prefixes": ["docs/roadmap/"]
+    },
+    "task_docs": {
+      "prefixes": ["docs/tasks/"]
     }
   },
   "relations": {
@@ -230,172 +401,172 @@
     "document.title": {
       "node": {
         "field": "title",
-        "kind": "document"
+        "class": "document"
       }
     },
     "jsdoc.directive.about_command": {
       "emit": {
         "relation": "about_command",
         "target": "path",
-        "target_kind": "command"
+        "target_class": "command"
       }
     },
     "jsdoc.directive.kind": {
       "node": {
         "field": "kind",
-        "kind": "document"
+        "class": "document"
       }
     },
     "jsdoc.directive.status": {
       "node": {
         "field": "status",
-        "kind": "document"
+        "class": "document"
       }
     },
     "jsdoc.directive.blocked_by": {
       "emit": {
         "relation": "blocked_by",
         "target": "path",
-        "target_kind": "document"
+        "target_class": "document"
       }
     },
     "jsdoc.directive.decided_by": {
       "emit": {
         "relation": "decided_by",
         "target": "path",
-        "target_kind": "document"
+        "target_class": "document"
       }
     },
     "jsdoc.directive.implements": {
       "emit": {
         "relation": "implements",
         "target": "path",
-        "target_kind": "document"
+        "target_class": "document"
       }
     },
     "jsdoc.directive.implements_command": {
       "emit": {
         "relation": "implements_command",
         "target": "path",
-        "target_kind": "command"
+        "target_class": "command"
       }
     },
     "jsdoc.directive.tracked_in": {
       "emit": {
         "relation": "tracked_in",
         "target": "path",
-        "target_kind": "document"
+        "target_class": "document"
       }
     },
     "jsdoc.directive.uses_term": {
       "emit": {
         "relation": "uses_term",
         "target": "path",
-        "target_kind": "term"
+        "target_class": "term"
       }
     },
     "markdown.directive.about_command": {
       "emit": {
         "relation": "about_command",
         "target": "path",
-        "target_kind": "command"
+        "target_class": "command"
       }
     },
     "markdown.directive.command": {
       "emit": {
         "relation": "defines",
         "target": "value",
-        "target_kind": "command"
+        "target_class": "command"
       },
       "node": {
         "field": "title",
         "key": "value",
-        "kind": "command"
+        "class": "command"
       }
     },
     "markdown.directive.command_summary": {
       "node": {
         "field": "summary",
-        "kind": "command"
+        "class": "command"
       }
     },
     "markdown.directive.kind": {
       "node": {
-        "field": "kind",
-        "kind": "document"
+        "field": "$class",
+        "class": "document"
       }
     },
     "markdown.directive.status": {
       "node": {
         "field": "status",
-        "kind": "document"
+        "class": "document"
       }
     },
     "markdown.directive.blocked_by": {
       "emit": {
         "relation": "blocked_by",
         "target": "path",
-        "target_kind": "document"
+        "target_class": "document"
       }
     },
     "markdown.directive.decided_by": {
       "emit": {
         "relation": "decided_by",
         "target": "path",
-        "target_kind": "document"
+        "target_class": "document"
       }
     },
     "markdown.directive.implements": {
       "emit": {
         "relation": "implements",
         "target": "path",
-        "target_kind": "document"
+        "target_class": "document"
       }
     },
     "markdown.directive.implements_command": {
       "emit": {
         "relation": "implements_command",
         "target": "path",
-        "target_kind": "command"
+        "target_class": "command"
       }
     },
     "markdown.directive.term": {
       "emit": {
         "relation": "defines",
         "target": "value",
-        "target_kind": "term"
+        "target_class": "term"
       },
       "node": {
         "field": "title",
         "key": "value",
-        "kind": "term"
+        "class": "term"
       }
     },
     "markdown.directive.term_definition": {
       "node": {
         "field": "definition",
-        "kind": "term"
+        "class": "term"
       }
     },
     "markdown.directive.tracked_in": {
       "emit": {
         "relation": "tracked_in",
         "target": "path",
-        "target_kind": "document"
+        "target_class": "document"
       }
     },
     "markdown.directive.uses_term": {
       "emit": {
         "relation": "uses_term",
         "target": "path",
-        "target_kind": "term"
+        "target_class": "term"
       }
     },
     "markdown.link": {
       "emit": {
         "relation": "links_to",
         "target": "path",
-        "target_kind": "document"
+        "target_class": "document"
       }
     }
   }

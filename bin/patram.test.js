@@ -42,6 +42,30 @@ import { main } from './patram.js';
 
 const execFile = promisify(execFileCallback);
 const test_context = createTestContext();
+const EXPECTED_SHOW_JSON_OUTPUT =
+  '{\n' +
+  '  "document": {\n' +
+  '    "$class": "document",\n' +
+  '    "$id": "doc:docs/patram.md",\n' +
+  '    "fields": {},\n' +
+  '    "title": "Patram",\n' +
+  '    "$path": "docs/patram.md"\n' +
+  '  },\n' +
+  '  "source": "# Patram\\n\\nSee [guide](./guide.md).",\n' +
+  '  "resolved_links": [\n' +
+  '    {\n' +
+  '      "reference": 1,\n' +
+  '      "label": "guide",\n' +
+  '      "target": {\n' +
+  '        "$class": "document",\n' +
+  '        "$id": "doc:docs/guide.md",\n' +
+  '        "fields": {},\n' +
+  '        "title": "Some Guide",\n' +
+  '        "$path": "docs/guide.md"\n' +
+  '      }\n' +
+  '    }\n' +
+  '  ]\n' +
+  '}\n';
 
 afterEach(async () => {
   await cleanupTestContext(test_context);
@@ -162,7 +186,7 @@ it('prints matching nodes for query --where', async () => {
   process.chdir(test_context.project_directory);
 
   const exit_code = await main(
-    ['query', '--where', 'kind=task and status=pending'],
+    ['query', '--where', '$class=task and status=pending'],
     {
       stderr: io_context.stderr,
       stdout: io_context.stdout,
@@ -172,8 +196,8 @@ it('prints matching nodes for query --where', async () => {
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual([
-    'document docs/tasks/v0/query-command.md\n' +
-      'kind: task  status: pending\n' +
+    'task docs/tasks/v0/query-command.md\n' +
+      'status: pending\n' +
       '\n' +
       '    Implement query command\n',
   ]);
@@ -204,8 +228,8 @@ it('runs a stored query by name', async () => {
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual([
-    'document docs/tasks/v0/query-command.md\n' +
-      'kind: task  status: pending\n' +
+    'task docs/tasks/v0/query-command.md\n' +
+      'status: pending\n' +
       '\n' +
       '    Implement query command\n',
   ]);
@@ -226,8 +250,8 @@ it('prints stored queries', async () => {
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual([
-    'blocked  kind=task and status=blocked\n' +
-      'pending  kind=task and status=pending\n',
+    'blocked  $class=task and status=blocked\n' +
+      'pending  $class=task and status=pending\n',
   ]);
 });
 
@@ -256,7 +280,6 @@ it('prints resolved source and links for show', async () => {
       '\n' +
       '----------------\n' +
       'document docs/patram.md\n' +
-      'kind: document\n' +
       '\n' +
       '    Patram\n' +
       '\n' +
@@ -264,13 +287,13 @@ it('prints resolved source and links for show', async () => {
       '\n' +
       '    Some Guide\n' +
       '\n' +
-      '[2] document docs/decisions/query-language-v0.md\n' +
-      '    kind: decision  status: accepted\n' +
+      '[2] decision docs/decisions/query-language-v0.md\n' +
+      '    status: accepted\n' +
       '\n' +
       '    Query Language v0\n' +
       '\n' +
-      '[3] document docs/tasks/v0/query-command.md\n' +
-      '    kind: task  status: pending\n' +
+      '[3] task docs/tasks/v0/query-command.md\n' +
+      '    status: pending\n' +
       '\n' +
       '    Implement query command\n',
   ]);
@@ -323,26 +346,7 @@ it('prints show results as json', async () => {
 
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
-  expect(io_context.stdout_chunks).toEqual([
-    '{\n' +
-      '  "document": {\n' +
-      '    "kind": "document",\n' +
-      '    "path": "docs/patram.md",\n' +
-      '    "title": "Patram"\n' +
-      '  },\n' +
-      '  "source": "# Patram\\n\\nSee [guide](./guide.md).",\n' +
-      '  "resolved_links": [\n' +
-      '    {\n' +
-      '      "reference": 1,\n' +
-      '      "label": "guide",\n' +
-      '      "target": {\n' +
-      '        "title": "Some Guide",\n' +
-      '        "path": "docs/guide.md"\n' +
-      '      }\n' +
-      '    }\n' +
-      '  ]\n' +
-      '}\n',
-  ]);
+  expect(io_context.stdout_chunks).toEqual([EXPECTED_SHOW_JSON_OUTPUT]);
 });
 
 it('reports a missing show file on stderr', async () => {
@@ -377,7 +381,7 @@ it('prints query results as json', async () => {
   process.chdir(test_context.project_directory);
 
   const exit_code = await main(
-    ['query', '--where', 'kind=task and status=pending', '--json'],
+    ['query', '--where', '$class=task and status=pending', '--json'],
     {
       stderr: io_context.stderr,
       stdout: io_context.stdout,
@@ -390,11 +394,13 @@ it('prints query results as json', async () => {
     '{\n' +
       '  "results": [\n' +
       '    {\n' +
-      '      "id": "doc:docs/tasks/v0/query-command.md",\n' +
-      '      "kind": "task",\n' +
+      '      "$class": "task",\n' +
+      '      "$id": "doc:docs/tasks/v0/query-command.md",\n' +
+      '      "fields": {\n' +
+      '        "status": "pending"\n' +
+      '      },\n' +
       '      "title": "Implement query command",\n' +
-      '      "path": "docs/tasks/v0/query-command.md",\n' +
-      '      "status": "pending"\n' +
+      '      "$path": "docs/tasks/v0/query-command.md"\n' +
       '    }\n' +
       '  ],\n' +
       '  "summary": {\n' +

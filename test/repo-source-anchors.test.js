@@ -30,14 +30,34 @@ it('indexes source anchors across the repo sweep', async () => {
   const project_graph_result = await loadProjectGraph(repo_directory);
 
   expect(project_graph_result.diagnostics).toEqual([]);
-  expect(selectPaths(project_graph_result.graph, 'path^=bin/')).not.toEqual([]);
-  expect(selectPaths(project_graph_result.graph, 'path^=lib/')).not.toEqual([]);
-  expect(selectPaths(project_graph_result.graph, 'path^=scripts/')).not.toEqual(
-    [],
-  );
-  expect(selectPaths(project_graph_result.graph, 'path^=test/')).not.toEqual(
-    [],
-  );
+  expect(
+    selectPaths(
+      project_graph_result.graph,
+      project_graph_result.config,
+      '$path^=bin/',
+    ),
+  ).not.toEqual([]);
+  expect(
+    selectPaths(
+      project_graph_result.graph,
+      project_graph_result.config,
+      '$path^=lib/',
+    ),
+  ).not.toEqual([]);
+  expect(
+    selectPaths(
+      project_graph_result.graph,
+      project_graph_result.config,
+      '$path^=scripts/',
+    ),
+  ).not.toEqual([]);
+  expect(
+    selectPaths(
+      project_graph_result.graph,
+      project_graph_result.config,
+      '$path^=test/',
+    ),
+  ).not.toEqual([]);
 });
 
 it('keeps the documented source stored queries useful', async () => {
@@ -46,6 +66,7 @@ it('keeps the documented source stored queries useful', async () => {
   expect(
     selectPaths(
       project_graph_result.graph,
+      project_graph_result.config,
       repo_config.queries['source-parse'].where,
     ),
   ).toEqual([
@@ -57,6 +78,7 @@ it('keeps the documented source stored queries useful', async () => {
   expect(
     selectPaths(
       project_graph_result.graph,
+      project_graph_result.config,
       repo_config.queries['source-graph'].where,
     ),
   ).toEqual([
@@ -69,6 +91,7 @@ it('keeps the documented source stored queries useful', async () => {
   expect(
     selectPaths(
       project_graph_result.graph,
+      project_graph_result.config,
       repo_config.queries['source-output'].where,
     ),
   ).toEqual([
@@ -81,10 +104,11 @@ it('keeps the documented source stored queries useful', async () => {
 
 /**
  * @param {import('../lib/build-graph.types.ts').BuildGraphResult} graph
+ * @param {import('../lib/load-patram-config.types.ts').PatramRepoConfig} repo_config
  * @param {string} where_clause
  */
-function selectPaths(graph, where_clause) {
-  return queryGraph(graph, where_clause).nodes.map(
+function selectPaths(graph, repo_config, where_clause) {
+  return queryGraph(graph, where_clause, repo_config).nodes.map(
     (graph_node) => graph_node.path,
   );
 }

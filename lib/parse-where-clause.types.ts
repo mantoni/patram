@@ -1,15 +1,17 @@
 import type { PatramDiagnostic } from './load-patram-config.types.ts';
 
-export type ParsedFieldName = 'id' | 'kind' | 'path' | 'status' | 'title';
+export type ParsedFieldName = string;
 
 export interface ParsedFieldTerm {
+  column: number;
   field_name: ParsedFieldName;
   kind: 'field';
-  operator: '=' | '^=' | '~';
+  operator: '!=' | '<' | '<=' | '=' | '>' | '>=' | '^=' | '~';
   value: string;
 }
 
 export interface ParsedFieldSetTerm {
+  column: number;
   field_name: ParsedFieldName;
   kind: 'field_set';
   operator: 'in' | 'not in';

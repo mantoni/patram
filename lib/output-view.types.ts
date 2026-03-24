@@ -12,6 +12,11 @@ export interface OutputDerivedSummary {
   name: string;
 }
 
+export interface OutputMetadataField {
+  name: string;
+  value: string | string[];
+}
+
 export interface OutputViewSummary {
   count: number;
   kind: 'resolved_link_list' | 'result_list' | 'stored_query_list';
@@ -26,12 +31,13 @@ export interface QueryOutputViewSummary extends OutputViewSummary {
 
 export interface OutputNodeItem {
   derived_summary?: OutputDerivedSummary;
+  fields: Record<string, string | string[]>;
   id: string;
   kind: 'node';
-  node_kind: GraphNode['kind'];
-  path: string;
-  status?: string;
+  node_kind: string;
+  path?: string;
   title: string;
+  visible_fields: OutputMetadataField[];
 }
 
 export interface OutputStoredQueryItem {
@@ -42,10 +48,12 @@ export interface OutputStoredQueryItem {
 
 export interface OutputResolvedLinkTarget {
   derived_summary?: OutputDerivedSummary;
-  kind?: string;
-  path: string;
-  status?: string;
+  fields: Record<string, string | string[]>;
+  id: string;
+  kind: string;
+  path?: string;
   title: string;
+  visible_fields: OutputMetadataField[];
 }
 
 export interface OutputResolvedLinkItem {

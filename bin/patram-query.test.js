@@ -54,9 +54,9 @@ it('limits query results to 25 by default and prints a pagination hint', async (
 
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
-  expect(output).toContain('document docs/tasks/v0/task-01.md');
-  expect(output).toContain('document docs/tasks/v0/task-25.md');
-  expect(output).not.toContain('document docs/tasks/v0/task-26.md');
+  expect(output).toContain('task docs/tasks/v0/task-01.md');
+  expect(output).toContain('task docs/tasks/v0/task-25.md');
+  expect(output).not.toContain('task docs/tasks/v0/task-26.md');
   expect(output).toContain('Showing 25 of 26 matches.\n');
   expect(output).toContain(
     'Hint: use --offset <n> or --limit <n> to page through more matches.\n',
@@ -81,8 +81,8 @@ it('applies query offset and limit without the default pagination hint', async (
 
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
-  expect(output).toContain('document docs/tasks/v0/task-26.md');
-  expect(output).not.toContain('document docs/tasks/v0/task-25.md');
+  expect(output).toContain('task docs/tasks/v0/task-26.md');
+  expect(output).not.toContain('task docs/tasks/v0/task-25.md');
   expect(output).toContain('Showing 1 of 26 matches.\n');
   expect(output).not.toContain('Hint: use --offset <n> or --limit <n>');
 });
@@ -127,8 +127,8 @@ it('sends tty query output through the pager and removes the default limit', asy
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual([]);
-  expect(output).toContain('document docs/tasks/v0/task-01.md');
-  expect(output).toContain('document docs/tasks/v0/task-26.md');
+  expect(output).toContain('task docs/tasks/v0/task-01.md');
+  expect(output).toContain('task docs/tasks/v0/task-26.md');
   expect(output).not.toContain('Showing 26 of 26 matches.\n');
   expect(output).not.toContain(
     'Hint: use --offset <n> or --limit <n> to page through more matches.\n',
@@ -152,9 +152,9 @@ it('keeps an explicit limit when tty query output is paged', async () => {
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual([]);
-  expect(output).toContain('document docs/tasks/v0/task-01.md');
-  expect(output).toContain('document docs/tasks/v0/task-05.md');
-  expect(output).not.toContain('document docs/tasks/v0/task-06.md');
+  expect(output).toContain('task docs/tasks/v0/task-01.md');
+  expect(output).toContain('task docs/tasks/v0/task-05.md');
+  expect(output).not.toContain('task docs/tasks/v0/task-06.md');
   expect(output).toContain('Showing 5 of 26 matches.\n');
 });
 
@@ -163,7 +163,7 @@ it('keeps an explicit limit when tty query output is paged', async () => {
  */
 async function expectRichQueryOutput(io_context) {
   const exit_code = await main(
-    ['query', '--where', 'kind=task and status=pending'],
+    ['query', '--where', '$class=task and status=pending'],
     {
       stderr: io_context.stderr,
       stdout: io_context.stdout,
@@ -174,8 +174,8 @@ async function expectRichQueryOutput(io_context) {
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
   expect(stripAnsi(io_context.paged_output_chunks.join(''))).toBe(
-    'document docs/tasks/v0/query-command.md\n' +
-      'kind: task  status: pending\n' +
+    'task docs/tasks/v0/query-command.md\n' +
+      'status: pending\n' +
       '\n' +
       '    Implement query command\n',
   );

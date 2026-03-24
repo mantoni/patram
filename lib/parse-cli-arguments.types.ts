@@ -1,4 +1,4 @@
-export type CliCommandName = 'check' | 'query' | 'queries' | 'show';
+export type CliCommandName = 'check' | 'fields' | 'query' | 'queries' | 'show';
 export type CliHelpTopicName = 'query-language';
 export type CliHelpTargetKind = 'root' | 'command' | 'topic';
 

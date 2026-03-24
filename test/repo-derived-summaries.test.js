@@ -89,6 +89,6 @@ it('renders the shown document self-summary in show output', async () => {
   const plain_output = renderPlainOutput(output_view);
 
   expect(plain_output).toContain(
-    '----------------\ndocument docs/plans/v0/declarative-derived-summaries.md\nkind: plan  status: active\nexecution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 1',
+    '----------------\nplan docs/plans/v0/declarative-derived-summaries.md\nstatus: active\nexecution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 1',
   );
 });

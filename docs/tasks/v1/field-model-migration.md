@@ -1,7 +1,7 @@
 # Migrate Repo To The New Field Model
 
 - Kind: task
-- Status: pending
+- Status: done
 - Tracked in: docs/plans/v1/field-model-redesign.md
 - Decided by: docs/decisions/class-based-config-vocabulary.md
 - Decided by: docs/decisions/patram-structural-field-namespace.md

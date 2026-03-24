@@ -33,10 +33,12 @@ it('indexes the canonical command taxonomy nodes', async () => {
   expect(
     selectIds(
       project_graph_result.graph,
+      project_graph_result.config,
       repo_config.queries['command-taxonomy'].where,
     ),
   ).toEqual([
     'command:check',
+    'command:fields',
     'command:queries',
     'command:query',
     'command:show',
@@ -50,6 +52,7 @@ it('indexes the canonical term taxonomy nodes', async () => {
   expect(
     selectIds(
       project_graph_result.graph,
+      project_graph_result.config,
       repo_config.queries['term-taxonomy'].where,
     ),
   ).toEqual([
@@ -70,6 +73,7 @@ it('indexes stored command implementation entrypoints', async () => {
   expect(
     selectPaths(
       project_graph_result.graph,
+      project_graph_result.config,
       repo_config.queries['command-implementations'].where,
     ),
   ).toEqual(['lib/patram-cli.js']);
@@ -80,7 +84,11 @@ it('filters source anchors by exact semantic command target', async () => {
 
   expect(project_graph_result.diagnostics).toEqual([]);
   expect(
-    selectPaths(project_graph_result.graph, 'implements_command=command:query'),
+    selectPaths(
+      project_graph_result.graph,
+      project_graph_result.config,
+      'implements_command=command:query',
+    ),
   ).toEqual(['lib/patram-cli.js']);
 });
 
@@ -91,6 +99,7 @@ it('indexes stored term usage entrypoints', async () => {
   expect(
     selectPaths(
       project_graph_result.graph,
+      project_graph_result.config,
       repo_config.queries['term-usage'].where,
     ),
   ).toEqual([
@@ -107,7 +116,11 @@ it('filters source anchors by exact semantic term target', async () => {
 
   expect(project_graph_result.diagnostics).toEqual([]);
   expect(
-    selectPaths(project_graph_result.graph, 'uses_term=term:graph'),
+    selectPaths(
+      project_graph_result.graph,
+      project_graph_result.config,
+      'uses_term=term:graph',
+    ),
   ).toEqual([
     'docs/graph-v0.md',
     'lib/build-graph.js',
@@ -118,22 +131,24 @@ it('filters source anchors by exact semantic term target', async () => {
 
 /**
  * @param {import('../lib/build-graph.types.ts').BuildGraphResult} graph
+ * @param {import('../lib/load-patram-config.types.ts').PatramRepoConfig} repo_config
  * @param {string} where_clause
  * @returns {string[]}
  */
-function selectPaths(graph, where_clause) {
-  return queryGraph(graph, where_clause).nodes.flatMap((graph_node) =>
-    graph_node.path ? [graph_node.path] : [],
+function selectPaths(graph, repo_config, where_clause) {
+  return queryGraph(graph, where_clause, repo_config).nodes.flatMap(
+    (graph_node) => (graph_node.path ? [graph_node.path] : []),
   );
 }
 
 /**
  * @param {import('../lib/build-graph.types.ts').BuildGraphResult} graph
+ * @param {import('../lib/load-patram-config.types.ts').PatramRepoConfig} repo_config
  * @param {string} where_clause
  * @returns {string[]}
  */
-function selectIds(graph, where_clause) {
-  return queryGraph(graph, where_clause).nodes.map(
+function selectIds(graph, repo_config, where_clause) {
+  return queryGraph(graph, where_clause, repo_config).nodes.map(
     (graph_node) => graph_node.id,
   );
 }

@@ -1,12 +1,15 @@
 import type { ClaimOrigin } from './parse-claims.types.ts';
 
 export interface GraphNode {
+  $class?: string;
+  $id?: string;
+  $path?: string;
   id: string;
-  kind: string;
+  kind?: string;
   key?: string;
   path?: string;
   title?: string;
-  [field: string]: string | undefined;
+  [field: string]: string | string[] | undefined;
 }
 
 export interface GraphEdge {

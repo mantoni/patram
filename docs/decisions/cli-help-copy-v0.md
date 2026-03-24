@@ -24,6 +24,7 @@ Patram explores docs and how they link to sources.
 
 Commands:
   check    Validate a project, directory, or file
+  fields   Discover likely field schema from source claims
   query    Run a stored query or an ad hoc where clause
   queries  List stored queries
   show     Print a file with resolved links
@@ -77,8 +78,8 @@ Usage:
 Run a stored query or an ad hoc where clause against graph nodes.
 
 Where clause:
-  id=<value> | kind=<value> | path=<value> | status=<value>
-  id^=<prefix> | path^=<prefix> | title~<text>
+  $id=<value> | $class=<value> | $path=<value> | status=<value>
+  $id^=<prefix> | $path^=<prefix> | title~<text>
   <field> in [<value>, ...] | <field> not in [<value>, ...]
   <relation>:* | <relation>=<target-id>
   any(<traversal>, <term> and <term>)
@@ -98,10 +99,10 @@ Examples:
   patram query active-plans
   patram query --where "tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md"
   patram query --where "status not in [done, dropped, superseded]"
-  patram query --where "kind=plan and none(in:tracked_in, kind=decision)"
-  patram query --where "count(in:decided_by, kind=task) = 0"
+  patram query --where "$class=plan and none(in:tracked_in, $class=decision)"
+  patram query --where "count(in:decided_by, $class=task) = 0"
   patram query ready-tasks --explain
-  patram query --where "kind=decision and status=accepted and count(in:decided_by, kind=task) = 0" --lint
+  patram query --where "$class=decision and status=accepted and count(in:decided_by, $class=task) = 0" --lint
   patram query active-plans --limit 10 --offset 20
 
 Related:
@@ -167,8 +168,8 @@ Query language filters graph nodes with field, relation, traversal, and aggregat
 
 Usage:
   <field>=<value>
-  id^=<prefix>
-  path^=<prefix>
+  $id^=<prefix>
+  $path^=<prefix>
   title~<text>
   <field> in [<value>, ...]
   <field> not in [<value>, ...]
@@ -181,10 +182,10 @@ Usage:
   <term> and <term>
 
 Fields:
-  Exact match: id, kind, path, status
-  Prefix match: id, path
+  Exact match: $id, $class, $path, status
+  Prefix match: $id, $path
   Contains text: title
-  Set membership: id, kind, path, status, title
+  Set membership: $id, $class, $path, status, title
 
 Relations:
   <relation>:*            Match nodes with at least one outgoing relation
@@ -194,7 +195,7 @@ Relations:
 
 Operators:
   =             Exact field match or exact count comparison
-  ^=            Prefix match for id and path
+  ^=            Prefix match for structural id and path
   ~             Contains text for title
   in            Set membership for supported fields
   not in        Set exclusion for supported fields
@@ -203,15 +204,15 @@ Operators:
   != < > >= <=  Count comparisons
 
 Examples:
-  kind=decision and status=accepted
-  path^=docs/plans/
+  $class=decision and status=accepted
+  $path^=docs/plans/
   title~query
   tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md
   implements_command=command:query
   status not in [done, dropped, superseded]
-  any(in:tracked_in, kind=task and status in [pending, ready, in_progress, blocked])
-  none(in:tracked_in, kind=decision)
-  count(in:decided_by, kind=task) = 0
+  any(in:tracked_in, $class=task and status in [pending, ready, in_progress, blocked])
+  none(in:tracked_in, $class=decision)
+  count(in:decided_by, $class=task) = 0
   not uses_term=term:graph
 ```
 
@@ -226,6 +227,7 @@ Unknown command: frob
 
 Commands:
   check
+  fields
   query
   queries
   show
@@ -346,6 +348,7 @@ Help topics:
 
 Commands:
   check
+  fields
   query
   queries
   show
