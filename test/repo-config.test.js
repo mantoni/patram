@@ -23,7 +23,6 @@ it('indexes repo docs and defines the documented stored queries', () => {
 
 function createExpectedRepoConfig() {
   return {
-    class_schemas: createExpectedClassSchemas(),
     classes: createExpectedClasses(),
     derived_summaries: createExpectedDerivedSummaries(),
     fields: createExpectedFields(),
@@ -41,57 +40,57 @@ function createExpectedRepoConfig() {
   };
 }
 
-function createExpectedClassSchemas() {
+function createExpectedClasses() {
   return {
-    command: createExpectedClassSchema({
+    command: createExpectedLabeledClass('Command', {
       summary: createOptionalFieldRule(),
     }),
-    convention: createExpectedDocumentClassSchema('convention_docs'),
-    decision: createExpectedDocumentClassSchema('decision_docs'),
-    document: createExpectedClassSchema({
-      description: createOptionalFieldRule(),
-      kind: createOptionalFieldRule(),
-      status: createOptionalFieldRule(),
-    }),
-    idea: createExpectedDocumentClassSchema('idea_docs'),
-    plan: createExpectedDocumentClassSchema('plan_docs'),
-    roadmap: createExpectedDocumentClassSchema('roadmap_docs'),
-    task: createExpectedDocumentClassSchema('task_docs'),
-    term: createExpectedClassSchema({
+    convention: createExpectedLabeledDocumentClass(
+      'Convention',
+      'convention_docs',
+    ),
+    decision: createExpectedLabeledDocumentClass('Decision', 'decision_docs'),
+    document: createExpectedDocumentClass(),
+    idea: createExpectedLabeledDocumentClass('Idea', 'idea_docs'),
+    plan: createExpectedLabeledDocumentClass('Plan', 'plan_docs'),
+    roadmap: createExpectedLabeledDocumentClass('Roadmap', 'roadmap_docs'),
+    task: createExpectedLabeledDocumentClass('Task', 'task_docs'),
+    term: createExpectedLabeledClass('Term', {
       definition: createOptionalFieldRule(),
     }),
   };
 }
 
-function createExpectedClasses() {
+/**
+ * @param {string} label
+ * @param {string} document_path_class
+ */
+function createExpectedLabeledDocumentClass(label, document_path_class) {
   return {
-    command: {
-      label: 'Command',
-    },
-    convention: {
-      label: 'Convention',
-    },
-    decision: {
-      label: 'Decision',
-    },
-    document: {
-      builtin: true,
-    },
-    idea: {
-      label: 'Idea',
-    },
-    plan: {
-      label: 'Plan',
-    },
-    roadmap: {
-      label: 'Roadmap',
-    },
-    task: {
-      label: 'Task',
-    },
-    term: {
-      label: 'Term',
-    },
+    label,
+    schema: createExpectedDocumentClassSchema(document_path_class),
+  };
+}
+
+/**
+ * @param {string} label
+ * @param {Record<string, { presence: 'optional' }>} fields
+ */
+function createExpectedLabeledClass(label, fields) {
+  return {
+    label,
+    schema: createExpectedClassSchema(fields),
+  };
+}
+
+function createExpectedDocumentClass() {
+  return {
+    builtin: true,
+    schema: createExpectedClassSchema({
+      description: createOptionalFieldRule(),
+      kind: createOptionalFieldRule(),
+      status: createOptionalFieldRule(),
+    }),
   };
 }
 

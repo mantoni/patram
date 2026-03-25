@@ -12,8 +12,11 @@ export type MappingEmitDefinition =
   import('./patram-config.js').MappingEmitDefinition;
 export type MappingDefinition = import('./patram-config.js').MappingDefinition;
 export type PatramGraphConfig = import('./patram-config.js').PatramGraphConfig;
+export type PatramClassConfig = ClassDefinition & {
+  schema?: ClassSchemaConfig;
+};
 
-export type PatramConfig = PatramGraphConfig & {
-  class_schemas?: Record<string, ClassSchemaConfig>;
+export type PatramConfig = Omit<PatramGraphConfig, 'classes'> & {
+  classes: Record<string, PatramClassConfig>;
   fields?: Record<string, MetadataFieldConfig>;
 };
