@@ -1,158 +1,56 @@
-import type {
-  ClassDefinition,
-  MappingDefinition,
-  RelationDefinition,
-} from './patram-config.types.ts';
-
-export interface StoredQueryConfig {
-  where: string;
-}
-
+export type StoredQueryConfig =
+  import('./load-patram-config.js').StoredQueryConfig;
+export type FieldDisplayConfig =
+  import('./load-patram-config.js').FieldDisplayConfig;
+export type FieldQueryConfig =
+  import('./load-patram-config.js').FieldQueryConfig;
 export type FieldValueTypeName =
-  | 'string'
-  | 'integer'
-  | 'enum'
-  | 'path'
-  | 'glob'
-  | 'date'
-  | 'date_time';
-
-export interface FieldDisplayConfig {
-  hidden?: boolean;
-  order?: number;
-}
-
-export interface FieldQueryConfig {
-  contains?: boolean;
-  prefix?: boolean;
-}
-
-export interface StringFieldConfig {
-  display?: FieldDisplayConfig;
-  multiple?: boolean;
-  query?: FieldQueryConfig;
-  type: 'string';
-}
-
-export interface IntegerFieldConfig {
-  display?: FieldDisplayConfig;
-  multiple?: boolean;
-  type: 'integer';
-}
-
-export interface EnumFieldConfig {
-  display?: FieldDisplayConfig;
-  multiple?: boolean;
-  type: 'enum';
-  values: string[];
-}
-
-export interface PathFieldConfig {
-  display?: FieldDisplayConfig;
-  multiple?: boolean;
-  path_class?: string;
-  type: 'path';
-}
-
-export interface GlobFieldConfig {
-  display?: FieldDisplayConfig;
-  multiple?: boolean;
-  type: 'glob';
-}
-
-export interface DateFieldConfig {
-  display?: FieldDisplayConfig;
-  multiple?: boolean;
-  type: 'date';
-}
-
-export interface DateTimeFieldConfig {
-  display?: FieldDisplayConfig;
-  multiple?: boolean;
-  type: 'date_time';
-}
-
+  import('./load-patram-config.js').MetadataFieldConfig['type'];
 export type MetadataFieldConfig =
-  | DateFieldConfig
-  | DateTimeFieldConfig
-  | EnumFieldConfig
-  | GlobFieldConfig
-  | IntegerFieldConfig
-  | PathFieldConfig
-  | StringFieldConfig;
-
-export interface ClassFieldRuleConfig {
-  presence: 'required' | 'optional' | 'forbidden';
-}
-
+  import('./load-patram-config.js').MetadataFieldConfig;
+export type StringFieldConfig = Extract<
+  MetadataFieldConfig,
+  { type: 'string' }
+>;
+export type IntegerFieldConfig = Extract<
+  MetadataFieldConfig,
+  { type: 'integer' }
+>;
+export type EnumFieldConfig = Extract<MetadataFieldConfig, { type: 'enum' }>;
+export type PathFieldConfig = Extract<MetadataFieldConfig, { type: 'path' }>;
+export type GlobFieldConfig = Extract<MetadataFieldConfig, { type: 'glob' }>;
+export type DateFieldConfig = Extract<MetadataFieldConfig, { type: 'date' }>;
+export type DateTimeFieldConfig = Extract<
+  MetadataFieldConfig,
+  { type: 'date_time' }
+>;
+export type ClassFieldRuleConfig =
+  import('./load-patram-config.js').ClassFieldRuleConfig;
 export type DirectiveTypeConfig = MetadataFieldConfig;
 export type MetadataDirectiveRuleConfig = ClassFieldRuleConfig;
-
-export interface ClassSchemaConfig {
-  document_path_class?: string;
-  fields: Record<string, ClassFieldRuleConfig>;
-  unknown_fields?: 'ignore' | 'error';
-}
-
+export type ClassSchemaConfig =
+  import('./load-patram-config.js').ClassSchemaConfig;
 export type MetadataSchemaConfig = ClassSchemaConfig;
-
-export interface PathClassConfig {
-  prefixes: string[];
-}
-
-export type DerivedSummaryScalar = boolean | number | string | null;
-
-export interface DerivedSummaryCountFieldConfig {
-  count: {
-    traversal: string;
-    where: string;
-  };
-  name: string;
-}
-
-export interface DerivedSummarySelectCaseConfig {
-  value: DerivedSummaryScalar;
-  when: string;
-}
-
-export interface DerivedSummarySelectFieldConfig {
-  default: DerivedSummaryScalar;
-  name: string;
-  select: DerivedSummarySelectCaseConfig[];
-}
-
+export type PathClassConfig = import('./load-patram-config.js').PathClassConfig;
+export type DerivedSummaryScalar =
+  import('./load-patram-config.js').DerivedSummaryScalar;
+export type DerivedSummarySelectCaseConfig =
+  import('./load-patram-config.js').DerivedSummarySelectCaseConfig;
 export type DerivedSummaryFieldConfig =
-  | DerivedSummaryCountFieldConfig
-  | DerivedSummarySelectFieldConfig;
-
-export interface DerivedSummaryConfig {
-  classes: string[];
-  fields: DerivedSummaryFieldConfig[];
-}
-
-export interface PatramRepoConfig {
-  class_schemas?: Record<string, ClassSchemaConfig>;
-  classes?: Record<string, ClassDefinition>;
-  derived_summaries?: Record<string, DerivedSummaryConfig>;
-  fields?: Record<string, MetadataFieldConfig>;
-  include: string[];
-  mappings?: Record<string, MappingDefinition>;
-  path_classes?: Record<string, PathClassConfig>;
-  queries: Record<string, StoredQueryConfig>;
-  relations?: Record<string, RelationDefinition>;
-}
-
-export interface PatramDiagnostic {
-  code: string;
-  column: number;
-  level: 'error';
-  line: number;
-  message: string;
-  path: string;
-}
-
-export interface LoadPatramConfigResult {
-  config: PatramRepoConfig | null;
-  config_path: string;
-  diagnostics: PatramDiagnostic[];
-}
+  import('./load-patram-config.js').DerivedSummaryFieldConfig;
+export type DerivedSummaryCountFieldConfig = Extract<
+  DerivedSummaryFieldConfig,
+  { count: unknown }
+>;
+export type DerivedSummarySelectFieldConfig = Extract<
+  DerivedSummaryFieldConfig,
+  { select: unknown }
+>;
+export type DerivedSummaryConfig =
+  import('./load-patram-config.js').DerivedSummaryConfig;
+export type PatramRepoConfig =
+  import('./load-patram-config.js').PatramRepoConfig;
+export type PatramDiagnostic =
+  import('./load-patram-config.js').PatramDiagnostic;
+export type LoadPatramConfigResult =
+  import('./load-patram-config.js').LoadPatramConfigResult;

@@ -1,40 +1,19 @@
-export interface ClassDefinition {
-  builtin?: boolean;
-  label?: string;
-}
-
-export interface RelationDefinition {
-  builtin?: boolean;
-  from: string[];
-  to: string[];
-}
-
-export interface MappingNodeDefinition {
-  class: string;
-  field: string;
-  key?: 'path' | 'value';
-}
-
-export interface MappingEmitDefinition {
-  relation: string;
-  target: 'path' | 'value';
-  target_class: string;
-}
-
-export interface MappingDefinition {
-  emit?: MappingEmitDefinition;
-  node?: MappingNodeDefinition;
-}
-
-export interface PatramConfig {
-  $schema?: string;
-  classes: Record<string, ClassDefinition>;
-  class_schemas?: Record<string, ClassSchemaConfig>;
-  fields?: Record<string, MetadataFieldConfig>;
-  mappings: Record<string, MappingDefinition>;
-  relations: Record<string, RelationDefinition>;
-}
 import type {
   ClassSchemaConfig,
   MetadataFieldConfig,
 } from './load-patram-config.types.ts';
+
+export type ClassDefinition = import('./patram-config.js').ClassDefinition;
+export type RelationDefinition =
+  import('./patram-config.js').RelationDefinition;
+export type MappingNodeDefinition =
+  import('./patram-config.js').MappingNodeDefinition;
+export type MappingEmitDefinition =
+  import('./patram-config.js').MappingEmitDefinition;
+export type MappingDefinition = import('./patram-config.js').MappingDefinition;
+export type PatramGraphConfig = import('./patram-config.js').PatramGraphConfig;
+
+export type PatramConfig = PatramGraphConfig & {
+  class_schemas?: Record<string, ClassSchemaConfig>;
+  fields?: Record<string, MetadataFieldConfig>;
+};
