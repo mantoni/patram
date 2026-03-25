@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.2 - 2026-03-25
+
+- Stabilize entrypoint test fixtures
+  ([`74e4c0e`](https://github.com/mantoni/patram/commit/74e4c0e5492632e33a886d1af1cd96b03986e30d))
+
 ## 0.6.1 - 2026-03-25
 
 - Expose graph API from package root
