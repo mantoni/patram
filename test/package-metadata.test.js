@@ -30,33 +30,47 @@ const exec_file = promisify(execFile);
 const repo_directory = dirname(
   fileURLToPath(new URL('../package.json', import.meta.url)),
 );
+const expected_package_contract = {
+  engines: {
+    node: '>=22',
+  },
+  exports: {
+    '.': {
+      default: './lib/patram.js',
+      types: './lib/patram.d.ts',
+    },
+    './bin/patram.js': './bin/patram.js',
+  },
+  files: [
+    'bin/patram.js',
+    'lib/**/*.d.ts',
+    'lib/**/*.js',
+    'lib/**/*.ts',
+    '!bin/**/*.test.d.ts',
+    '!bin/**/*.test-helpers.d.ts',
+    '!bin/**/*.test.js',
+    '!bin/**/*.test-helpers.js',
+    '!lib/**/*.test.d.ts',
+    '!lib/**/*.test-helpers.d.ts',
+    '!lib/**/*.test.js',
+    '!lib/**/*.test-helpers.js',
+  ],
+  homepage: 'https://github.com/mantoni/patram',
+  license: 'MIT',
+  main: './lib/patram.js',
+  scripts: {
+    postpack: 'node scripts/clean-package-api-declarations.js',
+    prepack: 'node scripts/build-package-api-declarations.js',
+  },
+  repository: {
+    type: 'git',
+    url: 'git+https://github.com/mantoni/patram.git',
+  },
+  types: './lib/patram.d.ts',
+};
 
 it('defines publish metadata for the npm package', async () => {
-  expect(package_json).toMatchObject({
-    engines: {
-      node: '>=22',
-    },
-    exports: {
-      '.': './lib/patram.js',
-      './bin/patram.js': './bin/patram.js',
-    },
-    files: [
-      'bin/patram.js',
-      'lib/**/*.js',
-      'lib/**/*.ts',
-      '!bin/**/*.test.js',
-      '!bin/**/*.test-helpers.js',
-      '!lib/**/*.test.js',
-      '!lib/**/*.test-helpers.js',
-    ],
-    homepage: 'https://github.com/mantoni/patram',
-    license: 'MIT',
-    main: './lib/patram.js',
-    repository: {
-      type: 'git',
-      url: 'git+https://github.com/mantoni/patram.git',
-    },
-  });
+  expect(package_json).toMatchObject(expected_package_contract);
 
   const license_text = await readTextFile(
     new URL('../LICENSE', import.meta.url),
@@ -82,7 +96,9 @@ it(
       expect(packed_file_paths).toContain('lib/patram-cli.js');
       expect(packed_file_paths).not.toContain('bin/patram.test.js');
       expect(packed_file_paths).not.toContain('bin/patram.test-helpers.js');
+      expect(packed_file_paths).not.toContain('lib/patram.test.d.ts');
       expect(packed_file_paths).not.toContain('lib/build-graph.test.js');
+      expect(packed_file_paths).not.toContain('lib/build-graph.test.d.ts');
       expect(packed_file_paths).not.toContain('lib/render-output-view.test.js');
     } finally {
       await rm(temp_directory, { force: true, recursive: true });

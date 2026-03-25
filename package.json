@@ -3,16 +3,25 @@
   "version": "0.6.2",
   "type": "module",
   "main": "./lib/patram.js",
+  "types": "./lib/patram.d.ts",
   "exports": {
-    ".": "./lib/patram.js",
+    ".": {
+      "types": "./lib/patram.d.ts",
+      "default": "./lib/patram.js"
+    },
     "./bin/patram.js": "./bin/patram.js"
   },
   "files": [
     "bin/patram.js",
+    "lib/**/*.d.ts",
     "lib/**/*.js",
     "lib/**/*.ts",
+    "!bin/**/*.test.d.ts",
+    "!bin/**/*.test-helpers.d.ts",
     "!bin/**/*.test.js",
     "!bin/**/*.test-helpers.js",
+    "!lib/**/*.test.d.ts",
+    "!lib/**/*.test-helpers.d.ts",
     "!lib/**/*.test.js",
     "!lib/**/*.test-helpers.js"
   ],
@@ -37,6 +46,8 @@
     "check:staged": "lint-staged",
     "check:types": "tsc",
     "postversion": "git push && git push --tags",
+    "postpack": "node scripts/clean-package-api-declarations.js",
+    "prepack": "node scripts/build-package-api-declarations.js",
     "preversion": "npm run all",
     "prepare": "husky",
     "test": "vitest run",

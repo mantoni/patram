@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "types": ["node"]
+  },
+  "include": ["lib/patram.js"],
+  "exclude": ["**/*.test.js", "**/*.test-helpers.js"]
+}

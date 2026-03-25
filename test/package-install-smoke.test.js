@@ -1,7 +1,7 @@
 // @module-tag smoke
 
 import { execFile } from 'node:child_process';
-import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { access, mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import process from 'node:process';
@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 
 import { it } from 'vitest';
+import { expect } from 'vitest';
 
 /**
  * Published package smoke coverage.
@@ -39,8 +40,11 @@ it('installs and imports the packed npm package in a consumer project', async ()
 
     await createConsumerProject(consumer_directory);
     await installTarball(consumer_directory, tarball_path);
+    await assertTarballIncludesDeclarations(tarball_path);
     await importPackedLibrary(consumer_directory);
     await importPackedCli(consumer_directory);
+    await typecheckPackedLibrary(consumer_directory);
+    await assertGeneratedDeclarationsAreCleared();
   } finally {
     await rm(temp_directory, { force: true, recursive: true });
   }
@@ -56,19 +60,14 @@ async function packRepo(parent_directory) {
 
   const { stdout } = await runCommand(
     'npm',
-    [
-      'pack',
-      '--ignore-scripts',
-      '--json',
-      '--pack-destination',
-      parent_directory,
-    ],
+    ['pack', '--json', '--pack-destination', parent_directory],
     repo_directory,
     {
+      HUSKY: '0',
       npm_config_cache: npm_cache_directory,
     },
   );
-  const pack_result = JSON.parse(stdout);
+  const pack_result = parsePackResult(stdout);
 
   return join(parent_directory, pack_result[0].filename);
 }
@@ -91,6 +90,36 @@ async function createConsumerProject(consumer_directory) {
   );
 
   await writeFile(package_json_path, `${package_json_text}\n`);
+  await writeFile(
+    join(consumer_directory, 'index.ts'),
+    [
+      "import { loadProjectGraph, queryGraph } from 'patram';",
+      '',
+      "const load_result = loadProjectGraph('.');",
+      'void load_result;',
+      '',
+      "const query_result = queryGraph({ edges: [], nodes: {} }, '$id=*');",
+      'void query_result;',
+      '',
+    ].join('\n'),
+  );
+  await writeFile(
+    join(consumer_directory, 'tsconfig.json'),
+    `${JSON.stringify(
+      {
+        compilerOptions: {
+          module: 'NodeNext',
+          moduleResolution: 'NodeNext',
+          strict: true,
+          noEmit: true,
+          target: 'ES2023',
+        },
+        include: ['index.ts'],
+      },
+      null,
+      2,
+    )}\n`,
+  );
 }
 
 /**
@@ -151,6 +180,64 @@ async function importPackedLibrary(consumer_directory) {
     ],
     consumer_directory,
   );
+}
+
+/**
+ * @param {string} tarball_path
+ */
+async function assertTarballIncludesDeclarations(tarball_path) {
+  const { stdout } = await runCommand(
+    'tar',
+    ['-tf', tarball_path],
+    repo_directory,
+  );
+
+  expect(stdout).toContain('package/lib/patram.d.ts');
+  expect(stdout).toContain('package/lib/load-project-graph.d.ts');
+  expect(stdout).toContain('package/lib/query-graph.d.ts');
+  expect(stdout).not.toContain('package/lib/patram.test.d.ts');
+  expect(stdout).not.toContain('package/lib/build-graph.test.d.ts');
+}
+
+/**
+ * @param {string} consumer_directory
+ */
+async function typecheckPackedLibrary(consumer_directory) {
+  await runCommand(
+    'node',
+    [join(repo_directory, 'node_modules/typescript/bin/tsc'), '-p', '.'],
+    consumer_directory,
+  );
+}
+
+async function assertGeneratedDeclarationsAreCleared() {
+  await expect(
+    access(join(repo_directory, 'lib/patram.d.ts')),
+  ).rejects.toThrow();
+  await expect(
+    access(join(repo_directory, 'lib/load-project-graph.d.ts')),
+  ).rejects.toThrow();
+}
+
+/**
+ * @param {string} stdout
+ * @returns {{ filename: string }[]}
+ */
+function parsePackResult(stdout) {
+  const json_start = stdout.indexOf('[');
+
+  if (json_start < 0) {
+    throw new Error(`Expected npm pack JSON output.\n${stdout}`);
+  }
+
+  const json_text = stdout.slice(json_start).trim();
+  const json_end = json_text.lastIndexOf(']');
+
+  if (json_end < 0) {
+    throw new Error(`Expected npm pack JSON array.\n${stdout}`);
+  }
+
+  return JSON.parse(json_text.slice(0, json_end + 1));
 }
 
 /**
