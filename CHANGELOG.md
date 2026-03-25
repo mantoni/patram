@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0 - 2026-03-25
+
+- Inline class schemas into classes
+  ([`2fd016e`](https://github.com/mantoni/patram/commit/2fd016e30dfd29c62f53cfcaed2788743628fb66))
+- Derive config types from zod schemas
+  ([`d6acbfb`](https://github.com/mantoni/patram/commit/d6acbfb41d36de694ff60bcddb71f432b0b03b92))
+- Normalize JSDoc type imports
+  ([`7aae529`](https://github.com/mantoni/patram/commit/7aae529a4d2610453e3184e2e42a1ed291b59cf9))
+
 ## 0.4.0 - 2026-03-24
 
 - Promote document-backed nodes to semantic ids
