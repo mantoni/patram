@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.6.0 - 2026-03-25
+
+- Add YAML source and front matter support
+  ([`a0091e9`](https://github.com/mantoni/patram/commit/a0091e9dfded885077939a79d2797388eed85929))
+- Document YAML source support and front matter
+  ([`dfabf04`](https://github.com/mantoni/patram/commit/dfabf0436389f671671db52616ce0a106e090544))
+- Implement markdown directive style validation
+  ([`822eff1`](https://github.com/mantoni/patram/commit/822eff1fbb566f246f581881de354aa3696ddd1f))
+- Draft markdown directive style validation decision
+  ([`d590087`](https://github.com/mantoni/patram/commit/d59008703f11f3d149ae3099340d75db34c9cbda))
+- Validate directive path references
+  ([`022667c`](https://github.com/mantoni/patram/commit/022667c53d4c16590b8f0bfc8a95676f3adea780))
+- Remove per-file coverage exclusions
+  ([`0a3767f`](https://github.com/mantoni/patram/commit/0a3767f95472317254d12fafb799c07996a520cb))
+- Enable Per-File Coverage Gate
+  ([`10cff7a`](https://github.com/mantoni/patram/commit/10cff7a9add49acfd03964043b0a814a1f7d71ea))
+
 ## 0.5.0 - 2026-03-25
 
 - Inline class schemas into classes
