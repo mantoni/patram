@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.1 - 2026-03-25
+
+- Expose graph API from package root
+  ([`92eef5b`](https://github.com/mantoni/patram/commit/92eef5b0c16048e3be74443f09d5f49684b1f91d))
+
 ## 0.6.0 - 2026-03-25
 
 - Add YAML source and front matter support
