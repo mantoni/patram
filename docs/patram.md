@@ -32,9 +32,14 @@ For repository documentation layout and where to put new docs, see
 - Follows common practices.
 - In markdown files:
   - The first line of the file is the title.
+  - Top-of-file front matter delimited by `---` is parsed as YAML.
   - A word or phrase that links with a relative path into a directory added to
     patram.
   - Defined keywords like `Defined by: <path-to-term-doc>`.
+- In YAML files:
+  - One `.yaml` or `.yml` file is one Patram document.
+  - Top-level mapped scalars and approved scalar lists emit neutral directive
+    claims.
 - In HTML files:
   - The `<title>` tag defines the title.
 - In source code comments:

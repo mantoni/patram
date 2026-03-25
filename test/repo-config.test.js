@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { expect, it } from 'vitest';
 
 import repo_config from '../.patram.json' with { type: 'json' };
@@ -28,6 +29,8 @@ function createExpectedRepoConfig() {
     fields: createExpectedFields(),
     include: [
       'docs/**/*.md',
+      'docs/**/*.yaml',
+      'docs/**/*.yml',
       'bin/**/*.js',
       'lib/**/*.js',
       'scripts/**/*.js',
@@ -213,6 +216,7 @@ function createExpectedRepoMappings() {
     ...createExpectedDocumentMappings(),
     ...createExpectedJsdocMappings(),
     ...createExpectedMarkdownMappings(),
+    ...createExpectedYamlMappings(),
   };
 }
 
@@ -281,6 +285,42 @@ function createExpectedMarkdownMappings() {
     ),
     'markdown.directive.tracked_in': createRelationMapping('tracked_in'),
     'markdown.directive.uses_term': createTaxonomyRelationMapping(
+      'uses_term',
+      'term',
+    ),
+  };
+}
+
+function createExpectedYamlMappings() {
+  return {
+    'yaml.directive.about_command': createTaxonomyRelationMapping(
+      'about_command',
+      'command',
+    ),
+    'yaml.directive.blocked_by': createRelationMapping('blocked_by'),
+    'yaml.directive.command': createTaxonomyDefinitionMapping(
+      'command',
+      'title',
+    ),
+    'yaml.directive.command_summary': createTaxonomyNodeMapping(
+      'command',
+      'summary',
+    ),
+    'yaml.directive.decided_by': createRelationMapping('decided_by'),
+    'yaml.directive.implements': createRelationMapping('implements'),
+    'yaml.directive.implements_command': createTaxonomyRelationMapping(
+      'implements_command',
+      'command',
+    ),
+    'yaml.directive.kind': createDocumentNodeMapping('$class'),
+    'yaml.directive.status': createDocumentNodeMapping('status'),
+    'yaml.directive.term': createTaxonomyDefinitionMapping('term', 'title'),
+    'yaml.directive.term_definition': createTaxonomyNodeMapping(
+      'term',
+      'definition',
+    ),
+    'yaml.directive.tracked_in': createRelationMapping('tracked_in'),
+    'yaml.directive.uses_term': createTaxonomyRelationMapping(
       'uses_term',
       'term',
     ),

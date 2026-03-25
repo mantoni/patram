@@ -1,6 +1,8 @@
 {
   "include": [
     "docs/**/*.md",
+    "docs/**/*.yaml",
+    "docs/**/*.yml",
     "bin/**/*.js",
     "lib/**/*.js",
     "scripts/**/*.js",
@@ -554,6 +556,103 @@
       }
     },
     "markdown.directive.uses_term": {
+      "emit": {
+        "relation": "uses_term",
+        "target": "path",
+        "target_class": "term"
+      }
+    },
+    "yaml.directive.about_command": {
+      "emit": {
+        "relation": "about_command",
+        "target": "path",
+        "target_class": "command"
+      }
+    },
+    "yaml.directive.command": {
+      "emit": {
+        "relation": "defines",
+        "target": "value",
+        "target_class": "command"
+      },
+      "node": {
+        "field": "title",
+        "key": "value",
+        "class": "command"
+      }
+    },
+    "yaml.directive.command_summary": {
+      "node": {
+        "field": "summary",
+        "class": "command"
+      }
+    },
+    "yaml.directive.kind": {
+      "node": {
+        "field": "$class",
+        "class": "document"
+      }
+    },
+    "yaml.directive.status": {
+      "node": {
+        "field": "status",
+        "class": "document"
+      }
+    },
+    "yaml.directive.blocked_by": {
+      "emit": {
+        "relation": "blocked_by",
+        "target": "path",
+        "target_class": "document"
+      }
+    },
+    "yaml.directive.decided_by": {
+      "emit": {
+        "relation": "decided_by",
+        "target": "path",
+        "target_class": "document"
+      }
+    },
+    "yaml.directive.implements": {
+      "emit": {
+        "relation": "implements",
+        "target": "path",
+        "target_class": "document"
+      }
+    },
+    "yaml.directive.implements_command": {
+      "emit": {
+        "relation": "implements_command",
+        "target": "path",
+        "target_class": "command"
+      }
+    },
+    "yaml.directive.term": {
+      "emit": {
+        "relation": "defines",
+        "target": "value",
+        "target_class": "term"
+      },
+      "node": {
+        "field": "title",
+        "key": "value",
+        "class": "term"
+      }
+    },
+    "yaml.directive.term_definition": {
+      "node": {
+        "field": "definition",
+        "class": "term"
+      }
+    },
+    "yaml.directive.tracked_in": {
+      "emit": {
+        "relation": "tracked_in",
+        "target": "path",
+        "target_class": "document"
+      }
+    },
+    "yaml.directive.uses_term": {
       "emit": {
         "relation": "uses_term",
         "target": "path",
