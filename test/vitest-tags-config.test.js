@@ -41,13 +41,7 @@ it('defines tag-aware Vitest timeout profiles and a higher slow-test threshold',
       : undefined;
 
   expect(test_config.slowTestThreshold).toBe(5_000);
-  expect(test_config.coverage?.exclude).toEqual(
-    expect.arrayContaining([
-      'lib/query-graph.js',
-      'lib/query-inspection.js',
-      'lib/render-rich-source.js',
-    ]),
-  );
+  expect(test_config.coverage?.exclude).toBe(undefined);
   expect(coverage_thresholds).toEqual(
     expect.objectContaining({
       perFile: true,
