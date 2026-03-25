@@ -1,5 +1,11 @@
 import type { PatramDiagnostic } from './load-patram-config.types.ts';
 
+export type MarkdownDirectiveStyle =
+  | 'front_matter'
+  | 'visible_line'
+  | 'list_item'
+  | 'hidden_tag';
+
 export interface ParseClaimsInput {
   path: string;
   source: string;
@@ -14,6 +20,7 @@ export interface ClaimOrigin {
 export interface PatramClaim {
   document_id: string;
   id: string;
+  markdown_style?: MarkdownDirectiveStyle;
   name?: string;
   origin: ClaimOrigin;
   parser?: string;

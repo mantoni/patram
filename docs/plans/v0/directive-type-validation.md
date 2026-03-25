@@ -5,6 +5,7 @@
 - Tracked in: docs/roadmap/v0-dogfood.md
 - Decided by: docs/decisions/markdown-metadata-directive-syntax.md
 - Decided by: docs/decisions/jsdoc-metadata-directive-syntax.md
+- Decided by: docs/decisions/markdown-directive-style-validation.md
 - Decided by: docs/decisions/patram-worktracking.md
 
 ## Goal

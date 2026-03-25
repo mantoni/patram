@@ -1,7 +1,7 @@
 # Markdown Directive Style Validation Proposal
 
 - Kind: decision
-- Status: proposed
+- Status: accepted
 - Tracked in: docs/plans/v0/directive-type-validation.md
 
 - Add optional markdown directive style rules to class schemas.
