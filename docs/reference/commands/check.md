@@ -5,4 +5,5 @@
   diagnostics.
 
 `patram check [<path>]` validates configuration, parsed sources, directive
-schemas, document placement, and broken document links for the selected scope.
+schemas, directive path references, document placement, and broken document
+links for the selected scope.
