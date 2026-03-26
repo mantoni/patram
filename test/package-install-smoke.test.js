@@ -78,47 +78,17 @@ async function packRepo(parent_directory) {
 async function createConsumerProject(consumer_directory) {
   await mkdir(consumer_directory, { recursive: true });
 
-  const package_json_path = join(consumer_directory, 'package.json');
-  const package_json_text = JSON.stringify(
-    {
-      name: 'patram-smoke-test-consumer',
-      private: true,
-      type: 'module',
-    },
-    null,
-    2,
+  await writeFile(
+    join(consumer_directory, 'package.json'),
+    createConsumerPackageJsonText(),
   );
-
-  await writeFile(package_json_path, `${package_json_text}\n`);
   await writeFile(
     join(consumer_directory, 'index.ts'),
-    [
-      "import { loadProjectGraph, queryGraph } from 'patram';",
-      '',
-      "const load_result = loadProjectGraph('.');",
-      'void load_result;',
-      '',
-      "const query_result = queryGraph({ edges: [], nodes: {} }, '$id=*');",
-      'void query_result;',
-      '',
-    ].join('\n'),
+    createConsumerIndexText(),
   );
   await writeFile(
     join(consumer_directory, 'tsconfig.json'),
-    `${JSON.stringify(
-      {
-        compilerOptions: {
-          module: 'NodeNext',
-          moduleResolution: 'NodeNext',
-          strict: true,
-          noEmit: true,
-          target: 'ES2023',
-        },
-        include: ['index.ts'],
-      },
-      null,
-      2,
-    )}\n`,
+    createConsumerTsconfigText(),
   );
 }
 
@@ -211,11 +181,12 @@ async function typecheckPackedLibrary(consumer_directory) {
 }
 
 async function assertGeneratedDeclarationsAreCleared() {
-  await expect(
-    access(join(repo_directory, 'lib/patram.d.ts')),
-  ).rejects.toThrow();
+  await access(join(repo_directory, 'lib/patram.d.ts'));
   await expect(
     access(join(repo_directory, 'lib/load-project-graph.d.ts')),
+  ).rejects.toThrow();
+  await expect(
+    access(join(repo_directory, 'lib/query-graph.d.ts')),
   ).rejects.toThrow();
 }
 
@@ -245,6 +216,123 @@ function parsePackResult(stdout) {
  */
 async function createTempDirectory() {
   return mkdtemp(join(tmpdir(), 'patram-package-install-'));
+}
+
+/**
+ * Builds the consumer package manifest fixture.
+ */
+function createConsumerPackageJsonText() {
+  return `${JSON.stringify(
+    {
+      name: 'patram-smoke-test-consumer',
+      private: true,
+      type: 'module',
+    },
+    null,
+    2,
+  )}\n`;
+}
+
+/**
+ * Builds the consumer TypeScript entrypoint fixture.
+ */
+function createConsumerIndexText() {
+  return [
+    createConsumerImportText(),
+    '',
+    createConsumerGraphText(),
+    '',
+    createConsumerDiagnosticText(),
+    '',
+    "const load_result: Promise<PatramProjectGraphResult> = loadProjectGraph('.');",
+    'void load_result;',
+    '',
+    "const query_result: PatramQueryResult = queryGraph(graph, '$id=*');",
+    'void query_result;',
+    'void diagnostic;',
+    '',
+  ].join('\n');
+}
+
+/**
+ * Builds the consumer import fixture text.
+ */
+function createConsumerImportText() {
+  return [
+    'import {',
+    '  loadProjectGraph,',
+    '  queryGraph,',
+    '  type PatramBuildGraphResult,',
+    '  type PatramDiagnostic,',
+    '  type PatramGraphEdge,',
+    '  type PatramGraphNode,',
+    '  type PatramProjectGraphResult,',
+    '  type PatramQueryResult,',
+    "} from 'patram';",
+  ].join('\n');
+}
+
+/**
+ * Builds the consumer graph fixture text.
+ */
+function createConsumerGraphText() {
+  return [
+    "const graph_node: PatramGraphNode = { id: 'doc:index.md' };",
+    'const graph_edge: PatramGraphEdge = {',
+    '  from: graph_node.id,',
+    "  id: 'edge:doc:index.md:defines:term:graph',",
+    '  origin: {',
+    "    path: 'index.md',",
+    '    line: 1,',
+    '    column: 1,',
+    '  },',
+    "  relation: 'defines',",
+    "  to: 'term:graph',",
+    '};',
+    '',
+    'const graph: PatramBuildGraphResult = {',
+    '  edges: [graph_edge],',
+    '  nodes: {',
+    '    [graph_node.id]: graph_node,',
+    '  },',
+    '};',
+  ].join('\n');
+}
+
+/**
+ * Builds the consumer diagnostic fixture text.
+ */
+function createConsumerDiagnosticText() {
+  return [
+    'const diagnostic: PatramDiagnostic = {',
+    "  code: 'example',",
+    '  column: 1,',
+    "  level: 'error',",
+    '  line: 1,',
+    "  message: 'Example diagnostic',",
+    "  path: 'index.md',",
+    '};',
+  ].join('\n');
+}
+
+/**
+ * Builds the consumer TypeScript config fixture.
+ */
+function createConsumerTsconfigText() {
+  return `${JSON.stringify(
+    {
+      compilerOptions: {
+        module: 'NodeNext',
+        moduleResolution: 'NodeNext',
+        strict: true,
+        noEmit: true,
+        target: 'ES2023',
+      },
+      include: ['index.ts'],
+    },
+    null,
+    2,
+  )}\n`;
 }
 
 /**

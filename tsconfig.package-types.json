@@ -6,6 +6,10 @@
     "noEmit": false,
     "types": ["node"]
   },
-  "include": ["lib/patram.js"],
+  "include": [
+    "lib/load-project-graph.js",
+    "lib/query-graph.js",
+    "lib/tagged-fenced-blocks.js"
+  ],
   "exclude": ["**/*.test.js", "**/*.test-helpers.js"]
 }
