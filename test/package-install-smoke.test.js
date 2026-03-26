@@ -143,8 +143,14 @@ async function importPackedLibrary(consumer_directory) {
         "if (typeof package_module.loadProjectGraph !== 'function') {",
         "  throw new Error('Expected loadProjectGraph export.');",
         '}',
+        "if (typeof package_module.parseWhereClause !== 'function') {",
+        "  throw new Error('Expected parseWhereClause export.');",
+        '}',
         "if (typeof package_module.queryGraph !== 'function') {",
         "  throw new Error('Expected queryGraph export.');",
+        '}',
+        "if (typeof package_module.getQuerySemanticDiagnostics !== 'function') {",
+        "  throw new Error('Expected getQuerySemanticDiagnostics export.');",
         '}',
       ].join('\n'),
     ],
@@ -242,6 +248,8 @@ function createConsumerIndexText() {
     '',
     createConsumerGraphText(),
     '',
+    createConsumerQueryText(),
+    '',
     createConsumerDiagnosticText(),
     '',
     "const load_result: Promise<PatramProjectGraphResult> = loadProjectGraph('.');",
@@ -260,14 +268,20 @@ function createConsumerIndexText() {
 function createConsumerImportText() {
   return [
     'import {',
+    '  getQuerySemanticDiagnostics,',
     '  loadProjectGraph,',
+    '  parseWhereClause,',
     '  queryGraph,',
     '  type PatramBuildGraphResult,',
     '  type PatramDiagnostic,',
     '  type PatramGraphEdge,',
     '  type PatramGraphNode,',
+    '  type PatramParseWhereClauseResult,',
+    '  type PatramParsedExpression,',
     '  type PatramProjectGraphResult,',
+    '  type PatramQuerySource,',
     '  type PatramQueryResult,',
+    '  type PatramRepoConfig,',
     "} from 'patram';",
   ].join('\n');
 }
@@ -296,6 +310,36 @@ function createConsumerGraphText() {
     '    [graph_node.id]: graph_node,',
     '  },',
     '};',
+  ].join('\n');
+}
+
+/**
+ * Builds the consumer query fixture text.
+ */
+function createConsumerQueryText() {
+  return [
+    'const repo_config: PatramRepoConfig = {',
+    '  fields: {},',
+    '  include: [],',
+    '  queries: {},',
+    '  relations: {},',
+    '};',
+    '',
+    "const query_source: PatramQuerySource = { kind: 'ad_hoc' };",
+    '',
+    "const parse_result: PatramParseWhereClauseResult = parseWhereClause('$id=*');",
+    '',
+    'if (parse_result.success) {',
+    '  const parsed_expression: PatramParsedExpression = parse_result.expression;',
+    '  const diagnostics: PatramDiagnostic[] = getQuerySemanticDiagnostics(',
+    '    repo_config,',
+    '    query_source,',
+    '    parsed_expression,',
+    '  );',
+    '  void diagnostics;',
+    '} else {',
+    '  void parse_result.diagnostic;',
+    '}',
   ].join('\n');
 }
 
