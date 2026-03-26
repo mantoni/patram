@@ -8,6 +8,7 @@
   },
   "include": [
     "lib/load-project-graph.js",
+    "lib/overlay-graph.js",
     "lib/query-graph.js",
     "lib/tagged-fenced-blocks.js"
   ],

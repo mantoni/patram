@@ -8,6 +8,7 @@ export {
 export { parseWhereClause } from './parse-where-clause.js';
 export { getQuerySemanticDiagnostics } from './query-inspection.js';
 export { loadProjectGraph } from './load-project-graph.js';
+export { overlayGraph } from './overlay-graph.js';
 export { queryGraph } from './query-graph.js';
 
 export type PatramGraphNode = import('./build-graph.types.ts').GraphNode;
