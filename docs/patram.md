@@ -9,7 +9,9 @@ The v0 CLI has two groups of commands:
 
 1. Knowledge graph indexing and exploration
    - [`patram show <file>`](./reference/commands/show.md): Print a file with
-     resolved links.
+     resolved links plus a compact incoming summary.
+   - [`patram refs <file>`](./reference/commands/refs.md): Inspect incoming
+     graph references for one file.
    - [`patram check [<path>]`](./reference/commands/check.md): Validate a
      project, directory or file.
 
@@ -68,6 +70,7 @@ patram query --where "tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.m
 patram query active-plans --explain
 patram query --where "$class=plan and none(in:tracked_in, $class=decision)" --lint
 patram show docs/conventions/worktracking-v0.md
+patram refs docs/decisions/reverse-reference-inspection.md --where "$class=document"
 patram check docs
 ```
 
@@ -82,6 +85,8 @@ Recommended flow:
   adopting it into config.
 - Use `patram show <path>` after a query to read the matched document or source
   anchor in context.
+- Use `patram refs <path>` when you need full incoming graph references for one
+  matched document or source anchor.
 - Use `patram check <path>` before handing off doc or code changes.
 
 ## Query Identities
@@ -152,4 +157,5 @@ and
 [patram about-command=reference/commands/check.md]: #
 [patram about-command=reference/commands/query.md]: #
 [patram about-command=reference/commands/queries.md]: #
+[patram about-command=reference/commands/refs.md]: #
 [patram about-command=reference/commands/show.md]: #

@@ -27,6 +27,7 @@ Commands:
   fields   Discover likely field schema from source claims
   query    Run a stored query or an ad hoc where clause
   queries  List stored queries
+  refs     Inspect incoming graph references for one file
   show     Print a file with resolved links
 
 Global options:
@@ -134,6 +135,34 @@ Related:
   patram query
 ```
 
+### `refs`
+
+[patram fixture=command-help-refs role=output]: #
+
+```text
+Usage:
+  patram refs <file> [options]
+
+Inspect incoming graph references for one file, grouped by relation.
+
+Options:
+  --where <clause>   Filter incoming source nodes with a where clause
+  --plain            Print plain text output
+  --json             Print JSON output
+
+Examples:
+  patram refs docs/decisions/query-language.md
+  patram refs docs/decisions/query-language.md --where "$class=document"
+  patram refs docs/decisions/query-language.md --json
+
+Related:
+  patram show
+  patram query
+
+Help topics:
+  patram help query-language
+```
+
 ### `show`
 
 [patram fixture=command-help-show role=output]: #
@@ -236,6 +265,7 @@ Commands:
   fields
   query
   queries
+  refs
   show
 
 Next:
@@ -357,6 +387,7 @@ Commands:
   fields
   query
   queries
+  refs
   show
 
 Next:
