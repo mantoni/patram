@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.7.0 - 2026-03-26
+
+- Add graph overlay helper
+  ([`f6b418d`](https://github.com/mantoni/patram/commit/f6b418d51943edd8f65c18f9a794cea8c2e79169))
+- Add query bindings to query evaluation
+  ([`e67e424`](https://github.com/mantoni/patram/commit/e67e4247281b001006a6519745acf92cd8bab159))
+- Document query bindings
+  ([`98ca8ae`](https://github.com/mantoni/patram/commit/98ca8ae014c47ac4633043959e0549a9571b6456))
+- Export query parse and diagnostics helpers
+  ([`1e87332`](https://github.com/mantoni/patram/commit/1e8733224bbf62a97c396e9c6fff362722064c07))
+- Export public Patram graph types
+  ([`2db907a`](https://github.com/mantoni/patram/commit/2db907aa630baa7b54d4d5b89a712316834a6b94))
+- Build package API declarations during packaging
+  ([`c051ab4`](https://github.com/mantoni/patram/commit/c051ab471d039e88068c81c2ba00d1bc6e4e0406))
+
 ## 0.6.2 - 2026-03-25
 
 - Stabilize entrypoint test fixtures
