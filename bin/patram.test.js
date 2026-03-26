@@ -296,12 +296,7 @@ it('prints resolved source and links for show', async () => {
       '[3] task docs/tasks/v0/query-command.md\n' +
       '    status: pending\n' +
       '\n' +
-      '    Implement query command\n' +
-      '\n' +
-      'incoming refs:\n' +
-      '  none\n' +
-      '\n' +
-      'Hint: patram refs docs/patram.md\n',
+      '    Implement query command\n',
   ]);
 });
 

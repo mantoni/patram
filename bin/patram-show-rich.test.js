@@ -115,8 +115,7 @@ it('renders non-markdown source files with syntax highlighting in rich mode', as
   expect(io_context.stderr_chunks).toEqual([]);
   expect(stripAnsi(io_context.paged_output_chunks[0])).toBe(
     ` ${'javascript'.padStart(78, ' ')} \n` +
-      ` ${'export const value = 1;'.padEnd(78, ' ')} \n` +
-      `\n${FULL_WIDTH_DIVIDER}\n\nincoming refs:\n  none\n\nHint: patram refs src/demo.js\n`,
+      ` ${'export const value = 1;'.padEnd(78, ' ')} \n`,
   );
   expect(io_context.stdout_chunks).toEqual([]);
   expect(io_context.paged_output_chunks[0]).toContain('\u001B[');
