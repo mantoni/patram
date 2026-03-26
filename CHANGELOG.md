@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.8.0 - 2026-03-26
+
+- Use single quotes in where examples
+  ([`21eea4c`](https://github.com/mantoni/patram/commit/21eea4c0c9e8e505fb4b294d26e87171e87bfced))
+- Refine refs output formatting
+  ([`581e36e`](https://github.com/mantoni/patram/commit/581e36ed45fc672ae3b52bffd10f5f28e825c4c0))
+- Add relation-first reverse references
+  ([`83b52c3`](https://github.com/mantoni/patram/commit/83b52c35c20ff007e2c1e4a18715105f264edbcf))
+- Document relation-first reverse references
+  ([`0acda6d`](https://github.com/mantoni/patram/commit/0acda6d32dd989032c21674cb169ecc1295393a9))
+
 ## 0.7.0 - 2026-03-26
 
 - Add graph overlay helper
