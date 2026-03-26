@@ -60,3 +60,7 @@ Examples:
 - `patram query --where "count(in:decided_by, $class=task) = 0"`
 - `patram query ready-tasks --explain`
 - `patram query --where "$class=decision and status=accepted and count(in:decided_by, $class=task) = 0" --lint`
+
+Package query APIs also support explicit `@binding_name` placeholders in value
+positions through `parseWhereClause(where_clause, { bindings })` and
+`queryGraph(..., { bindings })`. The CLI does not accept binding values.

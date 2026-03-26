@@ -24,6 +24,11 @@ The v0 CLI has two groups of commands:
      ad hoc query.
    - [`patram queries`](./reference/commands/queries.md): List stored queries.
 
+Package consumers can parameterize query values with explicit `@binding_name`
+placeholders through `parseWhereClause(..., { bindings })` and
+`queryGraph(..., { bindings })`. The CLI query command keeps accepting plain
+where-clause text.
+
 For repository documentation layout and where to put new docs, see
 [`docs/structure.md`](./structure.md).
 
