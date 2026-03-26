@@ -190,8 +190,8 @@ graph TD
   relations.
 
 ```bash
-patram query --where "kind=task and status=pending"
-patram query --where "tracked_in=doc:docs/plans/v0/patram-worktracking.md and status not in [done, dropped, superseded]"
-patram query --where "decided_by=doc:docs/decisions/patram-worktracking.md and status not in [done, dropped, superseded]"
-patram query --where "kind=plan and none(in:tracked_in, kind=decision)"
+patram query --where 'kind=task and status=pending'
+patram query --where 'tracked_in=doc:docs/plans/v0/patram-worktracking.md and status not in [done, dropped, superseded]'
+patram query --where 'decided_by=doc:docs/decisions/patram-worktracking.md and status not in [done, dropped, superseded]'
+patram query --where 'kind=plan and none(in:tracked_in, kind=decision)'
 ```

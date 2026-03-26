@@ -22,7 +22,7 @@ The v0 CLI has two groups of commands:
 3. Querying
    - [`patram query <name>`](./reference/commands/query.md): Run a stored query
      by name.
-   - [`patram query --where "<clause>"`](./reference/commands/query.md): Run an
+   - [`patram query --where '<clause>'`](./reference/commands/query.md): Run an
      ad hoc query.
    - [`patram queries`](./reference/commands/queries.md): List stored queries.
 
@@ -66,11 +66,11 @@ patram query decision-review-queue
 patram query decisions-needing-tasks
 patram query ready-tasks
 patram fields
-patram query --where "tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md"
+patram query --where 'tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md'
 patram query active-plans --explain
-patram query --where "$class=plan and none(in:tracked_in, $class=decision)" --lint
+patram query --where '$class=plan and none(in:tracked_in, $class=decision)' --lint
 patram show docs/conventions/worktracking-v0.md
-patram refs docs/decisions/reverse-reference-inspection.md --where "$class=document"
+patram refs docs/decisions/reverse-reference-inspection.md --where '$class=document'
 patram check docs
 ```
 
@@ -79,7 +79,7 @@ Recommended flow:
 - Run `patram queries` first to see the repo's named entrypoints.
 - Use `patram query <name>` for queue discovery and repeatable repo workflows.
 - Use `patram query <name> --explain` when you want the resolved clause tree.
-- Use `patram query --where "<clause>" --lint` before saving a new ad hoc or
+- Use `patram query --where '<clause>' --lint` before saving a new ad hoc or
   stored query.
 - Use `patram fields` when you want to inspect likely field schema before
   adopting it into config.
@@ -100,9 +100,9 @@ Recommended flow:
 Examples:
 
 ```bash
-patram query --where "tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md"
-patram query --where "implements_command=command:query"
-patram query --where "uses_term=term:graph"
+patram query --where 'tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md'
+patram query --where 'implements_command=command:query'
+patram query --where 'uses_term=term:graph'
 ```
 
 ## Stored Query Families

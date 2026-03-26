@@ -4,7 +4,7 @@
 - Command Summary: Run a stored query or an ad hoc where clause against graph
   nodes.
 
-`patram query <name>` runs a stored query, and `patram query --where "<clause>"`
+`patram query <name>` runs a stored query, and `patram query --where '<clause>'`
 evaluates one ad hoc filter.
 
 Use `--explain` to inspect the resolved query and parsed expression tree without
@@ -49,17 +49,17 @@ Exact relation-target ids:
 Examples:
 
 - `patram query active-plans`
-- `patram query --where "tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md"`
-- `patram query --where "$id=command:query"`
-- `patram query --where "implements_command=command:query"`
-- `patram query --where "uses_term=term:graph"`
-- `patram query --where "status not in [done, dropped, superseded]"`
-- `patram query --where "$class=task or status=done"`
-- `patram query --where "($class=task or status=blocked) and title~Show"`
-- `patram query --where "$class=plan and none(in:tracked_in, $class=decision)"`
-- `patram query --where "count(in:decided_by, $class=task) = 0"`
+- `patram query --where 'tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md'`
+- `patram query --where '$id=command:query'`
+- `patram query --where 'implements_command=command:query'`
+- `patram query --where 'uses_term=term:graph'`
+- `patram query --where 'status not in [done, dropped, superseded]'`
+- `patram query --where '$class=task or status=done'`
+- `patram query --where '($class=task or status=blocked) and title~Show'`
+- `patram query --where '$class=plan and none(in:tracked_in, $class=decision)'`
+- `patram query --where 'count(in:decided_by, $class=task) = 0'`
 - `patram query ready-tasks --explain`
-- `patram query --where "$class=decision and status=accepted and count(in:decided_by, $class=task) = 0" --lint`
+- `patram query --where '$class=decision and status=accepted and count(in:decided_by, $class=task) = 0' --lint`
 
 Package query APIs also support explicit `@binding_name` placeholders in value
 positions through `parseWhereClause(where_clause, { bindings })` and

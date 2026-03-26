@@ -145,7 +145,7 @@ Showing 40 of 40 matches.
 
 ```txt
 No matches.
-Try: patram query --where "kind=task"
+Try: patram query --where 'kind=task'
 ```
 
 ## Queries

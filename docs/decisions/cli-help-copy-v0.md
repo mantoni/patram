@@ -74,7 +74,7 @@ Related:
 ```text
 Usage:
   patram query <name> [options]
-  patram query --where "<clause>" [options]
+  patram query --where '<clause>' [options]
 
 Run a stored query or an ad hoc where clause against graph nodes.
 
@@ -98,12 +98,12 @@ Options:
 
 Examples:
   patram query active-plans
-  patram query --where "tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md"
-  patram query --where "status not in [done, dropped, superseded]"
-  patram query --where "$class=plan and none(in:tracked_in, $class=decision)"
-  patram query --where "count(in:decided_by, $class=task) = 0"
+  patram query --where 'tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md'
+  patram query --where 'status not in [done, dropped, superseded]'
+  patram query --where '$class=plan and none(in:tracked_in, $class=decision)'
+  patram query --where 'count(in:decided_by, $class=task) = 0'
   patram query ready-tasks --explain
-  patram query --where "$class=decision and status=accepted and count(in:decided_by, $class=task) = 0" --lint
+  patram query --where '$class=decision and status=accepted and count(in:decided_by, $class=task) = 0' --lint
   patram query active-plans --limit 10 --offset 20
 
 Related:
@@ -152,7 +152,7 @@ Options:
 
 Examples:
   patram refs docs/decisions/query-language.md
-  patram refs docs/decisions/query-language.md --where "$class=document"
+  patram refs docs/decisions/query-language.md --where '$class=document'
   patram refs docs/decisions/query-language.md --json
 
 Related:
@@ -295,7 +295,7 @@ Unknown option: --wat
 
 Usage:
   patram query <name> [options]
-  patram query --where "<clause>" [options]
+  patram query --where '<clause>' [options]
 
 Next:
   patram help query
@@ -349,15 +349,15 @@ Examples:
 [patram fixture=error-missing-query-argument role=output]: #
 
 ```text
-Missing required argument: <name> or --where "<clause>"
+Missing required argument: <name> or --where '<clause>'
 
 Usage:
   patram query <name> [options]
-  patram query --where "<clause>" [options]
+  patram query --where '<clause>' [options]
 
 Examples:
   patram query active-plans
-  patram query --where "tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md"
+  patram query --where 'tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md'
 ```
 
 ### Invalid `--where`
