@@ -1,4 +1,10 @@
-export type CliCommandName = 'check' | 'fields' | 'query' | 'queries' | 'show';
+export type CliCommandName =
+  | 'check'
+  | 'fields'
+  | 'query'
+  | 'queries'
+  | 'refs'
+  | 'show';
 export type CliHelpTopicName = 'query-language';
 export type CliHelpTargetKind = 'root' | 'command' | 'topic';
 
@@ -34,7 +40,7 @@ export type CliParseError =
   | {
       code: 'missing_required_argument';
       argument_label: string;
-      command_name: 'query' | 'show';
+      command_name: 'query' | 'refs' | 'show';
     }
   | {
       code: 'option_not_valid_for_command';

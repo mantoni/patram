@@ -44,6 +44,10 @@ it('prints help for every v0 command', async () => {
     await loadHelpFixture('command-help-queries'),
   );
   await expectHelpSuccess(
+    ['help', 'refs'],
+    await loadHelpFixture('command-help-refs'),
+  );
+  await expectHelpSuccess(
     ['show', '--help'],
     await loadHelpFixture('command-help-show'),
   );

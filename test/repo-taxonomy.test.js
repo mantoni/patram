@@ -41,6 +41,7 @@ it('indexes the canonical command taxonomy nodes', async () => {
     'command:fields',
     'command:queries',
     'command:query',
+    'command:refs',
     'command:show',
   ]);
 });

@@ -51,6 +51,7 @@ const EXPECTED_SHOW_JSON_OUTPUT =
   '    "title": "Patram",\n' +
   '    "$path": "docs/patram.md"\n' +
   '  },\n' +
+  '  "incoming_summary": {},\n' +
   '  "source": "# Patram\\n\\nSee [guide](./guide.md).",\n' +
   '  "resolved_links": [\n' +
   '    {\n' +
@@ -295,7 +296,12 @@ it('prints resolved source and links for show', async () => {
       '[3] task docs/tasks/v0/query-command.md\n' +
       '    status: pending\n' +
       '\n' +
-      '    Implement query command\n',
+      '    Implement query command\n' +
+      '\n' +
+      'incoming:\n' +
+      '  none\n' +
+      '\n' +
+      'Hint: patram refs docs/patram.md\n',
   ]);
 });
 

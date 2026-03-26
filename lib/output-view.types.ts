@@ -19,7 +19,11 @@ export interface OutputMetadataField {
 
 export interface OutputViewSummary {
   count: number;
-  kind: 'resolved_link_list' | 'result_list' | 'stored_query_list';
+  kind:
+    | 'incoming_reference_list'
+    | 'resolved_link_list'
+    | 'result_list'
+    | 'stored_query_list';
 }
 
 export interface QueryOutputViewSummary extends OutputViewSummary {
@@ -81,6 +85,7 @@ export interface ShowOutputView {
   command: 'show';
   document?: OutputNodeItem;
   hints: string[];
+  incoming_summary: Record<string, number>;
   items: OutputResolvedLinkItem[];
   path: string;
   rendered_source: string;
@@ -88,7 +93,19 @@ export interface ShowOutputView {
   summary: OutputViewSummary;
 }
 
-export type OutputView = QueryOutputView | QueriesOutputView | ShowOutputView;
+export interface RefsOutputView {
+  command: 'refs';
+  hints: string[];
+  incoming: Record<string, OutputNodeItem[]>;
+  node: OutputNodeItem;
+  summary: OutputViewSummary;
+}
+
+export type OutputView =
+  | QueryOutputView
+  | QueriesOutputView
+  | RefsOutputView
+  | ShowOutputView;
 
 export interface ResolvedOutputMode {
   color_enabled: boolean;
