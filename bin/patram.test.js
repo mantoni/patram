@@ -298,7 +298,7 @@ it('prints resolved source and links for show', async () => {
       '\n' +
       '    Implement query command\n' +
       '\n' +
-      'incoming:\n' +
+      'incoming refs:\n' +
       '  none\n' +
       '\n' +
       'Hint: patram refs docs/patram.md\n',

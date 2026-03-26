@@ -44,7 +44,7 @@
 ```txt
 decision docs/decisions/runtime/trigger-driven-codex-runtime.md
 status: accepted
-incoming:
+incoming refs:
   decided_by: 2
   implements: 1
 
