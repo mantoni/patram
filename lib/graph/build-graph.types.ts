@@ -1,4 +1,4 @@
-import type { ClaimOrigin } from './parse-claims.types.ts';
+import type { ClaimOrigin } from '../parse/parse-claims.types.ts';
 
 export interface GraphNode {
   $class?: string;

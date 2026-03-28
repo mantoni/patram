@@ -45,7 +45,6 @@ const expected_package_contract = {
     'bin/patram.js',
     'lib/**/*.d.ts',
     'lib/**/*.js',
-    'lib/**/*.ts',
     '!bin/**/*.test.d.ts',
     '!bin/**/*.test-helpers.d.ts',
     '!bin/**/*.test.js',

@@ -1,4 +1,4 @@
-import type { GraphNode } from './build-graph.types.ts';
+import type { GraphNode } from '../graph/build-graph.types.ts';
 
 export type OutputDerivedValue = boolean | number | string | null;
 

@@ -36,6 +36,8 @@ export async function buildPackageApiDeclarations() {
 
   const emitted_file_paths = parseEmittedFilePaths(command_result.stdout);
 
+  await rewriteTypeSpecifierExtensions(emitted_file_paths);
+
   await writeFile(
     manifest_path,
     `${JSON.stringify({ emitted_file_paths }, null, 2)}\n`,
@@ -87,6 +89,33 @@ async function loadManifest() {
     }
 
     throw error;
+  }
+}
+
+/**
+ * Rewrites emitted declaration imports away from repo-only `.types.ts`
+ * specifiers so packed consumers can resolve the generated `.types.d.ts`
+ * files under `moduleResolution: "NodeNext"`.
+ *
+ * @param {string[]} emitted_file_paths
+ * @returns {Promise<void>}
+ */
+async function rewriteTypeSpecifierExtensions(emitted_file_paths) {
+  for (const relative_file_path of emitted_file_paths) {
+    if (!relative_file_path.endsWith('.d.ts')) {
+      continue;
+    }
+
+    const absolute_file_path = resolve(repo_directory, relative_file_path);
+    const file_text = await readFile(absolute_file_path, 'utf8');
+    const rewritten_file_text = file_text.replaceAll(
+      '.types.ts',
+      '.types.d.ts',
+    );
+
+    if (rewritten_file_text !== file_text) {
+      await writeFile(absolute_file_path, rewritten_file_text);
+    }
   }
 }
 

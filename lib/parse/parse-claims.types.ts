@@ -1,4 +1,4 @@
-import type { PatramDiagnostic } from '../load-patram-config.types.ts';
+import type { PatramDiagnostic } from '../config/load-patram-config.types.ts';
 
 export type MarkdownDirectiveStyle =
   | 'front_matter'

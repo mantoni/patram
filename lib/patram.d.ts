@@ -5,50 +5,52 @@ export {
   selectTaggedBlocks,
 } from './tagged-fenced-blocks.js';
 
-export { parseWhereClause } from './parse-where-clause.js';
-export { getQuerySemanticDiagnostics } from './query-inspection.js';
+export { parseWhereClause } from './graph/query/parse.js';
+export { getQuerySemanticDiagnostics } from './graph/query/inspect.js';
 export { loadProjectGraph } from './load-project-graph.js';
 export { overlayGraph } from './overlay-graph.js';
 export { queryGraph } from './query-graph.js';
 
-export type PatramGraphNode = import('./build-graph.types.ts').GraphNode;
-export type PatramGraphEdge = import('./build-graph.types.ts').GraphEdge;
+export type PatramGraphNode =
+  import('./graph/build-graph.types.d.ts').GraphNode;
+export type PatramGraphEdge =
+  import('./graph/build-graph.types.d.ts').GraphEdge;
 export type PatramBuildGraphResult =
-  import('./build-graph.types.ts').BuildGraphResult;
+  import('./graph/build-graph.types.d.ts').BuildGraphResult;
 export type PatramDiagnostic =
-  import('./load-patram-config.types.ts').PatramDiagnostic;
+  import('./config/load-patram-config.types.d.ts').PatramDiagnostic;
 export type PatramRepoConfig =
-  import('./load-patram-config.types.ts').PatramRepoConfig;
+  import('./config/load-patram-config.types.d.ts').PatramRepoConfig;
 export type PatramParsedFieldName =
-  import('./parse-where-clause.types.ts').ParsedFieldName;
+  import('./graph/parse-where-clause.types.d.ts').ParsedFieldName;
 export type PatramParsedFieldTerm =
-  import('./parse-where-clause.types.ts').ParsedFieldTerm;
+  import('./graph/parse-where-clause.types.d.ts').ParsedFieldTerm;
 export type PatramParsedFieldSetTerm =
-  import('./parse-where-clause.types.ts').ParsedFieldSetTerm;
+  import('./graph/parse-where-clause.types.d.ts').ParsedFieldSetTerm;
 export type PatramParsedTraversalTerm =
-  import('./parse-where-clause.types.ts').ParsedTraversalTerm;
+  import('./graph/parse-where-clause.types.d.ts').ParsedTraversalTerm;
 export type PatramParsedRelationTerm =
-  import('./parse-where-clause.types.ts').ParsedRelationTerm;
+  import('./graph/parse-where-clause.types.d.ts').ParsedRelationTerm;
 export type PatramParsedRelationTargetTerm =
-  import('./parse-where-clause.types.ts').ParsedRelationTargetTerm;
+  import('./graph/parse-where-clause.types.d.ts').ParsedRelationTargetTerm;
 export type PatramParsedAggregateComparison =
-  import('./parse-where-clause.types.ts').ParsedAggregateComparison;
+  import('./graph/parse-where-clause.types.d.ts').ParsedAggregateComparison;
 export type PatramParsedAggregateName =
-  import('./parse-where-clause.types.ts').ParsedAggregateName;
+  import('./graph/parse-where-clause.types.d.ts').ParsedAggregateName;
 export type PatramParsedAggregateTerm =
-  import('./parse-where-clause.types.ts').ParsedAggregateTerm;
+  import('./graph/parse-where-clause.types.d.ts').ParsedAggregateTerm;
 export type PatramParsedTermExpression =
-  import('./parse-where-clause.types.ts').ParsedTermExpression;
+  import('./graph/parse-where-clause.types.d.ts').ParsedTermExpression;
 export type PatramParsedNotExpression =
-  import('./parse-where-clause.types.ts').ParsedNotExpression;
+  import('./graph/parse-where-clause.types.d.ts').ParsedNotExpression;
 export type PatramParsedBooleanExpression =
-  import('./parse-where-clause.types.ts').ParsedBooleanExpression;
+  import('./graph/parse-where-clause.types.d.ts').ParsedBooleanExpression;
 export type PatramParsedTerm =
-  import('./parse-where-clause.types.ts').ParsedTerm;
+  import('./graph/parse-where-clause.types.d.ts').ParsedTerm;
 export type PatramParsedExpression =
-  import('./parse-where-clause.types.ts').ParsedExpression;
+  import('./graph/parse-where-clause.types.d.ts').ParsedExpression;
 export type PatramParseWhereClauseResult =
-  import('./parse-where-clause.types.ts').ParseWhereClauseResult;
+  import('./graph/parse-where-clause.types.d.ts').ParseWhereClauseResult;
 export type PatramQuerySource =
   | {
       kind: 'ad_hoc';
@@ -59,8 +61,8 @@ export type PatramQuerySource =
     };
 
 export interface PatramProjectGraphResult {
-  claims: import('./parse-claims.types.ts').PatramClaim[];
-  config: import('./load-patram-config.types.ts').PatramRepoConfig;
+  claims: import('./parse/parse-claims.types.d.ts').PatramClaim[];
+  config: import('./config/load-patram-config.types.d.ts').PatramRepoConfig;
   diagnostics: PatramDiagnostic[];
   graph: PatramBuildGraphResult;
   source_file_paths: string[];

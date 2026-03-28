@@ -1,1 +1,1 @@
-export * from './output/discover-fields.types.ts';
+export * from './scan/discover-fields.types.ts';
