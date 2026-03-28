@@ -87,7 +87,6 @@ it('keeps the documented source stored queries useful', async () => {
     'lib/graph/check-directive-metadata.js',
     'lib/graph/check-graph.js',
     'lib/graph/load-project-graph.js',
-    'lib/graph/overlay-graph.js',
     'lib/graph/query/execute.js',
   ]);
   expect(

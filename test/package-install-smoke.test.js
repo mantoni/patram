@@ -143,8 +143,8 @@ async function importPackedLibrary(consumer_directory) {
         "if (typeof package_module.loadProjectGraph !== 'function') {",
         "  throw new Error('Expected loadProjectGraph export.');",
         '}',
-        "if (typeof package_module.overlayGraph !== 'function') {",
-        "  throw new Error('Expected overlayGraph export.');",
+        "if ('overlayGraph' in package_module) {",
+        "  throw new Error('Did not expect overlayGraph export.');",
         '}',
         "if (typeof package_module.parseWhereClause !== 'function') {",
         "  throw new Error('Expected parseWhereClause export.');",
@@ -173,7 +173,6 @@ async function assertTarballIncludesDeclarations(tarball_path) {
 
   expect(stdout).toContain('package/lib/patram.d.ts');
   expect(stdout).toContain('package/lib/graph/load-project-graph.d.ts');
-  expect(stdout).toContain('package/lib/graph/overlay-graph.d.ts');
   expect(stdout).toContain('package/lib/graph/query/execute.d.ts');
   expect(stdout).toContain(
     'package/lib/parse/tagged-fenced/tagged-fenced-blocks.d.ts',
@@ -197,9 +196,6 @@ async function assertGeneratedDeclarationsAreCleared() {
   await access(join(repo_directory, 'lib/patram.d.ts'));
   await expect(
     access(join(repo_directory, 'lib/graph/load-project-graph.d.ts')),
-  ).rejects.toThrow();
-  await expect(
-    access(join(repo_directory, 'lib/graph/overlay-graph.d.ts')),
   ).rejects.toThrow();
   await expect(
     access(join(repo_directory, 'lib/graph/query/execute.d.ts')),
@@ -274,15 +270,7 @@ function createConsumerIndexText() {
     "const load_result: Promise<PatramProjectGraphResult> = loadProjectGraph('.');",
     'void load_result;',
     '',
-    'const overlaid_graph: PatramBuildGraphResult = overlayGraph(graph, {',
-    '  edges: [graph_edge],',
-    '  nodes: [',
-    "    { id: 'worker:local', $class: 'worker', $id: 'worker:local' },",
-    '  ],',
-    '});',
-    'void overlaid_graph;',
-    '',
-    "const query_result: PatramQueryResult = queryGraph(overlaid_graph, '$id=@node_id', repo_config, {",
+    "const query_result: PatramQueryResult = queryGraph(graph, '$id=@node_id', repo_config, {",
     "  bindings: { node_id: 'doc:index.md' },",
     '});',
     'void query_result;',
@@ -299,7 +287,6 @@ function createConsumerImportText() {
     'import {',
     '  getQuerySemanticDiagnostics,',
     '  loadProjectGraph,',
-    '  overlayGraph,',
     '  parseWhereClause,',
     '  queryGraph,',
     '  type PatramBuildGraphResult,',

@@ -107,7 +107,6 @@ it('indexes stored term usage entrypoints', async () => {
     'docs/graph-v0.md',
     'lib/graph/build-graph.js',
     'lib/graph/load-project-graph.js',
-    'lib/graph/overlay-graph.js',
     'lib/graph/query/execute.js',
     'lib/parse/parse-claims.js',
   ]);
@@ -127,7 +126,6 @@ it('filters source anchors by exact semantic term target', async () => {
     'docs/graph-v0.md',
     'lib/graph/build-graph.js',
     'lib/graph/load-project-graph.js',
-    'lib/graph/overlay-graph.js',
     'lib/graph/query/execute.js',
   ]);
 });
