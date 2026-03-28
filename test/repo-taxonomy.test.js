@@ -77,7 +77,7 @@ it('indexes stored command implementation entrypoints', async () => {
       project_graph_result.config,
       repo_config.queries['command-implementations'].where,
     ),
-  ).toEqual(['lib/patram-cli.js']);
+  ).toEqual(['lib/cli/main.js']);
 });
 
 it('filters source anchors by exact semantic command target', async () => {
@@ -90,7 +90,7 @@ it('filters source anchors by exact semantic command target', async () => {
       project_graph_result.config,
       'implements_command=command:query',
     ),
-  ).toEqual(['lib/patram-cli.js']);
+  ).toEqual(['lib/cli/main.js']);
 });
 
 it('indexes stored term usage entrypoints', async () => {
