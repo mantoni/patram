@@ -179,7 +179,7 @@ Options:
 
 Examples:
   patram show docs/patram.md
-  patram show lib/patram-cli.js
+  patram show lib/cli/main.js
 
 Related:
   patram query
@@ -341,7 +341,7 @@ Usage:
 
 Examples:
   patram show docs/patram.md
-  patram show lib/patram-cli.js
+  patram show lib/cli/main.js
 ```
 
 ### Missing required argument for `query`
