@@ -3,8 +3,8 @@ import { fileURLToPath } from 'node:url';
 
 import { expect, it } from 'vitest';
 
-import { loadProjectGraph } from '../lib/load-project-graph.js';
-import { queryGraph } from '../lib/query-graph.js';
+import { loadProjectGraph } from '../lib/graph/load-project-graph.js';
+import { queryGraph } from '../lib/graph/query/execute.js';
 import repo_config from '../.patram.json' with { type: 'json' };
 
 /**
@@ -18,7 +18,7 @@ import repo_config from '../.patram.json' with { type: 'json' };
  * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
  * Decided by: ../docs/decisions/source-anchor-dogfooding.md
  * @patram
- * @see {@link ../lib/load-project-graph.js}
+ * @see {@link ../lib/graph/load-project-graph.js}
  * @see {@link ../docs/plans/v0/source-anchor-dogfooding.md}
  */
 
@@ -88,7 +88,7 @@ it('keeps the documented source stored queries useful', async () => {
     'lib/graph/check-graph.js',
     'lib/graph/load-project-graph.js',
     'lib/graph/overlay-graph.js',
-    'lib/graph/query-graph.js',
+    'lib/graph/query/execute.js',
   ]);
   expect(
     selectPaths(
@@ -105,8 +105,8 @@ it('keeps the documented source stored queries useful', async () => {
 });
 
 /**
- * @param {import('../lib/build-graph.types.ts').BuildGraphResult} graph
- * @param {import('../lib/load-patram-config.types.ts').PatramRepoConfig} repo_config
+ * @param {import('../lib/graph/build-graph.types.ts').BuildGraphResult} graph
+ * @param {import('../lib/config/load-patram-config.types.ts').PatramRepoConfig} repo_config
  * @param {string} where_clause
  */
 function selectPaths(graph, repo_config, where_clause) {

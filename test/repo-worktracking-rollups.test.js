@@ -3,8 +3,8 @@ import { fileURLToPath } from 'node:url';
 
 import { expect, it } from 'vitest';
 
-import { loadProjectGraph } from '../lib/load-project-graph.js';
-import { queryGraph } from '../lib/query-graph.js';
+import { loadProjectGraph } from '../lib/graph/load-project-graph.js';
+import { queryGraph } from '../lib/graph/query/execute.js';
 
 /**
  * Repo worktracking rollup contract.
@@ -17,7 +17,7 @@ import { queryGraph } from '../lib/query-graph.js';
  * Tracked in: ../docs/plans/v0/query-traversal-and-aggregation.md
  * Decided by: ../docs/decisions/query-traversal-and-aggregation.md
  * @patram
- * @see {@link ../lib/query-graph.js}
+ * @see {@link ../lib/graph/query/execute.js}
  * @see {@link ../docs/decisions/query-traversal-and-aggregation.md}
  */
 
@@ -98,8 +98,8 @@ it('does not materialize duplicated docs-prefixed worktracking targets', async (
 });
 
 /**
- * @param {import('../lib/build-graph.types.ts').BuildGraphResult} graph
- * @param {import('../lib/load-patram-config.types.ts').PatramRepoConfig} repo_config
+ * @param {import('../lib/graph/build-graph.types.ts').BuildGraphResult} graph
+ * @param {import('../lib/config/load-patram-config.types.ts').PatramRepoConfig} repo_config
  * @param {string} where_clause
  * @returns {string[]}
  */

@@ -11,7 +11,7 @@ import { createIoContext } from './patram.test-helpers.js';
  * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
  * @patram
  * @see {@link ./patram.test-helpers.js}
- * @see {@link ../lib/command-output.js}
+ * @see {@link ../lib/output/command-output.js}
  */
 
 /**

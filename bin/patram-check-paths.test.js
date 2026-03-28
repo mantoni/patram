@@ -24,7 +24,7 @@ import { main } from './patram.js';
  * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
  * Decided by: ../docs/decisions/check-target-resolution.md
  * @patram
- * @see {@link ../lib/patram-cli.js}
+ * @see {@link ../lib/cli/main.js}
  * @see {@link ../docs/decisions/check-target-resolution.md}
  */
 

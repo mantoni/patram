@@ -42,20 +42,25 @@
 ## Coverage
 
 - `bin/patram.js` covers CLI process entry.
-- `lib/patram-cli.js` covers command execution flow and command wiring helpers.
-- `lib/parse-cli-arguments.js` covers CLI parsing helpers and option parsing.
-- `lib/load-patram-config.js` covers config schema and graph-config resolution.
-- `lib/list-source-files.js` covers source scan defaults and repo file listing.
-- `lib/load-project-graph.js` covers graph loading orchestration.
-- `lib/parse-claims.js` covers source-type dispatch and claim helpers.
-- `lib/parse-markdown-claims.js` covers markdown directive parsing helpers.
-- `lib/parse-jsdoc-claims.js` covers JSDoc block parsing helpers.
-- `lib/build-graph.js` covers graph node and edge materialization.
-- `lib/query-graph.js` covers where-clause parsing and query matching.
-- `lib/check-graph.js` covers graph validation diagnostics.
-- `lib/show-document.js` covers resolved-link source rendering for `show`.
-- `lib/render-output-view.js` covers plain, rich, and JSON output renderers.
-- `lib/command-output.js` covers pager and TTY output helpers.
+- `lib/cli/main.js` covers command execution flow and command wiring helpers.
+- `lib/cli/parse-arguments.js` covers CLI parsing helpers and option parsing.
+- `lib/config/load-patram-config.js` covers config schema and graph-config
+  resolution.
+- `lib/scan/list-source-files.js` covers source scan defaults and repo file
+  listing.
+- `lib/graph/load-project-graph.js` covers graph loading orchestration.
+- `lib/parse/parse-claims.js` covers source-type dispatch and claim helpers.
+- `lib/parse/markdown/parse-markdown-claims.js` covers markdown directive
+  parsing helpers.
+- `lib/parse/jsdoc/parse-jsdoc-claims.js` covers JSDoc block parsing helpers.
+- `lib/graph/build-graph.js` covers graph node and edge materialization.
+- `lib/graph/query/execute.js` covers where-clause parsing and query matching.
+- `lib/graph/check-graph.js` covers graph validation diagnostics.
+- `lib/output/show-document.js` covers resolved-link source rendering for
+  `show`.
+- `lib/output/render-output-view.js` covers plain, rich, and JSON output
+  renderers.
+- `lib/output/command-output.js` covers pager and TTY output helpers.
 - `scripts/update-changelog.js` covers release automation and its test.
 - `bin/` and `test/` behavior-test anchors cover command, repo, and package
   contracts that are not represented in `lib/`.

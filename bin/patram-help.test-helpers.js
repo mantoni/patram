@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import {
   loadTaggedFencedBlocks,
   selectTaggedBlock,
-} from '../lib/tagged-fenced-blocks.js';
+} from '../lib/parse/tagged-fenced/tagged-fenced-blocks.js';
 
 const help_fixture_file_promise = loadTaggedFencedBlocks(
   join(import.meta.dirname, '../docs/decisions/cli-help-copy-v0.md'),

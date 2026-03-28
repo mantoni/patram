@@ -24,7 +24,7 @@ import { main } from './patram.js';
  * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
  * Decided by: ../docs/decisions/check-command.md
  * @patram
- * @see {@link ../lib/check-graph.js}
+ * @see {@link ../lib/graph/check-graph.js}
  * @see {@link ./patram.js}
  */
 

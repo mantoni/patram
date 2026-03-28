@@ -3,13 +3,13 @@ export {
   loadTaggedFencedBlocks,
   selectTaggedBlock,
   selectTaggedBlocks,
-} from './tagged-fenced-blocks.js';
+} from './parse/tagged-fenced/tagged-fenced-blocks.js';
 
 export { parseWhereClause } from './graph/query/parse.js';
 export { getQuerySemanticDiagnostics } from './graph/query/inspect.js';
-export { loadProjectGraph } from './load-project-graph.js';
-export { overlayGraph } from './overlay-graph.js';
-export { queryGraph } from './query-graph.js';
+export { loadProjectGraph } from './graph/load-project-graph.js';
+export { overlayGraph } from './graph/overlay-graph.js';
+export { queryGraph } from './graph/query/execute.js';
 
 export type PatramGraphNode =
   import('./graph/build-graph.types.d.ts').GraphNode;

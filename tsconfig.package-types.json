@@ -11,12 +11,8 @@
     "lib/config/**/*.types.ts",
     "lib/graph/**/*.js",
     "lib/graph/**/*.types.ts",
-    "lib/load-project-graph.js",
-    "lib/overlay-graph.js",
     "lib/parse/**/*.js",
-    "lib/parse/**/*.types.ts",
-    "lib/query-graph.js",
-    "lib/tagged-fenced-blocks.js"
+    "lib/parse/**/*.types.ts"
   ],
   "exclude": ["**/*.test.js", "**/*.test-helpers.js"]
 }

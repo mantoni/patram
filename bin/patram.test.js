@@ -37,7 +37,7 @@ import { main } from './patram.js';
  * Decided by: ../docs/decisions/cli-output-architecture.md
  * @patram
  * @see {@link ./patram.test-helpers.js}
- * @see {@link ../lib/patram-cli.js}
+ * @see {@link ../lib/cli/main.js}
  */
 
 const execFile = promisify(execFileCallback);

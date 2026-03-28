@@ -3,15 +3,15 @@ import { fileURLToPath } from 'node:url';
 
 import { expect, it } from 'vitest';
 
-import { createDerivedSummaryEvaluator } from '../lib/derived-summary.js';
-import { loadProjectGraph } from '../lib/load-project-graph.js';
+import { createDerivedSummaryEvaluator } from '../lib/output/derived-summary.js';
+import { loadProjectGraph } from '../lib/graph/load-project-graph.js';
 import {
   createOutputView,
   createShowOutputView,
-} from '../lib/render-output-view.js';
-import { renderJsonOutput } from '../lib/render-json-output.js';
-import { renderPlainOutput } from '../lib/render-plain-output.js';
-import { loadShowOutput } from '../lib/show-document.js';
+} from '../lib/output/render-output-view.js';
+import { renderJsonOutput } from '../lib/output/renderers/json.js';
+import { renderPlainOutput } from '../lib/output/renderers/plain.js';
+import { loadShowOutput } from '../lib/output/show-document.js';
 
 /**
  * Repo derived summary contract.
@@ -25,7 +25,7 @@ import { loadShowOutput } from '../lib/show-document.js';
  * Decided by: ../docs/decisions/declarative-derived-summary-config.md
  * Decided by: ../docs/decisions/declarative-derived-summary-side-effects.md
  * @patram
- * @see {@link ../lib/derived-summary.js}
+ * @see {@link ../lib/output/derived-summary.js}
  * @see {@link ../docs/decisions/declarative-derived-summary-config.md}
  */
 

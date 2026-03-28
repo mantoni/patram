@@ -4,7 +4,7 @@ import { realpath } from 'node:fs/promises';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
-import { main } from '../lib/patram-cli.js';
+import { main } from '../lib/cli/main.js';
 
 /**
  * Patram CLI entrypoint.
@@ -17,7 +17,7 @@ import { main } from '../lib/patram-cli.js';
  * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
  * Decided by: ../docs/decisions/cli-entrypoint-symlink.md
  * @patram
- * @see {@link ../lib/patram-cli.js}
+ * @see {@link ../lib/cli/main.js}
  * @see {@link ../docs/patram.md}
  */
 

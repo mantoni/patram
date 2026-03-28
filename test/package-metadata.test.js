@@ -92,7 +92,7 @@ it(
 
       expect(packed_file_paths).toContain('bin/patram.js');
       expect(packed_file_paths).toContain('lib/patram.js');
-      expect(packed_file_paths).toContain('lib/patram-cli.js');
+      expect(packed_file_paths).toContain('lib/cli/main.js');
       expect(packed_file_paths).not.toContain('bin/patram.test.js');
       expect(packed_file_paths).not.toContain('bin/patram.test-helpers.js');
       expect(packed_file_paths).not.toContain('lib/patram.test.d.ts');

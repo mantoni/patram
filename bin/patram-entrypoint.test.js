@@ -10,7 +10,7 @@ const { main_mock } = vi.hoisted(() => ({
   main_mock: vi.fn(),
 }));
 
-vi.mock('../lib/patram-cli.js', () => ({
+vi.mock('../lib/cli/main.js', () => ({
   main: main_mock,
 }));
 

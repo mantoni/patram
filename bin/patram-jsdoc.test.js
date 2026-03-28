@@ -22,7 +22,7 @@ import { main } from './patram.js';
  * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
  * Decided by: ../docs/decisions/jsdoc-metadata-directive-syntax.md
  * @patram
- * @see {@link ../lib/parse-jsdoc-claims.js}
+ * @see {@link ../lib/parse/jsdoc/parse-jsdoc-claims.js}
  * @see {@link ../docs/decisions/jsdoc-metadata-directive-syntax.md}
  */
 

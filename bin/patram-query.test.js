@@ -29,7 +29,7 @@ import { main } from './patram.js';
  * Decided by: ../docs/decisions/query-command.md
  * Decided by: ../docs/decisions/tty-pager-output.md
  * @patram
- * @see {@link ../lib/query-graph.js}
+ * @see {@link ../lib/graph/query/execute.js}
  * @see {@link ./patram.js}
  */
 

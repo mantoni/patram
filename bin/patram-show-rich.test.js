@@ -26,8 +26,8 @@ import { main } from './patram.js';
  * Decided by: ../docs/decisions/source-rendering.md
  * Decided by: ../docs/decisions/source-rendering-terminal-surfaces.md
  * @patram
- * @see {@link ../lib/show-document.js}
- * @see {@link ../lib/render-output-view.js}
+ * @see {@link ../lib/output/show-document.js}
+ * @see {@link ../lib/output/render-output-view.js}
  */
 
 const FULL_WIDTH_DIVIDER = ` ${'─'.repeat(78)} `;

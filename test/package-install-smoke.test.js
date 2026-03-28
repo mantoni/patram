@@ -172,9 +172,12 @@ async function assertTarballIncludesDeclarations(tarball_path) {
   );
 
   expect(stdout).toContain('package/lib/patram.d.ts');
-  expect(stdout).toContain('package/lib/load-project-graph.d.ts');
-  expect(stdout).toContain('package/lib/overlay-graph.d.ts');
-  expect(stdout).toContain('package/lib/query-graph.d.ts');
+  expect(stdout).toContain('package/lib/graph/load-project-graph.d.ts');
+  expect(stdout).toContain('package/lib/graph/overlay-graph.d.ts');
+  expect(stdout).toContain('package/lib/graph/query/execute.d.ts');
+  expect(stdout).toContain(
+    'package/lib/parse/tagged-fenced/tagged-fenced-blocks.d.ts',
+  );
   expect(stdout).not.toContain('package/lib/patram.test.d.ts');
   expect(stdout).not.toContain('package/lib/build-graph.test.d.ts');
 }
@@ -193,13 +196,18 @@ async function typecheckPackedLibrary(consumer_directory) {
 async function assertGeneratedDeclarationsAreCleared() {
   await access(join(repo_directory, 'lib/patram.d.ts'));
   await expect(
-    access(join(repo_directory, 'lib/load-project-graph.d.ts')),
+    access(join(repo_directory, 'lib/graph/load-project-graph.d.ts')),
   ).rejects.toThrow();
   await expect(
-    access(join(repo_directory, 'lib/overlay-graph.d.ts')),
+    access(join(repo_directory, 'lib/graph/overlay-graph.d.ts')),
   ).rejects.toThrow();
   await expect(
-    access(join(repo_directory, 'lib/query-graph.d.ts')),
+    access(join(repo_directory, 'lib/graph/query/execute.d.ts')),
+  ).rejects.toThrow();
+  await expect(
+    access(
+      join(repo_directory, 'lib/parse/tagged-fenced/tagged-fenced-blocks.d.ts'),
+    ),
   ).rejects.toThrow();
 }
 
