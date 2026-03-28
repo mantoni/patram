@@ -83,12 +83,12 @@ it('keeps the documented source stored queries useful', async () => {
       repo_config.queries['source-graph'].where,
     ),
   ).toEqual([
-    'lib/build-graph.js',
-    'lib/check-directive-metadata.js',
-    'lib/check-graph.js',
-    'lib/load-project-graph.js',
-    'lib/overlay-graph.js',
-    'lib/query-graph.js',
+    'lib/graph/build-graph.js',
+    'lib/graph/check-directive-metadata.js',
+    'lib/graph/check-graph.js',
+    'lib/graph/load-project-graph.js',
+    'lib/graph/overlay-graph.js',
+    'lib/graph/query-graph.js',
   ]);
   expect(
     selectPaths(
@@ -97,10 +97,10 @@ it('keeps the documented source stored queries useful', async () => {
       repo_config.queries['source-output'].where,
     ),
   ).toEqual([
-    'lib/command-output.js',
-    'lib/derived-summary.js',
-    'lib/render-output-view.js',
-    'lib/show-document.js',
+    'lib/output/command-output.js',
+    'lib/output/derived-summary.js',
+    'lib/output/render-output-view.js',
+    'lib/output/show-document.js',
   ]);
 });
 

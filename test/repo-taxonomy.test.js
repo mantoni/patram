@@ -105,11 +105,11 @@ it('indexes stored term usage entrypoints', async () => {
     ),
   ).toEqual([
     'docs/graph-v0.md',
-    'lib/build-graph.js',
-    'lib/load-project-graph.js',
-    'lib/overlay-graph.js',
+    'lib/graph/build-graph.js',
+    'lib/graph/load-project-graph.js',
+    'lib/graph/overlay-graph.js',
+    'lib/graph/query-graph.js',
     'lib/parse/parse-claims.js',
-    'lib/query-graph.js',
   ]);
 });
 
@@ -125,10 +125,10 @@ it('filters source anchors by exact semantic term target', async () => {
     ),
   ).toEqual([
     'docs/graph-v0.md',
-    'lib/build-graph.js',
-    'lib/load-project-graph.js',
-    'lib/overlay-graph.js',
-    'lib/query-graph.js',
+    'lib/graph/build-graph.js',
+    'lib/graph/load-project-graph.js',
+    'lib/graph/overlay-graph.js',
+    'lib/graph/query-graph.js',
   ]);
 });
 
