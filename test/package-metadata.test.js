@@ -134,8 +134,11 @@ async function listPackedFilePaths(temp_directory) {
       npm_config_cache: join(temp_directory, 'npm-cache'),
     },
   );
+  const parsed_pack_results = /** @type {unknown} */ (JSON.parse(stdout));
   /** @type {{ files: Array<{ path: string }> }[]} */
-  const pack_results = JSON.parse(stdout);
+  const pack_results = /** @type {{ files: Array<{ path: string }> }[]} */ (
+    parsed_pack_results
+  );
   /** @type {string[]} */
   const packed_file_paths = pack_results[0].files.map(({ path }) => path);
 

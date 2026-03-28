@@ -311,7 +311,8 @@ it('sends tty show output through the pager', async () => {
   const exit_code = await main(['show', 'docs/patram.md'], {
     stderr: io_context.stderr,
     stdout: io_context.stdout,
-    write_paged_output: io_context.write_paged_output,
+    write_paged_output: (output_text) =>
+      io_context.write_paged_output(output_text),
   });
   const output = io_context.paged_output_chunks.join('');
   const stripped_output = ansis.strip(output);

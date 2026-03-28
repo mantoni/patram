@@ -46,6 +46,12 @@ export {
  */
 
 /**
+ * @typedef {{
+ *   version: string,
+ * }} PackageManifest
+ */
+
+/**
  * @param {{
  *   current_date?: string,
  *   project_directory?: string,
@@ -127,7 +133,10 @@ async function main() {
 async function readPackageJson(project_directory) {
   const package_json_path = join(project_directory, 'package.json');
   const package_json_text = await readFile(package_json_path, 'utf8');
-  const package_json = JSON.parse(package_json_text);
+  const parsed_package_json = /** @type {unknown} */ (
+    JSON.parse(package_json_text)
+  );
+  const package_json = /** @type {PackageManifest} */ (parsed_package_json);
 
   if (
     typeof package_json.version !== 'string' ||

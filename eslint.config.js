@@ -1,7 +1,11 @@
+/** @import { Linter } from 'eslint'; */
+
 import js from '@eslint/js';
 import globals from 'globals';
 import jsdoc from 'eslint-plugin-jsdoc';
+import tseslint from 'typescript-eslint';
 
+/** @type {Linter.RulesRecord} */
 const COMMON_JS_RULES = {
   complexity: ['error', { max: 10 }],
   'max-depth': ['warn', { max: 3 }],
@@ -34,6 +38,7 @@ const COMMON_JS_RULES = {
   ],
 };
 
+/** @type {Linter.RulesRecord} */
 const JSDOC_RULES = {
   'jsdoc/check-param-names': 'error',
   'jsdoc/check-tag-names': ['error', { definedTags: ['patram'] }],
@@ -51,15 +56,23 @@ const TEST_GLOBALS = {
   ...globals.vitest,
 };
 
-export default [
+export default tseslint.config(
   {
     ignores: ['**/coverage/**', '**/node_modules/**'],
   },
   js.configs.recommended,
+  ...tseslint.configs.recommended,
+  ...tseslint.configs.recommendedTypeChecked,
   {
-    files: ['**/*.js'],
+    files: ['**/*.js', '**/*.ts'],
     languageOptions: {
       ecmaVersion: 'latest',
+      parserOptions: {
+        projectService: {
+          allowDefaultProject: ['lib/patram.js'],
+        },
+        tsconfigRootDir: import.meta.dirname,
+      },
       sourceType: 'module',
     },
     plugins: {
@@ -107,4 +120,4 @@ export default [
       ],
     },
   },
-];
+);

@@ -68,7 +68,8 @@ it('renders markdown show output with custom formatting in rich mode', async () 
     {
       stderr: io_context.stderr,
       stdout: io_context.stdout,
-      write_paged_output: io_context.write_paged_output,
+      write_paged_output: (output_text) =>
+        io_context.write_paged_output(output_text),
     },
   );
 
@@ -108,7 +109,8 @@ it('renders non-markdown source files with syntax highlighting in rich mode', as
   const exit_code = await main(['show', 'src/demo.js', '--color', 'always'], {
     stderr: io_context.stderr,
     stdout: io_context.stdout,
-    write_paged_output: io_context.write_paged_output,
+    write_paged_output: (output_text) =>
+      io_context.write_paged_output(output_text),
   });
 
   expect(exit_code).toBe(0);

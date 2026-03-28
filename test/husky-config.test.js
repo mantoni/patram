@@ -20,16 +20,17 @@ import package_json from '../package.json' with { type: 'json' };
  */
 
 it('installs husky and wires pre-commit to the package checks', async () => {
-  expect(package_json.devDependencies).toMatchObject({
-    husky: expect.any(String),
-    'lint-staged': expect.any(String),
-  });
-  expect(package_json.scripts).toMatchObject({
-    'check:patram': './bin/patram.js check',
-    'check:staged': 'lint-staged',
-    prepare: 'husky',
-  });
-  const all_script = package_json.scripts.all;
+  const dev_dependencies = /** @type {Record<string, string>} */ (
+    package_json.devDependencies
+  );
+  const scripts = /** @type {Record<string, string>} */ (package_json.scripts);
+
+  expect(typeof dev_dependencies.husky).toBe('string');
+  expect(typeof dev_dependencies['lint-staged']).toBe('string');
+  expect(scripts['check:patram']).toBe('./bin/patram.js check');
+  expect(scripts['check:staged']).toBe('lint-staged');
+  expect(scripts.prepare).toBe('husky');
+  const all_script = scripts.all;
 
   expect(all_script).toContain('npm run check:types');
   expect(all_script).toContain('npm run check:patram');
@@ -48,7 +49,9 @@ it('installs husky and wires pre-commit to the package checks', async () => {
 });
 
 it('wires pre-push to a shell-based fixup check', async () => {
-  expect(package_json.scripts).not.toHaveProperty('check:fixups');
+  const scripts = /** @type {Record<string, string>} */ (package_json.scripts);
+
+  expect(scripts).not.toHaveProperty('check:fixups');
 
   const pre_push_hook = await readTextFile(
     new URL('../.husky/pre-push', import.meta.url),

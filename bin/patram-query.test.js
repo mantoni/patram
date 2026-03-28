@@ -120,7 +120,8 @@ it('sends tty query output through the pager and removes the default limit', asy
   const exit_code = await main(['query', 'pending'], {
     stderr: io_context.stderr,
     stdout: io_context.stdout,
-    write_paged_output: io_context.write_paged_output,
+    write_paged_output: (output_text) =>
+      io_context.write_paged_output(output_text),
   });
   const output = io_context.paged_output_chunks.join('');
 
@@ -145,7 +146,8 @@ it('keeps an explicit limit when tty query output is paged', async () => {
   const exit_code = await main(['query', 'pending', '--limit', '5'], {
     stderr: io_context.stderr,
     stdout: io_context.stdout,
-    write_paged_output: io_context.write_paged_output,
+    write_paged_output: (output_text) =>
+      io_context.write_paged_output(output_text),
   });
   const output = io_context.paged_output_chunks.join('');
 
@@ -167,7 +169,8 @@ async function expectRichQueryOutput(io_context) {
     {
       stderr: io_context.stderr,
       stdout: io_context.stdout,
-      write_paged_output: io_context.write_paged_output,
+      write_paged_output: (output_text) =>
+        io_context.write_paged_output(output_text),
     },
   );
 

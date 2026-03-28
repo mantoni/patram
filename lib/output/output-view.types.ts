@@ -1,5 +1,3 @@
-import type { GraphNode } from '../graph/build-graph.types.ts';
-
 export type OutputDerivedValue = boolean | number | string | null;
 
 export interface OutputDerivedField {

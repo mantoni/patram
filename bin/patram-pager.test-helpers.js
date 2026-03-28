@@ -25,8 +25,9 @@ export function createPagedIoContext() {
   return {
     ...io_context,
     paged_output_chunks,
-    async write_paged_output(output_text) {
+    write_paged_output(output_text) {
       paged_output_chunks.push(output_text);
+      return Promise.resolve();
     },
   };
 }

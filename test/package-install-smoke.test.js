@@ -229,7 +229,11 @@ function parsePackResult(stdout) {
     throw new Error(`Expected npm pack JSON array.\n${stdout}`);
   }
 
-  return JSON.parse(json_text.slice(0, json_end + 1));
+  const parsed_pack_result = /** @type {unknown} */ (
+    JSON.parse(json_text.slice(0, json_end + 1))
+  );
+
+  return /** @type {{ filename: string }[]} */ (parsed_pack_result);
 }
 
 /**

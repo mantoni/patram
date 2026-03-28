@@ -1,4 +1,4 @@
-import { readFile, rm, writeFile } from 'node:fs/promises';
+import { readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, relative, resolve } from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
@@ -12,6 +12,12 @@ const typescript_cli_path = resolve(
   repo_directory,
   'node_modules/typescript/bin/tsc',
 );
+const declaration_source_directories = [
+  'lib/config',
+  'lib/graph',
+  'lib/parse',
+  'lib/scan',
+];
 
 /**
  * Builds package API declaration files and records the emitted paths.
@@ -49,12 +55,14 @@ export async function buildPackageApiDeclarations() {
  */
 export async function cleanPackageApiDeclarations() {
   const manifest = await loadManifest();
+  const discovered_file_paths = await discoverGeneratedDeclarationPaths();
+  const emitted_file_paths = new Set(manifest?.emitted_file_paths ?? []);
 
-  if (!manifest) {
-    return;
+  for (const relative_file_path of discovered_file_paths) {
+    emitted_file_paths.add(relative_file_path);
   }
 
-  for (const relative_file_path of manifest.emitted_file_paths) {
+  for (const relative_file_path of emitted_file_paths) {
     await rm(resolve(repo_directory, relative_file_path), { force: true });
   }
 
@@ -81,8 +89,9 @@ function parseEmittedFilePaths(stdout) {
 async function loadManifest() {
   try {
     const manifest_text = await readFile(manifest_path, 'utf8');
+    const parsed_manifest = /** @type {unknown} */ (JSON.parse(manifest_text));
 
-    return JSON.parse(manifest_text);
+    return /** @type {{ emitted_file_paths: string[] }} */ (parsed_manifest);
   } catch (error) {
     if (isMissingFileError(error)) {
       return null;
@@ -90,6 +99,56 @@ async function loadManifest() {
 
     throw error;
   }
+}
+
+/**
+ * @returns {Promise<string[]>}
+ */
+async function discoverGeneratedDeclarationPaths() {
+  /** @type {string[]} */
+  const declaration_paths = [];
+
+  for (const directory_path of declaration_source_directories) {
+    const absolute_directory_path = resolve(repo_directory, directory_path);
+    const directory_paths = await listDeclarationFiles(absolute_directory_path);
+
+    declaration_paths.push(
+      ...directory_paths.map((file_path) =>
+        relative(repo_directory, file_path),
+      ),
+    );
+  }
+
+  declaration_paths.sort();
+
+  return declaration_paths;
+}
+
+/**
+ * @param {string} directory_path
+ * @returns {Promise<string[]>}
+ */
+async function listDeclarationFiles(directory_path) {
+  const directory_entries = await readdir(directory_path, {
+    withFileTypes: true,
+  });
+  /** @type {string[]} */
+  const declaration_paths = [];
+
+  for (const directory_entry of directory_entries) {
+    const entry_path = resolve(directory_path, directory_entry.name);
+
+    if (directory_entry.isDirectory()) {
+      declaration_paths.push(...(await listDeclarationFiles(entry_path)));
+      continue;
+    }
+
+    if (directory_entry.isFile() && directory_entry.name.endsWith('.d.ts')) {
+      declaration_paths.push(entry_path);
+    }
+  }
+
+  return declaration_paths;
 }
 
 /**

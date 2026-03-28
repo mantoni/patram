@@ -14,5 +14,5 @@
     "lib/parse/**/*.js",
     "lib/parse/**/*.types.ts"
   ],
-  "exclude": ["**/*.test.js", "**/*.test-helpers.js"]
+  "exclude": ["**/*.d.ts", "**/*.test.js", "**/*.test-helpers.js"]
 }
