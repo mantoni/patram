@@ -24,7 +24,7 @@ const integration_tagged_files = [
   'bin/patram-query.test.js',
   'bin/patram-show-rich.test.js',
   'bin/patram.test.js',
-  'lib/write-paged-output.test.js',
+  'lib/output/write-paged-output.test.js',
   'scripts/update-changelog.test.js',
 ];
 
