@@ -70,11 +70,11 @@ it('keeps the documented source stored queries useful', async () => {
       repo_config.queries['source-parse'].where,
     ),
   ).toEqual([
-    'lib/parse-claims.js',
-    'lib/parse-jsdoc-claims.js',
-    'lib/parse-markdown-claims.js',
-    'lib/parse-yaml-claims.js',
-    'lib/tagged-fenced-blocks.js',
+    'lib/parse/parse-claims.js',
+    'lib/parse/parse-jsdoc-claims.js',
+    'lib/parse/parse-markdown-claims.js',
+    'lib/parse/parse-yaml-claims.js',
+    'lib/parse/tagged-fenced-blocks.js',
   ]);
   expect(
     selectPaths(

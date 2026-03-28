@@ -108,7 +108,7 @@ it('indexes stored term usage entrypoints', async () => {
     'lib/build-graph.js',
     'lib/load-project-graph.js',
     'lib/overlay-graph.js',
-    'lib/parse-claims.js',
+    'lib/parse/parse-claims.js',
     'lib/query-graph.js',
   ]);
 });
