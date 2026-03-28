@@ -33,6 +33,27 @@ it('includes the typescript-eslint recommended typed rules', () => {
   expect(hasConfiguredRule('@typescript-eslint/await-thenable')).toBe(true);
 });
 
+it('configures typescript-eslint naming conventions for function values and variables', () => {
+  expect(
+    getConfiguredRuleValue('@typescript-eslint/naming-convention'),
+  ).toEqual([
+    'error',
+    {
+      format: ['camelCase'],
+      selector: 'variable',
+      types: ['function'],
+    },
+    {
+      format: ['camelCase'],
+      selector: 'function',
+    },
+    {
+      format: ['snake_case', 'UPPER_CASE'],
+      selector: 'variable',
+    },
+  ]);
+});
+
 it('uses a typescript version supported by typescript-eslint', () => {
   expect(package_json.devDependencies.typescript).toBe('^5.9.3');
 });
@@ -123,6 +144,13 @@ function getProjectServiceValueForFileGlob(file_glob) {
  * @param {string} rule_name
  */
 function hasConfiguredRule(rule_name) {
+  return getConfiguredRuleValue(rule_name) !== undefined;
+}
+
+/**
+ * @param {string} rule_name
+ */
+function getConfiguredRuleValue(rule_name) {
   for (const config_entry of eslint_config) {
     if (!('rules' in config_entry) || config_entry.rules == null) {
       continue;
@@ -133,11 +161,11 @@ function hasConfiguredRule(rule_name) {
     )[rule_name];
 
     if (rule_value !== undefined) {
-      return true;
+      return rule_value;
     }
   }
 
-  return false;
+  return undefined;
 }
 
 function findDisabledTypeScriptEslintRules() {

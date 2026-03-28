@@ -50,6 +50,26 @@ const JSDOC_RULES = {
   'jsdoc/require-param-type': 'warn',
 };
 
+/** @type {Linter.RulesRecord} */
+const COMMON_TYPESCRIPT_ESLINT_RULES = {
+  '@typescript-eslint/naming-convention': [
+    'error',
+    {
+      selector: 'variable',
+      types: ['function'],
+      format: ['camelCase'],
+    },
+    {
+      selector: 'function',
+      format: ['camelCase'],
+    },
+    {
+      selector: 'variable',
+      format: ['snake_case', 'UPPER_CASE'],
+    },
+  ],
+};
+
 const TEST_GLOBALS = {
   ...globals.browser,
   ...globals.node,
@@ -81,6 +101,7 @@ export default tseslint.config(
     rules: {
       ...COMMON_JS_RULES,
       ...JSDOC_RULES,
+      ...COMMON_TYPESCRIPT_ESLINT_RULES,
     },
   },
   {

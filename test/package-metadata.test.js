@@ -26,7 +26,7 @@ import package_json from '../package.json' with { type: 'json' };
  * @see {@link ../docs/decisions/package-metadata.md}
  */
 
-const exec_file = promisify(execFile);
+const execFileAsync = promisify(execFile);
 const repo_directory = dirname(
   fileURLToPath(new URL('../package.json', import.meta.url)),
 );
@@ -157,7 +157,7 @@ async function runCommand(
   working_directory,
   environment,
 ) {
-  return exec_file(command, command_arguments, {
+  return execFileAsync(command, command_arguments, {
     cwd: working_directory,
     env: {
       ...process.env,

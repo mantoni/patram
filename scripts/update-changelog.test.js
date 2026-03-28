@@ -18,7 +18,7 @@ import {
   updateChangelog,
 } from './update-changelog.js';
 
-const exec_file = promisify(execFile);
+const execFileAsync = promisify(execFile);
 const test_context = createTestContext();
 
 afterEach(async () => {
@@ -289,7 +289,7 @@ async function createTag(project_directory, tag_name) {
  * @param {NodeJS.ProcessEnv} [env_overrides]
  */
 async function execGit(project_directory, args, env_overrides) {
-  await exec_file('git', args, {
+  await execFileAsync('git', args, {
     cwd: project_directory,
     env: {
       ...process.env,

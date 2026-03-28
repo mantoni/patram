@@ -6,7 +6,7 @@ import process from 'node:process';
 import { pathToFileURL } from 'node:url';
 import { promisify } from 'node:util';
 
-const exec_file = promisify(execFile);
+const execFileAsync = promisify(execFile);
 
 /**
  * Release changelog generation.
@@ -313,7 +313,7 @@ function parseGitLogLine(git_log_line) {
  * @param {string[]} args
  */
 async function execGit(project_directory, args) {
-  const { stdout } = await exec_file('git', args, {
+  const { stdout } = await execFileAsync('git', args, {
     cwd: project_directory,
   });
 
