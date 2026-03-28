@@ -84,6 +84,33 @@ it('renders markdown show output with custom formatting in rich mode', async () 
   expect(io_context.stdout_chunks).toEqual([]);
 });
 
+it('preserves blank-line-separated markdown list groups in rich show output', async () => {
+  test_context.project_directory = await createTempProjectDirectory();
+  const io_context = createPagedIoContext();
+
+  await writeProjectConfig(test_context.project_directory);
+  await writeProjectFile(
+    test_context.project_directory,
+    'docs/list.md',
+    ['- Foo: A', '- Bar: B', '', '- Some: Test'].join('\n'),
+  );
+  process.chdir(test_context.project_directory);
+
+  const exit_code = await main(['show', 'docs/list.md', '--color', 'always'], {
+    stderr: io_context.stderr,
+    stdout: io_context.stdout,
+    write_paged_output: (output_text) =>
+      io_context.write_paged_output(output_text),
+  });
+
+  expect(exit_code).toBe(0);
+  expect(io_context.stderr_chunks).toEqual([]);
+  expect(stripAnsi(io_context.paged_output_chunks[0])).toContain(
+    ['• Foo: A', '• Bar: B', '', '• Some: Test'].join('\n'),
+  );
+  expect(io_context.stdout_chunks).toEqual([]);
+});
+
 it('renders non-markdown source files with syntax highlighting in rich mode', async () => {
   test_context.project_directory = await createTempProjectDirectory();
   const io_context = createPagedIoContext();
