@@ -1,5 +1,50 @@
 # Changelog
 
+## 0.9.0 - 2026-03-29
+
+- Add knip dead code check
+  ([`f7030e5`](https://github.com/mantoni/patram/commit/f7030e5ca2535cfb46bf380147ef6314246f6d81))
+- Remove overlayGraph API
+  ([`d9e0881`](https://github.com/mantoni/patram/commit/d9e0881ff20a27c0c1efd9f609f9fea480fed890))
+- Preserve rich list group spacing
+  ([`cc02d2a`](https://github.com/mantoni/patram/commit/cc02d2aa4d4e5da4144842e16a1e33e05f63cb66))
+- Align Naming Convention Enforcement
+  ([`0e27c97`](https://github.com/mantoni/patram/commit/0e27c9793e851c1d4eb0985fec6aa59424decf84))
+- Use TypeScript-ESLint
+  ([`4bde221`](https://github.com/mantoni/patram/commit/4bde221ec491da92c0ad6d19beb5a4fc6bcf6297))
+- Remove Compatibility Facades
+  ([`189ed8a`](https://github.com/mantoni/patram/commit/189ed8a6404bef58eacb244e2da9f23eed943e06))
+- Add migration coverage tests
+  ([`3c87b20`](https://github.com/mantoni/patram/commit/3c87b20956df0257afe95da9bfa72cc0217691d2))
+- Decompose output rendering modules
+  ([`7d34fb7`](https://github.com/mantoni/patram/commit/7d34fb722d6a1ecd0d497be0d01a7c1b911ce6e7))
+- Decompose graph query internals
+  ([`f63f7c8`](https://github.com/mantoni/patram/commit/f63f7c84a075fedd4bbae241b4955c3ba6568fa5))
+- Move parser families into subfolders
+  ([`dc79baf`](https://github.com/mantoni/patram/commit/dc79bafc7a2eeaaca1f53b94e4c02a2752f636cc))
+- Move discovery into scan
+  ([`11f8e45`](https://github.com/mantoni/patram/commit/11f8e451b9b72f290b8450a02e7fc846259895d4))
+- Split config schema and validation
+  ([`9e6d019`](https://github.com/mantoni/patram/commit/9e6d0192953c50847502be64a1b8c946cfa2a482))
+- Modularize CLI command handlers
+  ([`fc50a16`](https://github.com/mantoni/patram/commit/fc50a165cc97354afc9c48f7e79d2a4d9455ec99))
+- Group graph and output modules
+  ([`89348af`](https://github.com/mantoni/patram/commit/89348afd80519f480b0aecbb0cd4b69396e6a207))
+- Group scan and parse modules
+  ([`7321cb6`](https://github.com/mantoni/patram/commit/7321cb668e6da6009488f476ce7ab6bffb95fa74))
+- Group config modules
+  ([`65d975b`](https://github.com/mantoni/patram/commit/65d975b73958cb50d03068ae9b2ff6953ce54c25))
+- Delete root CLI test copies
+  ([`8877a7e`](https://github.com/mantoni/patram/commit/8877a7e1999a30f699a53dcca0d37aef37df6a59))
+- Restructure CLI modules
+  ([`27f6e47`](https://github.com/mantoni/patram/commit/27f6e47050502f4e1e11d1a031b83c8e7527188d))
+- Document source layout modularization
+  ([`4f21ded`](https://github.com/mantoni/patram/commit/4f21ded4620ca2d7ed220f9228c9fe044dcda5fa))
+- Switch coverage to Istanbul
+  ([`6334aee`](https://github.com/mantoni/patram/commit/6334aee9ff620098ae0c5cb1bad935682ddb8a6e))
+- Hide Empty Show Incoming Summary
+  ([`f01129e`](https://github.com/mantoni/patram/commit/f01129eb393277924017d2f7a5dc4e0bd917a439))
+
 ## 0.8.0 - 2026-03-26
 
 - Use single quotes in where examples
