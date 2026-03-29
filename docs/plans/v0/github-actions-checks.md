@@ -16,6 +16,7 @@
 - Use `actions/setup-node` with npm cache enabled.
 - Run lint, format, types, unit tests, coverage tests, and duplicate checks as
   separate steps.
+- Run the dead-code check as its own step.
 
 ## Order
 
@@ -33,6 +34,7 @@
 - The workflow runs `npm run check:lint` in its own step.
 - The workflow runs `npm run check:format` in its own step.
 - The workflow runs `npm run check:types` in its own step.
+- The workflow runs `npm run check:knip` in its own step.
 - The workflow runs `npm run test` in its own step.
 - The workflow runs `npm run test:coverage` in its own step.
 - The workflow runs `npm run check:dupes` in its own step.

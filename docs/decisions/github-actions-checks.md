@@ -9,6 +9,7 @@
 - Use a Node.js matrix with versions `22`, `24`, and `25`.
 - Use `actions/setup-node` npm caching.
 - Run each check and test command in its own workflow step.
+- Run `npm run check:knip` in its own workflow step.
 
 ## Rationale
 

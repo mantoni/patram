@@ -28,12 +28,17 @@ it('installs husky and wires pre-commit to the package checks', async () => {
   expect(typeof dev_dependencies.husky).toBe('string');
   expect(typeof dev_dependencies['lint-staged']).toBe('string');
   expect(scripts['check:patram']).toBe('./bin/patram.js check');
+  expect(scripts['check:knip']).toBe('knip');
+  expect(scripts['check:knip:production']).toBe(
+    'knip --production --include exports',
+  );
   expect(scripts['check:staged']).toBe('lint-staged');
   expect(scripts.prepare).toBe('husky');
   const all_script = scripts.all;
 
   expect(all_script).toContain('npm run check:types');
   expect(all_script).toContain('npm run check:patram');
+  expect(all_script).toContain('npm run check:knip');
   expect(all_script).toContain('npm run test:coverage');
   expect(all_script).not.toMatch(/(^|&& )npm run test($| &&)/);
   expect(package_json['lint-staged']).toEqual({

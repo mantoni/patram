@@ -41,6 +41,10 @@ jobs:
         if: matrix.node-version == 24
         run: npm run check:patram
 
+      - name: Check dead code
+        if: matrix.node-version == 24
+        run: npm run check:knip
+
       - name: Run unit tests
         run: npm run test
 

@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/knip/schema.json",
+  "project": [
+    "*.js!",
+    "bin/**/*.js!",
+    "lib/**/*.js!",
+    "lib/**/*.ts!",
+    "scripts/**/*.js",
+    "test/**/*.js"
+  ],
+  "ignoreIssues": {
+    "**/*.types.ts": ["types"],
+    "**/*.d.ts": ["unresolved"]
+  }
+}

@@ -131,7 +131,7 @@ export function createValidLinkSource() {
 /**
  * @returns {string}
  */
-export function createShowSource() {
+function createShowSource() {
   return [
     '# Patram',
     '',
