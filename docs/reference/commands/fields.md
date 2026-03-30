@@ -12,6 +12,14 @@ repo config defines metadata fields or relations, `patram fields` omits those
 names from the advisory suggestions. When `stdout` is a TTY, text output opens
 in the pager.
 
+Discovery is optimized for onboarding signal:
+
+- repo root-level files are ignored
+- markdown discovery uses front matter plus the initial metadata block after the
+  title
+- type inference normalizes evidence values such as single markdown links before
+  scoring
+
 Suggestions include:
 
 - field name
