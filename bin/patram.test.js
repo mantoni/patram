@@ -44,13 +44,6 @@ const execFile = promisify(execFileCallback);
 const test_context = createTestContext();
 const EXPECTED_SHOW_JSON_OUTPUT =
   '{\n' +
-  '  "document": {\n' +
-  '    "$class": "document",\n' +
-  '    "$id": "doc:docs/patram.md",\n' +
-  '    "fields": {},\n' +
-  '    "title": "Patram",\n' +
-  '    "$path": "docs/patram.md"\n' +
-  '  },\n' +
   '  "incoming_summary": {},\n' +
   '  "source": "# Patram\\n\\nSee [guide](./guide.md).",\n' +
   '  "resolved_links": [\n' +
@@ -283,10 +276,6 @@ it('prints resolved source and links for show', async () => {
       'See [guide][1], [query language][2], and [implement query command][3].\n' +
       '\n' +
       '----------------\n' +
-      'document docs/patram.md\n' +
-      '\n' +
-      '    Patram\n' +
-      '\n' +
       '[1] document docs/guide.md\n' +
       '\n' +
       '    Some Guide\n' +

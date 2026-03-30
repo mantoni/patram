@@ -62,7 +62,7 @@ it('renders derived execution metadata for plan query results', async () => {
   );
 });
 
-it('renders the shown document self-summary in show output', async () => {
+it('omits the shown document self-summary in show output', async () => {
   const project_graph_result = await loadProjectGraph(repo_directory);
 
   expect(project_graph_result.diagnostics).toEqual([]);
@@ -88,7 +88,8 @@ it('renders the shown document self-summary in show output', async () => {
   });
   const plain_output = renderPlainOutput(output_view);
 
-  expect(plain_output).toContain(
-    '----------------\nplan docs/plans/v0/declarative-derived-summaries.md\nstatus: active\nexecution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 1',
+  expect(plain_output).not.toContain(
+    'plan docs/plans/v0/declarative-derived-summaries.md\nstatus: active\nexecution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 1',
   );
+  expect(plain_output).toContain('incoming refs:\n  tracked_in: 5');
 });

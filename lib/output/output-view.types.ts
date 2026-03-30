@@ -82,7 +82,6 @@ export interface QueriesOutputView {
 
 export interface ShowOutputView {
   command: 'show';
-  document?: OutputNodeItem;
   hints: string[];
   incoming_summary: Record<string, number>;
   items: OutputResolvedLinkItem[];
