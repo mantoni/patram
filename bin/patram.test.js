@@ -248,7 +248,8 @@ it('prints stored queries', async () => {
       '         Show blocked tasks.\n' +
       '\n' +
       'pending  $class=task and status=pending\n' +
-      '\n',
+      '\n' +
+      'Hint: patram help query-language\n',
   ]);
 });
 

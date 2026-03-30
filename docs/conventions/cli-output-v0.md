@@ -378,6 +378,8 @@ execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
 - Use a hanging indent under the query-term column for wrapped terms.
 - Print no lines when no stored queries are defined in `plain` and `rich`
   output.
+- End non-empty `queries` output with a blank line plus
+  `Hint: patram help query-language`.
 - Keep traversal and aggregate query clauses in their original string form:
   - `kind=plan and none(in:tracked_in, kind=task and status not in [done, dropped, superseded])`
   - `count(in:decided_by, kind=task) = 0`
