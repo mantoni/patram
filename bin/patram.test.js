@@ -3,7 +3,7 @@
 import { execFile as execFileCallback } from 'node:child_process';
 import { join } from 'node:path';
 import { promisify } from 'node:util';
-import { symlink } from 'node:fs/promises';
+import { symlink, writeFile } from 'node:fs/promises';
 
 import ansis from 'ansis';
 import { afterEach, expect, it } from 'vitest';
@@ -426,14 +426,43 @@ it('rejects an unknown stored query name', async () => {
   await writeProjectConfig(test_context.project_directory);
   process.chdir(test_context.project_directory);
 
-  const exit_code = await main(['query', 'missing'], {
+  const exit_code = await main(['query', 'unknown'], {
     stderr: io_context.stderr,
     stdout: io_context.stdout,
   });
 
   expect(exit_code).toBe(1);
   expect(io_context.stderr_chunks).toEqual([
-    'Stored query "missing" was not found.\n',
+    await loadHelpFixture('error-unknown-stored-query'),
+  ]);
+  expect(io_context.stdout_chunks).toEqual([]);
+});
+
+it('suggests a close stored query name', async () => {
+  test_context.project_directory = await createTempProjectDirectory();
+  const io_context = createIoContext();
+
+  await writeFile(
+    join(test_context.project_directory, '.patram.json'),
+    JSON.stringify({
+      include: ['docs/**/*.md'],
+      queries: {
+        'active-plans': {
+          where: '$id^=doc:',
+        },
+      },
+    }),
+  );
+  process.chdir(test_context.project_directory);
+
+  const exit_code = await main(['query', 'active-plan'], {
+    stderr: io_context.stderr,
+    stdout: io_context.stdout,
+  });
+
+  expect(exit_code).toBe(1);
+  expect(io_context.stderr_chunks).toEqual([
+    await loadHelpFixture('error-unknown-stored-query-suggestion'),
   ]);
   expect(io_context.stdout_chunks).toEqual([]);
 });

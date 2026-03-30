@@ -19,8 +19,9 @@
 - Keep `--color` and `--no-color` out of per-command help.
 - Resolve `patram help <name>` against exact command names and exact help topics
   before attempting suggestions.
-- Unknown commands, unknown options, and unknown help targets report the invalid
-  token plus one recovery step.
+- Unknown commands, unknown options, unknown help targets, extra positional
+  arguments, and unknown stored query names report the invalid token plus one
+  recovery step.
 - Missing required arguments report command-specific usage and examples.
 - Invalid `--where` diagnostics keep the query parser diagnostic and hint
   `patram help query-language`.
@@ -75,8 +76,10 @@
   "unknown_command": "invalid token + suggestions or command list + next step",
   "unknown_option": "invalid token + optional suggestion + command help next step",
   "wrong_command_option": "invalid token + command usage + command help next step",
+  "unexpected_argument": "invalid positional token + command usage + next step",
   "missing_required_argument": "missing argument + usage + examples",
   "invalid_where_clause": "query parser diagnostic + help topic next step",
+  "unknown_stored_query": "invalid query name + optional suggestion + next step",
   "unknown_help_target": "invalid token + suggestions or available names + help next step"
 }
 ```

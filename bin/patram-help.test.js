@@ -116,6 +116,37 @@ it('reports missing required arguments with usage and examples', async () => {
   );
 });
 
+it('reports unexpected positional arguments with command-specific recovery', async () => {
+  await expectHelpError(
+    ['help', 'query', 'extra'],
+    await loadHelpFixture('error-unexpected-help-argument'),
+  );
+  await expectHelpError(
+    ['fields', 'x'],
+    await loadHelpFixture('error-unexpected-fields-argument'),
+  );
+  await expectHelpError(
+    ['check', 'docs', 'b'],
+    await loadHelpFixture('error-unexpected-check-argument'),
+  );
+  await expectHelpError(
+    ['query', 'pending', 'extra'],
+    await loadHelpFixture('error-unexpected-query-argument'),
+  );
+  await expectHelpError(
+    ['queries', 'x'],
+    await loadHelpFixture('error-unexpected-queries-argument'),
+  );
+  await expectHelpError(
+    ['refs', 'docs/patram.md', 'extra'],
+    await loadHelpFixture('error-unexpected-refs-argument'),
+  );
+  await expectHelpError(
+    ['show', 'docs/patram.md', 'extra'],
+    await loadHelpFixture('error-unexpected-show-argument'),
+  );
+});
+
 it('wraps invalid where-clause diagnostics with the query-language help hint', async () => {
   test_context.project_directory = await createTempProjectDirectory();
 

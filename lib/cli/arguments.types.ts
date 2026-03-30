@@ -7,6 +7,7 @@ export type CliCommandName =
   | 'show';
 export type CliHelpTopicName = 'query-language';
 export type CliHelpTargetKind = 'root' | 'command' | 'topic';
+export type CliUnexpectedArgumentCommandName = CliCommandName | 'help';
 
 export type CliOutputMode = 'default' | 'plain' | 'json';
 
@@ -43,6 +44,11 @@ export type CliParseError =
       command_name: 'query' | 'refs' | 'show';
     }
   | {
+      code: 'unexpected_argument';
+      command_name: CliUnexpectedArgumentCommandName;
+      token: string;
+    }
+  | {
       code: 'option_not_valid_for_command';
       command_name: CliCommandName;
       token: string;
@@ -56,6 +62,11 @@ export type CliParseError =
       code: 'unknown_help_target';
       suggestion?: CliCommandName | CliHelpTopicName;
       token: string;
+    }
+  | {
+      code: 'unknown_stored_query';
+      name: string;
+      suggestion?: string;
     }
   | {
       code: 'unknown_option';

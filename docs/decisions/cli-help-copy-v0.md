@@ -360,6 +360,130 @@ Examples:
   patram query --where 'tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md'
 ```
 
+### Unexpected argument for `help`
+
+[patram fixture=error-unexpected-help-argument role=output]: #
+
+```text
+Unexpected argument: extra
+
+Usage:
+  patram help [command]
+
+Next:
+  patram --help
+```
+
+### Unexpected argument for `fields`
+
+[patram fixture=error-unexpected-fields-argument role=output]: #
+
+```text
+Unexpected argument: x
+
+Usage:
+  patram fields [options]
+
+Next:
+  patram help fields
+```
+
+### Unexpected argument for `check`
+
+[patram fixture=error-unexpected-check-argument role=output]: #
+
+```text
+Unexpected argument: b
+
+Usage:
+  patram check [path] [options]
+
+Next:
+  patram help check
+```
+
+### Unexpected argument for `query`
+
+[patram fixture=error-unexpected-query-argument role=output]: #
+
+```text
+Unexpected argument: extra
+
+Usage:
+  patram query <name> [options]
+  patram query --where '<clause>' [options]
+
+Next:
+  patram help query
+```
+
+### Unexpected argument for `queries`
+
+[patram fixture=error-unexpected-queries-argument role=output]: #
+
+```text
+Unexpected argument: x
+
+Usage:
+  patram queries [options]
+
+Next:
+  patram help queries
+```
+
+### Unexpected argument for `refs`
+
+[patram fixture=error-unexpected-refs-argument role=output]: #
+
+```text
+Unexpected argument: extra
+
+Usage:
+  patram refs <file> [options]
+
+Next:
+  patram help refs
+```
+
+### Unexpected argument for `show`
+
+[patram fixture=error-unexpected-show-argument role=output]: #
+
+```text
+Unexpected argument: extra
+
+Usage:
+  patram show <file> [options]
+
+Next:
+  patram help show
+```
+
+### Unknown stored query without close match
+
+[patram fixture=error-unknown-stored-query role=output]: #
+
+```text
+Unknown stored query: unknown
+
+Next:
+  patram queries
+```
+
+### Unknown stored query with close match
+
+[patram fixture=error-unknown-stored-query-suggestion role=output]: #
+
+```text
+Unknown stored query: active-plan
+
+Did you mean:
+  active-plans
+
+Next:
+  patram query active-plans
+```
+
 ### Invalid `--where`
 
 [patram fixture=error-invalid-where role=output]: #
