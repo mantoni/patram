@@ -352,54 +352,146 @@ function createExpectedPathClasses() {
 
 function createExpectedRepoQueries() {
   return {
+    ...createExpectedWorktrackingQueries(),
+    ...createExpectedTaxonomyQueries(),
+    ...createExpectedSourceQueries(),
+  };
+}
+
+function createExpectedWorktrackingQueries() {
+  return {
+    ...createExpectedWorktrackingDecisionQueries(),
+    ...createExpectedWorktrackingTaskQueries(),
+    ...createExpectedWorktrackingPlanQueries(),
+  };
+}
+
+function createExpectedTaxonomyQueries() {
+  return {
+    'command-implementations': createStoredQuery(
+      'implements_command:*',
+      'Show source anchors that implement documented commands.',
+    ),
+    'command-taxonomy': createStoredQuery(
+      '$id^=command:',
+      'Show canonical command reference nodes.',
+    ),
+    'term-taxonomy': createStoredQuery(
+      '$id^=term:',
+      'Show canonical term reference nodes.',
+    ),
+    'term-usage': createStoredQuery(
+      'uses_term:*',
+      'Show nodes that use canonical terms.',
+    ),
+  };
+}
+
+function createExpectedWorktrackingDecisionQueries() {
+  return {
     'accepted-decisions': createStoredQuery(
       '$class=decision and status=accepted',
+      'Show accepted decisions.',
     ),
-    'active-plans': createStoredQuery('$class=plan and status=active'),
-    'active-roadmaps': createStoredQuery('$class=roadmap and status=active'),
-    'blocked-tasks': createStoredQuery('$class=task and status=blocked'),
-    'command-implementations': createStoredQuery('implements_command:*'),
-    'command-taxonomy': createStoredQuery('$id^=command:'),
     'decision-review-queue': createStoredQuery(
       '$class=decision and status=proposed',
+      'Show proposed decisions awaiting review.',
     ),
     'decisions-needing-tasks': createStoredQuery(
       '$class=decision and status=accepted and count(in:decided_by, $class=task) = 0',
+      'Show accepted decisions that do not yet have tasks.',
     ),
     'decisions-with-open-tasks': createStoredQuery(
       '$class=decision and status=accepted and any(in:decided_by, $class=task and status not in [done, dropped, superseded])',
+      'Show accepted decisions with unfinished tasks.',
+    ),
+  };
+}
+
+function createExpectedWorktrackingTaskQueries() {
+  return {
+    'blocked-tasks': createStoredQuery(
+      '$class=task and status=blocked',
+      'Show blocked tasks.',
     ),
     ideas: createStoredQuery(
       '$class=idea and status in [captured, exploring, planned]',
+      'Show captured, exploring, and planned ideas.',
     ),
     'in-progress-tasks': createStoredQuery(
       '$class=task and status=in_progress',
+      'Show tasks currently in progress.',
     ),
-    'pending-tasks': createStoredQuery('$class=task and status=pending'),
+    'pending-tasks': createStoredQuery(
+      '$class=task and status=pending',
+      'Show tasks that have not started yet.',
+    ),
+    'ready-tasks': createStoredQuery(
+      '$class=task and status=ready',
+      'Show tasks that are ready to start.',
+    ),
+  };
+}
+
+function createExpectedWorktrackingPlanQueries() {
+  return {
+    'active-plans': createStoredQuery(
+      '$class=plan and status=active',
+      'Show active implementation plans.',
+    ),
+    'active-roadmaps': createStoredQuery(
+      '$class=roadmap and status=active',
+      'Show active roadmaps.',
+    ),
     'plans-with-open-tasks': createStoredQuery(
       '$class=plan and status=active and any(in:tracked_in, $class=task and status not in [done, dropped, superseded])',
+      'Show active plans with unfinished tasks.',
     ),
     'plans-without-decisions': createStoredQuery(
       '$class=plan and status=active and none(in:tracked_in, $class=decision)',
+      'Show active plans that are missing linked decisions.',
     ),
-    'ready-tasks': createStoredQuery('$class=task and status=ready'),
-    ...createExpectedSourceQueries(),
-    'term-taxonomy': createStoredQuery('$id^=term:'),
-    'term-usage': createStoredQuery('uses_term:*'),
   };
 }
 
 function createExpectedSourceQueries() {
   return {
-    'source-cli': createStoredQuery('kind=cli'),
-    'source-config': createStoredQuery('kind=config'),
-    'source-entrypoints': createStoredQuery('kind=entrypoint'),
-    'source-graph': createStoredQuery('kind=graph'),
-    'source-output': createStoredQuery('kind=output'),
-    'source-parse': createStoredQuery('kind=parse'),
-    'source-release': createStoredQuery('kind=release'),
-    'source-scan': createStoredQuery('kind=scan'),
-    'source-support': createStoredQuery('kind=support'),
+    'source-cli': createStoredQuery(
+      'kind=cli',
+      'Show CLI-related source anchors.',
+    ),
+    'source-config': createStoredQuery(
+      'kind=config',
+      'Show config-related source anchors.',
+    ),
+    'source-entrypoints': createStoredQuery(
+      'kind=entrypoint',
+      'Show documented entrypoint source anchors.',
+    ),
+    'source-graph': createStoredQuery(
+      'kind=graph',
+      'Show graph-related source anchors.',
+    ),
+    'source-output': createStoredQuery(
+      'kind=output',
+      'Show output-related source anchors.',
+    ),
+    'source-parse': createStoredQuery(
+      'kind=parse',
+      'Show parse-related source anchors.',
+    ),
+    'source-release': createStoredQuery(
+      'kind=release',
+      'Show release-related source anchors.',
+    ),
+    'source-scan': createStoredQuery(
+      'kind=scan',
+      'Show scan-related source anchors.',
+    ),
+    'source-support': createStoredQuery(
+      'kind=support',
+      'Show support source anchors.',
+    ),
   };
 }
 
@@ -558,7 +650,15 @@ function createTaxonomyRelationMapping(relation, target_class) {
 
 /**
  * @param {string} where
+ * @param {string} [description]
  */
-function createStoredQuery(where) {
-  return { where };
+function createStoredQuery(where, description) {
+  /** @type {{ description?: string, where: string }} */
+  const stored_query = { where };
+
+  if (description) {
+    stored_query.description = description;
+  }
+
+  return stored_query;
 }

@@ -10,81 +10,107 @@
   ],
   "queries": {
     "accepted-decisions": {
+      "description": "Show accepted decisions.",
       "where": "$class=decision and status=accepted"
     },
     "active-plans": {
+      "description": "Show active implementation plans.",
       "where": "$class=plan and status=active"
     },
     "active-roadmaps": {
+      "description": "Show active roadmaps.",
       "where": "$class=roadmap and status=active"
     },
     "blocked-tasks": {
+      "description": "Show blocked tasks.",
       "where": "$class=task and status=blocked"
     },
     "command-implementations": {
+      "description": "Show source anchors that implement documented commands.",
       "where": "implements_command:*"
     },
     "command-taxonomy": {
+      "description": "Show canonical command reference nodes.",
       "where": "$id^=command:"
     },
     "decision-review-queue": {
+      "description": "Show proposed decisions awaiting review.",
       "where": "$class=decision and status=proposed"
     },
     "decisions-needing-tasks": {
+      "description": "Show accepted decisions that do not yet have tasks.",
       "where": "$class=decision and status=accepted and count(in:decided_by, $class=task) = 0"
     },
     "decisions-with-open-tasks": {
+      "description": "Show accepted decisions with unfinished tasks.",
       "where": "$class=decision and status=accepted and any(in:decided_by, $class=task and status not in [done, dropped, superseded])"
     },
     "ideas": {
+      "description": "Show captured, exploring, and planned ideas.",
       "where": "$class=idea and status in [captured, exploring, planned]"
     },
     "in-progress-tasks": {
+      "description": "Show tasks currently in progress.",
       "where": "$class=task and status=in_progress"
     },
     "pending-tasks": {
+      "description": "Show tasks that have not started yet.",
       "where": "$class=task and status=pending"
     },
     "plans-with-open-tasks": {
+      "description": "Show active plans with unfinished tasks.",
       "where": "$class=plan and status=active and any(in:tracked_in, $class=task and status not in [done, dropped, superseded])"
     },
     "plans-without-decisions": {
+      "description": "Show active plans that are missing linked decisions.",
       "where": "$class=plan and status=active and none(in:tracked_in, $class=decision)"
     },
     "ready-tasks": {
+      "description": "Show tasks that are ready to start.",
       "where": "$class=task and status=ready"
     },
     "source-entrypoints": {
+      "description": "Show documented entrypoint source anchors.",
       "where": "kind=entrypoint"
     },
     "source-cli": {
+      "description": "Show CLI-related source anchors.",
       "where": "kind=cli"
     },
     "source-config": {
+      "description": "Show config-related source anchors.",
       "where": "kind=config"
     },
     "source-scan": {
+      "description": "Show scan-related source anchors.",
       "where": "kind=scan"
     },
     "source-parse": {
+      "description": "Show parse-related source anchors.",
       "where": "kind=parse"
     },
     "source-graph": {
+      "description": "Show graph-related source anchors.",
       "where": "kind=graph"
     },
     "source-output": {
+      "description": "Show output-related source anchors.",
       "where": "kind=output"
     },
     "source-support": {
+      "description": "Show support source anchors.",
       "where": "kind=support"
     },
     "source-release": {
+      "description": "Show release-related source anchors.",
       "where": "kind=release"
     },
     "term-usage": {
+      "description": "Show nodes that use canonical terms.",
       "where": "uses_term:*"
     },
     "term-taxonomy": {
+      "description": "Show canonical term reference nodes.",
       "where": "$id^=term:"
     }
   },

@@ -154,8 +154,12 @@ Try: patram query --where 'kind=task'
 
 ```txt
 active-plans           kind=plan and status=active
+                       Show active implementation plans.
+
 decision-review-queue  kind=decision and status=proposed
 ready-tasks            kind=task and status=ready
+                       Show tasks that are ready to start.
+
 ```
 
 ### JSON
@@ -165,11 +169,13 @@ ready-tasks            kind=task and status=ready
   "queries": [
     {
       "name": "active-plans",
-      "where": "kind=plan and status=active"
+      "where": "kind=plan and status=active",
+      "description": "Show active implementation plans."
     },
     {
       "name": "ready-tasks",
-      "where": "kind=task and status=ready"
+      "where": "kind=task and status=ready",
+      "description": "Show tasks that are ready to start."
     }
   ]
 }
@@ -359,7 +365,11 @@ execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
   `show`.
 - Render `queries` as two aligned columns:
   - stored query name
-  - canonical rendered query term
+  - canonical rendered query term and optional comment
+- Render one blank line after every stored query block.
+- When a stored query carries a description, render the description block
+  directly after the query row in the query column and before the trailing blank
+  line.
 - Do not use ASCII table borders or box-drawing characters.
 - Keep stored queries in stable name order.
 - Separate the name and term columns with at least two spaces.
@@ -424,6 +434,7 @@ execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
 - Keep stored query field names on the default foreground color.
 - Use gray for stored query operators.
 - Use gray for stored query boolean keywords such as `and`, `or`, and `not`.
+- Use gray for stored query description lines.
 - Keep stored query literal values on the default foreground color.
 - Keep diagnostic file group headers on the same accent color as entity-summary
   identity headers.

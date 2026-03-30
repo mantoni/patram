@@ -252,7 +252,10 @@ it('prints stored queries', async () => {
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual([
     'blocked  $class=task and status=blocked\n' +
-      'pending  $class=task and status=pending\n',
+      '         Show blocked tasks.\n' +
+      '\n' +
+      'pending  $class=task and status=pending\n' +
+      '\n',
   ]);
 });
 

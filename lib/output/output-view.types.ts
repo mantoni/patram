@@ -46,6 +46,7 @@ export interface OutputStoredQueryItem {
   kind: 'stored_query';
   name: string;
   where: string;
+  description?: string;
 }
 
 export interface OutputResolvedLinkTarget {

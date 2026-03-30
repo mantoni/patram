@@ -236,6 +236,7 @@ function createProjectConfig() {
 function createProjectQueries() {
   return {
     blocked: {
+      description: 'Show blocked tasks.',
       where: '$class=task and status=blocked',
     },
     pending: {
