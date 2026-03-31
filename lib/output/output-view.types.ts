@@ -32,6 +32,7 @@ export interface QueryOutputViewSummary extends OutputViewSummary {
 }
 
 export interface OutputNodeItem {
+  description?: string;
   derived_summary?: OutputDerivedSummary;
   fields: Record<string, string | string[]>;
   id: string;
@@ -50,6 +51,7 @@ export interface OutputStoredQueryItem {
 }
 
 export interface OutputResolvedLinkTarget {
+  description?: string;
   derived_summary?: OutputDerivedSummary;
   fields: Record<string, string | string[]>;
   id: string;
