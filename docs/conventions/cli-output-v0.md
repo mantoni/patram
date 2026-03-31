@@ -326,14 +326,18 @@ execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
 - When available, render the shown document's own entity summary first in the
   resolved summary section without a numeric footnote label.
 - Prefer document titles over path-derived aliases for rendered link labels.
-- Start each resolved-link footnote with the numbered reference token plus the
-  identity header, such as `[1] document docs/guide.md`.
+- Start each resolved-link footnote with one compact title row:
+  - numbered reference token plus the identity header on the left, such as
+    `[1] document docs/guide.md`
+  - optional parenthesized `key=value` metadata label on the right
 - Use `document` as the v0 header type for file-backed graph nodes.
-- Render stored metadata immediately under the identity header when present.
-- Render derived execution metadata on a second row when present.
-- Leave one blank line between the metadata block and the indented content
-  block.
+- Build the inline metadata label from the same visible metadata rows used by
+  compact query-family output.
+- In TTY output, truncate only the inline metadata label and keep the closing
+  `)` when width allows.
 - Always show the resolved target title in the indented content block.
+- Keep the resolved-link content block indented four spaces under the footnote
+  header.
 - Show `kind`, `status`, and other target metadata only when present and useful.
 - Treat resolved links as compact entity summaries, not path lookups.
 - Render an indented description paragraph only when the resolved target carries

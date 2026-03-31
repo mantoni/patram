@@ -272,17 +272,12 @@ it('prints resolved source and links for show', async () => {
       '\n' +
       '----------------\n' +
       '[1] document docs/guide.md\n' +
-      '\n' +
       '    Some Guide\n' +
       '\n' +
-      '[2] decision docs/decisions/query-language-v0.md\n' +
-      '    status: accepted\n' +
-      '\n' +
+      '[2] decision docs/decisions/query-language-v0.md  (status=accepted)\n' +
       '    Query Language v0\n' +
       '\n' +
-      '[3] task docs/tasks/v0/query-command.md\n' +
-      '    status: pending\n' +
-      '\n' +
+      '[3] task docs/tasks/v0/query-command.md  (status=pending)\n' +
       '    Implement query command\n',
   ]);
 });
