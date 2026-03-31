@@ -66,6 +66,7 @@ export type CliParseError =
   | {
       code: 'unknown_stored_query';
       name: string;
+      next_path?: string;
       suggestion?: string;
     }
   | {

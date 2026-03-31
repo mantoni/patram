@@ -26,7 +26,7 @@ Commands:
   check    Validate a project, directory, or file
   fields   Discover likely field schema from source claims
   query    Run a stored query or an ad hoc where clause
-  queries  List stored queries
+  queries  List and manage stored queries
   refs     Inspect incoming graph references for one file
   show     Print a file with resolved links
 
@@ -122,15 +122,24 @@ Help topics:
 ```text
 Usage:
   patram queries [options]
+  patram queries add <name> --query <clause> [--desc <text>] [options]
+  patram queries update <name> [--name <new_name>] [--query <clause>] [--desc <text>] [options]
+  patram queries remove <name> [options]
 
-List the stored queries defined in the project configuration.
+List stored queries or mutate them through add, update, and remove.
 
 Options:
-  --plain   Print plain text output
-  --json    Print JSON output
+  --query <clause>   Persist a new stored query
+  --name <new_name>  Set or rename the stored query name for update
+  --desc <text>      Set or clear the stored query description
+  --plain            Print plain text output
+  --json             Print JSON output
 
 Examples:
   patram queries
+  patram queries add ready-tasks --query '$class=task and status=ready'
+  patram queries update ready-tasks --desc 'Show tasks that are ready.'
+  patram queries remove ready-tasks
 
 Related:
   patram query
@@ -413,6 +422,9 @@ Unexpected argument: x
 
 Usage:
   patram queries [options]
+  patram queries add <name> --query <clause> [--desc <text>] [options]
+  patram queries update <name> [--name <new_name>] [--query <clause>] [--desc <text>] [options]
+  patram queries remove <name> [options]
 
 Next:
   patram help queries

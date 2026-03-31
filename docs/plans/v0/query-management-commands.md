@@ -3,6 +3,7 @@
 - Kind: plan
 - Status: active
 - Tracked in: docs/roadmap/v0-dogfood.md
+- Decided by: docs/decisions/query-management-commands.md
 - Decided by: docs/decisions/query-command.md
 - Decided by: docs/decisions/query-language.md
 - Decided by: docs/decisions/single-config-file.md

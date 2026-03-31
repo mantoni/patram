@@ -1,9 +1,9 @@
 // @module-tag integration
 
 import { execFile as execFileCallback } from 'node:child_process';
+import { symlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { promisify } from 'node:util';
-import { symlink, writeFile } from 'node:fs/promises';
 
 import ansis from 'ansis';
 import { afterEach, expect, it } from 'vitest';
