@@ -10,7 +10,8 @@ indented description block with blank lines before and after it. Non-empty
 output ends with a hint to `patram help query-language`.
 
 `patram queries add <name> --query "<clause>" [--desc "<text>"]` validates the
-query and writes a new stored query into `.patram.json`.
+query and writes a new stored query into `.patram.json` without normalizing the
+rest of the config file.
 
 `patram queries update <name> [--name <new_name>] [--query "<clause>"] [--desc "<text>"]`
 updates any combination of the stored query name, where clause, and description.

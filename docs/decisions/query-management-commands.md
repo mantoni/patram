@@ -25,6 +25,8 @@
   and `queries update` when the source query does not exist.
 - Persist changes back into `.patram.json` while preserving unrelated top-level
   config sections.
+- Persist stored-query edits with source-aware updates so existing config
+  formatting outside the changed query entries stays intact.
 
 ## Rationale
 
