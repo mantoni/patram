@@ -49,7 +49,7 @@ Next:
 
 ```text
 Usage:
-  patram check [path] [options]
+  patram check [path ...] [options]
 
 Validate a project, directory, or file and report graph diagnostics.
 
@@ -61,6 +61,7 @@ Examples:
   patram check
   patram check docs
   patram check docs/patram.md
+  patram check docs docs/patram.md
 
 Related:
   patram show
@@ -323,7 +324,7 @@ Next:
 Option not valid for command: --where
 
 Usage:
-  patram check [path] [options]
+  patram check [path ...] [options]
 
 Next:
   patram help check
@@ -386,20 +387,6 @@ Usage:
 
 Next:
   patram help fields
-```
-
-### Unexpected argument for `check`
-
-[patram fixture=error-unexpected-check-argument role=output]: #
-
-```text
-Unexpected argument: b
-
-Usage:
-  patram check [path] [options]
-
-Next:
-  patram help check
 ```
 
 ### Unexpected argument for `query`

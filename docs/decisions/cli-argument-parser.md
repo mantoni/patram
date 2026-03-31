@@ -18,7 +18,7 @@
 {
   "global_options": ["plain", "json", "color", "no-color"],
   "commands": {
-    "check": { "positionals": ["path?"] },
+    "check": { "positionals": ["path*"] },
     "query": { "positionals": ["query_or_where?"], "options": ["where"] },
     "queries": { "positionals": [] },
     "show": { "positionals": ["file"] }

@@ -126,10 +126,6 @@ it('reports unexpected positional arguments with command-specific recovery', asy
     await loadHelpFixture('error-unexpected-fields-argument'),
   );
   await expectHelpError(
-    ['check', 'docs', 'b'],
-    await loadHelpFixture('error-unexpected-check-argument'),
-  );
-  await expectHelpError(
     ['query', 'pending', 'extra'],
     await loadHelpFixture('error-unexpected-query-argument'),
   );

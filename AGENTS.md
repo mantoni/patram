@@ -14,13 +14,11 @@ Use `patram` to orient in the repo based on the user's request.
 - For planning, decisions, tasks, changes, and queue state, start with
   `patram queries` and then run the stored query that best matches the workflow
   stage.
-- For a specific document or work item, use `patram show <repo-path>` and exact
-  relation-target queries such as `tracked_in=doc:<repo-path>` or
-  `decided_by=doc:<repo-path>`.
+- For a specific document or work item, use `patram show <path>`.
 - For CLI behavior or graph vocabulary, use taxonomy queries such as
   `command-taxonomy`, `command-implementations`, `term-taxonomy`, and
   `term-usage`.
-- For validation, use `patram check <path>`.
+- For validation, use `patram check [path ...]`.
 
 ## Interaction Style
 

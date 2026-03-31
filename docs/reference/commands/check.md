@@ -4,6 +4,6 @@
 - Command Summary: Validate a project, directory, or file and report
   diagnostics.
 
-`patram check [<path>]` validates configuration, parsed sources, directive
+`patram check [<path>...]` validates configuration, parsed sources, directive
 schemas, directive path references, document placement, and broken document
-links for the selected scope.
+links for the selected scope or scopes.

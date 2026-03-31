@@ -12,7 +12,7 @@ The v0 CLI has two groups of commands:
      resolved links plus a compact incoming summary.
    - [`patram refs <file>`](./reference/commands/refs.md): Inspect incoming
      graph references for one file.
-   - [`patram check [<path>]`](./reference/commands/check.md): Validate a
+   - [`patram check [<path>...]`](./reference/commands/check.md): Validate a
      project, directory or file.
 
 2. Field discovery

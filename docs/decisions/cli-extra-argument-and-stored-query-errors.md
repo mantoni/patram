@@ -19,8 +19,8 @@
   to `patram query <suggestion>`.
 - When no close stored query match exists, omit query listings and point `Next:`
   to `patram queries`.
-- Apply the same extra positional style to `help`, `fields`, `check`, `query`,
-  `queries`, `refs`, and `show`.
+- Apply the same extra positional style to `help`, `fields`, `query`, `queries`,
+  `refs`, and `show`.
 
 ## Rationale
 
