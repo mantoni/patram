@@ -48,6 +48,8 @@ export type PatramParsedTerm =
   import('./graph/parse-where-clause.types.d.ts').ParsedTerm;
 export type PatramParsedExpression =
   import('./graph/parse-where-clause.types.d.ts').ParsedExpression;
+export type PatramParseResult =
+  import('./graph/parse-where-clause.types.d.ts').ParseWhereClauseResult;
 export type PatramParseWhereClauseResult =
   import('./graph/parse-where-clause.types.d.ts').ParseWhereClauseResult;
 export type PatramQuerySource =
@@ -58,6 +60,12 @@ export type PatramQuerySource =
       kind: 'stored_query';
       name: string;
     };
+
+export interface PatramQueryGraphOptions {
+  bindings?: Record<string, string>;
+  limit?: number;
+  offset?: number;
+}
 
 export interface PatramProjectGraphResult {
   claims: import('./parse/parse-claims.types.d.ts').PatramClaim[];
