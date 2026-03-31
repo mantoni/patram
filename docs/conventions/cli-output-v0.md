@@ -153,14 +153,20 @@ Try: patram query --where 'kind=task'
 ### Plain
 
 ```txt
-active-plans           kind=plan and status=active
-                       Show active implementation plans.
-
+active-plans  kind=plan and status=active
+  Show active implementation plans.
 decision-review-queue  kind=decision and status=proposed
-ready-tasks            kind=task and status=ready
-                       Show tasks that are ready to start.
-
+ready-tasks  kind=task and status=ready
+  Show tasks that are ready to start.
 ```
+
+- Render each stored query block as `<name>  <query>` on the first row.
+- Render the optional description in a two-space indented body row.
+- In TTY output, wrap long query clauses with a hanging indent aligned under the
+  first character of the query clause.
+- Outside TTY output, keep stored query rows unwrapped.
+- Do not insert blank lines between adjacent stored query results or before the
+  trailing query-language hint.
 
 ### JSON
 
@@ -335,20 +341,20 @@ execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
 
 ## Query Rendering
 
-- Render each query result as an entity-summary block:
-  - identity header
-  - metadata row
-  - indented content block
+- Render each query result as a compact entity-summary block:
+  - inline title row
+  - two-space indented content block
 - Separate adjacent query results with one blank line.
-- Render the identity header as `document <path>` for documents and
-  `<kind> <id>` for semantic non-document nodes.
-- Render stored metadata immediately under the identity header when present.
-- Render derived execution metadata on a second row when present.
-- Leave one blank line between the metadata block and the indented content
-  block.
+- Render the left title as `document <path>` for documents and `<kind> <id>` for
+  semantic non-document nodes.
+- Render the right title as one bracketed metadata label built from the visible
+  metadata rows when present.
+- Render the right title inline after the left title separated by two spaces.
+- Omit the right title completely when no visible metadata rows exist.
 - Render the title in the indented content block.
-- Render an indented description paragraph only when the node carries one.
-- Use the same metadata row shape as `show` footnotes.
+- Render the description directly under the title with no blank line when the
+  node carries one.
+- Wrap body text to the available width only in TTY output.
 - Render the defining `path` in semantic non-document query results when it is
   known.
 - Default query output to `25` results.
@@ -361,25 +367,22 @@ execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
 
 ## Stored Query Rendering
 
-- Keep `queries` distinct from the entity-summary layout used by `query` and
-  `show`.
-- Render `queries` as two aligned columns:
-  - stored query name
-  - canonical rendered query term and optional comment
-- Render one blank line after every stored query block.
-- When a stored query carries a description, render the description block
-  directly after the query row in the query column and before the trailing blank
-  line.
+- Keep `queries` distinct from `show` and aligned with the compact query-family
+  block layout.
+- Render `queries` as one compact block per stored query:
+  - stored query name plus canonical rendered query term on the first row
+  - optional stored query description in the indented body
+- Do not render blank lines between adjacent stored query blocks.
 - Do not use ASCII table borders or box-drawing characters.
 - Keep stored queries in stable name order.
-- Separate the name and term columns with at least two spaces.
-- Compute the term column from the widest visible query name in the result set.
-- Wrap only the query-term column when needed.
-- Use a hanging indent under the query-term column for wrapped terms.
+- Separate the stored query name and query clause with two spaces.
+- In TTY output, wrap long stored query clauses per row with a two-space
+  continuation indent.
+- Outside TTY output, do not wrap or truncate stored query rows.
 - Print no lines when no stored queries are defined in `plain` and `rich`
   output.
-- End non-empty `queries` output with a blank line plus
-  `Hint: patram help query-language`.
+- End non-empty `queries` output with `Hint: patram help query-language` on the
+  line after the last rendered result.
 - Keep traversal and aggregate query clauses in their original string form:
   - `kind=plan and none(in:tracked_in, kind=task and status not in [done, dropped, superseded])`
   - `count(in:decided_by, kind=task) = 0`
@@ -447,7 +450,7 @@ execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
   span the available content width.
 - Keep diagnostic tables identical to plain output and add color only.
 - Keep footnotes identical to plain output and add color or hyperlinking only.
-- Keep `queries` column widths and wrapped line breaks identical to plain
+- Keep compact block column widths and wrapped line breaks identical to plain
   output.
 - Do not introduce indentation changes in `rich` mode that are not already
   present in `plain`.
@@ -456,6 +459,11 @@ execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
 ## Width
 
 - Prefer 80 to 100 columns for the canonical layout.
-- Keep metadata aligned after the primary label.
-- Truncate only when wrapping would destroy scanability.
+- Size the left title column from the widest visible left title in the rendered
+  section.
+- Keep metadata inline after the primary label when a right title is present.
+- In TTY output, truncate only right-title labels when wrapping would destroy
+  scanability.
+- When truncating a bracketed metadata label, use `…` and keep the closing
+  bracket when width allows.
 - Do not truncate paths in `plain` or `json` modes.

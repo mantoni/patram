@@ -190,10 +190,8 @@ it('prints matching nodes for query --where', async () => {
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual([
-    'task docs/tasks/v0/query-command.md\n' +
-      'status: pending\n' +
-      '\n' +
-      '    Implement query command\n',
+    'task docs/tasks/v0/query-command.md  [status: pending]\n' +
+      '  Implement query command\n',
   ]);
 });
 
@@ -222,10 +220,8 @@ it('runs a stored query by name', async () => {
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual([
-    'task docs/tasks/v0/query-command.md\n' +
-      'status: pending\n' +
-      '\n' +
-      '    Implement query command\n',
+    'task docs/tasks/v0/query-command.md  [status: pending]\n' +
+      '  Implement query command\n',
   ]);
 });
 
@@ -245,10 +241,8 @@ it('prints stored queries', async () => {
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual([
     'blocked  $class=task and status=blocked\n' +
-      '         Show blocked tasks.\n' +
-      '\n' +
+      '  Show blocked tasks.\n' +
       'pending  $class=task and status=pending\n' +
-      '\n' +
       'Hint: patram help query-language\n',
   ]);
 });

@@ -177,10 +177,8 @@ async function expectRichQueryOutput(io_context) {
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
   expect(stripAnsi(io_context.paged_output_chunks.join(''))).toBe(
-    'task docs/tasks/v0/query-command.md\n' +
-      'status: pending\n' +
-      '\n' +
-      '    Implement query command\n',
+    'task docs/tasks/v0/query-command.md  [status: pending]\n' +
+      '  Implement query command\n',
   );
   expect(io_context.stdout_chunks).toEqual([]);
   expect(io_context.paged_output_chunks.join('')).toContain('\u001B[');
