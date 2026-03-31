@@ -347,8 +347,10 @@ execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
 - Separate adjacent query results with one blank line.
 - Render the left title as `document <path>` for documents and `<kind> <id>` for
   semantic non-document nodes.
-- Render the right title as one bracketed metadata label built from the visible
-  metadata rows when present.
+- Render the right title as one parenthesized metadata label built from the
+  visible metadata rows when present.
+- Render each compact-label field as `key=value`.
+- Separate adjacent compact-label fields with `, `.
 - Render the right title inline after the left title separated by two spaces.
 - Omit the right title completely when no visible metadata rows exist.
 - Render the title in the indented content block.
@@ -464,6 +466,6 @@ execution: done  open_tasks: 0  blocked_tasks: 0  total_tasks: 4
 - Keep metadata inline after the primary label when a right title is present.
 - In TTY output, truncate only right-title labels when wrapping would destroy
   scanability.
-- When truncating a bracketed metadata label, use `…` and keep the closing
-  bracket when width allows.
+- When truncating a parenthesized metadata label, use `…` and keep the closing
+  `)` when width allows.
 - Do not truncate paths in `plain` or `json` modes.
