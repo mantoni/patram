@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.11.0 - 2026-03-31
+
+- Add package compatibility type aliases
+  ([`0871515`](https://github.com/mantoni/patram/commit/08715154c1e5eb45c5d48822f3d86bc6be753d4d))
+- Preserve config formatting in query edits
+  ([`7067ddc`](https://github.com/mantoni/patram/commit/7067ddc2b603d19970bd3e4e9b3ec394b26ca578))
+- Add stored query management commands
+  ([`2a3f54f`](https://github.com/mantoni/patram/commit/2a3f54f430e5eea3d4a399465cefb37e6d948d4e))
+- Support multiple check paths
+  ([`e3356f4`](https://github.com/mantoni/patram/commit/e3356f4b076852e20521c7334318e3b55ec5eeba))
+
 ## 0.10.0 - 2026-03-31
 
 - Add query-language hint to queries output

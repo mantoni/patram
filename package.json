@@ -1,6 +1,6 @@
 {
   "name": "patram",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "type": "module",
   "main": "./lib/patram.js",
   "types": "./lib/patram.d.ts",
