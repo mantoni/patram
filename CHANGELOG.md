@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.10.0 - 2026-03-31
+
+- Add query-language hint to queries output
+  ([`5beb326`](https://github.com/mantoni/patram/commit/5beb3263412d3afbf72d1d4ab0f0adae6a214ae5))
+- Remove show self-summary
+  ([`5cc3d84`](https://github.com/mantoni/patram/commit/5cc3d84681232c053c9454ba4714a64746c74225))
+- Refine field discovery onboarding signal
+  ([`fac4159`](https://github.com/mantoni/patram/commit/fac415921acc5f1af97555c9a1a01e9ff314df61))
+- Document field discovery onboarding heuristics
+  ([`f3ab3b9`](https://github.com/mantoni/patram/commit/f3ab3b9b524e1b4bc050aa94532fb4169305ddfe))
+- Align CLI argument and stored query errors
+  ([`b7407e8`](https://github.com/mantoni/patram/commit/b7407e8a5128932ccae5e0ed2ccbf2eee0ca5323))
+- Add query descriptions
+  ([`9dd4cb3`](https://github.com/mantoni/patram/commit/9dd4cb3b5236bdb5195731dfd4da313ae6dee5fe))
+- Check knip --production in CI
+  ([`a85703e`](https://github.com/mantoni/patram/commit/a85703e471e2f3c0dd024ebba8f9f4c3c1714acf))
+
 ## 0.9.0 - 2026-03-29
 
 - Add knip dead code check
