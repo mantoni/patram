@@ -39,6 +39,9 @@ For repository documentation layout and where to put new docs, see
 - Follows common practices.
 - In markdown files:
   - The first line of the file is the title.
+  - The first eligible paragraph becomes the description.
+  - A pure directive block may appear between a heading title and the
+    description paragraph.
   - Top-of-file front matter delimited by `---` is parsed as YAML.
   - A word or phrase that links with a relative path into a directory added to
     patram.
