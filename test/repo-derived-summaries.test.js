@@ -55,7 +55,8 @@ it('renders derived execution metadata for plan query results', async () => {
   });
 
   expect(renderPlainOutput(output_view)).toContain(
-    '(status=active, execution=done, open_tasks=0, blocked_tasks=0, total_tasks=5)',
+    'plan docs/plans/v0/output-contract-alignment.md  (status=active)\n' +
+      '  summary: execution=done  open_tasks=0  blocked_tasks=0  total_tasks=5',
   );
   expect(renderJsonOutput(output_view)).toContain(
     '"derived_summary": "plan_execution"',
