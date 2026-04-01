@@ -418,6 +418,10 @@ See [Some Guide][1], [Query Language v0][2], and
   - diagnostic locations
   - diagnostic codes
   - the secondary success-summary line in `check`
+- Use gray for node description lines in compact rich output:
+  - query result descriptions
+  - refs target and incoming-node descriptions
+  - show resolved-link descriptions
 - Keep metadata keys uncolored.
 - Render inline metadata punctuation such as `(`, `)`, `=`, and `,` in gray.
 - Render the `summary:` label in gray and keep summary field keys and values on
