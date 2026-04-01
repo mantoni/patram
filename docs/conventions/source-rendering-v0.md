@@ -35,6 +35,14 @@
   list item.
 - Paragraphs inside list items must remain visible in the rendered output.
 - Tables render through Patram-owned cell padding, alignment, and borders.
+- Tables use box-drawing borders sized to the widest visible rendered cell in
+  each column.
+- Tables render gray borders in rich color mode.
+- Table header cells render red in rich color mode.
+- Table alignment markers affect rich rendering:
+  - `:--` left-aligns the column
+  - `:-:` centers the column
+  - `--:` right-aligns the column
 - Inline code, emphasis, and links render through Patram-owned inline styling.
 - Inline code renders with terminal-palette colors on a visible dark-gray
   terminal background, darker than blockquotes, and dimmed terminal-native text.
