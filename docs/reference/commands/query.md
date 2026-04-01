@@ -17,7 +17,7 @@ use `patram show <path>` on the matching document or source file.
 Supported where-clause forms:
 
 - Exact field matches: `$id=<value>`, `$class=<value>`, `$path=<value>`,
-  `status=<value>`
+  `$filename=<value>`, `status=<value>`
 - Prefix matches: `$id^=<prefix>`, `$path^=<prefix>`
 - Title contains matches: `title~<text>`
 - Set membership: `<field> in [<value>, ...]`, `<field> not in [<value>, ...]`
@@ -33,10 +33,10 @@ Supported where-clause forms:
 
 Supported fields by operator:
 
-- Exact match: `$id`, `$class`, `$path`, `status`
+- Exact match: `$id`, `$class`, `$path`, `$filename`, `status`
 - Prefix match: `$id`, `$path`
 - Contains text: `title`
-- Set membership: `$id`, `$class`, `$path`, `status`, `title`
+- Set membership: `$id`, `$class`, `$path`, `$filename`, `status`, `title`
 
 Exact relation-target ids:
 
@@ -56,6 +56,7 @@ Examples:
 - `patram query --where 'status not in [done, dropped, superseded]'`
 - `patram query --where '$class=task or status=done'`
 - `patram query --where '($class=task or status=blocked) and title~Show'`
+- `patram query --where '$filename=README.md'`
 - `patram query --where '$class=plan and none(in:tracked_in, $class=decision)'`
 - `patram query --where 'count(in:decided_by, $class=task) = 0'`
 - `patram query ready-tasks --explain`

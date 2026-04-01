@@ -80,7 +80,7 @@ Usage:
 Run a stored query or an ad hoc where clause against graph nodes.
 
 Where clause:
-  $id=<value> | $class=<value> | $path=<value> | status=<value>
+  $id=<value> | $class=<value> | $path=<value> | $filename=<value> | status=<value>
   $id^=<prefix> | $path^=<prefix> | title~<text>
   <field> in [<value>, ...] | <field> not in [<value>, ...]
   <relation>:* | <relation>=<target-id>
@@ -223,10 +223,10 @@ Usage:
   (<expression>)
 
 Fields:
-  Exact match: $id, $class, $path, status
+  Exact match: $id, $class, $path, $filename, status
   Prefix match: $id, $path
   Contains text: title
-  Set membership: $id, $class, $path, status, title
+  Set membership: $id, $class, $path, $filename, status, title
 
 Relations:
   <relation>:*            Match nodes with at least one outgoing relation
@@ -250,6 +250,7 @@ Examples:
   $class=decision and status=accepted
   $class=task or status=done
   ($class=task or status=blocked) and title~Show
+  $filename=README.md
   $path^=docs/plans/
   title~query
   tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md
