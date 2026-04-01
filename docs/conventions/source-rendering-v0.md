@@ -31,6 +31,8 @@
 - Lists and blockquotes own their indentation and prefixes.
 - Unordered list markers render as `•`.
 - Ordered list markers keep their numeric prefix.
+- Ordered lists with any double-digit item numbers left-pad shorter numbers so
+  all marker periods align within that list.
 - Wrap list-item continuation lines with a hanging indent that stays inside the
   list item.
 - Paragraphs inside list items must remain visible in the rendered output.
