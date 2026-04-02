@@ -1,11 +1,12 @@
 # Query
 
 - Command: query
-- Command Summary: Run a stored query or an ad hoc where clause against graph
+- Command Summary: Run a stored query or an ad hoc Cypher query against graph
   nodes.
 
-`patram query <name>` runs a stored query, and `patram query --where '<clause>'`
-evaluates one ad hoc filter.
+`patram query <name>` runs a stored query, and `patram query --cypher '<query>'`
+evaluates one ad hoc Cypher query. The legacy `--where '<clause>'` mode is still
+accepted for compatibility.
 
 Use `--explain` to inspect the resolved query and parsed expression tree without
 rendering result rows. Use `--lint` to validate syntax and semantic query
@@ -14,33 +15,24 @@ references, including nested traversal clauses, without executing the query.
 Agents should usually start with `patram queries`, then run a named query, then
 use `patram show <path>` on the matching document or source file.
 
-Supported where-clause forms:
+Supported Cypher subset:
 
-- Exact field matches: `$id=<value>`, `$class=<value>`, `$path=<value>`,
-  `$filename=<value>`, `status=<value>`
-- Prefix matches: `$id^=<prefix>`, `$path^=<prefix>`
-- Path glob matches: `$path*=<glob>`
-- Title contains matches: `title~<text>`
-- Set membership: `<field> in [<value>, ...]`, `<field> not in [<value>, ...]`
-- Relation tests: `<relation>:*`, `<relation>=<target-id>`
-- Traversal terms inside aggregates: `in:<relation>`, `out:<relation>`
-- Aggregate predicates: `any(<traversal>, <term> and <term>)`,
-  `none(<traversal>, <term> and <term>)`
-- Aggregate counts:
-  `count(<traversal>, <term> and <term>) <comparison> <number>`
-- Boolean composition: `not <term>`, `<term> and <term>`, `<term> or <term>`,
-  `(<expression>)`
-- Precedence: `not`, then `and`, then `or`
+- `MATCH (n)` or `MATCH (n:Label)`
+- `WHERE` predicates over node properties such as `n.status = 'active'`
+- `STARTS WITH`, `CONTAINS`, `IN`, and `NOT IN`
+- `EXISTS { MATCH ... }` relation subqueries
+- `COUNT { MATCH ... } <comparison> <number>` relation-count subqueries
+- `RETURN n`
 
-Supported fields by operator:
+Patram property aliases:
 
-- Exact match: `$id`, `$class`, `$path`, `$filename`, `status`
-- Prefix match: `$id`, `$path`
-- Glob match: `$path`
-- Contains text: `title`
-- Set membership: `$id`, `$class`, `$path`, `$filename`, `status`, `title`
+- `n.id` -> semantic node id
+- `n.class` -> Patram `$class`
+- `n.path` -> Patram `$path`
+- `n.filename` -> derived filename
+- `n.title`, `n.status`, `n.kind` -> normal Patram fields
 
-Exact relation-target ids:
+Exact semantic ids:
 
 - Unclassified documents use `doc:<repo-relative-path>`.
 - Document-backed entities promoted through structural `$class` and `$id`
@@ -51,19 +43,13 @@ Exact relation-target ids:
 Examples:
 
 - `patram query active-plans`
-- `patram query --where 'tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md'`
-- `patram query --where '$id=command:query'`
-- `patram query --where 'implements_command=command:query'`
-- `patram query --where 'uses_term=term:graph'`
-- `patram query --where 'status not in [done, dropped, superseded]'`
-- `patram query --where '$class=task or status=done'`
-- `patram query --where '($class=task or status=blocked) and title~Show'`
-- `patram query --where '$filename=README.md'`
-- `patram query --where '$path*=docs/**/query-*.md'`
-- `patram query --where '$class=plan and none(in:tracked_in, $class=decision)'`
-- `patram query --where 'count(in:decided_by, $class=task) = 0'`
+- `patram query --cypher "MATCH (n:Command) RETURN n"`
+- `patram query --cypher "MATCH (n) WHERE n.id = 'command:query' RETURN n"`
+- `patram query --cypher "MATCH (n) WHERE EXISTS { MATCH (n)-[:IMPLEMENTS_COMMAND]->(command:Command) WHERE command.id = 'command:query' } RETURN n"`
+- `patram query --cypher "MATCH (n) WHERE EXISTS { MATCH (n)-[:USES_TERM]->(term:Term) WHERE term.id = 'term:graph' } RETURN n"`
+- `patram query --cypher "MATCH (n:Decision) WHERE n.status = 'accepted' AND COUNT { MATCH (task:Task)-[:DECIDED_BY]->(n) } = 0 RETURN n"`
 - `patram query ready-tasks --explain`
-- `patram query --where '$class=decision and status=accepted and count(in:decided_by, $class=task) = 0' --lint`
+- `patram query --cypher "MATCH (n:Decision) WHERE n.status = 'accepted' AND COUNT { MATCH (task:Task)-[:DECIDED_BY]->(n) } = 0 RETURN n" --lint`
 
 Package query APIs also support explicit `@binding_name` placeholders in value
 positions through `parseWhereClause(where_clause, { bindings })` and

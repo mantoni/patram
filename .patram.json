@@ -11,107 +11,107 @@
   "queries": {
     "accepted-decisions": {
       "description": "Show accepted decisions.",
-      "where": "$class=decision and status=accepted"
+      "cypher": "MATCH (n:Decision) WHERE n.status = 'accepted' RETURN n"
     },
     "active-plans": {
       "description": "Show active implementation plans.",
-      "where": "$class=plan and status=active"
+      "cypher": "MATCH (n:Plan) WHERE n.status = 'active' RETURN n"
     },
     "active-roadmaps": {
       "description": "Show active roadmaps.",
-      "where": "$class=roadmap and status=active"
+      "cypher": "MATCH (n:Roadmap) WHERE n.status = 'active' RETURN n"
     },
     "blocked-tasks": {
       "description": "Show blocked tasks.",
-      "where": "$class=task and status=blocked"
+      "cypher": "MATCH (n:Task) WHERE n.status = 'blocked' RETURN n"
     },
     "command-implementations": {
       "description": "Show source anchors that implement documented commands.",
-      "where": "implements_command:*"
+      "cypher": "MATCH (n) WHERE EXISTS { MATCH (n)-[:IMPLEMENTS_COMMAND]->(command:Command) } RETURN n"
     },
     "command-taxonomy": {
       "description": "Show canonical command reference nodes.",
-      "where": "$id^=command:"
+      "cypher": "MATCH (n:Command) RETURN n"
     },
     "decision-review-queue": {
       "description": "Show proposed decisions awaiting review.",
-      "where": "$class=decision and status=proposed"
+      "cypher": "MATCH (n:Decision) WHERE n.status = 'proposed' RETURN n"
     },
     "decisions-needing-tasks": {
       "description": "Show accepted decisions that do not yet have tasks.",
-      "where": "$class=decision and status=accepted and count(in:decided_by, $class=task) = 0"
+      "cypher": "MATCH (n:Decision) WHERE n.status = 'accepted' AND COUNT { MATCH (task:Task)-[:DECIDED_BY]->(n) } = 0 RETURN n"
     },
     "decisions-with-open-tasks": {
       "description": "Show accepted decisions with unfinished tasks.",
-      "where": "$class=decision and status=accepted and any(in:decided_by, $class=task and status not in [done, dropped, superseded])"
+      "cypher": "MATCH (n:Decision) WHERE n.status = 'accepted' AND EXISTS { MATCH (task:Task)-[:DECIDED_BY]->(n) WHERE task.status NOT IN ['done', 'dropped', 'superseded'] } RETURN n"
     },
     "ideas": {
       "description": "Show captured, exploring, and planned ideas.",
-      "where": "$class=idea and status in [captured, exploring, planned]"
+      "cypher": "MATCH (n:Idea) WHERE n.status IN ['captured', 'exploring', 'planned'] RETURN n"
     },
     "in-progress-tasks": {
       "description": "Show tasks currently in progress.",
-      "where": "$class=task and status=in_progress"
+      "cypher": "MATCH (n:Task) WHERE n.status = 'in_progress' RETURN n"
     },
     "pending-tasks": {
       "description": "Show tasks that have not started yet.",
-      "where": "$class=task and status=pending"
+      "cypher": "MATCH (n:Task) WHERE n.status = 'pending' RETURN n"
     },
     "plans-with-open-tasks": {
       "description": "Show active plans with unfinished tasks.",
-      "where": "$class=plan and status=active and any(in:tracked_in, $class=task and status not in [done, dropped, superseded])"
+      "cypher": "MATCH (n:Plan) WHERE n.status = 'active' AND EXISTS { MATCH (task:Task)-[:TRACKED_IN]->(n) WHERE task.status NOT IN ['done', 'dropped', 'superseded'] } RETURN n"
     },
     "plans-without-decisions": {
       "description": "Show active plans that are missing linked decisions.",
-      "where": "$class=plan and status=active and none(in:tracked_in, $class=decision)"
+      "cypher": "MATCH (n:Plan) WHERE n.status = 'active' AND NOT EXISTS { MATCH (decision:Decision)-[:TRACKED_IN]->(n) } RETURN n"
     },
     "ready-tasks": {
       "description": "Show tasks that are ready to start.",
-      "where": "$class=task and status=ready"
+      "cypher": "MATCH (n:Task) WHERE n.status = 'ready' RETURN n"
     },
     "source-entrypoints": {
       "description": "Show documented entrypoint source anchors.",
-      "where": "kind=entrypoint"
+      "cypher": "MATCH (n) WHERE n.kind = 'entrypoint' RETURN n"
     },
     "source-cli": {
       "description": "Show CLI-related source anchors.",
-      "where": "kind=cli"
+      "cypher": "MATCH (n) WHERE n.kind = 'cli' RETURN n"
     },
     "source-config": {
       "description": "Show config-related source anchors.",
-      "where": "kind=config"
+      "cypher": "MATCH (n) WHERE n.kind = 'config' RETURN n"
     },
     "source-scan": {
       "description": "Show scan-related source anchors.",
-      "where": "kind=scan"
+      "cypher": "MATCH (n) WHERE n.kind = 'scan' RETURN n"
     },
     "source-parse": {
       "description": "Show parse-related source anchors.",
-      "where": "kind=parse"
+      "cypher": "MATCH (n) WHERE n.kind = 'parse' RETURN n"
     },
     "source-graph": {
       "description": "Show graph-related source anchors.",
-      "where": "kind=graph"
+      "cypher": "MATCH (n) WHERE n.kind = 'graph' RETURN n"
     },
     "source-output": {
       "description": "Show output-related source anchors.",
-      "where": "kind=output"
+      "cypher": "MATCH (n) WHERE n.kind = 'output' RETURN n"
     },
     "source-support": {
       "description": "Show support source anchors.",
-      "where": "kind=support"
+      "cypher": "MATCH (n) WHERE n.kind = 'support' RETURN n"
     },
     "source-release": {
       "description": "Show release-related source anchors.",
-      "where": "kind=release"
+      "cypher": "MATCH (n) WHERE n.kind = 'release' RETURN n"
     },
     "term-usage": {
       "description": "Show nodes that use canonical terms.",
-      "where": "uses_term:*"
+      "cypher": "MATCH (n) WHERE EXISTS { MATCH (n)-[:USES_TERM]->(term:Term) } RETURN n"
     },
     "term-taxonomy": {
       "description": "Show canonical term reference nodes.",
-      "where": "$id^=term:"
+      "cypher": "MATCH (n:Term) RETURN n"
     }
   },
   "classes": {

@@ -308,19 +308,19 @@ function createExpectedWorktrackingQueries() {
 function createExpectedTaxonomyQueries() {
   return {
     'command-implementations': createStoredQuery(
-      'implements_command:*',
+      'MATCH (n) WHERE EXISTS { MATCH (n)-[:IMPLEMENTS_COMMAND]->(command:Command) } RETURN n',
       'Show source anchors that implement documented commands.',
     ),
     'command-taxonomy': createStoredQuery(
-      '$id^=command:',
+      'MATCH (n:Command) RETURN n',
       'Show canonical command reference nodes.',
     ),
     'term-taxonomy': createStoredQuery(
-      '$id^=term:',
+      'MATCH (n:Term) RETURN n',
       'Show canonical term reference nodes.',
     ),
     'term-usage': createStoredQuery(
-      'uses_term:*',
+      'MATCH (n) WHERE EXISTS { MATCH (n)-[:USES_TERM]->(term:Term) } RETURN n',
       'Show nodes that use canonical terms.',
     ),
   };
@@ -329,19 +329,19 @@ function createExpectedTaxonomyQueries() {
 function createExpectedWorktrackingDecisionQueries() {
   return {
     'accepted-decisions': createStoredQuery(
-      '$class=decision and status=accepted',
+      "MATCH (n:Decision) WHERE n.status = 'accepted' RETURN n",
       'Show accepted decisions.',
     ),
     'decision-review-queue': createStoredQuery(
-      '$class=decision and status=proposed',
+      "MATCH (n:Decision) WHERE n.status = 'proposed' RETURN n",
       'Show proposed decisions awaiting review.',
     ),
     'decisions-needing-tasks': createStoredQuery(
-      '$class=decision and status=accepted and count(in:decided_by, $class=task) = 0',
+      "MATCH (n:Decision) WHERE n.status = 'accepted' AND COUNT { MATCH (task:Task)-[:DECIDED_BY]->(n) } = 0 RETURN n",
       'Show accepted decisions that do not yet have tasks.',
     ),
     'decisions-with-open-tasks': createStoredQuery(
-      '$class=decision and status=accepted and any(in:decided_by, $class=task and status not in [done, dropped, superseded])',
+      "MATCH (n:Decision) WHERE n.status = 'accepted' AND EXISTS { MATCH (task:Task)-[:DECIDED_BY]->(n) WHERE task.status NOT IN ['done', 'dropped', 'superseded'] } RETURN n",
       'Show accepted decisions with unfinished tasks.',
     ),
   };
@@ -350,23 +350,23 @@ function createExpectedWorktrackingDecisionQueries() {
 function createExpectedWorktrackingTaskQueries() {
   return {
     'blocked-tasks': createStoredQuery(
-      '$class=task and status=blocked',
+      "MATCH (n:Task) WHERE n.status = 'blocked' RETURN n",
       'Show blocked tasks.',
     ),
     ideas: createStoredQuery(
-      '$class=idea and status in [captured, exploring, planned]',
+      "MATCH (n:Idea) WHERE n.status IN ['captured', 'exploring', 'planned'] RETURN n",
       'Show captured, exploring, and planned ideas.',
     ),
     'in-progress-tasks': createStoredQuery(
-      '$class=task and status=in_progress',
+      "MATCH (n:Task) WHERE n.status = 'in_progress' RETURN n",
       'Show tasks currently in progress.',
     ),
     'pending-tasks': createStoredQuery(
-      '$class=task and status=pending',
+      "MATCH (n:Task) WHERE n.status = 'pending' RETURN n",
       'Show tasks that have not started yet.',
     ),
     'ready-tasks': createStoredQuery(
-      '$class=task and status=ready',
+      "MATCH (n:Task) WHERE n.status = 'ready' RETURN n",
       'Show tasks that are ready to start.',
     ),
   };
@@ -375,19 +375,19 @@ function createExpectedWorktrackingTaskQueries() {
 function createExpectedWorktrackingPlanQueries() {
   return {
     'active-plans': createStoredQuery(
-      '$class=plan and status=active',
+      "MATCH (n:Plan) WHERE n.status = 'active' RETURN n",
       'Show active implementation plans.',
     ),
     'active-roadmaps': createStoredQuery(
-      '$class=roadmap and status=active',
+      "MATCH (n:Roadmap) WHERE n.status = 'active' RETURN n",
       'Show active roadmaps.',
     ),
     'plans-with-open-tasks': createStoredQuery(
-      '$class=plan and status=active and any(in:tracked_in, $class=task and status not in [done, dropped, superseded])',
+      "MATCH (n:Plan) WHERE n.status = 'active' AND EXISTS { MATCH (task:Task)-[:TRACKED_IN]->(n) WHERE task.status NOT IN ['done', 'dropped', 'superseded'] } RETURN n",
       'Show active plans with unfinished tasks.',
     ),
     'plans-without-decisions': createStoredQuery(
-      '$class=plan and status=active and none(in:tracked_in, $class=decision)',
+      "MATCH (n:Plan) WHERE n.status = 'active' AND NOT EXISTS { MATCH (decision:Decision)-[:TRACKED_IN]->(n) } RETURN n",
       'Show active plans that are missing linked decisions.',
     ),
   };
@@ -396,39 +396,39 @@ function createExpectedWorktrackingPlanQueries() {
 function createExpectedSourceQueries() {
   return {
     'source-cli': createStoredQuery(
-      'kind=cli',
+      "MATCH (n) WHERE n.kind = 'cli' RETURN n",
       'Show CLI-related source anchors.',
     ),
     'source-config': createStoredQuery(
-      'kind=config',
+      "MATCH (n) WHERE n.kind = 'config' RETURN n",
       'Show config-related source anchors.',
     ),
     'source-entrypoints': createStoredQuery(
-      'kind=entrypoint',
+      "MATCH (n) WHERE n.kind = 'entrypoint' RETURN n",
       'Show documented entrypoint source anchors.',
     ),
     'source-graph': createStoredQuery(
-      'kind=graph',
+      "MATCH (n) WHERE n.kind = 'graph' RETURN n",
       'Show graph-related source anchors.',
     ),
     'source-output': createStoredQuery(
-      'kind=output',
+      "MATCH (n) WHERE n.kind = 'output' RETURN n",
       'Show output-related source anchors.',
     ),
     'source-parse': createStoredQuery(
-      'kind=parse',
+      "MATCH (n) WHERE n.kind = 'parse' RETURN n",
       'Show parse-related source anchors.',
     ),
     'source-release': createStoredQuery(
-      'kind=release',
+      "MATCH (n) WHERE n.kind = 'release' RETURN n",
       'Show release-related source anchors.',
     ),
     'source-scan': createStoredQuery(
-      'kind=scan',
+      "MATCH (n) WHERE n.kind = 'scan' RETURN n",
       'Show scan-related source anchors.',
     ),
     'source-support': createStoredQuery(
-      'kind=support',
+      "MATCH (n) WHERE n.kind = 'support' RETURN n",
       'Show support source anchors.',
     ),
   };
@@ -588,12 +588,12 @@ function createTaxonomyRelationMapping(relation, target_class) {
 }
 
 /**
- * @param {string} where
+ * @param {string} cypher
  * @param {string} [description]
  */
-function createStoredQuery(where, description) {
-  /** @type {{ description?: string, where: string }} */
-  const stored_query = { where };
+function createStoredQuery(cypher, description) {
+  /** @type {{ cypher: string, description?: string }} */
+  const stored_query = { cypher };
 
   if (description) {
     stored_query.description = description;

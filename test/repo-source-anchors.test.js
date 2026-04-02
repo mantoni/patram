@@ -67,7 +67,7 @@ it('keeps the documented source stored queries useful', async () => {
     selectPaths(
       project_graph_result.graph,
       project_graph_result.config,
-      repo_config.queries['source-parse'].where,
+      getStoredQueryText(repo_config.queries['source-parse']),
     ),
   ).toEqual([
     'lib/parse/jsdoc/parse-jsdoc-claims.js',
@@ -80,7 +80,7 @@ it('keeps the documented source stored queries useful', async () => {
     selectPaths(
       project_graph_result.graph,
       project_graph_result.config,
-      repo_config.queries['source-graph'].where,
+      getStoredQueryText(repo_config.queries['source-graph']),
     ),
   ).toEqual([
     'lib/graph/build-graph.js',
@@ -93,7 +93,7 @@ it('keeps the documented source stored queries useful', async () => {
     selectPaths(
       project_graph_result.graph,
       project_graph_result.config,
-      repo_config.queries['source-output'].where,
+      getStoredQueryText(repo_config.queries['source-output']),
     ),
   ).toEqual([
     'lib/output/command-output.js',
@@ -111,4 +111,18 @@ function selectPaths(graph, repo_config, where_clause) {
   return queryGraph(graph, where_clause, repo_config).nodes.map(
     (graph_node) => graph_node.path,
   );
+}
+
+/**
+ * @param {{ cypher?: string, where?: string }} stored_query
+ * @returns {string}
+ */
+function getStoredQueryText(stored_query) {
+  const query_text = stored_query.cypher ?? stored_query.where;
+
+  if (!query_text) {
+    throw new Error('Expected a stored query text.');
+  }
+
+  return query_text;
 }

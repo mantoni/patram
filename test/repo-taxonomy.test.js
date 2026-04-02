@@ -34,7 +34,7 @@ it('indexes the canonical command taxonomy nodes', async () => {
     selectIds(
       project_graph_result.graph,
       project_graph_result.config,
-      repo_config.queries['command-taxonomy'].where,
+      getStoredQueryText(repo_config.queries['command-taxonomy']),
     ),
   ).toEqual([
     'command:check',
@@ -54,7 +54,7 @@ it('indexes the canonical term taxonomy nodes', async () => {
     selectIds(
       project_graph_result.graph,
       project_graph_result.config,
-      repo_config.queries['term-taxonomy'].where,
+      getStoredQueryText(repo_config.queries['term-taxonomy']),
     ),
   ).toEqual([
     'term:claim',
@@ -75,7 +75,7 @@ it('indexes stored command implementation entrypoints', async () => {
     selectPaths(
       project_graph_result.graph,
       project_graph_result.config,
-      repo_config.queries['command-implementations'].where,
+      getStoredQueryText(repo_config.queries['command-implementations']),
     ),
   ).toEqual(['lib/cli/main.js']);
 });
@@ -101,7 +101,7 @@ it('indexes stored term usage entrypoints', async () => {
     selectPaths(
       project_graph_result.graph,
       project_graph_result.config,
-      repo_config.queries['term-usage'].where,
+      getStoredQueryText(repo_config.queries['term-usage']),
     ),
   ).toEqual([
     'docs/graph-v0.md',
@@ -152,4 +152,18 @@ function selectIds(graph, repo_config, where_clause) {
   return queryGraph(graph, where_clause, repo_config).nodes.map(
     (graph_node) => graph_node.id,
   );
+}
+
+/**
+ * @param {{ cypher?: string, where?: string }} stored_query
+ * @returns {string}
+ */
+function getStoredQueryText(stored_query) {
+  const query_text = stored_query.cypher ?? stored_query.where;
+
+  if (!query_text) {
+    throw new Error('Expected a stored query text.');
+  }
+
+  return query_text;
 }

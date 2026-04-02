@@ -75,9 +75,10 @@ Related:
 ```text
 Usage:
   patram query <name> [options]
+  patram query --cypher '<query>' [options]
   patram query --where '<clause>' [options]
 
-Run a stored query or an ad hoc where clause against graph nodes.
+Run a stored query or an ad hoc Cypher query against graph nodes.
 
 Where clause:
   $id=<value> | $class=<value> | $path=<value> | $filename=<value> | status=<value>
@@ -89,6 +90,7 @@ Where clause:
   count(<traversal>, <term> and <term>) <comparison> <number>
 
 Options:
+  --cypher <query>   Run an ad hoc Cypher query instead of a stored query
   --where <clause>   Run an ad hoc query instead of a stored query
   --offset <number>  Skip the first N matches
   --limit <number>   Limit the number of matches
@@ -99,6 +101,7 @@ Options:
 
 Examples:
   patram query active-plans
+  patram query --cypher "MATCH (n:Plan) WHERE n.status = 'active' RETURN n"
   patram query --where 'tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md'
   patram query --where 'status not in [done, dropped, superseded]'
   patram query --where '$class=plan and none(in:tracked_in, $class=decision)'
@@ -122,13 +125,15 @@ Help topics:
 ```text
 Usage:
   patram queries [options]
+  patram queries add <name> --cypher <query> [--desc <text>] [options]
   patram queries add <name> --where <clause> [--desc <text>] [options]
-  patram queries update <name> [--name <new_name>] [--where <clause>] [--desc <text>] [options]
+  patram queries update <name> [--name <new_name>] [--cypher <query>] [--where <clause>] [--desc <text>] [options]
   patram queries remove <name> [options]
 
 List stored queries or mutate them through add, update, and remove.
 
 Options:
+  --cypher <query>   Persist a new stored Cypher query
   --where <clause>   Persist a new stored query
   --name <new_name>  Set or rename the stored query name for update
   --desc <text>      Set or clear the stored query description
@@ -137,6 +142,7 @@ Options:
 
 Examples:
   patram queries
+  patram queries add active-plans --cypher "MATCH (n:Plan) WHERE n.status = 'active' RETURN n"
   patram queries add ready-tasks --where '$class=task and status=ready'
   patram queries update ready-tasks --desc 'Show tasks that are ready.'
   patram queries remove ready-tasks
@@ -156,6 +162,7 @@ Usage:
 Inspect incoming graph references for one file, grouped by relation.
 
 Options:
+  --cypher <query>   Filter incoming source nodes with a Cypher query
   --where <clause>   Filter incoming source nodes with a where clause
   --plain            Print plain text output
   --json             Print JSON output
@@ -309,6 +316,7 @@ Unknown option: --wat
 
 Usage:
   patram query <name> [options]
+  patram query --cypher '<query>' [options]
   patram query --where '<clause>' [options]
 
 Next:
@@ -367,6 +375,7 @@ Missing required argument: <name> or --where '<clause>'
 
 Usage:
   patram query <name> [options]
+  patram query --cypher '<query>' [options]
   patram query --where '<clause>' [options]
 
 Examples:
@@ -411,6 +420,7 @@ Unexpected argument: extra
 
 Usage:
   patram query <name> [options]
+  patram query --cypher '<query>' [options]
   patram query --where '<clause>' [options]
 
 Next:
@@ -426,8 +436,9 @@ Unexpected argument: x
 
 Usage:
   patram queries [options]
+  patram queries add <name> --cypher <query> [--desc <text>] [options]
   patram queries add <name> --where <clause> [--desc <text>] [options]
-  patram queries update <name> [--name <new_name>] [--where <clause>] [--desc <text>] [options]
+  patram queries update <name> [--name <new_name>] [--cypher <query>] [--where <clause>] [--desc <text>] [options]
   patram queries remove <name> [options]
 
 Next:
