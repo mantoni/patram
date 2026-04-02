@@ -480,7 +480,7 @@ it('prints query diagnostics for invalid Cypher queries', async () => {
 
   expect(exit_code).toBe(1);
   expect(io_context.stderr_chunks).toEqual([
-    await loadHelpFixture('error-invalid-where'),
+    await loadHelpFixture('error-invalid-query'),
   ]);
   expect(io_context.stdout_chunks).toEqual([]);
 });

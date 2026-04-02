@@ -462,13 +462,13 @@ Next:
   patram query active-plans
 ```
 
-### Invalid `--where`
+### Invalid query
 
-[patram fixture=error-invalid-where role=output]: #
+[patram fixture=error-invalid-query role=output]: #
 
 ```text
 Invalid query:
-  <query>:1:22 error query.invalid Label or relationship type decision is not present in the database. Make sure you didn't misspell it or that it is available when you run this statement in your application
+  <query>:1:22 error query.invalid Expected the "." token.
 
 Next:
   patram help query-language

@@ -156,7 +156,7 @@ it('wraps invalid query diagnostics with the query-language help hint', async ()
 
   await expectHelpError(
     ['query', '--cypher', 'MATCH (n) WHERE kind:decision RETURN n'],
-    await loadHelpFixture('error-invalid-where'),
+    await loadHelpFixture('error-invalid-query'),
   );
 });
 
