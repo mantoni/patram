@@ -81,7 +81,7 @@ Run a stored query or an ad hoc where clause against graph nodes.
 
 Where clause:
   $id=<value> | $class=<value> | $path=<value> | $filename=<value> | status=<value>
-  $id^=<prefix> | $path^=<prefix> | title~<text>
+  $id^=<prefix> | $path^=<prefix> | $path*=<glob> | title~<text>
   <field> in [<value>, ...] | <field> not in [<value>, ...]
   <relation>:* | <relation>=<target-id>
   any(<traversal>, <term> and <term>)
@@ -209,6 +209,7 @@ Usage:
   <field>=<value>
   $id^=<prefix>
   $path^=<prefix>
+  $path*=<glob>
   title~<text>
   <field> in [<value>, ...]
   <field> not in [<value>, ...]
@@ -225,6 +226,7 @@ Usage:
 Fields:
   Exact match: $id, $class, $path, $filename, status
   Prefix match: $id, $path
+  Glob match: $path
   Contains text: title
   Set membership: $id, $class, $path, $filename, status, title
 
@@ -237,6 +239,7 @@ Relations:
 Operators:
   =             Exact field match or exact count comparison
   ^=            Prefix match for structural id and path
+  *=            Glob match for structural path
   ~             Contains text for title
   in            Set membership for supported fields
   not in        Set exclusion for supported fields

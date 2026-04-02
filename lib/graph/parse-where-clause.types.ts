@@ -6,7 +6,7 @@ export interface ParsedFieldTerm {
   column: number;
   field_name: ParsedFieldName;
   kind: 'field';
-  operator: '!=' | '<' | '<=' | '=' | '>' | '>=' | '^=' | '~';
+  operator: '!=' | '*=' | '<' | '<=' | '=' | '>' | '>=' | '^=' | '~';
   value: string;
 }
 

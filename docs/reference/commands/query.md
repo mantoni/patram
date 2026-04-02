@@ -19,6 +19,7 @@ Supported where-clause forms:
 - Exact field matches: `$id=<value>`, `$class=<value>`, `$path=<value>`,
   `$filename=<value>`, `status=<value>`
 - Prefix matches: `$id^=<prefix>`, `$path^=<prefix>`
+- Path glob matches: `$path*=<glob>`
 - Title contains matches: `title~<text>`
 - Set membership: `<field> in [<value>, ...]`, `<field> not in [<value>, ...]`
 - Relation tests: `<relation>:*`, `<relation>=<target-id>`
@@ -35,6 +36,7 @@ Supported fields by operator:
 
 - Exact match: `$id`, `$class`, `$path`, `$filename`, `status`
 - Prefix match: `$id`, `$path`
+- Glob match: `$path`
 - Contains text: `title`
 - Set membership: `$id`, `$class`, `$path`, `$filename`, `status`, `title`
 
@@ -57,6 +59,7 @@ Examples:
 - `patram query --where '$class=task or status=done'`
 - `patram query --where '($class=task or status=blocked) and title~Show'`
 - `patram query --where '$filename=README.md'`
+- `patram query --where '$path*=docs/**/query-*.md'`
 - `patram query --where '$class=plan and none(in:tracked_in, $class=decision)'`
 - `patram query --where 'count(in:decided_by, $class=task) = 0'`
 - `patram query ready-tasks --explain`
