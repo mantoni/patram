@@ -122,14 +122,14 @@ Help topics:
 ```text
 Usage:
   patram queries [options]
-  patram queries add <name> --query <clause> [--desc <text>] [options]
-  patram queries update <name> [--name <new_name>] [--query <clause>] [--desc <text>] [options]
+  patram queries add <name> --where <clause> [--desc <text>] [options]
+  patram queries update <name> [--name <new_name>] [--where <clause>] [--desc <text>] [options]
   patram queries remove <name> [options]
 
 List stored queries or mutate them through add, update, and remove.
 
 Options:
-  --query <clause>   Persist a new stored query
+  --where <clause>   Persist a new stored query
   --name <new_name>  Set or rename the stored query name for update
   --desc <text>      Set or clear the stored query description
   --plain            Print plain text output
@@ -137,7 +137,7 @@ Options:
 
 Examples:
   patram queries
-  patram queries add ready-tasks --query '$class=task and status=ready'
+  patram queries add ready-tasks --where '$class=task and status=ready'
   patram queries update ready-tasks --desc 'Show tasks that are ready.'
   patram queries remove ready-tasks
 
@@ -426,8 +426,8 @@ Unexpected argument: x
 
 Usage:
   patram queries [options]
-  patram queries add <name> --query <clause> [--desc <text>] [options]
-  patram queries update <name> [--name <new_name>] [--query <clause>] [--desc <text>] [options]
+  patram queries add <name> --where <clause> [--desc <text>] [options]
+  patram queries update <name> [--name <new_name>] [--where <clause>] [--desc <text>] [options]
   patram queries remove <name> [options]
 
 Next:

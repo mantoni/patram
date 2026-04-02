@@ -29,7 +29,7 @@ it('adds a stored query to config through queries add', async () => {
   process.chdir(test_context.project_directory);
 
   const exit_code = await main(
-    ['queries', 'add', 'ready', '--query', '$class=task and status=ready'],
+    ['queries', 'add', 'ready', '--where', '$class=task and status=ready'],
     {
       stderr: io_context.stderr,
       stdout: io_context.stdout,
@@ -62,7 +62,7 @@ it('updates a stored query name, where clause, and description through queries u
       'blocked',
       '--name',
       'ready',
-      '--query',
+      '--where',
       '$class=task and status=ready',
       '--desc',
       '',
@@ -112,7 +112,7 @@ it('rejects invalid where clauses before persisting queries add', async () => {
   process.chdir(test_context.project_directory);
 
   const exit_code = await main(
-    ['queries', 'add', 'broken', '--query', '$class=task and owner=max'],
+    ['queries', 'add', 'broken', '--where', '$class=task and owner=max'],
     {
       stderr: io_context.stderr,
       stdout: io_context.stdout,
