@@ -25,7 +25,6 @@ it('indexes repo docs and defines the documented stored queries', () => {
 function createExpectedRepoConfig() {
   return {
     classes: createExpectedClasses(),
-    derived_summaries: createExpectedDerivedSummaries(),
     fields: createExpectedFields(),
     include: [
       'docs/**/*.md',
@@ -97,19 +96,6 @@ function createExpectedDocumentClass() {
   };
 }
 
-function createExpectedDerivedSummaries() {
-  return {
-    decision_execution: {
-      classes: ['decision'],
-      fields: createExpectedExecutionFields('decided_by'),
-    },
-    plan_execution: {
-      classes: ['plan'],
-      fields: createExpectedExecutionFields('tracked_in'),
-    },
-  };
-}
-
 function createExpectedFields() {
   return {
     description: {
@@ -161,53 +147,6 @@ function createExpectedSourceKinds() {
     'release',
     'scan',
     'support',
-  ];
-}
-
-/**
- * @param {'decided_by' | 'tracked_in'} relation_name
- */
-function createExpectedExecutionFields(relation_name) {
-  return [
-    {
-      default: 'not_started',
-      name: 'execution',
-      select: [
-        {
-          value: 'done',
-          when: `count(in:${relation_name}, $class=task) > 0 and none(in:${relation_name}, $class=task and status not in [done, dropped, superseded])`,
-        },
-        {
-          value: 'blocked',
-          when: `any(in:${relation_name}, $class=task and status not in [done, dropped, superseded]) and none(in:${relation_name}, $class=task and status not in [done, dropped, superseded] and not status=blocked)`,
-        },
-        {
-          value: 'in_progress',
-          when: `any(in:${relation_name}, $class=task and not status=pending)`,
-        },
-      ],
-    },
-    {
-      count: {
-        traversal: `in:${relation_name}`,
-        where: '$class=task and status not in [done, dropped, superseded]',
-      },
-      name: 'open_tasks',
-    },
-    {
-      count: {
-        traversal: `in:${relation_name}`,
-        where: '$class=task and status=blocked',
-      },
-      name: 'blocked_tasks',
-    },
-    {
-      count: {
-        traversal: `in:${relation_name}`,
-        where: '$class=task',
-      },
-      name: 'total_tasks',
-    },
   ];
 }
 

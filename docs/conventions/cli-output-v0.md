@@ -32,8 +32,6 @@
 - Use one shared inline stored-metadata label format when metadata is shown:
   - parenthesized `key=value` fields on the title row
   - examples: `(status=pending)`, `(kind=graph, status=active)`
-- When derived summary metadata is present, render one second indented row:
-  - `summary: execution=<state>  open_tasks=<count>  blocked_tasks=<count>  total_tasks=<count>`
 - Do not rely on wrapping or color in `plain` mode.
 - Pager-backed TTY output uses `less -FIRXS`.
 - Keep diagnostic layout structurally aligned between `plain` and `rich` modes.
@@ -47,7 +45,6 @@ document docs/tasks/v0/query-command.md  (status=pending)
   Implement query command
 
 document docs/plans/v0/query-traversal-and-aggregation.md  (status=active)
-  summary: execution=done  open_tasks=0  blocked_tasks=0  total_tasks=4
   Query Traversal And Aggregation Plan
 
 command command:query
@@ -71,14 +68,7 @@ command command:query
       "kind": "plan",
       "title": "Query Traversal And Aggregation Plan",
       "path": "docs/plans/v0/query-traversal-and-aggregation.md",
-      "status": "active",
-      "derived_summary": "plan_execution",
-      "derived": {
-        "execution": "done",
-        "open_tasks": 0,
-        "blocked_tasks": 0,
-        "total_tasks": 4
-      }
+      "status": "active"
     }
   ],
   "summary": {
@@ -98,7 +88,6 @@ document docs/tasks/v0/query-command.md  (status=pending)
   Implement query command
 
 document docs/plans/v0/query-traversal-and-aggregation.md  (status=active)
-  summary: execution=done  open_tasks=0  blocked_tasks=0  total_tasks=4
   Query Traversal And Aggregation Plan
 
 ...
@@ -114,7 +103,6 @@ document docs/tasks/v0/task-01.md  (status=pending)
   Implement query command
 
 document docs/plans/v0/query-traversal-and-aggregation.md  (status=active)
-  summary: execution=done  open_tasks=0  blocked_tasks=0  total_tasks=4
   Query Traversal And Aggregation Plan
 
 ...
@@ -229,7 +217,6 @@ See [Some Guide][1], [Query Language v0][2], and
 
     Some Guide
 [2] document docs/decisions/query-language-v0.md  (status=accepted)
-    summary: execution=done  open_tasks=0  blocked_tasks=0  total_tasks=4
     Query Language v0
 [3] document docs/tasks/v0/query-command.md  (status=pending)
     Implement query command
@@ -243,14 +230,7 @@ See [Some Guide][1], [Query Language v0][2], and
     "title": "Query Traversal And Aggregation Plan",
     "path": "docs/plans/v0/query-traversal-and-aggregation.md",
     "kind": "plan",
-    "status": "active",
-    "derived_summary": "plan_execution",
-    "derived": {
-      "execution": "done",
-      "open_tasks": 0,
-      "blocked_tasks": 0,
-      "total_tasks": 4
-    }
+    "status": "active"
   },
   "source": "# Query Traversal And Aggregation Plan\n\n- Kind: plan\n- Status: active\n- Tracked in: docs/roadmap/query-language-extensions.md\n\nSee [Some Guide](../guide.md), [Query Language v0](../decisions/query-language-v0.md), and [Implement query command](../tasks/v0/query-command.md).\n",
   "resolved_links": [
@@ -269,14 +249,7 @@ See [Some Guide][1], [Query Language v0][2], and
         "title": "Query Language v0",
         "path": "docs/decisions/query-language-v0.md",
         "kind": "decision",
-        "status": "accepted",
-        "derived_summary": "decision_execution",
-        "derived": {
-          "execution": "done",
-          "open_tasks": 0,
-          "blocked_tasks": 0,
-          "total_tasks": 4
-        }
+        "status": "accepted"
       }
     },
     {
@@ -308,7 +281,6 @@ See [Some Guide][1], [Query Language v0][2], and
   - optional parenthesized `key=value` metadata label on the right
 - Use `document` as the v0 header type for file-backed graph nodes.
 - Build the inline metadata label from stored visible metadata only.
-- Render derived summary metadata on the next indented line labeled `summary:`.
 - In TTY output, truncate only the inline metadata label and keep the closing
   `)` when width allows.
 - Always show the resolved target title in the indented content block.
@@ -333,8 +305,6 @@ See [Some Guide][1], [Query Language v0][2], and
 - Separate adjacent compact-label fields with `, `.
 - Render the right title inline after the left title separated by two spaces.
 - Omit the right title completely when no visible metadata rows exist.
-- Render derived summary metadata as a second indented row labeled `summary:`
-  when present.
 - Render the title in the indented content block.
 - Render the description directly under the title with no blank line when the
   node carries one.
@@ -424,8 +394,6 @@ See [Some Guide][1], [Query Language v0][2], and
   - show resolved-link descriptions
 - Keep metadata keys uncolored.
 - Render inline metadata punctuation such as `(`, `)`, `=`, and `,` in gray.
-- Render the `summary:` label in gray and keep summary field keys and values on
-  the default foreground color.
 - Parse stored query terms before styling them.
 - Keep stored query field names on the default foreground color.
 - Use gray for stored query operators.

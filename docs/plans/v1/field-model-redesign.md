@@ -128,7 +128,6 @@
 - Owns:
   - `.patram.json` migration
   - stored query migration
-  - derived summary migration
   - help, conventions, and reference updates
   - final repo dogfooding
 - Write scope:
@@ -169,8 +168,7 @@ graph TD
    fallback.
 5. Implement output contract changes for JSON, plain, and show flows.
 6. Add the `fields` discovery command group and advisory report output.
-7. Migrate repo config, stored queries, derived summaries, and docs to the new
-   field model.
+7. Migrate repo config, stored queries, and docs to the new field model.
 8. Run full validation and repo dogfooding.
 
 ## Acceptance

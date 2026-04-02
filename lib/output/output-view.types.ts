@@ -1,15 +1,3 @@
-export type OutputDerivedValue = boolean | number | string | null;
-
-export interface OutputDerivedField {
-  name: string;
-  value: OutputDerivedValue;
-}
-
-export interface OutputDerivedSummary {
-  fields: OutputDerivedField[];
-  name: string;
-}
-
 export interface OutputMetadataField {
   name: string;
   value: string | string[];
@@ -33,7 +21,6 @@ export interface QueryOutputViewSummary extends OutputViewSummary {
 
 export interface OutputNodeItem {
   description?: string;
-  derived_summary?: OutputDerivedSummary;
   fields: Record<string, string | string[]>;
   id: string;
   kind: 'node';
@@ -52,7 +39,6 @@ export interface OutputStoredQueryItem {
 
 export interface OutputResolvedLinkTarget {
   description?: string;
-  derived_summary?: OutputDerivedSummary;
   fields: Record<string, string | string[]>;
   id: string;
   kind: string;

@@ -26,20 +26,6 @@ export type MetadataDirectiveRuleConfig = ClassFieldRuleConfig;
 export type ClassSchemaConfig = import('./schema.js').ClassSchemaConfig;
 export type MetadataSchemaConfig = ClassSchemaConfig;
 export type PathClassConfig = import('./schema.js').PathClassConfig;
-export type DerivedSummaryScalar = import('./schema.js').DerivedSummaryScalar;
-export type DerivedSummarySelectCaseConfig =
-  import('./schema.js').DerivedSummarySelectCaseConfig;
-export type DerivedSummaryFieldConfig =
-  import('./schema.js').DerivedSummaryFieldConfig;
-export type DerivedSummaryCountFieldConfig = Extract<
-  DerivedSummaryFieldConfig,
-  { count: unknown }
->;
-export type DerivedSummarySelectFieldConfig = Extract<
-  DerivedSummaryFieldConfig,
-  { select: unknown }
->;
-export type DerivedSummaryConfig = import('./schema.js').DerivedSummaryConfig;
 export type PatramRepoConfig = import('./schema.js').PatramRepoConfig;
 export type PatramDiagnostic =
   import('./load-patram-config.js').PatramDiagnostic;
