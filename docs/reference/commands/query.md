@@ -5,8 +5,7 @@
   nodes.
 
 `patram query <name>` runs a stored query, and `patram query --cypher '<query>'`
-evaluates one ad hoc Cypher query. The legacy `--where '<clause>'` mode is still
-accepted for compatibility.
+evaluates one ad hoc Cypher query.
 
 Use `--explain` to inspect the resolved query and parsed expression tree without
 rendering result rows. Use `--lint` to validate syntax and semantic query
@@ -53,4 +52,4 @@ Examples:
 
 Package query APIs also support explicit `@binding_name` placeholders in value
 positions through `parseWhereClause(where_clause, { bindings })` and
-`queryGraph(..., { bindings })`. The CLI does not accept binding values.
+`queryGraph(..., { bindings })`. The CLI only accepts Cypher.

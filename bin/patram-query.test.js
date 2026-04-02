@@ -165,7 +165,7 @@ it('keeps an explicit limit when tty query output is paged', async () => {
  */
 async function expectRichQueryOutput(io_context) {
   const exit_code = await main(
-    ['query', '--where', '$class=task and status=pending'],
+    ['query', '--cypher', "MATCH (n:Task) WHERE n.status = 'pending' RETURN n"],
     {
       stderr: io_context.stderr,
       stdout: io_context.stdout,

@@ -157,7 +157,7 @@ it('accepts markdown links to existing repo files outside the indexed source set
   ]);
 });
 
-it('prints matching nodes for query --where', async () => {
+it('prints matching nodes for query --cypher', async () => {
   test_context.project_directory = await createTempProjectDirectory();
   const io_context = createIoContext();
 
@@ -180,7 +180,7 @@ it('prints matching nodes for query --where', async () => {
   process.chdir(test_context.project_directory);
 
   const exit_code = await main(
-    ['query', '--where', '$class=task and status=pending'],
+    ['query', '--cypher', "MATCH (n:Task) WHERE n.status = 'pending' RETURN n"],
     {
       stderr: io_context.stderr,
       stdout: io_context.stdout,
@@ -240,9 +240,9 @@ it('prints stored queries', async () => {
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual([
-    'blocked  $class=task and status=blocked\n' +
+    "blocked  MATCH (n:Task) WHERE n.status = 'blocked' RETURN n\n" +
       '  Show blocked tasks.\n' +
-      'pending  $class=task and status=pending\n' +
+      "pending  MATCH (n:Task) WHERE n.status = 'pending' RETURN n\n" +
       'Hint: patram help query-language\n',
   ]);
 });
@@ -365,7 +365,12 @@ it('prints query results as json', async () => {
   process.chdir(test_context.project_directory);
 
   const exit_code = await main(
-    ['query', '--where', '$class=task and status=pending', '--json'],
+    [
+      'query',
+      '--cypher',
+      "MATCH (n:Task) WHERE n.status = 'pending' RETURN n",
+      '--json',
+    ],
     {
       stderr: io_context.stderr,
       stdout: io_context.stdout,
@@ -374,28 +379,7 @@ it('prints query results as json', async () => {
 
   expect(exit_code).toBe(0);
   expect(io_context.stderr_chunks).toEqual([]);
-  expect(io_context.stdout_chunks).toEqual([
-    '{\n' +
-      '  "results": [\n' +
-      '    {\n' +
-      '      "$class": "task",\n' +
-      '      "$id": "task:docs/tasks/v0/query-command.md",\n' +
-      '      "fields": {\n' +
-      '        "status": "pending"\n' +
-      '      },\n' +
-      '      "title": "Implement query command",\n' +
-      '      "$path": "docs/tasks/v0/query-command.md"\n' +
-      '    }\n' +
-      '  ],\n' +
-      '  "summary": {\n' +
-      '    "shown_count": 1,\n' +
-      '    "total_count": 1,\n' +
-      '    "offset": 0,\n' +
-      '    "limit": 25\n' +
-      '  },\n' +
-      '  "hints": []\n' +
-      '}\n',
-  ]);
+  expect(io_context.stdout_chunks).toEqual([createExpectedQueryJsonOutput()]);
 });
 
 it('rejects an unknown stored query name', async () => {
@@ -427,7 +411,7 @@ it('suggests a close stored query name', async () => {
       include: ['docs/**/*.md'],
       queries: {
         'active-plans': {
-          where: '$id^=doc:',
+          cypher: "MATCH (n) WHERE n.id STARTS WITH 'doc:' RETURN n",
         },
       },
     }),
@@ -446,7 +430,7 @@ it('suggests a close stored query name', async () => {
   expect(io_context.stdout_chunks).toEqual([]);
 });
 
-it('rejects query without a where clause or query name', async () => {
+it('rejects query without a Cypher query or query name', async () => {
   const io_context = createIoContext();
 
   const exit_code = await main(['query'], {
@@ -461,7 +445,7 @@ it('rejects query without a where clause or query name', async () => {
   expect(io_context.stdout_chunks).toEqual([]);
 });
 
-it('rejects query with an empty where clause', async () => {
+it('rejects query with an empty where value', async () => {
   const io_context = createIoContext();
 
   const exit_code = await main(['query', '--where'], {
@@ -470,13 +454,11 @@ it('rejects query with an empty where clause', async () => {
   });
 
   expect(exit_code).toBe(1);
-  expect(io_context.stderr_chunks).toEqual([
-    await loadHelpFixture('error-missing-query-argument'),
-  ]);
+  expect(io_context.stderr_chunks).toEqual(['Where requires a value.\n']);
   expect(io_context.stdout_chunks).toEqual([]);
 });
 
-it('prints query diagnostics for invalid where clauses', async () => {
+it('prints query diagnostics for invalid Cypher queries', async () => {
   test_context.project_directory = await createTempProjectDirectory();
   const io_context = createIoContext();
 
@@ -488,10 +470,13 @@ it('prints query diagnostics for invalid where clauses', async () => {
   );
   process.chdir(test_context.project_directory);
 
-  const exit_code = await main(['query', '--where', 'kind:decision'], {
-    stderr: io_context.stderr,
-    stdout: io_context.stdout,
-  });
+  const exit_code = await main(
+    ['query', '--cypher', 'MATCH (n) WHERE kind:decision RETURN n'],
+    {
+      stderr: io_context.stderr,
+      stdout: io_context.stdout,
+    },
+  );
 
   expect(exit_code).toBe(1);
   expect(io_context.stderr_chunks).toEqual([
@@ -516,3 +501,31 @@ it('runs the CLI when invoked through a symlinked executable path', async () => 
     stdout: '',
   });
 });
+
+/**
+ * @returns {string}
+ */
+function createExpectedQueryJsonOutput() {
+  return (
+    '{\n' +
+    '  "results": [\n' +
+    '    {\n' +
+    '      "$class": "task",\n' +
+    '      "$id": "task:docs/tasks/v0/query-command.md",\n' +
+    '      "fields": {\n' +
+    '        "status": "pending"\n' +
+    '      },\n' +
+    '      "title": "Implement query command",\n' +
+    '      "$path": "docs/tasks/v0/query-command.md"\n' +
+    '    }\n' +
+    '  ],\n' +
+    '  "summary": {\n' +
+    '    "shown_count": 1,\n' +
+    '    "total_count": 1,\n' +
+    '    "offset": 0,\n' +
+    '    "limit": 25\n' +
+    '  },\n' +
+    '  "hints": []\n' +
+    '}\n'
+  );
+}

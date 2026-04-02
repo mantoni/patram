@@ -29,7 +29,13 @@ it('adds a stored query to config through queries add', async () => {
   process.chdir(test_context.project_directory);
 
   const exit_code = await main(
-    ['queries', 'add', 'ready', '--where', '$class=task and status=ready'],
+    [
+      'queries',
+      'add',
+      'ready',
+      '--cypher',
+      "MATCH (n:Task) WHERE n.status = 'ready' RETURN n",
+    ],
     {
       stderr: io_context.stderr,
       stdout: io_context.stdout,
@@ -41,14 +47,14 @@ it('adds a stored query to config through queries add', async () => {
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual(['Added stored query: ready\n']);
   expect(config_json.queries.ready).toEqual({
-    where: '$class=task and status=ready',
+    cypher: "MATCH (n:Task) WHERE n.status = 'ready' RETURN n",
   });
   expect(config_json.queries.pending).toEqual({
-    where: '$class=task and status=pending',
+    cypher: "MATCH (n:Task) WHERE n.status = 'pending' RETURN n",
   });
 });
 
-it('updates a stored query name, where clause, and description through queries update', async () => {
+it('updates a stored query name, Cypher query, and description through queries update', async () => {
   test_context.project_directory = await createTempProjectDirectory();
   const io_context = createIoContext();
 
@@ -62,8 +68,8 @@ it('updates a stored query name, where clause, and description through queries u
       'blocked',
       '--name',
       'ready',
-      '--where',
-      '$class=task and status=ready',
+      '--cypher',
+      "MATCH (n:Task) WHERE n.status = 'ready' RETURN n",
       '--desc',
       '',
     ],
@@ -81,7 +87,7 @@ it('updates a stored query name, where clause, and description through queries u
   ]);
   expect(config_json.queries.blocked).toBeUndefined();
   expect(config_json.queries.ready).toEqual({
-    where: '$class=task and status=ready',
+    cypher: "MATCH (n:Task) WHERE n.status = 'ready' RETURN n",
   });
 });
 
@@ -104,7 +110,7 @@ it('reports missing stored queries during queries remove like patram query does'
   ]);
 });
 
-it('rejects invalid where clauses before persisting queries add', async () => {
+it('rejects invalid Cypher queries before persisting queries add', async () => {
   test_context.project_directory = await createTempProjectDirectory();
   const io_context = createIoContext();
 
@@ -112,7 +118,13 @@ it('rejects invalid where clauses before persisting queries add', async () => {
   process.chdir(test_context.project_directory);
 
   const exit_code = await main(
-    ['queries', 'add', 'broken', '--where', '$class=task and owner=max'],
+    [
+      'queries',
+      'add',
+      'broken',
+      '--cypher',
+      "MATCH (n:Task) WHERE n.owner = 'max' RETURN n",
+    ],
     {
       stderr: io_context.stderr,
       stdout: io_context.stdout,
@@ -124,7 +136,7 @@ it('rejects invalid where clauses before persisting queries add', async () => {
   expect(io_context.stdout_chunks).toEqual([]);
   expect(io_context.stderr_chunks).toEqual([
     'file .patram.json\n' +
-      '  1:1  error  Invalid config at "queries.broken.where": Unknown field "owner".  config.invalid\n' +
+      '  1:1  error  Invalid config at "queries.broken.cypher": Unknown field "owner".  config.invalid\n' +
       '\n' +
       '\u2716 1 problem (1 error, 0 warnings)\n',
   ]);
@@ -133,7 +145,7 @@ it('rejects invalid where clauses before persisting queries add', async () => {
 
 /**
  * @param {string} project_directory
- * @returns {Promise<{ queries: Record<string, { description?: string, where: string }> }>}
+ * @returns {Promise<{ queries: Record<string, { cypher: string, description?: string }> }>}
  */
 async function readProjectConfig(project_directory) {
   const config_source = await readFile(
@@ -147,7 +159,7 @@ async function readProjectConfig(project_directory) {
 
 /**
  * @param {unknown} config_value
- * @returns {{ queries: Record<string, { description?: string, where: string }> }}
+ * @returns {{ queries: Record<string, { cypher: string, description?: string }> }}
  */
 function assertProjectConfig(config_value) {
   if (
@@ -171,7 +183,7 @@ function assertProjectConfig(config_value) {
 
   return {
     queries:
-      /** @type {Record<string, { description?: string, where: string }>} */ (
+      /** @type {Record<string, { cypher: string, description?: string }>} */ (
         queries_value
       ),
   };

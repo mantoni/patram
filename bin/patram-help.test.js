@@ -143,7 +143,7 @@ it('reports unexpected positional arguments with command-specific recovery', asy
   );
 });
 
-it('wraps invalid where-clause diagnostics with the query-language help hint', async () => {
+it('wraps invalid query diagnostics with the query-language help hint', async () => {
   test_context.project_directory = await createTempProjectDirectory();
 
   await writeProjectConfig(test_context.project_directory);
@@ -155,7 +155,7 @@ it('wraps invalid where-clause diagnostics with the query-language help hint', a
   process.chdir(test_context.project_directory);
 
   await expectHelpError(
-    ['query', '--where', 'kind:decision'],
+    ['query', '--cypher', 'MATCH (n) WHERE kind:decision RETURN n'],
     await loadHelpFixture('error-invalid-where'),
   );
 });

@@ -237,10 +237,10 @@ function createProjectQueries() {
   return {
     blocked: {
       description: 'Show blocked tasks.',
-      where: '$class=task and status=blocked',
+      cypher: "MATCH (n:Task) WHERE n.status = 'blocked' RETURN n",
     },
     pending: {
-      where: '$class=task and status=pending',
+      cypher: "MATCH (n:Task) WHERE n.status = 'pending' RETURN n",
     },
   };
 }

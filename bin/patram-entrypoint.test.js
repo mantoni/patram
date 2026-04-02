@@ -34,8 +34,8 @@ it('dispatches to the shared CLI runtime when executed as the entrypoint', async
     original_argv[0],
     entry_path,
     'query',
-    '--where',
-    '$class=task',
+    '--cypher',
+    'MATCH (n:Task) RETURN n',
   ];
   process.exitCode = undefined;
   mainMock.mockResolvedValueOnce(17);
@@ -43,9 +43,12 @@ it('dispatches to the shared CLI runtime when executed as the entrypoint', async
   const patram_module = await import('./patram.js');
 
   expect(patram_module.main).toBe(mainMock);
-  expect(mainMock).toHaveBeenCalledWith(['query', '--where', '$class=task'], {
-    stderr: process.stderr,
-    stdout: process.stdout,
-  });
+  expect(mainMock).toHaveBeenCalledWith(
+    ['query', '--cypher', 'MATCH (n:Task) RETURN n'],
+    {
+      stderr: process.stderr,
+      stdout: process.stdout,
+    },
+  );
   expect(process.exitCode).toBe(17);
 });

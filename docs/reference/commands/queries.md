@@ -11,10 +11,9 @@ with a hint to `patram help query-language`.
 
 `patram queries add <name> --cypher "<query>" [--desc "<text>"]` validates the
 query and writes a new stored query into `.patram.json` without normalizing the
-rest of the config file. The legacy `--where` form is still accepted for
-compatibility.
+rest of the config file.
 
-`patram queries update <name> [--name <new_name>] [--cypher "<query>"] [--where "<clause>"] [--desc "<text>"]`
+`patram queries update <name> [--name <new_name>] [--cypher "<query>"] [--desc "<text>"]`
 updates any combination of the stored query name, query text, and description.
 Passing `--desc ""` removes the stored query description.
 

@@ -24,15 +24,12 @@ The v0 CLI has two groups of commands:
      by name.
    - [`patram query --cypher '<query>'`](./reference/commands/query.md): Run an
      ad hoc Cypher query.
-   - [`patram query --where '<clause>'`](./reference/commands/query.md): Run a
-     legacy ad hoc where clause.
    - [`patram queries`](./reference/commands/queries.md): List stored queries.
 
 Package consumers can still parameterize legacy where-clause values with
 explicit `@binding_name` placeholders through
 `parseWhereClause(..., { bindings })` and `queryGraph(..., { bindings })`. The
-CLI now treats Cypher as the primary ad hoc query syntax while keeping legacy
-where clauses available for compatibility.
+CLI uses Cypher for ad hoc queries and stored-query config.
 
 For repository documentation layout and where to put new docs, see
 [`docs/structure.md`](./structure.md).

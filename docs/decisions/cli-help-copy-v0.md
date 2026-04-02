@@ -25,7 +25,7 @@ Patram explores docs and how they link to sources.
 Commands:
   check    Validate a project, directory, or file
   fields   Discover likely field schema from source claims
-  query    Run a stored query or an ad hoc where clause
+  query    Run a stored query or an ad hoc Cypher query
   queries  List and manage stored queries
   refs     Inspect incoming graph references for one file
   show     Print a file with resolved links
@@ -76,22 +76,18 @@ Related:
 Usage:
   patram query <name> [options]
   patram query --cypher '<query>' [options]
-  patram query --where '<clause>' [options]
 
 Run a stored query or an ad hoc Cypher query against graph nodes.
 
-Where clause:
-  $id=<value> | $class=<value> | $path=<value> | $filename=<value> | status=<value>
-  $id^=<prefix> | $path^=<prefix> | $path*=<glob> | title~<text>
-  <field> in [<value>, ...] | <field> not in [<value>, ...]
-  <relation>:* | <relation>=<target-id>
-  any(<traversal>, <term> and <term>)
-  none(<traversal>, <term> and <term>)
-  count(<traversal>, <term> and <term>) <comparison> <number>
+Query syntax:
+  MATCH (n) RETURN n
+  MATCH (n:Label) WHERE n.status = 'active' RETURN n
+  MATCH (n) WHERE n.id = 'doc:path/to/file.md' RETURN n
+  MATCH (n) WHERE EXISTS { MATCH ... } RETURN n
+  MATCH (n) WHERE COUNT { MATCH ... } = 0 RETURN n
 
 Options:
   --cypher <query>   Run an ad hoc Cypher query instead of a stored query
-  --where <clause>   Run an ad hoc query instead of a stored query
   --offset <number>  Skip the first N matches
   --limit <number>   Limit the number of matches
   --explain          Explain the resolved query without rendering results
@@ -102,12 +98,12 @@ Options:
 Examples:
   patram query active-plans
   patram query --cypher "MATCH (n:Plan) WHERE n.status = 'active' RETURN n"
-  patram query --where 'tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md'
-  patram query --where 'status not in [done, dropped, superseded]'
-  patram query --where '$class=plan and none(in:tracked_in, $class=decision)'
-  patram query --where 'count(in:decided_by, $class=task) = 0'
+  patram query --cypher "MATCH (n) WHERE n.id = 'doc:docs/plans/v0/worktracking-agent-guidance.md' RETURN n"
+  patram query --cypher "MATCH (n) WHERE n.status NOT IN ['done', 'dropped', 'superseded'] RETURN n"
+  patram query --cypher "MATCH (n:Plan) WHERE NOT EXISTS { MATCH (decision:Decision)-[:TRACKED_IN]->(n) } RETURN n"
+  patram query --cypher "MATCH (n:Decision) WHERE COUNT { MATCH (task:Task)-[:DECIDED_BY]->(n) } = 0 RETURN n"
   patram query ready-tasks --explain
-  patram query --where '$class=decision and status=accepted and count(in:decided_by, $class=task) = 0' --lint
+  patram query --cypher "MATCH (n:Decision) WHERE n.status = 'accepted' AND COUNT { MATCH (task:Task)-[:DECIDED_BY]->(n) } = 0 RETURN n" --lint
   patram query active-plans --limit 10 --offset 20
 
 Related:
@@ -126,15 +122,13 @@ Help topics:
 Usage:
   patram queries [options]
   patram queries add <name> --cypher <query> [--desc <text>] [options]
-  patram queries add <name> --where <clause> [--desc <text>] [options]
-  patram queries update <name> [--name <new_name>] [--cypher <query>] [--where <clause>] [--desc <text>] [options]
+  patram queries update <name> [--name <new_name>] [--cypher <query>] [--desc <text>] [options]
   patram queries remove <name> [options]
 
 List stored queries or mutate them through add, update, and remove.
 
 Options:
   --cypher <query>   Persist a new stored Cypher query
-  --where <clause>   Persist a new stored query
   --name <new_name>  Set or rename the stored query name for update
   --desc <text>      Set or clear the stored query description
   --plain            Print plain text output
@@ -143,8 +137,8 @@ Options:
 Examples:
   patram queries
   patram queries add active-plans --cypher "MATCH (n:Plan) WHERE n.status = 'active' RETURN n"
-  patram queries add ready-tasks --where '$class=task and status=ready'
   patram queries update ready-tasks --desc 'Show tasks that are ready.'
+  patram queries update ready-tasks --cypher "MATCH (n:Task) WHERE n.status = 'ready' RETURN n"
   patram queries remove ready-tasks
 
 Related:
@@ -163,13 +157,12 @@ Inspect incoming graph references for one file, grouped by relation.
 
 Options:
   --cypher <query>   Filter incoming source nodes with a Cypher query
-  --where <clause>   Filter incoming source nodes with a where clause
   --plain            Print plain text output
   --json             Print JSON output
 
 Examples:
   patram refs docs/decisions/query-language.md
-  patram refs docs/decisions/query-language.md --where '$class=document'
+  patram refs docs/decisions/query-language.md --cypher "MATCH (n:Document) RETURN n"
   patram refs docs/decisions/query-language.md --json
 
 Related:
@@ -210,66 +203,41 @@ Related:
 [patram fixture=help-topic-query-language role=output]: #
 
 ```text
-Query language filters graph nodes with field, relation, traversal, and aggregate terms.
+Query language uses a constrained Cypher subset for graph node selection.
 
 Usage:
-  <field>=<value>
-  $id^=<prefix>
-  $path^=<prefix>
-  $path*=<glob>
-  title~<text>
-  <field> in [<value>, ...]
-  <field> not in [<value>, ...]
-  <relation>:*
-  <relation>=<target-id>
-  any(<traversal>, <term> and <term>)
-  none(<traversal>, <term> and <term>)
-  count(<traversal>, <term> and <term>) <comparison> <number>
-  not <term>
-  <term> and <term>
-  <term> or <term>
-  (<expression>)
+  MATCH (n) RETURN n
+  MATCH (n:Label) WHERE <predicate> RETURN n
+  MATCH (n) WHERE EXISTS { MATCH ... } RETURN n
+  MATCH (n) WHERE COUNT { MATCH ... } <comparison> <number> RETURN n
 
 Fields:
-  Exact match: $id, $class, $path, $filename, status
-  Prefix match: $id, $path
-  Glob match: $path
-  Contains text: title
-  Set membership: $id, $class, $path, $filename, status, title
+  Root match: MATCH (n) or MATCH (n:Label)
+  Return shape: RETURN n
+  Property aliases: n.id, n.class, n.path, n.filename
+  Common fields: n.title, n.status, n.kind
+  Subqueries: EXISTS { MATCH ... WHERE ... } and COUNT { MATCH ... WHERE ... }
 
 Relations:
-  <relation>:*            Match nodes with at least one outgoing relation
-  <relation>=<target-id>  Match nodes linked to an exact target id
-  in:<relation>           Traverse one incoming relation hop
-  out:<relation>          Traverse one outgoing relation hop
+  (n)-[:RELATION]->(target)        Outgoing relation match
+  (source)-[:RELATION]->(n)        Incoming relation match
+  (n)-[:RELATION]->(target:Label)  Label-qualified related node pattern
 
 Operators:
-  =             Exact field match or exact count comparison
-  ^=            Prefix match for structural id and path
-  *=            Glob match for structural path
-  ~             Contains text for title
-  in            Set membership for supported fields
-  not in        Set exclusion for supported fields
-  not           Negate one term
-  and           Combine terms
-  or            Match either side
-  ( )           Group boolean expressions
-  != < > >= <=  Count comparisons
+  = | <>                  Equality and exact value comparison
+  STARTS WITH | CONTAINS  String prefix and contains checks
+  IN | NOT IN             Set membership checks
+  AND | OR | NOT          Boolean composition
+  EXISTS { ... }          Relation existence subqueries
+  COUNT { ... }           Related-node count comparisons
 
 Examples:
-  $class=decision and status=accepted
-  $class=task or status=done
-  ($class=task or status=blocked) and title~Show
-  $filename=README.md
-  $path^=docs/plans/
-  title~query
-  tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md
-  implements_command=command:query
-  status not in [done, dropped, superseded]
-  any(in:tracked_in, $class=task and status in [pending, ready, in_progress, blocked])
-  none(in:tracked_in, $class=decision)
-  count(in:decided_by, $class=task) = 0
-  not uses_term=term:graph
+  MATCH (n:Decision) WHERE n.status = 'accepted' RETURN n
+  MATCH (n:Task) WHERE n.status IN ['pending', 'ready'] RETURN n
+  MATCH (n) WHERE n.filename = 'README.md' RETURN n
+  MATCH (n:Plan) WHERE NOT EXISTS { MATCH (decision:Decision)-[:TRACKED_IN]->(n) } RETURN n
+  MATCH (n:Decision) WHERE COUNT { MATCH (task:Task)-[:DECIDED_BY]->(n) } = 0 RETURN n
+  MATCH (n) WHERE EXISTS { MATCH (n)-[:IMPLEMENTS_COMMAND]->(command:Command) WHERE command.id = 'command:query' } RETURN n
 ```
 
 ## Error Output
@@ -317,7 +285,6 @@ Unknown option: --wat
 Usage:
   patram query <name> [options]
   patram query --cypher '<query>' [options]
-  patram query --where '<clause>' [options]
 
 Next:
   patram help query
@@ -371,16 +338,15 @@ Examples:
 [patram fixture=error-missing-query-argument role=output]: #
 
 ```text
-Missing required argument: <name> or --where '<clause>'
+Missing required argument: <name> or --cypher '<query>'
 
 Usage:
   patram query <name> [options]
   patram query --cypher '<query>' [options]
-  patram query --where '<clause>' [options]
 
 Examples:
   patram query active-plans
-  patram query --where 'tracked_in=doc:docs/plans/v0/worktracking-agent-guidance.md'
+  patram query --cypher "MATCH (n:Plan) WHERE n.status = 'active' RETURN n"
 ```
 
 ### Unexpected argument for `help`
@@ -421,7 +387,6 @@ Unexpected argument: extra
 Usage:
   patram query <name> [options]
   patram query --cypher '<query>' [options]
-  patram query --where '<clause>' [options]
 
 Next:
   patram help query
@@ -437,8 +402,7 @@ Unexpected argument: x
 Usage:
   patram queries [options]
   patram queries add <name> --cypher <query> [--desc <text>] [options]
-  patram queries add <name> --where <clause> [--desc <text>] [options]
-  patram queries update <name> [--name <new_name>] [--cypher <query>] [--where <clause>] [--desc <text>] [options]
+  patram queries update <name> [--name <new_name>] [--cypher <query>] [--desc <text>] [options]
   patram queries remove <name> [options]
 
 Next:
@@ -503,8 +467,8 @@ Next:
 [patram fixture=error-invalid-where role=output]: #
 
 ```text
-Invalid where clause:
-  <query>:1:1 error query.invalid Unsupported query token "kind:decision".
+Invalid query:
+  <query>:1:22 error query.invalid Label or relationship type decision is not present in the database. Make sure you didn't misspell it or that it is available when you run this statement in your application
 
 Next:
   patram help query-language
