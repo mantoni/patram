@@ -69,6 +69,9 @@ function createExpectedClasses() {
  */
 function createExpectedLabeledDocumentClass(label, document_path_class) {
   return {
+    identity: {
+      type: 'document_path',
+    },
     label,
     schema: createExpectedDocumentClassSchema(document_path_class),
   };
@@ -80,8 +83,26 @@ function createExpectedLabeledDocumentClass(label, document_path_class) {
  */
 function createExpectedLabeledClass(label, fields) {
   return {
+    identity: createExpectedClaimValueIdentity(label),
     label,
     schema: createExpectedClassSchema(fields),
+  };
+}
+
+/**
+ * @param {string} label
+ */
+function createExpectedClaimValueIdentity(label) {
+  if (label === 'Command') {
+    return {
+      claim_types: ['markdown.directive.command', 'yaml.directive.command'],
+      type: 'claim_value',
+    };
+  }
+
+  return {
+    claim_types: ['markdown.directive.term', 'yaml.directive.term'],
+    type: 'claim_value',
   };
 }
 
@@ -138,15 +159,23 @@ function createExpectedFields() {
 function createExpectedSourceKinds() {
   return [
     'cli',
+    'command',
     'config',
+    'convention',
+    'decision',
     'discovery',
     'entrypoint',
     'graph',
+    'idea',
     'output',
     'parse',
+    'plan',
     'release',
+    'roadmap',
     'scan',
     'support',
+    'task',
+    'term',
   ];
 }
 
@@ -215,7 +244,7 @@ function createExpectedMarkdownMappings() {
       'implements_command',
       'command',
     ),
-    'markdown.directive.kind': createDocumentNodeMapping('$class'),
+    'markdown.directive.kind': createDocumentNodeMapping('kind'),
     'markdown.directive.status': createDocumentNodeMapping('status'),
     'markdown.directive.term': createTaxonomyDefinitionMapping('term', 'title'),
     'markdown.directive.term_definition': createTaxonomyNodeMapping(
@@ -251,7 +280,7 @@ function createExpectedYamlMappings() {
       'implements_command',
       'command',
     ),
-    'yaml.directive.kind': createDocumentNodeMapping('$class'),
+    'yaml.directive.kind': createDocumentNodeMapping('kind'),
     'yaml.directive.status': createDocumentNodeMapping('status'),
     'yaml.directive.term': createTaxonomyDefinitionMapping('term', 'title'),
     'yaml.directive.term_definition': createTaxonomyNodeMapping(

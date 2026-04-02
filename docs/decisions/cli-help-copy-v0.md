@@ -82,7 +82,7 @@ Run a stored query or an ad hoc Cypher query against graph nodes.
 Query syntax:
   MATCH (n) RETURN n
   MATCH (n:Label) WHERE n.status = 'active' RETURN n
-  MATCH (n) WHERE n.id = 'doc:path/to/file.md' RETURN n
+  MATCH (n) WHERE id(n) = 'command:query' RETURN n
   MATCH (n) WHERE EXISTS { MATCH ... } RETURN n
   MATCH (n) WHERE COUNT { MATCH ... } = 0 RETURN n
 
@@ -98,7 +98,7 @@ Options:
 Examples:
   patram query active-plans
   patram query --cypher "MATCH (n:Plan) WHERE n.status = 'active' RETURN n"
-  patram query --cypher "MATCH (n) WHERE n.id = 'doc:docs/plans/v0/worktracking-agent-guidance.md' RETURN n"
+  patram query --cypher "MATCH (n) WHERE id(n) = 'plan:v0/worktracking-agent-guidance' RETURN n"
   patram query --cypher "MATCH (n) WHERE n.status NOT IN ['done', 'dropped', 'superseded'] RETURN n"
   patram query --cypher "MATCH (n:Plan) WHERE NOT EXISTS { MATCH (decision:Decision)-[:TRACKED_IN]->(n) } RETURN n"
   patram query --cypher "MATCH (n:Decision) WHERE COUNT { MATCH (task:Task)-[:DECIDED_BY]->(n) } = 0 RETURN n"
@@ -214,7 +214,8 @@ Usage:
 Fields:
   Root match: MATCH (n) or MATCH (n:Label)
   Return shape: RETURN n
-  Property aliases: n.id, n.class, n.path, n.filename
+  Structural functions: id(n), path(n)
+  Labels select class membership: MATCH (n:Label)
   Common fields: n.title, n.status, n.kind
   Subqueries: EXISTS { MATCH ... WHERE ... } and COUNT { MATCH ... WHERE ... }
 
@@ -224,20 +225,20 @@ Relations:
   (n)-[:RELATION]->(target:Label)  Label-qualified related node pattern
 
 Operators:
-  = | <>                  Equality and exact value comparison
-  STARTS WITH | CONTAINS  String prefix and contains checks
-  IN | NOT IN             Set membership checks
-  AND | OR | NOT          Boolean composition
-  EXISTS { ... }          Relation existence subqueries
-  COUNT { ... }           Related-node count comparisons
+  = | <>                              Equality and exact value comparison
+  STARTS WITH | ENDS WITH | CONTAINS  String prefix, suffix, and contains checks
+  IN | NOT IN                         Set membership checks
+  AND | OR | NOT                      Boolean composition
+  EXISTS { ... }                      Relation existence subqueries
+  COUNT { ... }                       Related-node count comparisons
 
 Examples:
   MATCH (n:Decision) WHERE n.status = 'accepted' RETURN n
   MATCH (n:Task) WHERE n.status IN ['pending', 'ready'] RETURN n
-  MATCH (n) WHERE n.filename = 'README.md' RETURN n
+  MATCH (n) WHERE path(n) ENDS WITH '/README.md' RETURN n
   MATCH (n:Plan) WHERE NOT EXISTS { MATCH (decision:Decision)-[:TRACKED_IN]->(n) } RETURN n
   MATCH (n:Decision) WHERE COUNT { MATCH (task:Task)-[:DECIDED_BY]->(n) } = 0 RETURN n
-  MATCH (n) WHERE EXISTS { MATCH (n)-[:IMPLEMENTS_COMMAND]->(command:Command) WHERE command.id = 'command:query' } RETURN n
+  MATCH (n) WHERE EXISTS { MATCH (n)-[:IMPLEMENTS_COMMAND]->(command:Command) WHERE id(command) = 'command:query' } RETURN n
 ```
 
 ## Error Output
@@ -468,7 +469,7 @@ Next:
 
 ```text
 Invalid query:
-  <query>:1:22 error query.invalid Expected the "." token.
+  <query>:1:21 error query.invalid Expected a Cypher predicate.
 
 Next:
   patram help query-language

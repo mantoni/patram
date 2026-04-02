@@ -6,7 +6,7 @@ export interface ParsedFieldTerm {
   column: number;
   field_name: ParsedFieldName;
   kind: 'field';
-  operator: '!=' | '*=' | '<' | '<=' | '=' | '>' | '>=' | '^=' | '~';
+  operator: '$=' | '*=' | '<' | '<=' | '<>' | '=' | '>' | '>=' | '^=' | '~';
   value: string;
 }
 
@@ -37,7 +37,7 @@ export interface ParsedRelationTargetTerm {
   target_id: string;
 }
 
-export type ParsedAggregateComparison = '!=' | '<' | '<=' | '=' | '>' | '>=';
+export type ParsedAggregateComparison = '<' | '<=' | '<>' | '=' | '>' | '>=';
 export type ParsedAggregateName = 'any' | 'count' | 'none';
 
 export interface ParsedAggregateTerm {
@@ -85,3 +85,5 @@ export type ParseWhereClauseResult =
       diagnostic: PatramDiagnostic;
       success: false;
     };
+
+export type ParseQueryResult = ParseWhereClauseResult;

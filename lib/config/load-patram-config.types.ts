@@ -24,6 +24,7 @@ export type ClassFieldRuleConfig = import('./schema.js').ClassFieldRuleConfig;
 export type DirectiveTypeConfig = MetadataFieldConfig;
 export type MetadataDirectiveRuleConfig = ClassFieldRuleConfig;
 export type ClassSchemaConfig = import('./schema.js').ClassSchemaConfig;
+export type ClassIdentityConfig = import('./schema.js').ClassIdentityConfig;
 export type MetadataSchemaConfig = ClassSchemaConfig;
 export type PathClassConfig = import('./schema.js').PathClassConfig;
 export type PatramRepoConfig = import('./schema.js').PatramRepoConfig;

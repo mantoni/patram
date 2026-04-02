@@ -146,8 +146,8 @@ async function importPackedLibrary(consumer_directory) {
         "if ('overlayGraph' in package_module) {",
         "  throw new Error('Did not expect overlayGraph export.');",
         '}',
-        "if (typeof package_module.parseWhereClause !== 'function') {",
-        "  throw new Error('Expected parseWhereClause export.');",
+        "if (typeof package_module.parseQueryExpression !== 'function') {",
+        "  throw new Error('Expected parseQueryExpression export.');",
         '}',
         "if (typeof package_module.queryGraph !== 'function') {",
         "  throw new Error('Expected queryGraph export.');",
@@ -270,9 +270,12 @@ function createConsumerIndexText() {
     "const load_result: Promise<PatramProjectGraphResult> = loadProjectGraph('.');",
     'void load_result;',
     '',
-    "const query_result: PatramQueryResult = queryGraph(graph, '$id=@node_id', repo_config, {",
-    "  bindings: { node_id: 'doc:index.md' },",
-    '});',
+    'const query_result: PatramQueryResult = queryGraph(',
+    '  graph,',
+    '  "MATCH (n:Document) WHERE id(n) = @node_id RETURN n",',
+    '  repo_config,',
+    "  { bindings: { node_id: 'doc:index.md' } },",
+    ');',
     'void query_result;',
     'void diagnostic;',
     '',
@@ -287,15 +290,16 @@ function createConsumerImportText() {
     'import {',
     '  getQuerySemanticDiagnostics,',
     '  loadProjectGraph,',
-    '  parseWhereClause,',
+    '  parseQueryExpression,',
     '  queryGraph,',
     '  type PatramBuildGraphResult,',
     '  type PatramDiagnostic,',
     '  type PatramGraphEdge,',
     '  type PatramGraphNode,',
-    '  type PatramParseResult,',
-    '  type PatramParseWhereClauseResult,',
+    '  type PatramParseQueryResult,',
+    '  type PatramParsedAggregateComparison,',
     '  type PatramParsedExpression,',
+    '  type PatramParsedFieldTerm,',
     '  type PatramProjectGraphResult,',
     '  type PatramQueryGraphOptions,',
     '  type PatramQuerySource,',
@@ -310,9 +314,18 @@ function createConsumerImportText() {
  */
 function createConsumerGraphText() {
   return [
-    "const graph_node: PatramGraphNode = { id: 'doc:index.md' };",
+    'const graph_node: PatramGraphNode = {',
+    '  identity: {',
+    "    class_name: 'document',",
+    "    id: 'doc:index.md',",
+    "    path: 'index.md',",
+    '  },',
+    '  metadata: {',
+    "    title: 'Index',",
+    '  },',
+    '};',
     'const graph_edge: PatramGraphEdge = {',
-    '  from: graph_node.id,',
+    '  from: graph_node.identity.id,',
     "  id: 'edge:doc:index.md:defines:term:graph',",
     '  origin: {',
     "    path: 'index.md',",
@@ -324,9 +337,12 @@ function createConsumerGraphText() {
     '};',
     '',
     'const graph: PatramBuildGraphResult = {',
+    '  document_path_ids: {',
+    "    'index.md': graph_node.identity.id,",
+    '  },',
     '  edges: [graph_edge],',
     '  nodes: {',
-    '    [graph_node.id]: graph_node,',
+    '    [graph_node.identity.id]: graph_node,',
     '  },',
     '};',
   ].join('\n');
@@ -350,12 +366,13 @@ function createConsumerQueryText() {
     "  bindings: { node_id: 'doc:index.md' },",
     '};',
     '',
-    "const parse_result: PatramParseResult = parseWhereClause('$id=@node_id', {",
-    '  bindings: query_options.bindings,',
-    '});',
-    'const typed_parse_result: PatramParseWhereClauseResult = parse_result;',
-    'void typed_parse_result;',
-    '',
+    'const parse_result: PatramParseQueryResult = parseQueryExpression(',
+    '  "MATCH (n:Document) WHERE id(n) = @node_id RETURN n",',
+    '  repo_config,',
+    '  {',
+    '    bindings: query_options.bindings,',
+    '  },',
+    ');',
     'if (parse_result.success) {',
     '  const parsed_expression: PatramParsedExpression = parse_result.expression;',
     '  const diagnostics: PatramDiagnostic[] = getQuerySemanticDiagnostics(',
@@ -364,9 +381,14 @@ function createConsumerQueryText() {
     '    parsed_expression,',
     '  );',
     '  void diagnostics;',
-    '} else {',
+    "} else if ('diagnostic' in parse_result) {",
     '  void parse_result.diagnostic;',
     '}',
+    '',
+    "const inequality_operator: PatramParsedFieldTerm['operator'] = '<>';",
+    'void inequality_operator;',
+    "const aggregate_comparison: PatramParsedAggregateComparison = '<>';",
+    'void aggregate_comparison;',
   ].join('\n');
 }
 
@@ -418,11 +440,31 @@ async function runCommand(
   working_directory,
   environment,
 ) {
-  return execFileAsync(command, command_arguments, {
-    cwd: working_directory,
-    env: {
-      ...process.env,
-      ...environment,
-    },
-  });
+  try {
+    return await execFileAsync(command, command_arguments, {
+      cwd: working_directory,
+      env: {
+        ...process.env,
+        ...environment,
+      },
+    });
+  } catch (error) {
+    if (error instanceof Error && 'stderr' in error && 'stdout' in error) {
+      const stderr = typeof error.stderr === 'string' ? error.stderr : '';
+      const stdout = typeof error.stdout === 'string' ? error.stdout : '';
+
+      throw new Error(
+        [
+          error.message,
+          stdout ? `STDOUT:\n${stdout}` : '',
+          stderr ? `STDERR:\n${stderr}` : '',
+        ]
+          .filter(Boolean)
+          .join('\n\n'),
+        { cause: error },
+      );
+    }
+
+    throw error;
+  }
 }

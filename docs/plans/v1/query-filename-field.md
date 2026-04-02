@@ -1,9 +1,10 @@
 # Query Filename Field Plan
 
 - Kind: plan
-- Status: active
+- Status: superseded
 - Tracked in: docs/roadmap/query-language-extensions.md
 - Decided by: docs/decisions/query-filename-field.md
+- Superseded by: docs/plans/v1/structural-identity-functions.md
 
 ## Goal
 

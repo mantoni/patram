@@ -9,7 +9,7 @@
 - `$filename` is available only on nodes with `$path`.
 - `$filename` supports exact match and set-membership operators:
   - `=`
-  - `!=`
+  - `<>`
   - `in`
   - `not in`
 - `$filename` does not support prefix or contains matching.

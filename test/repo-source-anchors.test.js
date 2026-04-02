@@ -34,28 +34,28 @@ it('indexes source anchors across the repo sweep', async () => {
     selectPaths(
       project_graph_result.graph,
       project_graph_result.config,
-      '$path^=bin/',
+      "MATCH (n) WHERE path(n) STARTS WITH 'bin/' RETURN n",
     ),
   ).not.toEqual([]);
   expect(
     selectPaths(
       project_graph_result.graph,
       project_graph_result.config,
-      '$path^=lib/',
+      "MATCH (n) WHERE path(n) STARTS WITH 'lib/' RETURN n",
     ),
   ).not.toEqual([]);
   expect(
     selectPaths(
       project_graph_result.graph,
       project_graph_result.config,
-      '$path^=scripts/',
+      "MATCH (n) WHERE path(n) STARTS WITH 'scripts/' RETURN n",
     ),
   ).not.toEqual([]);
   expect(
     selectPaths(
       project_graph_result.graph,
       project_graph_result.config,
-      '$path^=test/',
+      "MATCH (n) WHERE path(n) STARTS WITH 'test/' RETURN n",
     ),
   ).not.toEqual([]);
 });
@@ -108,8 +108,9 @@ it('keeps the documented source stored queries useful', async () => {
  * @param {string} where_clause
  */
 function selectPaths(graph, repo_config, where_clause) {
-  return queryGraph(graph, where_clause, repo_config).nodes.map(
-    (graph_node) => graph_node.path,
+  return queryGraph(graph, where_clause, repo_config).nodes.flatMap(
+    (graph_node) =>
+      graph_node.identity.path ? [graph_node.identity.path] : [],
   );
 }
 

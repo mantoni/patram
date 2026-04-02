@@ -26,10 +26,10 @@ The v0 CLI has two groups of commands:
      ad hoc Cypher query.
    - [`patram queries`](./reference/commands/queries.md): List stored queries.
 
-Package consumers can still parameterize legacy where-clause values with
-explicit `@binding_name` placeholders through
-`parseWhereClause(..., { bindings })` and `queryGraph(..., { bindings })`. The
-CLI uses Cypher for ad hoc queries and stored-query config.
+Package consumers can parameterize Cypher values with explicit `@binding_name`
+placeholders through `parseQueryExpression(..., repo_config, { bindings })` and
+`queryGraph(..., { bindings })`. The CLI uses Cypher for ad hoc queries and
+stored-query config.
 
 For repository documentation layout and where to put new docs, see
 [`docs/structure.md`](./structure.md).
@@ -95,17 +95,17 @@ Recommended flow:
 ## Query Identities
 
 - Unclassified documents use exact ids in the form `doc:<repo-relative-path>`.
-- Document-backed entities promoted through structural `$class` and `$id`
-  mappings use semantic ids such as `contract:release-flow`.
+- Document-backed entities promoted through class-local identity rules use
+  semantic ids such as `plan:v0/worktracking-agent-guidance`.
 - Canonical command nodes use exact ids in the form `command:<name>`.
 - Canonical term nodes use exact ids in the form `term:<name>`.
 
 Examples:
 
 ```bash
-patram query --cypher "MATCH (n) WHERE n.id = 'doc:docs/plans/v0/worktracking-agent-guidance.md' RETURN n"
-patram query --cypher "MATCH (n) WHERE EXISTS { MATCH (n)-[:IMPLEMENTS_COMMAND]->(command:Command) WHERE command.id = 'command:query' } RETURN n"
-patram query --cypher "MATCH (n) WHERE EXISTS { MATCH (n)-[:USES_TERM]->(term:Term) WHERE term.id = 'term:graph' } RETURN n"
+patram query --cypher "MATCH (n) WHERE id(n) = 'plan:v0/worktracking-agent-guidance' RETURN n"
+patram query --cypher "MATCH (n) WHERE EXISTS { MATCH (n)-[:IMPLEMENTS_COMMAND]->(command:Command) WHERE id(command) = 'command:query' } RETURN n"
+patram query --cypher "MATCH (n) WHERE EXISTS { MATCH (n)-[:USES_TERM]->(term:Term) WHERE id(term) = 'term:graph' } RETURN n"
 ```
 
 ## Stored Query Families
@@ -141,9 +141,8 @@ taxonomy nodes:
 Patram uses a semantic-first identity model for this repo:
 
 - Keep unclassified source files path-backed as `doc:<path>`.
-- Promote document-backed work items when structural mappings assign semantic
-  `$class` and `$id`.
-- Keep canonical source paths on promoted nodes as `$path`.
+- Promote document-backed work items through `classes.<name>.identity`.
+- Keep canonical source paths on promoted nodes as `path(n)`.
 - Resolve path-based references through the canonical node for that document
   path.
 - Keep command and term taxonomy nodes on semantic ids such as `command:query`

@@ -1,15 +1,15 @@
 import type { ClaimOrigin } from '../parse/parse-claims.types.ts';
 
-export interface GraphNode {
-  $class?: string;
-  $id?: string;
-  $path?: string;
+export interface GraphNodeIdentity {
+  class_name: string;
   id: string;
-  kind?: string;
-  key?: string;
   path?: string;
-  title?: string;
-  [field: string]: string | string[] | undefined;
+}
+
+export interface GraphNode {
+  identity: GraphNodeIdentity;
+  key?: string;
+  metadata: Record<string, string | string[] | undefined>;
 }
 
 export interface GraphEdge {
@@ -21,7 +21,7 @@ export interface GraphEdge {
 }
 
 export interface BuildGraphResult {
-  document_node_ids?: Record<string, string>;
+  document_path_ids?: Record<string, string>;
   edges: GraphEdge[];
   nodes: Record<string, GraphNode>;
 }

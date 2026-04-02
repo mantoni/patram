@@ -16,6 +16,7 @@ export interface CypherToken {
 }
 
 export interface CypherParserState {
+  bindings: Record<string, string>;
   index: number;
   query_text: string;
   repo_config: PatramRepoConfig | null;

@@ -88,7 +88,7 @@ it('filters source anchors by exact semantic command target', async () => {
     selectPaths(
       project_graph_result.graph,
       project_graph_result.config,
-      'implements_command=command:query',
+      "MATCH (n) WHERE EXISTS { MATCH (n)-[:IMPLEMENTS_COMMAND]->(command:Command) WHERE id(command) = 'command:query' } RETURN n",
     ),
   ).toEqual(['lib/cli/main.js']);
 });
@@ -120,7 +120,7 @@ it('filters source anchors by exact semantic term target', async () => {
     selectPaths(
       project_graph_result.graph,
       project_graph_result.config,
-      'uses_term=term:graph',
+      "MATCH (n) WHERE EXISTS { MATCH (n)-[:USES_TERM]->(term:Term) WHERE id(term) = 'term:graph' } RETURN n",
     ),
   ).toEqual([
     'docs/graph-v0.md',
@@ -138,7 +138,8 @@ it('filters source anchors by exact semantic term target', async () => {
  */
 function selectPaths(graph, repo_config, where_clause) {
   return queryGraph(graph, where_clause, repo_config).nodes.flatMap(
-    (graph_node) => (graph_node.path ? [graph_node.path] : []),
+    (graph_node) =>
+      graph_node.identity.path ? [graph_node.identity.path] : [],
   );
 }
 
@@ -150,7 +151,7 @@ function selectPaths(graph, repo_config, where_clause) {
  */
 function selectIds(graph, repo_config, where_clause) {
   return queryGraph(graph, where_clause, repo_config).nodes.map(
-    (graph_node) => graph_node.id,
+    (graph_node) => graph_node.identity.id,
   );
 }
 

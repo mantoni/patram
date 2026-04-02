@@ -213,12 +213,24 @@ function createProjectConfig() {
     classes: {
       decision: {
         label: 'Decision',
+        identity: {
+          type: 'document_path',
+        },
+        schema: {
+          document_path_class: 'decision_docs',
+        },
       },
       document: {
         builtin: true,
       },
       task: {
         label: 'Task',
+        identity: {
+          type: 'document_path',
+        },
+        schema: {
+          document_path_class: 'task_docs',
+        },
       },
     },
     fields: {
@@ -228,6 +240,14 @@ function createProjectConfig() {
     },
     include: ['docs/**/*.md'],
     mappings: createProjectMappings(),
+    path_classes: {
+      decision_docs: {
+        prefixes: ['docs/decisions/'],
+      },
+      task_docs: {
+        prefixes: ['docs/tasks/'],
+      },
+    },
     queries: createProjectQueries(),
     relations: createProjectRelations(),
   };
@@ -258,12 +278,6 @@ function createProjectMappings() {
         relation: 'blocked_by',
         target: 'path',
         target_class: 'document',
-      },
-    },
-    'markdown.directive.kind': {
-      node: {
-        class: 'document',
-        field: '$class',
       },
     },
     'markdown.directive.status': {

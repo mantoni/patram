@@ -6,7 +6,7 @@
 
 - Patram keeps the current where-clause operator syntax:
   - `field=value`
-  - `field!=value`
+  - `field<>value`
   - `field^=value`
   - `field~value`
   - `field in [value, ...]`

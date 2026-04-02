@@ -411,7 +411,7 @@ it('suggests a close stored query name', async () => {
       include: ['docs/**/*.md'],
       queries: {
         'active-plans': {
-          cypher: "MATCH (n) WHERE n.id STARTS WITH 'doc:' RETURN n",
+          cypher: "MATCH (n) WHERE id(n) STARTS WITH 'doc:' RETURN n",
         },
       },
     }),
@@ -511,7 +511,7 @@ function createExpectedQueryJsonOutput() {
     '  "results": [\n' +
     '    {\n' +
     '      "$class": "task",\n' +
-    '      "$id": "task:docs/tasks/v0/query-command.md",\n' +
+    '      "$id": "task:v0/query-command",\n' +
     '      "fields": {\n' +
     '        "status": "pending"\n' +
     '      },\n' +

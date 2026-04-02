@@ -117,6 +117,10 @@
   "classes": {
     "command": {
       "label": "Command",
+      "identity": {
+        "type": "claim_value",
+        "claim_types": ["markdown.directive.command", "yaml.directive.command"]
+      },
       "schema": {
         "fields": {
           "summary": {
@@ -128,6 +132,9 @@
     },
     "convention": {
       "label": "Convention",
+      "identity": {
+        "type": "document_path"
+      },
       "schema": {
         "document_path_class": "convention_docs",
         "fields": {
@@ -140,6 +147,9 @@
     },
     "decision": {
       "label": "Decision",
+      "identity": {
+        "type": "document_path"
+      },
       "schema": {
         "document_path_class": "decision_docs",
         "fields": {
@@ -169,6 +179,9 @@
     },
     "idea": {
       "label": "Idea",
+      "identity": {
+        "type": "document_path"
+      },
       "schema": {
         "document_path_class": "idea_docs",
         "fields": {
@@ -181,6 +194,9 @@
     },
     "plan": {
       "label": "Plan",
+      "identity": {
+        "type": "document_path"
+      },
       "schema": {
         "document_path_class": "plan_docs",
         "fields": {
@@ -193,6 +209,9 @@
     },
     "roadmap": {
       "label": "Roadmap",
+      "identity": {
+        "type": "document_path"
+      },
       "schema": {
         "document_path_class": "roadmap_docs",
         "fields": {
@@ -205,6 +224,9 @@
     },
     "task": {
       "label": "Task",
+      "identity": {
+        "type": "document_path"
+      },
       "schema": {
         "document_path_class": "task_docs",
         "fields": {
@@ -217,6 +239,10 @@
     },
     "term": {
       "label": "Term",
+      "identity": {
+        "type": "claim_value",
+        "claim_types": ["markdown.directive.term", "yaml.directive.term"]
+      },
       "schema": {
         "fields": {
           "definition": {
@@ -241,15 +267,23 @@
       "type": "enum",
       "values": [
         "cli",
+        "command",
         "config",
+        "convention",
+        "decision",
         "discovery",
         "entrypoint",
         "graph",
+        "idea",
         "output",
         "parse",
+        "plan",
         "release",
+        "roadmap",
         "scan",
-        "support"
+        "support",
+        "task",
+        "term"
       ]
     },
     "status": {
@@ -428,7 +462,7 @@
     },
     "markdown.directive.kind": {
       "node": {
-        "field": "$class",
+        "field": "kind",
         "class": "document"
       }
     },
@@ -525,7 +559,7 @@
     },
     "yaml.directive.kind": {
       "node": {
-        "field": "$class",
+        "field": "kind",
         "class": "document"
       }
     },
