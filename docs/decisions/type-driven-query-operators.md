@@ -1,7 +1,7 @@
 # Type-Driven Query Operators Proposal
 
-- Kind: decision
-- Status: accepted
+- kind: decision
+- status: accepted
 - Supersedes: docs/decisions/query-language.md
 
 - Patram keeps the current where-clause operator syntax:

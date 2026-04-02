@@ -1,8 +1,8 @@
 # Non-Document Semantic Ids Proposal
 
-- Kind: decision
-- Status: superseded
-- Tracked in: docs/plans/v0/non-document-semantic-ids.md
+- kind: decision
+- status: superseded
+- tracked_in: docs/plans/v0/non-document-semantic-ids.md
 - Superseded by: docs/decisions/document-backed-semantic-ids.md
 
 - Keep `document` nodes path-backed.

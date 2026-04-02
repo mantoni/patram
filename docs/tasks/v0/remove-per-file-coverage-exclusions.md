@@ -1,9 +1,9 @@
 # Remove Per-File Coverage Exclusions
 
-- Kind: task
-- Status: in_progress
-- Tracked in: docs/plans/v0/remove-per-file-coverage-exclusions.md
-- Decided by: docs/decisions/per-file-coverage-thresholds.md
+- kind: task
+- status: in_progress
+- tracked_in: docs/plans/v0/remove-per-file-coverage-exclusions.md
+- decided_by: docs/decisions/per-file-coverage-thresholds.md
 
 - Add coverage for the files currently excluded from the per-file gate.
 - Remove the temporary exclusions from `vitest.config.js`.

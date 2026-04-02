@@ -1,8 +1,8 @@
 # Rich Source Separated List Spacing Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/fix-rich-source-separated-list-spacing.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/fix-rich-source-separated-list-spacing.md
 
 - Preserve one visible blank line in `patram show` rich markdown output when the
   original source contains a blank line between adjacent top-level list items.

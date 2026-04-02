@@ -1,7 +1,7 @@
 # v0 Dogfood Roadmap Proposal
 
-- Kind: roadmap
-- Status: active
+- kind: roadmap
+- status: active
 
 ## Goal
 

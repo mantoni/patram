@@ -1,8 +1,8 @@
 # Stored Query Descriptions Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/stored-query-descriptions.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/stored-query-descriptions.md
 
 - Allow stored queries in `.patram.json` to carry an optional `description`
   string alongside `where`.

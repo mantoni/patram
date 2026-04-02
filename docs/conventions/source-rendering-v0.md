@@ -1,7 +1,7 @@
 # Source Rendering v0 Proposal
 
-- Kind: convention
-- Status: active
+- kind: convention
+- status: active
 
 - Applies to `patram show` rich output only.
 - Keeps `plain` and `json` output unchanged.

@@ -1,7 +1,7 @@
 # Work Item Conventions v0 Proposal
 
-- Kind: convention
-- Status: active
+- kind: convention
+- status: active
 
 ## Kinds
 
@@ -49,9 +49,9 @@
 ```md
 # Release automation v0 plan
 
-- Kind: plan
-- Status: active
-- Decided by: docs/decisions/release-automation.md
+- kind: plan
+- status: active
+- decided_by: docs/decisions/release-automation.md
 ```
 
 ## Placement

@@ -1,8 +1,8 @@
 # Work Item Structure Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/docs-structure-cleanup.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/docs-structure-cleanup.md
 
 - Keep milestone and version planning in `docs/roadmap/`.
 - Store change-level implementation plans in `docs/plans/<version>/`.

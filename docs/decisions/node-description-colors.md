@@ -1,8 +1,8 @@
 # Node Description Colors Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/fix-node-description-colors.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/fix-node-description-colors.md
 
 - Keep node descriptions in `query`, `refs`, and `show` rich output on the same
   lines and indentation as plain output.

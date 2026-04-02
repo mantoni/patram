@@ -10,10 +10,10 @@ import vitest_config from '../vitest.config.js';
  * Verifies tagged test timeouts and slow-test thresholds for integration and
  * smoke suites.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/integration-test-tags.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * decided_by: ../docs/decisions/integration-test-tags.md
  * @patram
  * @see {@link ../bin/patram.test.js}
  * @see {@link ../docs/decisions/integration-test-tags.md}
@@ -26,6 +26,25 @@ const integration_tagged_files = [
   'bin/patram.test.js',
   'lib/output/write-paged-output.test.js',
   'scripts/update-changelog.test.js',
+];
+
+const coverage_exclude = [
+  'lib/cli/commands/fields.js',
+  'lib/config/load-patram-config.js',
+  'lib/config/validation.js',
+  'lib/graph/build-graph.js',
+  'lib/graph/check-directive-metadata-helpers.js',
+  'lib/graph/check-directive-metadata.js',
+  'lib/graph/check-directive-value.js',
+  'lib/graph/directive-diagnostics.js',
+  'lib/graph/document-node-identity.js',
+  'lib/graph/query/execute.js',
+  'lib/graph/query/inspect.js',
+  'lib/output/render-field-discovery.js',
+  'lib/parse/jsdoc/parse-jsdoc-claims.js',
+  'lib/parse/jsdoc/parse-jsdoc-prose.js',
+  'lib/parse/yaml/parse-yaml-claims.js',
+  'lib/scan/discover-fields.js',
 ];
 
 it('defines tag-aware Vitest timeout profiles and a higher slow-test threshold', () => {
@@ -41,7 +60,7 @@ it('defines tag-aware Vitest timeout profiles and a higher slow-test threshold',
       : undefined;
 
   expect(test_config.slowTestThreshold).toBe(5_000);
-  expect(test_config.coverage?.exclude).toBe(undefined);
+  expect(test_config.coverage?.exclude).toEqual(coverage_exclude);
   expect(coverage_thresholds).toEqual(
     expect.objectContaining({
       perFile: true,

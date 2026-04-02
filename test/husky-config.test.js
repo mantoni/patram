@@ -10,10 +10,10 @@ import package_json from '../package.json' with { type: 'json' };
  * Verifies local pre-commit wiring stays aligned with package scripts and
  * staged-file checks.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/validation-test-deduplication.md
- * Decided by: ../docs/decisions/validation-test-deduplication.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/validation-test-deduplication.md
+ * decided_by: ../docs/decisions/validation-test-deduplication.md
  * @patram
  * @see {@link ./package-metadata.test.js}
  * @see {@link ../docs/decisions/validation-test-deduplication.md}

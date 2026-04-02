@@ -1,8 +1,8 @@
 # Single-Quoted Where Examples
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/single-quoted-where-examples.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/single-quoted-where-examples.md
 
 - Use single quotes for shell-facing `--where` command examples in help output,
   hints, and current reference docs.

@@ -1,9 +1,9 @@
 # Derived Summary Separate Row Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/query-language-extensions.md
-- Decided by: docs/decisions/derived-summary-separate-row.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/query-language-extensions.md
+- decided_by: docs/decisions/derived-summary-separate-row.md
 
 ## Goal
 

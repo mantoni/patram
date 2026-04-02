@@ -1,8 +1,8 @@
 # Derived Summary Separate Row Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/derived-summary-separate-row.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/derived-summary-separate-row.md
 
 - Render stored node metadata and derived summary metadata separately.
 - Keep stored node metadata inline on the title row in parenthesized `key=value`

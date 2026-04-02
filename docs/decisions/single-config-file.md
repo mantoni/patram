@@ -1,8 +1,8 @@
 # Single Config File Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/roadmap/v0-dogfood.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/roadmap/v0-dogfood.md
 
 - Use one project config file for v0.
 - Project config file name: `.patram.json`.

@@ -1,8 +1,8 @@
 # Stored Query Row Spacing Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/fix-stored-query-row-spacing.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/fix-stored-query-row-spacing.md
 
 - Keep `patram queries` rendering each stored query as one visual block.
 - Render one blank line after every stored query block in terminal output.

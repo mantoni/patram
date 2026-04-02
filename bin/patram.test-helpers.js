@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -11,9 +10,9 @@ import ansis from 'ansis';
  * Provides temporary project builders and IO helpers shared by command-level
  * integration tests.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
  * @patram
  * @see {@link ./patram.test.js}
  * @see {@link ./patram-query.test.js}
@@ -30,12 +29,7 @@ export function createBrokenLinkSource() {
  * @returns {string}
  */
 export function createDecisionSource() {
-  return [
-    '# Query Language v0',
-    '',
-    '- Kind: decision',
-    '- Status: accepted',
-  ].join('\n');
+  return ['# Query Language v0', '', 'status: accepted'].join('\n');
 }
 
 /**
@@ -102,9 +96,8 @@ export function createTaskSource(status_value) {
   return [
     '# Implement query command',
     '',
-    '- Kind: task',
-    `- Status: ${status_value}`,
-    '- Tracked in: docs/roadmap/v0-dogfood.md',
+    `status: ${status_value}`,
+    'tracked_in: docs/roadmap/v0-dogfood.md',
   ].join('\n');
 }
 
@@ -115,9 +108,8 @@ export function createBlockedTaskSource() {
   return [
     '# Implement show command',
     '',
-    '- Kind: task',
-    '- Status: blocked',
-    '- Blocked by: ../decisions/show-output-v0.md',
+    'status: blocked',
+    'blocked_by: ../decisions/show-output-v0.md',
   ].join('\n');
 }
 
@@ -210,46 +202,33 @@ export async function writeShowProject(project_directory) {
 
 function createProjectConfig() {
   return {
-    classes: {
-      decision: {
-        label: 'Decision',
-        identity: {
-          type: 'document_path',
-        },
-        schema: {
-          document_path_class: 'decision_docs',
-        },
-      },
-      document: {
-        builtin: true,
-      },
-      task: {
-        label: 'Task',
-        identity: {
-          type: 'document_path',
-        },
-        schema: {
-          document_path_class: 'task_docs',
-        },
-      },
-    },
     fields: {
+      blocked_by: {
+        many: true,
+        to: 'document',
+        type: 'ref',
+      },
       status: {
         type: 'string',
       },
+      tracked_in: {
+        many: true,
+        to: 'document',
+        type: 'ref',
+      },
     },
     include: ['docs/**/*.md'],
-    mappings: createProjectMappings(),
-    path_classes: {
-      decision_docs: {
-        prefixes: ['docs/decisions/'],
+    queries: createProjectQueries(),
+    types: {
+      decision: {
+        in: 'docs/decisions/**/*.md',
+        label: 'Decision',
       },
-      task_docs: {
-        prefixes: ['docs/tasks/'],
+      task: {
+        in: 'docs/tasks/**/*.md',
+        label: 'Task',
       },
     },
-    queries: createProjectQueries(),
-    relations: createProjectRelations(),
   };
 }
 
@@ -261,62 +240,6 @@ function createProjectQueries() {
     },
     pending: {
       cypher: "MATCH (n:Task) WHERE n.status = 'pending' RETURN n",
-    },
-  };
-}
-
-function createProjectMappings() {
-  return {
-    'document.title': {
-      node: {
-        class: 'document',
-        field: 'title',
-      },
-    },
-    'markdown.directive.blocked_by': {
-      emit: {
-        relation: 'blocked_by',
-        target: 'path',
-        target_class: 'document',
-      },
-    },
-    'markdown.directive.status': {
-      node: {
-        class: 'document',
-        field: 'status',
-      },
-    },
-    'markdown.directive.tracked_in': {
-      emit: {
-        relation: 'tracked_in',
-        target: 'path',
-        target_class: 'document',
-      },
-    },
-    'markdown.link': {
-      emit: {
-        relation: 'links_to',
-        target: 'path',
-        target_class: 'document',
-      },
-    },
-  };
-}
-
-function createProjectRelations() {
-  return {
-    blocked_by: {
-      from: ['document'],
-      to: ['document'],
-    },
-    links_to: {
-      builtin: true,
-      from: ['document'],
-      to: ['document'],
-    },
-    tracked_in: {
-      from: ['document'],
-      to: ['document'],
     },
   };
 }

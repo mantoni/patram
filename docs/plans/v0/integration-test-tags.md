@@ -1,7 +1,7 @@
 # Integration Test Tags Plan
 
-- Kind: plan
-- Status: active
+- kind: plan
+- status: active
 
 ## Goal
 

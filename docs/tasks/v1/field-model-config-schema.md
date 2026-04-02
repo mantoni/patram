@@ -1,12 +1,12 @@
 # Define Field Model Config Schema
 
-- Kind: task
-- Status: done
-- Tracked in: docs/plans/v1/field-model-redesign.md
-- Decided by: docs/decisions/schema-defined-query-fields.md
-- Decided by: docs/decisions/patram-structural-field-namespace.md
-- Decided by: docs/decisions/class-based-config-vocabulary.md
-- Decided by: docs/decisions/metadata-field-schema.md
+- kind: task
+- status: done
+- tracked_in: docs/plans/v1/field-model-redesign.md
+- decided_by: docs/decisions/schema-defined-query-fields.md
+- decided_by: docs/decisions/patram-structural-field-namespace.md
+- decided_by: docs/decisions/class-based-config-vocabulary.md
+- decided_by: docs/decisions/metadata-field-schema.md
 
 - Add failing tests for the new top-level config vocabulary:
   - `classes`

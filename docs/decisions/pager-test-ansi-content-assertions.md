@@ -1,8 +1,8 @@
 # Pager Test ANSI Content Assertions
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/fix-pager-test-ansi-content-assertions.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/fix-pager-test-ansi-content-assertions.md
 
 - Strip ANSI sequences from pager output in CLI tests before asserting textual
   content.

@@ -1,8 +1,8 @@
 # Remove overlayGraph API Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/remove-overlay-graph-api.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/remove-overlay-graph-api.md
 
 - Remove `overlayGraph` from the supported package-root API and stop shipping
   `lib/graph/overlay-graph.js` as a maintained graph helper.

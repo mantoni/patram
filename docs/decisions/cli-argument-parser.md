@@ -1,8 +1,8 @@
 # CLI Argument Parser Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/show-command.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/show-command.md
 
 - Use `node:util` `parseArgs` for v0 CLI parsing.
 - Add one repo-local parser layer that declares commands, positionals, and

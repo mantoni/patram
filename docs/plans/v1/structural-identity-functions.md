@@ -1,9 +1,9 @@
 # Structural Identity Functions Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/field-model-redesign.md
-- Decided by: docs/decisions/structural-identity-functions.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/field-model-redesign.md
+- decided_by: docs/decisions/structural-identity-functions.md
 
 ## Goal
 

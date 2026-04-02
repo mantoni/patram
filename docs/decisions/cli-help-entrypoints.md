@@ -1,8 +1,8 @@
 # CLI Help Entrypoints Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/cli-help-and-errors.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/cli-help-and-errors.md
 
 - `patram`, `patram --help`, and `patram help` print the same root help.
 - `patram help <command>` and `patram <command> --help` print the same command

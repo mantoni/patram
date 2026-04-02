@@ -1,8 +1,8 @@
 # Source Anchor Dogfooding Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/source-anchor-dogfooding.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/source-anchor-dogfooding.md
 
 - Dogfood source-file indexing in this repo through curated JSDoc `@patram`
   anchor blocks.
@@ -26,11 +26,11 @@
  * Applies the v0 where-clause language to materialized graph nodes and keeps
  * query pagination separate from matching.
  *
- * Kind: graph
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/query-language.md
- * Implements: ../docs/tasks/v0/query-command.md
+ * kind: graph
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * decided_by: ../docs/decisions/query-language.md
+ * implements: ../docs/tasks/v0/query-command.md
  * @patram
  * @see {@link ./parse-where-clause.js}
  * @see {@link ../docs/patram.md}

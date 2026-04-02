@@ -1,8 +1,8 @@
 # Tagged Fenced Block Extraction Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/tagged-fenced-block-extraction.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/tagged-fenced-block-extraction.md
 
 - Add a markdown-only API for extracting tagged fenced code blocks from one
   file.
@@ -89,8 +89,7 @@ const output_blocks = selectTaggedBlocks(spec_file.blocks, {
 ## Tag Syntax
 
 ````md
-[patram example=query-basic]: #
-[patram role=input]: #
+example: query-basic role: input
 
 ```sh
 patram query --where "kind=task and status=pending"

@@ -1,8 +1,8 @@
 # CLI Formatting Libraries Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/show-command.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/show-command.md
 
 - Keep `ansis`, `string-width`, `wrap-ansi`, and `slice-ansi` as the v0 CLI
   formatting stack.

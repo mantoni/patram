@@ -12,10 +12,10 @@ import { queryGraph } from '../lib/graph/query/execute.js';
  * Verifies the traversal and aggregate query language works against the repo's
  * documented decision, plan, and roadmap relations.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/query-traversal-and-aggregation.md
- * Decided by: ../docs/decisions/query-traversal-and-aggregation.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/query-traversal-and-aggregation.md
+ * decided_by: ../docs/decisions/query-traversal-and-aggregation.md
  * @patram
  * @see {@link ../lib/graph/query/execute.js}
  * @see {@link ../docs/decisions/query-traversal-and-aggregation.md}

@@ -1,7 +1,7 @@
 # Package Install Smoke Test Plan
 
-- Kind: plan
-- Status: active
+- kind: plan
+- status: active
 
 ## Goal
 

@@ -1,8 +1,8 @@
 # Remove Compatibility Facades Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/remove-compatibility-facades.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/remove-compatibility-facades.md
 
 - Complete the source-layout migration by removing runtime and type modules
   whose only responsibility is to re-export another file.

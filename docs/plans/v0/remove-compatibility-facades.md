@@ -1,8 +1,8 @@
 # Remove Compatibility Facades Plan
 
-- Kind: plan
-- Status: done
-- Decided by: docs/decisions/remove-compatibility-facades.md
+- kind: plan
+- status: done
+- decided_by: docs/decisions/remove-compatibility-facades.md
 
 ## Goal
 

@@ -1,8 +1,8 @@
 # Query Inspection Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/completion-and-query-inspection.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/completion-and-query-inspection.md
 
 - Keep query inspection on `patram query` instead of adding a separate command.
 - Use `--explain` to print resolved query metadata and the parsed clause tree

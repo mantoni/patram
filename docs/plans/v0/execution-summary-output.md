@@ -1,9 +1,9 @@
 # Execution Summary Output Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/query-language-extensions.md
-- Decided by: docs/decisions/execution-summary-output.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/query-language-extensions.md
+- decided_by: docs/decisions/execution-summary-output.md
 
 ## Goal
 

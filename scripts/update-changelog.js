@@ -14,10 +14,10 @@ const execFileAsync = promisify(execFile);
  * Collects commits since the previous tag and prepends the next release
  * section to `CHANGELOG.md`.
  *
- * Kind: release
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/release-automation.md
+ * kind: release
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * decided_by: ../docs/decisions/release-automation.md
  * @patram
  * @see {@link ../test/release-config.test.js}
  * @see {@link ../docs/decisions/release-automation.md}

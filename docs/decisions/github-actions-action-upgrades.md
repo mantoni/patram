@@ -1,8 +1,8 @@
 # GitHub Actions Action Upgrades Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/github-actions-action-upgrades.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/github-actions-action-upgrades.md
 
 - Upgrade workflow action dependencies from `actions/checkout@v5` to
   `actions/checkout@v6`.

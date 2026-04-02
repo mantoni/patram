@@ -1,8 +1,8 @@
 # Remove overlayGraph API Plan
 
-- Kind: plan
-- Status: done
-- Decided by: docs/decisions/remove-overlay-graph-api.md
+- kind: plan
+- status: done
+- decided_by: docs/decisions/remove-overlay-graph-api.md
 
 ## Goal
 

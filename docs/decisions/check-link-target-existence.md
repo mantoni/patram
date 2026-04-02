@@ -1,8 +1,8 @@
 # Check Link Target Existence Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/check-link-target-existence.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/check-link-target-existence.md
 
 - `patram check` validates path-like markdown link targets against repo file
   existence, not only indexed source files.

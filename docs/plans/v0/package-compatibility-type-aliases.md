@@ -1,8 +1,8 @@
 # Package Compatibility Type Aliases Plan
 
-- Kind: plan
-- Status: done
-- Decided by: docs/decisions/package-compatibility-type-aliases.md
+- kind: plan
+- status: done
+- decided_by: docs/decisions/package-compatibility-type-aliases.md
 
 ## Goal
 

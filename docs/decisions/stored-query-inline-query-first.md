@@ -1,8 +1,8 @@
 # Stored Query Inline Query-First Layout Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/stored-query-inline-query-first.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/stored-query-inline-query-first.md
 
 - Narrow the compact query-family title-row rules for `patram queries` only.
 - Render each stored query block as:

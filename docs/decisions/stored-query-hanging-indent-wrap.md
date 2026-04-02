@@ -1,8 +1,8 @@
 # Stored Query Hanging Indent Wrap Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/stored-query-hanging-indent-wrap.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/stored-query-hanging-indent-wrap.md
 
 - Amend the stored-query query-first layout for `patram queries` wrapping.
 - In TTY output, when a stored query clause wraps, continuation lines must use a

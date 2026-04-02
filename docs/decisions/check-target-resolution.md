@@ -1,8 +1,8 @@
 # Check Target Resolution Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/fix-check-path-targets.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/fix-check-path-targets.md
 
 - `patram check` accepts a project root, a subdirectory, or a file path.
 - When `check` receives an explicit path, config discovery starts from that path

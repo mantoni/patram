@@ -1,9 +1,9 @@
 # Fix Stored Query Keyword Colors
 
-- Kind: task
-- Status: done
-- Tracked in: docs/plans/v0/fix-stored-query-keyword-colors.md
-- Decided by: docs/decisions/stored-query-keyword-colors.md
+- kind: task
+- status: done
+- tracked_in: docs/plans/v0/fix-stored-query-keyword-colors.md
+- decided_by: docs/decisions/stored-query-keyword-colors.md
 
 - Add regression coverage for gray boolean keywords in `patram queries` rich
   output.

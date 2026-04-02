@@ -1,8 +1,8 @@
 # Compact Refs Tree Layout Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/compact-refs-tree-layout.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/compact-refs-tree-layout.md
 
 - Keep `patram refs` relation grouping and JSON shape unchanged.
 - Change `patram refs` plain and rich terminal output from nested blank-line

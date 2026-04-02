@@ -1,9 +1,9 @@
 # Fix Pager Test ANSI Content Assertions
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/pager-test-ansi-content-assertions.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/pager-test-ansi-content-assertions.md
 
 ## Goal
 

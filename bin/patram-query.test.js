@@ -23,11 +23,11 @@ import { main } from './patram.js';
  * Covers default pagination, pager integration, and named-query execution
  * through the CLI boundary.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/query-command.md
- * Decided by: ../docs/decisions/tty-pager-output.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * decided_by: ../docs/decisions/query-command.md
+ * decided_by: ../docs/decisions/tty-pager-output.md
  * @patram
  * @see {@link ../lib/graph/query/execute.js}
  * @see {@link ./patram.js}

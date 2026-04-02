@@ -1,8 +1,8 @@
 # TypeScript ESLint Typed Linting Plan
 
-- Kind: plan
-- Status: active
-- Decided by: docs/decisions/typescript-eslint-typed-linting.md
+- kind: plan
+- status: active
+- decided_by: docs/decisions/typescript-eslint-typed-linting.md
 
 ## Goal
 

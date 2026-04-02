@@ -13,10 +13,10 @@ import repo_config from '../.patram.json' with { type: 'json' };
  * Loads the repo graph and verifies the source-anchor sweep stays queryable
  * across the documented source kinds.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/source-anchor-dogfooding.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * decided_by: ../docs/decisions/source-anchor-dogfooding.md
  * @patram
  * @see {@link ../lib/graph/load-project-graph.js}
  * @see {@link ../docs/plans/v0/source-anchor-dogfooding.md}

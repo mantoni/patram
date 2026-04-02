@@ -1,11 +1,11 @@
 # Declarative Derived Summaries Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/query-language-extensions.md
-- Implements: docs/research/declarative-derived-summaries.md
-- Decided by: docs/decisions/declarative-derived-summary-config.md
-- Decided by: docs/decisions/declarative-derived-summary-side-effects.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/query-language-extensions.md
+- implements: docs/research/declarative-derived-summaries.md
+- decided_by: docs/decisions/declarative-derived-summary-config.md
+- decided_by: docs/decisions/declarative-derived-summary-side-effects.md
 
 ## Goal
 

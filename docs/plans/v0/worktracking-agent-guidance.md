@@ -1,9 +1,9 @@
 # Worktracking Agent Guidance Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/worktracking-agent-guidance.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/worktracking-agent-guidance.md
 
 ## Goal
 

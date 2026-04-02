@@ -1,8 +1,8 @@
 # YAML Source And Front Matter Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/yaml-source-and-front-matter.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/yaml-source-and-front-matter.md
 
 - Add `.yaml` and `.yml` as supported Patram source file extensions.
 - Parse standalone YAML files and markdown front matter with the `yaml` npm

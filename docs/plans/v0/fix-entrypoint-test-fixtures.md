@@ -1,8 +1,8 @@
 # Fix Entrypoint Test Fixtures
 
-- Kind: plan
-- Status: active
-- Decided by: docs/decisions/entrypoint-test-fixtures.md
+- kind: plan
+- status: active
+- decided_by: docs/decisions/entrypoint-test-fixtures.md
 
 ## Goal
 

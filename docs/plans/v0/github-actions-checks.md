@@ -1,7 +1,7 @@
 # GitHub Actions Checks Plan
 
-- Kind: plan
-- Status: active
+- kind: plan
+- status: active
 
 ## Goal
 

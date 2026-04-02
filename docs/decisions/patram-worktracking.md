@@ -1,8 +1,8 @@
 # Patram Worktracking Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/patram-worktracking.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/patram-worktracking.md
 
 - Model worktracking with `idea`, `roadmap`, `plan`, `decision`, and `task`
   documents.

@@ -114,154 +114,74 @@
       "cypher": "MATCH (n:Term) RETURN n"
     }
   },
-  "classes": {
+  "types": {
     "command": {
-      "label": "Command",
-      "identity": {
-        "type": "claim_value",
-        "claim_types": ["markdown.directive.command", "yaml.directive.command"]
-      },
-      "schema": {
-        "fields": {
-          "summary": {
-            "presence": "optional"
-          }
-        },
-        "unknown_fields": "ignore"
-      }
+      "defined_by": "command",
+      "label": "Command"
     },
     "convention": {
-      "label": "Convention",
-      "identity": {
-        "type": "document_path"
-      },
-      "schema": {
-        "document_path_class": "convention_docs",
-        "fields": {
-          "status": {
-            "presence": "optional"
-          }
-        },
-        "unknown_fields": "ignore"
-      }
+      "in": "docs/conventions/**/*.md",
+      "label": "Convention"
     },
     "decision": {
-      "label": "Decision",
-      "identity": {
-        "type": "document_path"
-      },
-      "schema": {
-        "document_path_class": "decision_docs",
-        "fields": {
-          "status": {
-            "presence": "optional"
-          }
-        },
-        "unknown_fields": "ignore"
-      }
-    },
-    "document": {
-      "builtin": true,
-      "schema": {
-        "fields": {
-          "description": {
-            "presence": "optional"
-          },
-          "kind": {
-            "presence": "optional"
-          },
-          "status": {
-            "presence": "optional"
-          }
-        },
-        "unknown_fields": "ignore"
-      }
+      "in": "docs/decisions/**/*.md",
+      "label": "Decision"
     },
     "idea": {
-      "label": "Idea",
-      "identity": {
-        "type": "document_path"
-      },
-      "schema": {
-        "document_path_class": "idea_docs",
-        "fields": {
-          "status": {
-            "presence": "optional"
-          }
-        },
-        "unknown_fields": "ignore"
-      }
+      "in": "docs/research/**/*.md",
+      "label": "Idea"
     },
     "plan": {
-      "label": "Plan",
-      "identity": {
-        "type": "document_path"
-      },
-      "schema": {
-        "document_path_class": "plan_docs",
-        "fields": {
-          "status": {
-            "presence": "optional"
-          }
-        },
-        "unknown_fields": "ignore"
-      }
+      "in": "docs/plans/**/*.md",
+      "label": "Plan"
     },
     "roadmap": {
-      "label": "Roadmap",
-      "identity": {
-        "type": "document_path"
-      },
-      "schema": {
-        "document_path_class": "roadmap_docs",
-        "fields": {
-          "status": {
-            "presence": "optional"
-          }
-        },
-        "unknown_fields": "ignore"
-      }
+      "in": "docs/roadmap/**/*.md",
+      "label": "Roadmap"
     },
     "task": {
-      "label": "Task",
-      "identity": {
-        "type": "document_path"
-      },
-      "schema": {
-        "document_path_class": "task_docs",
-        "fields": {
-          "status": {
-            "presence": "optional"
-          }
-        },
-        "unknown_fields": "ignore"
-      }
+      "in": "docs/tasks/**/*.md",
+      "label": "Task"
     },
     "term": {
-      "label": "Term",
-      "identity": {
-        "type": "claim_value",
-        "claim_types": ["markdown.directive.term", "yaml.directive.term"]
-      },
-      "schema": {
-        "fields": {
-          "definition": {
-            "presence": "optional"
-          }
-        },
-        "unknown_fields": "ignore"
-      }
+      "defined_by": "term",
+      "label": "Term"
     }
   },
   "fields": {
-    "description": {
-      "display": {
-        "hidden": true
-      },
+    "about_command": {
+      "many": true,
+      "to": "command",
+      "type": "ref"
+    },
+    "blocked_by": {
+      "many": true,
+      "to": "document",
+      "type": "ref"
+    },
+    "command": {
+      "hidden": true,
+      "on": ["command"],
       "type": "string"
     },
+    "decided_by": {
+      "many": true,
+      "to": "document",
+      "type": "ref"
+    },
     "definition": {
+      "on": ["term"],
       "type": "string"
+    },
+    "implements": {
+      "many": true,
+      "to": "document",
+      "type": "ref"
+    },
+    "implements_command": {
+      "many": true,
+      "to": "command",
+      "type": "ref"
     },
     "kind": {
       "type": "enum",
@@ -304,337 +224,29 @@
         "superseded"
       ]
     },
+    "supersedes": {
+      "many": true,
+      "to": "document",
+      "type": "ref"
+    },
     "summary": {
+      "on": ["command"],
       "type": "string"
-    }
-  },
-  "path_classes": {
-    "convention_docs": {
-      "prefixes": ["docs/conventions/"]
     },
-    "decision_docs": {
-      "prefixes": ["docs/decisions/"]
-    },
-    "idea_docs": {
-      "prefixes": ["docs/research/"]
-    },
-    "plan_docs": {
-      "prefixes": ["docs/plans/"]
-    },
-    "roadmap_docs": {
-      "prefixes": ["docs/roadmap/"]
-    },
-    "task_docs": {
-      "prefixes": ["docs/tasks/"]
-    }
-  },
-  "relations": {
-    "defines": {
-      "from": ["document"],
-      "to": ["command", "term"]
-    },
-    "about_command": {
-      "from": ["document"],
-      "to": ["command"]
-    },
-    "links_to": {
-      "builtin": true,
-      "from": ["document"],
-      "to": ["document"]
-    },
-    "blocked_by": {
-      "from": ["document"],
-      "to": ["document"]
-    },
-    "decided_by": {
-      "from": ["document"],
-      "to": ["document"]
-    },
-    "implements": {
-      "from": ["document"],
-      "to": ["document"]
-    },
-    "implements_command": {
-      "from": ["document"],
-      "to": ["command"]
+    "term": {
+      "hidden": true,
+      "on": ["term"],
+      "type": "string"
     },
     "tracked_in": {
-      "from": ["document"],
-      "to": ["document"]
+      "many": true,
+      "to": "document",
+      "type": "ref"
     },
     "uses_term": {
-      "from": ["document"],
-      "to": ["term"]
-    }
-  },
-  "mappings": {
-    "document.title": {
-      "node": {
-        "field": "title",
-        "class": "document"
-      }
-    },
-    "jsdoc.directive.about_command": {
-      "emit": {
-        "relation": "about_command",
-        "target": "path",
-        "target_class": "command"
-      }
-    },
-    "jsdoc.directive.kind": {
-      "node": {
-        "field": "kind",
-        "class": "document"
-      }
-    },
-    "jsdoc.directive.status": {
-      "node": {
-        "field": "status",
-        "class": "document"
-      }
-    },
-    "jsdoc.directive.blocked_by": {
-      "emit": {
-        "relation": "blocked_by",
-        "target": "path",
-        "target_class": "document"
-      }
-    },
-    "jsdoc.directive.decided_by": {
-      "emit": {
-        "relation": "decided_by",
-        "target": "path",
-        "target_class": "document"
-      }
-    },
-    "jsdoc.directive.implements": {
-      "emit": {
-        "relation": "implements",
-        "target": "path",
-        "target_class": "document"
-      }
-    },
-    "jsdoc.directive.implements_command": {
-      "emit": {
-        "relation": "implements_command",
-        "target": "path",
-        "target_class": "command"
-      }
-    },
-    "jsdoc.directive.tracked_in": {
-      "emit": {
-        "relation": "tracked_in",
-        "target": "path",
-        "target_class": "document"
-      }
-    },
-    "jsdoc.directive.uses_term": {
-      "emit": {
-        "relation": "uses_term",
-        "target": "path",
-        "target_class": "term"
-      }
-    },
-    "markdown.directive.about_command": {
-      "emit": {
-        "relation": "about_command",
-        "target": "path",
-        "target_class": "command"
-      }
-    },
-    "markdown.directive.command": {
-      "emit": {
-        "relation": "defines",
-        "target": "value",
-        "target_class": "command"
-      },
-      "node": {
-        "field": "title",
-        "key": "value",
-        "class": "command"
-      }
-    },
-    "markdown.directive.command_summary": {
-      "node": {
-        "field": "summary",
-        "class": "command"
-      }
-    },
-    "markdown.directive.kind": {
-      "node": {
-        "field": "kind",
-        "class": "document"
-      }
-    },
-    "markdown.directive.status": {
-      "node": {
-        "field": "status",
-        "class": "document"
-      }
-    },
-    "markdown.directive.blocked_by": {
-      "emit": {
-        "relation": "blocked_by",
-        "target": "path",
-        "target_class": "document"
-      }
-    },
-    "markdown.directive.decided_by": {
-      "emit": {
-        "relation": "decided_by",
-        "target": "path",
-        "target_class": "document"
-      }
-    },
-    "markdown.directive.implements": {
-      "emit": {
-        "relation": "implements",
-        "target": "path",
-        "target_class": "document"
-      }
-    },
-    "markdown.directive.implements_command": {
-      "emit": {
-        "relation": "implements_command",
-        "target": "path",
-        "target_class": "command"
-      }
-    },
-    "markdown.directive.term": {
-      "emit": {
-        "relation": "defines",
-        "target": "value",
-        "target_class": "term"
-      },
-      "node": {
-        "field": "title",
-        "key": "value",
-        "class": "term"
-      }
-    },
-    "markdown.directive.term_definition": {
-      "node": {
-        "field": "definition",
-        "class": "term"
-      }
-    },
-    "markdown.directive.tracked_in": {
-      "emit": {
-        "relation": "tracked_in",
-        "target": "path",
-        "target_class": "document"
-      }
-    },
-    "markdown.directive.uses_term": {
-      "emit": {
-        "relation": "uses_term",
-        "target": "path",
-        "target_class": "term"
-      }
-    },
-    "yaml.directive.about_command": {
-      "emit": {
-        "relation": "about_command",
-        "target": "path",
-        "target_class": "command"
-      }
-    },
-    "yaml.directive.command": {
-      "emit": {
-        "relation": "defines",
-        "target": "value",
-        "target_class": "command"
-      },
-      "node": {
-        "field": "title",
-        "key": "value",
-        "class": "command"
-      }
-    },
-    "yaml.directive.command_summary": {
-      "node": {
-        "field": "summary",
-        "class": "command"
-      }
-    },
-    "yaml.directive.kind": {
-      "node": {
-        "field": "kind",
-        "class": "document"
-      }
-    },
-    "yaml.directive.status": {
-      "node": {
-        "field": "status",
-        "class": "document"
-      }
-    },
-    "yaml.directive.blocked_by": {
-      "emit": {
-        "relation": "blocked_by",
-        "target": "path",
-        "target_class": "document"
-      }
-    },
-    "yaml.directive.decided_by": {
-      "emit": {
-        "relation": "decided_by",
-        "target": "path",
-        "target_class": "document"
-      }
-    },
-    "yaml.directive.implements": {
-      "emit": {
-        "relation": "implements",
-        "target": "path",
-        "target_class": "document"
-      }
-    },
-    "yaml.directive.implements_command": {
-      "emit": {
-        "relation": "implements_command",
-        "target": "path",
-        "target_class": "command"
-      }
-    },
-    "yaml.directive.term": {
-      "emit": {
-        "relation": "defines",
-        "target": "value",
-        "target_class": "term"
-      },
-      "node": {
-        "field": "title",
-        "key": "value",
-        "class": "term"
-      }
-    },
-    "yaml.directive.term_definition": {
-      "node": {
-        "field": "definition",
-        "class": "term"
-      }
-    },
-    "yaml.directive.tracked_in": {
-      "emit": {
-        "relation": "tracked_in",
-        "target": "path",
-        "target_class": "document"
-      }
-    },
-    "yaml.directive.uses_term": {
-      "emit": {
-        "relation": "uses_term",
-        "target": "path",
-        "target_class": "term"
-      }
-    },
-    "markdown.link": {
-      "emit": {
-        "relation": "links_to",
-        "target": "path",
-        "target_class": "document"
-      }
+      "many": true,
+      "to": "term",
+      "type": "ref"
     }
   }
 }

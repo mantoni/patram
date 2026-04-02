@@ -1,7 +1,7 @@
 # CLI Output v0 Proposal
 
-- Kind: convention
-- Status: active
+- kind: convention
+- status: active
 
 - Applies to the `plain`, `rich`, and `json` renderers.
 - Defines the canonical plain-text baseline for `query`, `queries`, `check`, and
@@ -205,9 +205,9 @@ Scanned 12 files. Found 0 errors.
 ```txt
 # Query Traversal And Aggregation Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/query-language-extensions.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/query-language-extensions.md
 
 See [Some Guide][1], [Query Language v0][2], and
 [Implement query command][3].

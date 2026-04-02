@@ -1,8 +1,8 @@
 # Check Multiple Paths Plan
 
-- Kind: plan
-- Status: done
-- Tracked in: docs/roadmap/v0-dogfood.md
+- kind: plan
+- status: done
+- tracked_in: docs/roadmap/v0-dogfood.md
 
 ## Goal
 

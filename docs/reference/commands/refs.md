@@ -1,7 +1,7 @@
 # Refs
 
-- Command: refs
-- Command Summary: Inspect incoming graph references for one file.
+- command: refs
+- summary: Inspect incoming graph references for one file.
 
 `patram refs <file>` renders the selected file's node summary and then lists
 incoming graph references grouped by relation. Each incoming node uses the same

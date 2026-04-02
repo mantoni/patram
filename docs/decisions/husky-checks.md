@@ -1,8 +1,8 @@
 # Husky Checks Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/husky-checks.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/husky-checks.md
 
 - Use Husky for repository-managed Git hooks.
 - Install Husky as a development dependency.

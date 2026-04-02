@@ -1,9 +1,9 @@
 # Query Path Glob Operator Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/query-language-extensions.md
-- Decided by: docs/decisions/query-path-glob-operator.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/query-language-extensions.md
+- decided_by: docs/decisions/query-path-glob-operator.md
 
 ## Goal
 

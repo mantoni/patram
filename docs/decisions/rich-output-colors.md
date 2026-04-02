@@ -1,8 +1,8 @@
 # Rich Output Colors Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/output-contract-alignment.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/output-contract-alignment.md
 
 - Use green as the shared accent color for Patram node references in `rich`
   output:

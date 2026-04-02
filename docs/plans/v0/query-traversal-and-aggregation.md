@@ -1,10 +1,10 @@
 # Query Traversal And Aggregation Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/query-language-extensions.md
-- Implements: docs/research/query-language-deferred-features.md
-- Decided by: docs/decisions/query-traversal-and-aggregation.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/query-language-extensions.md
+- implements: docs/research/query-language-deferred-features.md
+- decided_by: docs/decisions/query-traversal-and-aggregation.md
 
 ## Goal
 

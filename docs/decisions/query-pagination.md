@@ -1,8 +1,8 @@
 # Query Pagination Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/roadmap/v0-dogfood.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/roadmap/v0-dogfood.md
 
 - `patram query` defaults to `25` results.
 - `patram query` accepts `--offset <number>`.

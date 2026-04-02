@@ -1,11 +1,11 @@
 # Reverse Reference Inspection Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/reverse-reference-inspection.md
-- Decided by: docs/decisions/show-output.md
-- Decided by: docs/decisions/cli-output-architecture.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/reverse-reference-inspection.md
+- decided_by: docs/decisions/show-output.md
+- decided_by: docs/decisions/cli-output-architecture.md
 
 ## Goal
 

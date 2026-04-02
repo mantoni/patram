@@ -1,7 +1,7 @@
 # Package Metadata Plan
 
-- Kind: plan
-- Status: active
+- kind: plan
+- status: active
 
 ## Goal
 

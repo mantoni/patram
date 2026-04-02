@@ -1,8 +1,8 @@
 # CLI Entrypoint Test Fixtures
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/fix-entrypoint-test-fixtures.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/fix-entrypoint-test-fixtures.md
 
 - Entrypoint dispatch tests must use a real repository path for
   `process.argv[1]`.

@@ -1,7 +1,7 @@
 # Query Language Extensions Roadmap
 
-- Kind: roadmap
-- Status: active
+- kind: roadmap
+- status: active
 
 ## Goal
 

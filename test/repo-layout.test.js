@@ -9,10 +9,10 @@ import { expect, it } from 'vitest';
  * Keeps repo-level contract tests out of `lib/` so library tests and repo
  * tests stay distinct.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/test-layout.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * decided_by: ../docs/decisions/test-layout.md
  * @patram
  * @see {@link ./repo-config.test.js}
  * @see {@link ../docs/decisions/test-layout.md}

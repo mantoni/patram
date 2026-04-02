@@ -1,7 +1,7 @@
 # Metadata Field Schema Proposal
 
-- Kind: decision
-- Status: accepted
+- kind: decision
+- status: accepted
 
 - Patram config defines global metadata fields in a top-level `fields` section.
 - Patram config defines per-class field usage in a top-level `class_schemas`

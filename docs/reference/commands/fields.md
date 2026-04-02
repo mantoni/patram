@@ -1,16 +1,15 @@
 # Fields
 
-- Command: fields
-- Command Summary: Discover likely metadata fields, multiplicity, and class
-  usage from source claims.
+- command: fields
+- summary: Discover likely metadata fields, multiplicity, inferred target types,
+  and inferred document types from source claims.
 
 `patram fields` scans source claims and reports advisory schema suggestions. It
 does not validate or activate config.
 
 Use `--json` for structured output, or `--plain` for readable text output. When
-repo config defines metadata fields or relations, `patram fields` omits those
-names from the advisory suggestions. When `stdout` is a TTY, text output opens
-in the pager.
+repo config defines metadata fields, `patram fields` omits those names from the
+advisory suggestions. When `stdout` is a TTY, text output opens in the pager.
 
 Discovery is optimized for onboarding signal:
 
@@ -25,7 +24,8 @@ Suggestions include:
 - field name
 - likely type
 - likely multiplicity
-- likely class usage
+- likely `on` types
+- likely `to` target type when the field looks like a reference
 - confidence
 - conflicting evidence
 - evidence references

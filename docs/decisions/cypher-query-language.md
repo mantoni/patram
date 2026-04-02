@@ -1,8 +1,8 @@
 # Cypher Query Language Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/cypher-query-language.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/cypher-query-language.md
 
 - Adopt Cypher as Patram's primary query syntax for ad hoc queries and stored
   queries.

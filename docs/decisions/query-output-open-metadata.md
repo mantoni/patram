@@ -1,7 +1,7 @@
 # Query Output For Open Metadata Proposal
 
-- Kind: decision
-- Status: accepted
+- kind: decision
+- status: accepted
 
 - Query JSON output exposes:
   - `$id`

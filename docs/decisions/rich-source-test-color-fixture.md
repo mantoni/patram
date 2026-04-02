@@ -1,8 +1,8 @@
 # Rich Source Test Color Fixture
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/fix-rich-source-test-color-fixture.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/fix-rich-source-test-color-fixture.md
 
 - Use a fixed `Ansis(3)` instance in rich-source tests when asserting ANSI
   styled output.

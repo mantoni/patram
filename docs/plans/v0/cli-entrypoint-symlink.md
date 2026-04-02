@@ -1,7 +1,7 @@
 # CLI Entrypoint Symlink Plan
 
-- Kind: plan
-- Status: active
+- kind: plan
+- status: active
 
 ## Goal
 

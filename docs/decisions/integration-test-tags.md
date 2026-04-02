@@ -1,8 +1,8 @@
 # Integration Test Tags Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/integration-test-tags.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/integration-test-tags.md
 
 - Tag slower integration-style tests with Vitest 4.1 `integration` and `smoke`
   tags.

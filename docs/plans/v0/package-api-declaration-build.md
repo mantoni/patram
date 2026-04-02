@@ -1,9 +1,9 @@
 # Package API Declaration Build Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/package-api-declaration-build.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/package-api-declaration-build.md
 
 ## Goal
 

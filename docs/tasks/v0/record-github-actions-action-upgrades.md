@@ -1,9 +1,9 @@
 # Record GitHub Actions Action Upgrades
 
-- Kind: task
-- Status: done
-- Tracked in: docs/plans/v0/github-actions-action-upgrades.md
-- Decided by: docs/decisions/github-actions-action-upgrades.md
+- kind: task
+- status: done
+- tracked_in: docs/plans/v0/github-actions-action-upgrades.md
+- decided_by: docs/decisions/github-actions-action-upgrades.md
 
 - Upgrade workflow actions to `actions/checkout@v6` and `actions/setup-node@v6`.
 - Keep the checks and release workflow behavior unchanged apart from the action

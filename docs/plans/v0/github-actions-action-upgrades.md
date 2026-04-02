@@ -1,8 +1,8 @@
 # GitHub Actions Action Upgrades Plan
 
-- Kind: plan
-- Status: active
-- Decided by: docs/decisions/github-actions-action-upgrades.md
+- kind: plan
+- status: active
+- decided_by: docs/decisions/github-actions-action-upgrades.md
 
 ## Goal
 

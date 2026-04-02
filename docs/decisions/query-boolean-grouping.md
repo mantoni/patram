@@ -1,8 +1,8 @@
 # Query Boolean Grouping Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/query-boolean-grouping.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/query-boolean-grouping.md
 
 - Extend the where-clause grammar with the `or` operator.
 - Support parentheses for explicit grouping in top-level and nested aggregate

@@ -1,8 +1,8 @@
 # Package Metadata Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/package-metadata.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/package-metadata.md
 
 - Add a `files` allowlist to the package manifest.
 - Publish only the CLI runtime directories.

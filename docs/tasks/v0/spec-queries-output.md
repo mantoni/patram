@@ -1,9 +1,9 @@
 # Specify Queries Output
 
-- Kind: task
-- Status: done
-- Tracked in: docs/plans/v0/output-contract-alignment.md
-- Decided by: docs/decisions/queries-output.md
+- kind: task
+- status: done
+- tracked_in: docs/plans/v0/output-contract-alignment.md
+- decided_by: docs/decisions/queries-output.md
 
 - Keep `queries` distinct from the entity-summary layout used by `query` and
   `show`.

@@ -1,7 +1,7 @@
 # Field Materialization And Conflict Semantics Proposal
 
-- Kind: decision
-- Status: accepted
+- kind: decision
+- status: accepted
 
 - Node-field mappings may populate:
   - Patram structural fields when Patram permits it

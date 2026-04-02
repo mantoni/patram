@@ -1,7 +1,7 @@
 # Source Anchors v0 Proposal
 
-- Kind: convention
-- Status: active
+- kind: convention
+- status: active
 
 - Applies to repo dogfooding source anchors only.
 - Keeps source anchors query-first and intentionally sparse.
@@ -16,11 +16,11 @@
  * One short paragraph that explains responsibility and the boundary around the
  * file.
  *
- * Kind: parse
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/query-language.md
- * Implements: ../docs/tasks/v0/query-command.md
+ * kind: parse
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * decided_by: ../docs/decisions/query-language.md
+ * implements: ../docs/tasks/v0/query-command.md
  * @patram
  * @see {@link ./neighbor-file.js}
  * @see {@link ../docs/patram.md}

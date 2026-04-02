@@ -1,8 +1,8 @@
 # Query Filename Field Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v1/query-filename-field.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v1/query-filename-field.md
 
 - Add `$filename` as a Patram-owned structural query field.
 - `$filename` is derived from the basename of `$path`.

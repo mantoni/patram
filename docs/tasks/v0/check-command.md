@@ -1,9 +1,9 @@
 # Implement Check Command
 
-- Kind: task
-- Status: done
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/check-command.md
+- kind: task
+- status: done
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/check-command.md
 
 - Report config diagnostics.
 - Report broken document links.

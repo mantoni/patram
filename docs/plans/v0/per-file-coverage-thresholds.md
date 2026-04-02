@@ -1,7 +1,7 @@
 # Per-File Coverage Thresholds Plan
 
-- Kind: plan
-- Status: active
+- kind: plan
+- status: active
 
 ## Goal
 

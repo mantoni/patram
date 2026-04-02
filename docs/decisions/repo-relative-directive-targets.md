@@ -1,8 +1,8 @@
 # Repo Relative Directive Targets Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/fix-repo-relative-directive-targets.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/fix-repo-relative-directive-targets.md
 
 - Keep markdown and JSDoc link claims source-relative.
 - For directive claims with `target: path`, prefer the raw target value when it

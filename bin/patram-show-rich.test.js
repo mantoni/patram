@@ -20,11 +20,11 @@ import { main } from './patram.js';
  * Covers source formatting, resolved-link summaries, and pager output for the
  * rich show renderer.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/source-rendering.md
- * Decided by: ../docs/decisions/source-rendering-terminal-surfaces.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * decided_by: ../docs/decisions/source-rendering.md
+ * decided_by: ../docs/decisions/source-rendering-terminal-surfaces.md
  * @patram
  * @see {@link ../lib/output/show-document.js}
  * @see {@link ../lib/output/render-output-view.js}

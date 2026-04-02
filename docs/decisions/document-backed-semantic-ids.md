@@ -1,8 +1,8 @@
 # Document-Backed Semantic Ids Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/document-backed-semantic-ids.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/document-backed-semantic-ids.md
 - Supersedes: docs/decisions/non-document-semantic-ids.md
 
 - Let one document-backed entity materialize as exactly one canonical graph

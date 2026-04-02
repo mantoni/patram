@@ -1,8 +1,8 @@
 # Package Public Type Exports Plan
 
-- Kind: plan
-- Status: done
-- Decided by: docs/decisions/package-public-type-exports.md
+- kind: plan
+- status: done
+- decided_by: docs/decisions/package-public-type-exports.md
 
 ## Goal
 

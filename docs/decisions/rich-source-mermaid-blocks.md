@@ -1,8 +1,8 @@
 # Rich Source Mermaid Blocks Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/rich-source-mermaid-blocks.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/rich-source-mermaid-blocks.md
 
 - Render fenced markdown code blocks whose language is `mermaid` as ASCII
   diagrams in `patram show` rich output.

@@ -1,8 +1,8 @@
 # Rich Source Tables Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/rich-source-tables.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/rich-source-tables.md
 
 - Render markdown tables in `patram show` rich output with box-drawing borders.
 - Use `┌─┬─┐`, `├─┼─┤`, and `└─┴─┘` style frames sized to the rendered cell

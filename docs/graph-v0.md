@@ -172,10 +172,10 @@ This means:
 
 v0 should prefer a small set of explicit mappings over rich inference.
 
-[patram uses-term=reference/terms/claim.md]: #
-[patram uses-term=reference/terms/document.md]: #
-[patram uses-term=reference/terms/graph.md]: #
-[patram uses-term=reference/terms/kind.md]: #
-[patram uses-term=reference/terms/mapping.md]: #
-[patram uses-term=reference/terms/query.md]: #
-[patram uses-term=reference/terms/relation.md]: #
+- uses_term: reference/terms/claim.md
+- uses_term: reference/terms/document.md
+- uses_term: reference/terms/graph.md
+- uses_term: reference/terms/kind.md
+- uses_term: reference/terms/mapping.md
+- uses_term: reference/terms/query.md
+- uses_term: reference/terms/relation.md

@@ -1,7 +1,7 @@
 # Pre-Push Fixup Check Plan
 
-- Kind: plan
-- Status: active
+- kind: plan
+- status: active
 
 ## Goal
 

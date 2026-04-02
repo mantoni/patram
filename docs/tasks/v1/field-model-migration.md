@@ -1,12 +1,12 @@
 # Migrate Repo To The New Field Model
 
-- Kind: task
-- Status: done
-- Tracked in: docs/plans/v1/field-model-redesign.md
-- Decided by: docs/decisions/class-based-config-vocabulary.md
-- Decided by: docs/decisions/patram-structural-field-namespace.md
-- Decided by: docs/decisions/query-output-open-metadata.md
-- Decided by: docs/decisions/query-validation-lifecycle.md
+- kind: task
+- status: done
+- tracked_in: docs/plans/v1/field-model-redesign.md
+- decided_by: docs/decisions/class-based-config-vocabulary.md
+- decided_by: docs/decisions/patram-structural-field-namespace.md
+- decided_by: docs/decisions/query-output-open-metadata.md
+- decided_by: docs/decisions/query-validation-lifecycle.md
 - Blocked by: docs/tasks/v1/field-model-output.md
 
 - Add failing repo-level tests for the migrated config, queries, and output.

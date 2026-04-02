@@ -1,8 +1,8 @@
 # Docs Structure Cleanup Plan
 
-- Kind: plan
-- Status: done
-- Decided by: docs/decisions/work-item-structure.md
+- kind: plan
+- status: done
+- decided_by: docs/decisions/work-item-structure.md
 
 ## Goal
 

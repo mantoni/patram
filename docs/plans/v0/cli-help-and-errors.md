@@ -1,11 +1,11 @@
 # CLI Help And Errors Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/cli-argument-parser.md
-- Decided by: docs/decisions/cli-help-entrypoints.md
-- Decided by: docs/decisions/cli-help-copy-v0.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/cli-argument-parser.md
+- decided_by: docs/decisions/cli-help-entrypoints.md
+- decided_by: docs/decisions/cli-help-copy-v0.md
 
 ## Goal
 

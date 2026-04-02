@@ -1,8 +1,8 @@
 # Package Graph API Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/package-graph-api.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/package-graph-api.md
 
 - Expose `loadProjectGraph` from the `patram` package root.
 - Expose `queryGraph` from the `patram` package root.

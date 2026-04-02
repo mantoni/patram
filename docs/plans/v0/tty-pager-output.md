@@ -1,12 +1,12 @@
 # TTY Pager Output Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/tty-pager-output.md
-- Decided by: docs/decisions/query-pagination.md
-- Decided by: docs/decisions/show-output.md
-- Decided by: docs/decisions/cli-output-architecture.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/tty-pager-output.md
+- decided_by: docs/decisions/query-pagination.md
+- decided_by: docs/decisions/show-output.md
+- decided_by: docs/decisions/cli-output-architecture.md
 
 ## Goal
 

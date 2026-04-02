@@ -1,8 +1,8 @@
 # Dogfood Query Graph v0 Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/roadmap/v0-dogfood.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/roadmap/v0-dogfood.md
 
 - Dogfood query graph nodes stay keyed by document path.
 - `Kind:` directives overwrite the source document node `kind`.

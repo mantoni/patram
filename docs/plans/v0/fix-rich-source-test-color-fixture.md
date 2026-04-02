@@ -1,10 +1,10 @@
 # Fix Rich Source Test Color Fixture
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/rich-source-test-color-fixture.md
-- Decided by: docs/decisions/source-rendering-terminal-surfaces.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/rich-source-test-color-fixture.md
+- decided_by: docs/decisions/source-rendering-terminal-surfaces.md
 
 ## Goal
 

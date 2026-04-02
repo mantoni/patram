@@ -89,7 +89,7 @@ export default tseslint.config(
       ecmaVersion: 'latest',
       parserOptions: {
         projectService: {
-          allowDefaultProject: ['lib/patram.js'],
+          allowDefaultProject: ['lib/find-close-match.js', 'lib/patram.js'],
         },
         tsconfigRootDir: import.meta.dirname,
       },

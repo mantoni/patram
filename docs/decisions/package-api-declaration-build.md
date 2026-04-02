@@ -1,8 +1,8 @@
 # Package API Declaration Build Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/package-api-declaration-build.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/package-api-declaration-build.md
 
 - Build declaration files for the published `patram` package API during npm
   packaging.

@@ -1,8 +1,8 @@
 # Package Graph API Plan
 
-- Kind: plan
-- Status: done
-- Decided by: docs/decisions/package-graph-api.md
+- kind: plan
+- status: done
+- decided_by: docs/decisions/package-graph-api.md
 
 ## Goal
 

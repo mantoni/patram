@@ -1,8 +1,8 @@
 # Execution Summary Output Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/execution-summary-output.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/execution-summary-output.md
 
 - Show derived execution summaries for `decision`, `plan`, and `roadmap`
   documents in `query` results.

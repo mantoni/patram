@@ -1,8 +1,8 @@
 # Worktracking Agent Guidance Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/worktracking-agent-guidance.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/worktracking-agent-guidance.md
 
 - Replace taxonomy-first agent onboarding with a worktracking-first `patram`
   workflow.

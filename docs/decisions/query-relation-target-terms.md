@@ -1,8 +1,8 @@
 # Query Relation Target Terms Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/query-relation-target-terms.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/query-relation-target-terms.md
 
 - Extend the query language with exact relation-target terms such as
   `implements_command=command:query`.

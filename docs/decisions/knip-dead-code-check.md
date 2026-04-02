@@ -1,8 +1,8 @@
 # Knip Dead Code Check Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/knip-dead-code-check.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/knip-dead-code-check.md
 
 - Use `knip` for repo-local dead code analysis.
 - Install `knip` as a development dependency.

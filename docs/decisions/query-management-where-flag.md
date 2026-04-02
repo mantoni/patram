@@ -1,10 +1,10 @@
 # Query Management Where Flag
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/query-management-where-flag.md
-- Decided by: docs/decisions/query-management-commands.md
-- Decided by: docs/decisions/query-command.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/query-management-where-flag.md
+- decided_by: docs/decisions/query-management-commands.md
+- decided_by: docs/decisions/query-command.md
 
 - Rename the stored-query mutation clause flag from `--query` to `--where` for
   `patram queries add` and `patram queries update`.

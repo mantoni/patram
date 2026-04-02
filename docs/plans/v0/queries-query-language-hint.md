@@ -1,10 +1,10 @@
 # Queries Query-Language Hint Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/query-help-contract.md
-- Decided by: docs/decisions/cli-help-copy-v0.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/query-help-contract.md
+- decided_by: docs/decisions/cli-help-copy-v0.md
 
 ## Goal
 

@@ -19,10 +19,10 @@ import { main } from './patram.js';
  * Covers file and directory check selection from repo-root and nested working
  * directories.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/check-target-resolution.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * decided_by: ../docs/decisions/check-target-resolution.md
  * @patram
  * @see {@link ../lib/cli/main.js}
  * @see {@link ../docs/decisions/check-target-resolution.md}

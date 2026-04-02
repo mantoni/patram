@@ -17,10 +17,10 @@ import { expect } from 'vitest';
  * Packs the repo, installs it in a consumer project, and verifies the
  * published CLI can be imported.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/package-install-smoke-test.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * decided_by: ../docs/decisions/package-install-smoke-test.md
  * @patram
  * @see {@link ./package-metadata.test.js}
  * @see {@link ../docs/decisions/package-install-smoke-test.md}
@@ -354,10 +354,15 @@ function createConsumerGraphText() {
 function createConsumerQueryText() {
   return [
     'const repo_config: PatramRepoConfig = {',
-    '  fields: {},',
+    '  fields: {',
+    '    tracked_in: {',
+    "      to: 'document',",
+    "      type: 'ref',",
+    '    },',
+    '  },',
     '  include: [],',
     '  queries: {},',
-    '  relations: {},',
+    '  types: {},',
     '};',
     '',
     "const query_source: PatramQuerySource = { kind: 'ad_hoc' };",

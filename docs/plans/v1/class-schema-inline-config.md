@@ -1,10 +1,10 @@
 # Class Schema Inline Config Plan
 
-- Kind: plan
-- Status: active
-- Decided by: docs/decisions/class-schema-inline-config.md
-- Decided by: docs/decisions/metadata-field-schema.md
-- Decided by: docs/decisions/class-based-config-vocabulary.md
+- kind: plan
+- status: active
+- decided_by: docs/decisions/class-schema-inline-config.md
+- decided_by: docs/decisions/metadata-field-schema.md
+- decided_by: docs/decisions/class-based-config-vocabulary.md
 
 ## Goal
 

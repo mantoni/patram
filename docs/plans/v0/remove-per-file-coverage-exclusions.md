@@ -1,8 +1,8 @@
 # Remove Per-File Coverage Exclusions
 
-- Kind: plan
-- Status: active
-- Decided by: docs/decisions/per-file-coverage-thresholds.md
+- kind: plan
+- status: active
+- decided_by: docs/decisions/per-file-coverage-thresholds.md
 
 ## Goal
 

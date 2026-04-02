@@ -19,10 +19,10 @@ import { main } from './patram.js';
  * Covers config diagnostics and broken-link validation through the public CLI
  * boundary.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/check-command.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * decided_by: ../docs/decisions/check-command.md
  * @patram
  * @see {@link ../lib/graph/check-graph.js}
  * @see {@link ./patram.js}

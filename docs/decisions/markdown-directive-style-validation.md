@@ -1,8 +1,8 @@
 # Markdown Directive Style Validation Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/directive-type-validation.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/directive-type-validation.md
 
 - Add optional markdown directive style rules to class schemas.
 - Keep markdown parsing permissive and continue to recognize all supported

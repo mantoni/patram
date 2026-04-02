@@ -1,8 +1,8 @@
 # Field Discovery Output Refinements Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v1/field-discovery-output-refinements.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v1/field-discovery-output-refinements.md
 
 - `patram fields` does not report schema names that are already defined in repo
   config, including metadata fields and relations.

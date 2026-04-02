@@ -1,8 +1,8 @@
 # Compact Title Row Inline Right-Part Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/compact-title-row-inline-right-part.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/compact-title-row-inline-right-part.md
 
 - Keep the compact query-family body layout from
   `docs/decisions/compact-two-column-terminal-output.md`.

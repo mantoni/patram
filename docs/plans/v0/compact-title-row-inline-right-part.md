@@ -1,9 +1,9 @@
 # Compact Title Row Inline Right-Part Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/compact-title-row-inline-right-part.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/compact-title-row-inline-right-part.md
 
 ## Goal
 

@@ -1,9 +1,9 @@
 # Implement Query Boolean Grouping
 
-- Kind: task
-- Status: done
-- Tracked in: docs/plans/v0/query-boolean-grouping.md
-- Decided by: docs/decisions/query-boolean-grouping.md
+- kind: task
+- status: done
+- tracked_in: docs/plans/v0/query-boolean-grouping.md
+- decided_by: docs/decisions/query-boolean-grouping.md
 
 - Add regression coverage for `or` precedence and parenthesized grouping in
   parser, evaluator, and query explanation flows.

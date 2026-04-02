@@ -1,8 +1,7 @@
 # Query
 
-- Command: query
-- Command Summary: Run a stored query or an ad hoc Cypher query against graph
-  nodes.
+- command: query
+- summary: Run a stored query or an ad hoc Cypher query against graph nodes.
 
 `patram query <name>` runs a stored query, and `patram query --cypher '<query>'`
 evaluates one ad hoc Cypher query.
@@ -28,14 +27,14 @@ Patram structural access:
 
 - `id(n)` -> semantic node id
 - `path(n)` -> canonical source path when present
-- labels on `MATCH (n:Label)` -> class membership
+- labels on `MATCH (n:Label)` -> type membership
 - `n.title`, `n.status`, `n.kind` -> metadata fields
 
 Exact semantic ids:
 
 - Unclassified documents use `doc:<repo-relative-path>`.
-- Document-backed entities promoted through class-local identity rules use
-  semantic ids such as `plan:v0/worktracking-agent-guidance`.
+- Document-backed entities promoted through configured `types` use semantic ids
+  such as `plan:v0/worktracking-agent-guidance`.
 - Commands use `command:<name>`.
 - Terms use `term:<name>`.
 

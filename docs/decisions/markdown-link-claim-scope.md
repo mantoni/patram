@@ -1,8 +1,8 @@
 # Markdown Link Claim Scope Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/fix-repo-dogfood-check.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/fix-repo-dogfood-check.md
 
 - Parse `markdown.link` claims only from markdown prose, not from fenced code
   blocks.

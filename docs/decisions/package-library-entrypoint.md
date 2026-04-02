@@ -1,8 +1,8 @@
 # Package Library Entrypoint Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/package-library-entrypoint.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/package-library-entrypoint.md
 
 - Add a package root library entrypoint for `patram`.
 - Expose the tagged fenced block extraction API from the package root.

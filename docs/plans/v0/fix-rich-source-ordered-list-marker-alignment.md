@@ -1,10 +1,10 @@
 # Fix Rich Source Ordered List Marker Alignment
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/rich-source-ordered-list-marker-alignment.md
-- Decided by: docs/decisions/source-rendering.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/rich-source-ordered-list-marker-alignment.md
+- decided_by: docs/decisions/source-rendering.md
 
 ## Goal
 

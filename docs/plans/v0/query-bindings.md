@@ -1,8 +1,8 @@
 # Query Bindings Plan
 
-- Kind: plan
-- Status: done
-- Decided by: docs/decisions/query-bindings.md
+- kind: plan
+- status: done
+- decided_by: docs/decisions/query-bindings.md
 
 ## Goal
 

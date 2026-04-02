@@ -1,8 +1,8 @@
 # Query Path Glob Operator Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v1/query-path-glob-operator.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v1/query-path-glob-operator.md
 - Extends: docs/decisions/type-driven-query-operators.md
 
 - Add the `*=` query operator for glob matching against `$path`.

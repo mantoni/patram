@@ -1,11 +1,11 @@
 # Zod-Derived Config Types Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/single-config-file.md
-- Decided by: docs/decisions/metadata-field-schema.md
-- Decided by: docs/decisions/declarative-derived-summary-config.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/single-config-file.md
+- decided_by: docs/decisions/metadata-field-schema.md
+- decided_by: docs/decisions/declarative-derived-summary-config.md
 
 ## Goal
 

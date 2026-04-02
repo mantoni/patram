@@ -1,13 +1,13 @@
 # Implement Field Model Query Semantics
 
-- Kind: task
-- Status: done
-- Tracked in: docs/plans/v1/field-model-redesign.md
-- Decided by: docs/decisions/schema-defined-query-fields.md
-- Decided by: docs/decisions/patram-structural-field-namespace.md
-- Decided by: docs/decisions/class-based-config-vocabulary.md
-- Decided by: docs/decisions/type-driven-query-operators.md
-- Decided by: docs/decisions/query-validation-lifecycle.md
+- kind: task
+- status: done
+- tracked_in: docs/plans/v1/field-model-redesign.md
+- decided_by: docs/decisions/schema-defined-query-fields.md
+- decided_by: docs/decisions/patram-structural-field-namespace.md
+- decided_by: docs/decisions/class-based-config-vocabulary.md
+- decided_by: docs/decisions/type-driven-query-operators.md
+- decided_by: docs/decisions/query-validation-lifecycle.md
 - Blocked by: docs/tasks/v1/field-model-config-schema.md
 
 - Add failing parser, validator, and evaluator tests for:

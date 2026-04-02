@@ -1,8 +1,8 @@
 # Directive Type Validation Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/directive-type-validation.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/directive-type-validation.md
 
 - Add optional top-level `directive_types` to `.patram.json` for value typing of
   named directives.

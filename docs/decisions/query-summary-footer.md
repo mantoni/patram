@@ -1,8 +1,8 @@
 # Query Summary Footer Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/query-summary-footer.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/query-summary-footer.md
 
 - Omit the terminal query summary line when a query shows the full result set.
 - Treat a query as showing the full result set when `offset` is `0` and

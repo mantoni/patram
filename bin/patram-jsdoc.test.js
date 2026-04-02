@@ -17,10 +17,10 @@ import { main } from './patram.js';
  * Verifies duplicate activated `@patram` blocks surface stable diagnostics
  * through the CLI boundary.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/jsdoc-metadata-directive-syntax.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * decided_by: ../docs/decisions/jsdoc-metadata-directive-syntax.md
  * @patram
  * @see {@link ../lib/parse/jsdoc/parse-jsdoc-claims.js}
  * @see {@link ../docs/decisions/jsdoc-metadata-directive-syntax.md}

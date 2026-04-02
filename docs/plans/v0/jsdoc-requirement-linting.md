@@ -1,8 +1,8 @@
 # JSDoc Requirement Linting Plan
 
-- Kind: plan
-- Status: active
-- Decided by: docs/decisions/jsdoc-requirement-linting.md
+- kind: plan
+- status: active
+- decided_by: docs/decisions/jsdoc-requirement-linting.md
 
 ## Goal
 

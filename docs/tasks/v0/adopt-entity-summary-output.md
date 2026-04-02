@@ -1,11 +1,11 @@
 # Adopt Entity Summary Output
 
-- Kind: task
-- Status: done
-- Tracked in: docs/plans/v0/output-contract-alignment.md
-- Decided by: docs/decisions/entity-summary-output.md
-- Decided by: docs/decisions/cli-output-architecture.md
-- Decided by: docs/decisions/cli-output-modes.md
+- kind: task
+- status: done
+- tracked_in: docs/plans/v0/output-contract-alignment.md
+- decided_by: docs/decisions/entity-summary-output.md
+- decided_by: docs/decisions/cli-output-architecture.md
+- decided_by: docs/decisions/cli-output-modes.md
 
 - Render `patram query` results as entity-summary blocks.
 - Render `patram show` resolved-link footnotes with the same block shape.

@@ -1,8 +1,8 @@
 # Package Compatibility Type Aliases Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/package-compatibility-type-aliases.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/package-compatibility-type-aliases.md
 
 - Expose `PatramParseResult` and `PatramQueryGraphOptions` from the package root
   declaration surface.

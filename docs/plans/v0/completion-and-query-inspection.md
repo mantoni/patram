@@ -1,12 +1,12 @@
 # Completion And Query Inspection Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/query-command.md
-- Decided by: docs/decisions/query-language.md
-- Decided by: docs/decisions/cli-argument-parser.md
-- Decided by: docs/decisions/query-inspection.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/query-command.md
+- decided_by: docs/decisions/query-language.md
+- decided_by: docs/decisions/cli-argument-parser.md
+- decided_by: docs/decisions/query-inspection.md
 
 ## Goal
 

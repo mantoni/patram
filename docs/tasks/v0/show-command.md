@@ -1,11 +1,11 @@
 # Implement Show Command
 
-- Kind: task
-- Status: done
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/show-output.md
-- Decided by: docs/decisions/cli-output-architecture.md
-- Decided by: docs/decisions/cli-output-modes.md
+- kind: task
+- status: done
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/show-output.md
+- decided_by: docs/decisions/cli-output-architecture.md
+- decided_by: docs/decisions/cli-output-modes.md
 
 - Implement `show <file>`.
 - Render source first.

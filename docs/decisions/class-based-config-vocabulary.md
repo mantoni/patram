@@ -1,7 +1,7 @@
 # Class-Based Config Vocabulary Proposal
 
-- Kind: decision
-- Status: accepted
+- kind: decision
+- status: accepted
 
 - Patram config uses `classes` as the structural classification section.
 - Patram config no longer uses `kinds` for structural classification in the new

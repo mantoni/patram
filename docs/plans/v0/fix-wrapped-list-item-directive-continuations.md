@@ -1,10 +1,10 @@
 # Fix Wrapped List-Item Directive Continuations Plan
 
-- Kind: plan
-- Status: done
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/wrapped-list-item-directive-continuations.md
-- Decided by: docs/decisions/markdown-node-descriptions.md
+- kind: plan
+- status: done
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/wrapped-list-item-directive-continuations.md
+- decided_by: docs/decisions/markdown-node-descriptions.md
 
 ## Goal
 

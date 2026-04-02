@@ -1,7 +1,7 @@
 # Release Automation Plan
 
-- Kind: plan
-- Status: active
+- kind: plan
+- status: active
 
 ## Goal
 

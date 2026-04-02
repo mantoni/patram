@@ -1,8 +1,8 @@
 # Reverse Reference Inspection Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/reverse-reference-inspection.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/reverse-reference-inspection.md
 
 - Keep reverse reference inspection graph-native in v1.
 - Add `patram refs <file>` for full incoming-reference inspection.

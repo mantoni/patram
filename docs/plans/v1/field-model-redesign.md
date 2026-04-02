@@ -1,17 +1,17 @@
 # Field Model Redesign Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/field-model-redesign.md
-- Decided by: docs/decisions/schema-defined-query-fields.md
-- Decided by: docs/decisions/patram-structural-field-namespace.md
-- Decided by: docs/decisions/class-based-config-vocabulary.md
-- Decided by: docs/decisions/metadata-field-schema.md
-- Decided by: docs/decisions/type-driven-query-operators.md
-- Decided by: docs/decisions/field-materialization-conflicts.md
-- Decided by: docs/decisions/query-output-open-metadata.md
-- Decided by: docs/decisions/query-validation-lifecycle.md
-- Decided by: docs/decisions/field-discovery-workflow.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/field-model-redesign.md
+- decided_by: docs/decisions/schema-defined-query-fields.md
+- decided_by: docs/decisions/patram-structural-field-namespace.md
+- decided_by: docs/decisions/class-based-config-vocabulary.md
+- decided_by: docs/decisions/metadata-field-schema.md
+- decided_by: docs/decisions/type-driven-query-operators.md
+- decided_by: docs/decisions/field-materialization-conflicts.md
+- decided_by: docs/decisions/query-output-open-metadata.md
+- decided_by: docs/decisions/query-validation-lifecycle.md
+- decided_by: docs/decisions/field-discovery-workflow.md
 
 ## Goal
 

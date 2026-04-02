@@ -1,9 +1,9 @@
 # Dim Metadata Values
 
-- Kind: task
-- Status: superseded
-- Tracked in: docs/plans/v0/output-contract-alignment.md
-- Decided by: docs/decisions/cli-output-modes.md
+- kind: task
+- status: superseded
+- tracked_in: docs/plans/v0/output-contract-alignment.md
+- decided_by: docs/decisions/cli-output-modes.md
 - Superseded by: docs/decisions/rich-output-colors.md
 
 - Dim `kind` values in `rich` metadata rows.

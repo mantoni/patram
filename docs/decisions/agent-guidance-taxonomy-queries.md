@@ -1,8 +1,8 @@
 # Agent Guidance Taxonomy Queries Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/roadmap/v0-dogfood.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/roadmap/v0-dogfood.md
 
 - Add stored queries for taxonomy-driven agent exploration:
   `command-implementations` and `term-usage`.

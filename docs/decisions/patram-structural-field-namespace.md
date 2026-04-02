@@ -1,7 +1,7 @@
 # Patram Structural Field Namespace Proposal
 
-- Kind: decision
-- Status: accepted
+- kind: decision
+- status: accepted
 
 - Patram-owned structural fields use the reserved `$` prefix.
 - Reserved Patram structural field names are:

@@ -1,8 +1,8 @@
 # Compact Two-Column Terminal Output Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/compact-two-column-terminal-output.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/compact-two-column-terminal-output.md
 
 - Render `patram queries`, `patram query`, and `patram refs` as compact blocks
   with:

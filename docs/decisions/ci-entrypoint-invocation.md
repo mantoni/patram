@@ -1,8 +1,8 @@
 # CI Entrypoint Invocation
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/ci-entrypoint-invocation.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/ci-entrypoint-invocation.md
 
 - Repository npm scripts must invoke the CLI through `./bin/patram.js`.
 - CI and release automation should keep calling the shared npm scripts instead

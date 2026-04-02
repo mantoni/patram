@@ -1,9 +1,9 @@
 # Fix Repo Relative Directive Targets Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/repo-relative-directive-targets.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/repo-relative-directive-targets.md
 
 ## Goal
 

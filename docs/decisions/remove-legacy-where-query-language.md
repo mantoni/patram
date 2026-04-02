@@ -1,9 +1,9 @@
 # Remove Legacy Where Query Language
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/remove-legacy-where-query-language.md
-- Decided by: docs/decisions/cypher-query-language.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/remove-legacy-where-query-language.md
+- decided_by: docs/decisions/cypher-query-language.md
 
 - Remove `--where` from the `patram query`, `patram queries`, and `patram refs`
   CLI surfaces.

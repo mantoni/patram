@@ -1,7 +1,7 @@
 # Validation Test Deduplication Plan
 
-- Kind: plan
-- Status: active
+- kind: plan
+- status: active
 
 ## Goal
 

@@ -1,9 +1,9 @@
 # Record Source Rendering
 
-- Kind: task
-- Status: done
-- Tracked in: docs/plans/v0/source-rendering.md
-- Decided by: docs/decisions/source-rendering.md
+- kind: task
+- status: done
+- tracked_in: docs/plans/v0/source-rendering.md
+- decided_by: docs/decisions/source-rendering.md
 
 - Render markdown through a Patram-owned rich source renderer.
 - Highlight fenced markdown code blocks and direct source files with Shiki.

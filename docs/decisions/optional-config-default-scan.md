@@ -1,8 +1,8 @@
 # Optional Config Default Scan Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/optional-config-default-scan.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/optional-config-default-scan.md
 
 - `.patram.json` stays the single discovered project config file when present.
 - Patram also works when `.patram.json` is absent.

@@ -1,9 +1,9 @@
 # CLI Help Copy v0 Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/cli-help-and-errors.md
-- Decided by: docs/decisions/cli-help-entrypoints.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/cli-help-and-errors.md
+- decided_by: docs/decisions/cli-help-entrypoints.md
 
 - Freeze the v0 root help, command help, help-topic help, and key error outputs
   as canonical plain-text fixtures.

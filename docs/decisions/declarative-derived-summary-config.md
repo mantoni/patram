@@ -1,8 +1,8 @@
 # Declarative Derived Summary Config Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/declarative-derived-summaries.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/declarative-derived-summaries.md
 
 - Add an optional top-level `derived_summaries` object to `.patram.json`.
 - Keep `derived_summaries` keyed by stable summary names such as

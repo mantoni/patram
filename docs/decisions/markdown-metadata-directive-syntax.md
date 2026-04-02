@@ -1,8 +1,8 @@
 # Markdown Metadata Directive Syntax Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/markdown-metadata-directive-syntax.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/markdown-metadata-directive-syntax.md
 
 - Support multiple markdown syntaxes for the same neutral `directive` claim.
 - Keep the existing list-item syntax: `- Key: Value`.

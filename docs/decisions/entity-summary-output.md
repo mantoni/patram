@@ -1,8 +1,8 @@
 # Entity Summary Output Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/output-contract-alignment.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/output-contract-alignment.md
 
 - Render `query` results as expandable entity-summary blocks.
 - Render resolved-link footnotes in `show` with the same entity-summary shape.

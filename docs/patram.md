@@ -95,8 +95,8 @@ Recommended flow:
 ## Query Identities
 
 - Unclassified documents use exact ids in the form `doc:<repo-relative-path>`.
-- Document-backed entities promoted through class-local identity rules use
-  semantic ids such as `plan:v0/worktracking-agent-guidance`.
+- Document-backed entities promoted through configured `types` use semantic ids
+  such as `plan:v0/worktracking-agent-guidance`.
 - Canonical command nodes use exact ids in the form `command:<name>`.
 - Canonical term nodes use exact ids in the form `term:<name>`.
 
@@ -122,18 +122,17 @@ patram query --cypher "MATCH (n) WHERE EXISTS { MATCH (n)-[:USES_TERM]->(term:Te
 
 ## Repo Taxonomy
 
-This repo adds two canonical classes on top of Patram's built-in `document`
-class:
+This repo adds two canonical semantic types on top of Patram's built-in
+`document` type:
 
 - `command`: Canonical CLI command nodes backed by markdown files in
   `docs/reference/commands/`.
 - `term`: Canonical graph vocabulary nodes backed by markdown files in
   `docs/reference/terms/`.
 
-The repo also uses four relations to connect docs and source anchors to those
+The repo also uses `ref` fields to connect docs and source anchors to those
 taxonomy nodes:
 
-- `defines`: A canonical reference document defines one semantic entity.
 - `about_command`: A document explains one or more commands.
 - `implements_command`: A source anchor implements one or more commands.
 - `uses_term`: A document or source anchor depends on one or more core terms.
@@ -141,7 +140,8 @@ taxonomy nodes:
 Patram uses a semantic-first identity model for this repo:
 
 - Keep unclassified source files path-backed as `doc:<path>`.
-- Promote document-backed work items through `classes.<name>.identity`.
+- Promote path-backed work items through `types.<name>.in`.
+- Promote semantic command and term docs through `types.<name>.defined_by`.
 - Keep canonical source paths on promoted nodes as `path(n)`.
 - Resolve path-based references through the canonical node for that document
   path.
@@ -155,9 +155,3 @@ This direction is tracked in
 [`docs/plans/v0/document-backed-semantic-ids.md`](./plans/v0/document-backed-semantic-ids.md),
 and
 [`docs/decisions/non-document-semantic-ids.md`](./decisions/non-document-semantic-ids.md).
-
-[patram about-command=reference/commands/check.md]: #
-[patram about-command=reference/commands/query.md]: #
-[patram about-command=reference/commands/queries.md]: #
-[patram about-command=reference/commands/refs.md]: #
-[patram about-command=reference/commands/show.md]: #

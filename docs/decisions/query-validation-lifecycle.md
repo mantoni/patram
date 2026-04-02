@@ -1,7 +1,7 @@
 # Query Validation Lifecycle Proposal
 
-- Kind: decision
-- Status: accepted
+- kind: decision
+- status: accepted
 
 - Stored queries are validated against config and schema during config load.
 - Ad hoc queries are validated during query execution.

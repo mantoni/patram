@@ -1,11 +1,11 @@
 # Fix Rich Source Resolved Link Matching Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/rich-source-resolved-link-matching.md
-- Decided by: docs/decisions/markdown-link-claim-scope.md
-- Decided by: docs/decisions/source-rendering.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/rich-source-resolved-link-matching.md
+- decided_by: docs/decisions/markdown-link-claim-scope.md
+- decided_by: docs/decisions/source-rendering.md
 
 ## Goal
 

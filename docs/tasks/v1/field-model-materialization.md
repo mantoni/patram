@@ -1,11 +1,11 @@
 # Implement Field Materialization Rules
 
-- Kind: task
-- Status: done
-- Tracked in: docs/plans/v1/field-model-redesign.md
-- Decided by: docs/decisions/patram-structural-field-namespace.md
-- Decided by: docs/decisions/metadata-field-schema.md
-- Decided by: docs/decisions/field-materialization-conflicts.md
+- kind: task
+- status: done
+- tracked_in: docs/plans/v1/field-model-redesign.md
+- decided_by: docs/decisions/patram-structural-field-namespace.md
+- decided_by: docs/decisions/metadata-field-schema.md
+- decided_by: docs/decisions/field-materialization-conflicts.md
 - Blocked by: docs/tasks/v1/field-model-config-schema.md
 
 - Add failing graph-materialization and validation tests for:

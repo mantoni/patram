@@ -1,11 +1,11 @@
 # Fix Show Self Summary Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/show-self-summary.md
-- Decided by: docs/decisions/show-output.md
-- Decided by: docs/decisions/reverse-reference-inspection.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/show-self-summary.md
+- decided_by: docs/decisions/show-output.md
+- decided_by: docs/decisions/reverse-reference-inspection.md
 
 ## Goal
 

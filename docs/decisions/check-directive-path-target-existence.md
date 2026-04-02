@@ -1,8 +1,8 @@
 # Check Directive Path Target Existence Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/check-directive-path-target-existence.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/check-directive-path-target-existence.md
 
 - `patram check` validates directive path references against repo file
   existence.

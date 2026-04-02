@@ -1,8 +1,8 @@
 # Rich Source Ordered List Marker Alignment
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/fix-rich-source-ordered-list-marker-alignment.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/fix-rich-source-ordered-list-marker-alignment.md
 
 - Align ordered-list marker periods in rich `patram show` markdown output when
   one ordered list reaches double-digit item numbers.

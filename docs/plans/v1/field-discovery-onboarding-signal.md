@@ -1,10 +1,10 @@
 # Field Discovery Onboarding Signal
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/field-model-redesign.md
-- Decided by: docs/decisions/field-discovery-workflow.md
-- Decided by: docs/decisions/field-discovery-onboarding-signal.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/field-model-redesign.md
+- decided_by: docs/decisions/field-discovery-workflow.md
+- decided_by: docs/decisions/field-discovery-onboarding-signal.md
 
 ## Goal
 

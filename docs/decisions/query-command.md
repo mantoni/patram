@@ -1,8 +1,8 @@
 # Query Command Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/roadmap/v0-dogfood.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/roadmap/v0-dogfood.md
 
 - Command name: `query`.
 - Do not add a built-in `pending` command.

@@ -135,8 +135,8 @@ it('rejects invalid Cypher queries before persisting queries add', async () => {
   expect(exit_code).toBe(1);
   expect(io_context.stdout_chunks).toEqual([]);
   expect(io_context.stderr_chunks).toEqual([
-    'file .patram.json\n' +
-      '  1:1  error  Invalid config at "queries.broken.cypher": Unknown field "owner".  config.invalid\n' +
+    'file <query:broken>\n' +
+      '  1:24  error  Unknown field "owner".  query.unknown_field\n' +
       '\n' +
       '\u2716 1 problem (1 error, 0 warnings)\n',
   ]);

@@ -1,8 +1,8 @@
 # Field Discovery Onboarding Signal Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v1/field-discovery-onboarding-signal.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v1/field-discovery-onboarding-signal.md
 
 - `patram fields` should optimize for onboarding signal instead of exhaustive
   claim enumeration.

@@ -1,7 +1,7 @@
 # Schema-Defined Query Fields Proposal
 
-- Kind: decision
-- Status: accepted
+- kind: decision
+- status: accepted
 - Supersedes: docs/decisions/query-language.md
 
 - Queryable fields are:

@@ -1,7 +1,7 @@
 # Query Language Deferred Features
 
-- Kind: idea
-- Status: planned
+- kind: idea
+- status: planned
 
 - Capture future query-language work that should stay outside the first
   traversal and aggregation design.

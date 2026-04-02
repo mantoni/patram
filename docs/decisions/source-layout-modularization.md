@@ -1,8 +1,8 @@
 # Source Layout Modularization Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/source-layout-modularization.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/source-layout-modularization.md
 
 - Align the physical `lib/` layout with the repo's documented source-anchor
   kinds: `cli`, `config`, `scan`, `parse`, `graph`, `output`, and `support`.

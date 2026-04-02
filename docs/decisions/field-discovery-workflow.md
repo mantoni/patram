@@ -1,7 +1,7 @@
 # Field Discovery Workflow Proposal
 
-- Kind: decision
-- Status: accepted
+- kind: decision
+- status: accepted
 
 - Patram exposes field discovery through a dedicated `fields` command group.
 - Discovery is separate from `patram check`.

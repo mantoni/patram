@@ -1,9 +1,9 @@
 # Local Cypher Syntax Diagnostics
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/local-cypher-syntax-diagnostics.md
-- Decided by: docs/decisions/cypher-query-language.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/local-cypher-syntax-diagnostics.md
+- decided_by: docs/decisions/cypher-query-language.md
 
 - Replace `@neo4j-cypher/language-support` with Patram's local tokenizer and
   parser diagnostics for supported Cypher queries.

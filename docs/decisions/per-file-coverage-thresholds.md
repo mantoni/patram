@@ -1,8 +1,8 @@
 # Per-File Coverage Thresholds
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/per-file-coverage-thresholds.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/per-file-coverage-thresholds.md
 
 - Enable `test.coverage.thresholds.perFile` in `vitest.config.js`.
 - Keep the default per-file gate at `90` statements, `80` branches, `90`

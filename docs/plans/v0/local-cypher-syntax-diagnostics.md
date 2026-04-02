@@ -1,9 +1,9 @@
 # Local Cypher Syntax Diagnostics Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/query-language-extensions.md
-- Decided by: docs/decisions/local-cypher-syntax-diagnostics.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/query-language-extensions.md
+- decided_by: docs/decisions/local-cypher-syntax-diagnostics.md
 
 ## Goal
 

@@ -1,10 +1,10 @@
 # Check Multiple Paths
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/check-multiple-paths.md
-- Decided by: docs/decisions/cli-argument-parser.md
-- Decided by: docs/decisions/cli-help-copy-v0.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/check-multiple-paths.md
+- decided_by: docs/decisions/cli-argument-parser.md
+- decided_by: docs/decisions/cli-help-copy-v0.md
 
 - Make `patram check` accept zero or more path arguments.
 - Treat multiple paths as one scoped check run within the same project root.

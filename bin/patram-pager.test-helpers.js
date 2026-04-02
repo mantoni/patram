@@ -6,9 +6,9 @@ import { createIoContext } from './patram.test-helpers.js';
  * Provides paged IO doubles for tests that exercise interactive output
  * behavior.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
  * @patram
  * @see {@link ./patram.test-helpers.js}
  * @see {@link ../lib/output/command-output.js}

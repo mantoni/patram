@@ -31,10 +31,10 @@ import { main } from './patram.js';
  * Exercises end-to-end command flow, pager behavior, and resolved-link output
  * through the public CLI boundary.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/cli-output-architecture.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * decided_by: ../docs/decisions/cli-output-architecture.md
  * @patram
  * @see {@link ./patram.test-helpers.js}
  * @see {@link ../lib/cli/main.js}

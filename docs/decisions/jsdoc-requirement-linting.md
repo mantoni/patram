@@ -1,8 +1,8 @@
 # JSDoc Requirement Linting Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/jsdoc-requirement-linting.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/jsdoc-requirement-linting.md
 
 - Disable the ESLint rule `jsdoc/require-jsdoc`.
 - Keep JSDoc expectations in `AGENTS.md` as authoring guidance instead of a

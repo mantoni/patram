@@ -1,7 +1,7 @@
 # Worktracking Conventions v0 Proposal
 
-- Kind: convention
-- Status: active
+- kind: convention
+- status: active
 
 - Use this document to structure worktracking entirely with `patram` metadata
   and queries.

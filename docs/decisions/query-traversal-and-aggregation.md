@@ -1,8 +1,8 @@
 # Query Traversal And Aggregation Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/query-traversal-and-aggregation.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/query-traversal-and-aggregation.md
 
 - Keep one string-based query language for both ad hoc and stored queries.
 - Add relation-scoped traversal terms that address one hop of related nodes

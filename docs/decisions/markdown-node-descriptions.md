@@ -1,8 +1,8 @@
 # Markdown Node Descriptions Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/markdown-node-descriptions.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/markdown-node-descriptions.md
 
 - Extend markdown parsing to emit `document.description` claims from prose.
 - Reuse the JSDoc prose heuristic for long first paragraphs:

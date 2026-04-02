@@ -1,8 +1,8 @@
 # Pager No-Wrap Less
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/pager-no-wrap-less.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/pager-no-wrap-less.md
 
 - Default pager behavior uses `less -FIRXS`.
 - The `-S` flag is part of the default pager invocation so long rendered lines

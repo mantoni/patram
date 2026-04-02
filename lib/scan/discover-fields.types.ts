@@ -5,6 +5,7 @@ export type DiscoveredFieldTypeName =
   | 'glob'
   | 'integer'
   | 'path'
+  | 'ref'
   | 'string';
 
 export type DiscoveredFieldMultiplicity = 'multiple' | 'single';
@@ -16,8 +17,13 @@ export interface FieldDiscoveryEvidenceReference {
   value: string;
 }
 
-export interface FieldDiscoveryClassUsage {
-  classes: string[];
+export interface FieldDiscoveryOnUsage {
+  types: string[];
+}
+
+export interface FieldDiscoveryTargetSuggestion {
+  confidence: number;
+  type: string;
 }
 
 export interface FieldDiscoveryTypeSuggestion {
@@ -34,8 +40,9 @@ export interface FieldDiscoverySuggestion {
   confidence: number;
   conflicting_evidence: FieldDiscoveryEvidenceReference[];
   evidence_references: FieldDiscoveryEvidenceReference[];
-  likely_class_usage: FieldDiscoveryClassUsage;
   likely_multiplicity: FieldDiscoveryMultiplicitySuggestion;
+  likely_on: FieldDiscoveryOnUsage;
+  likely_to?: FieldDiscoveryTargetSuggestion;
   likely_type: FieldDiscoveryTypeSuggestion;
   name: string;
 }

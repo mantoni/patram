@@ -1,8 +1,8 @@
 # Show Footnote Compact Metadata Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/show-footnote-compact-metadata.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/show-footnote-compact-metadata.md
 
 - Keep `patram show` resolved-link footnotes aligned with the compact summary
   layout used by `patram query` and `patram refs`.

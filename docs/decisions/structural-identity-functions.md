@@ -1,8 +1,8 @@
 # Structural Identity Functions Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v1/structural-identity-functions.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v1/structural-identity-functions.md
 - Supersedes: docs/decisions/patram-structural-field-namespace.md
 - Supersedes: docs/decisions/query-filename-field.md
 - Extends: docs/decisions/cypher-query-language.md

@@ -1,10 +1,10 @@
 # CLI Extra Argument And Stored Query Errors
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/cli-extra-argument-and-stored-query-errors.md
-- Decided by: docs/decisions/cli-help-entrypoints.md
-- Decided by: docs/decisions/cli-help-copy-v0.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/cli-extra-argument-and-stored-query-errors.md
+- decided_by: docs/decisions/cli-help-entrypoints.md
+- decided_by: docs/decisions/cli-help-copy-v0.md
 
 - Render extra positional argument failures as structured
   `Unexpected argument: <token>` diagnostics instead of raw sentence-only

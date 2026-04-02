@@ -1,8 +1,8 @@
 # Release Automation Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/release-automation.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/release-automation.md
 
 - Use `npm version patch|minor|major` as the release entrypoint.
 - Run `npm run all` from the `preversion` lifecycle script.

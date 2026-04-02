@@ -1,7 +1,7 @@
 # CI Entrypoint Invocation Plan
 
-- Kind: plan
-- Status: active
+- kind: plan
+- status: active
 
 ## Goal
 

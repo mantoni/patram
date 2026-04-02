@@ -1,7 +1,8 @@
 # Mapping
 
-- Term: mapping
-- Term Definition: A schema rule that turns one claim type into node fields or
-  emitted relations.
+- term: mapping
+- definition: A legacy schema rule that turned parser claim types into node
+  fields or emitted relations.
 
-Mappings connect neutral parser claims to project-specific graph semantics.
+Patram v2 removes user-authored mappings from repo config. Source metadata now
+uses the exact field names declared in `fields`.

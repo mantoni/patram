@@ -1,11 +1,11 @@
 # Implement Open Metadata Output
 
-- Kind: task
-- Status: done
-- Tracked in: docs/plans/v1/field-model-redesign.md
-- Decided by: docs/decisions/patram-structural-field-namespace.md
-- Decided by: docs/decisions/metadata-field-schema.md
-- Decided by: docs/decisions/query-output-open-metadata.md
+- kind: task
+- status: done
+- tracked_in: docs/plans/v1/field-model-redesign.md
+- decided_by: docs/decisions/patram-structural-field-namespace.md
+- decided_by: docs/decisions/metadata-field-schema.md
+- decided_by: docs/decisions/query-output-open-metadata.md
 - Blocked by: docs/tasks/v1/field-model-query-semantics.md
 - Blocked by: docs/tasks/v1/field-model-materialization.md
 

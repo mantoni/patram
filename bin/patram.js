@@ -12,10 +12,10 @@ import { main } from '../lib/cli/main.js';
  * Detects direct process execution and forwards command handling to the shared
  * CLI runtime.
  *
- * Kind: entrypoint
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/cli-entrypoint-symlink.md
+ * kind: entrypoint
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * decided_by: ../docs/decisions/cli-entrypoint-symlink.md
  * @patram
  * @see {@link ../lib/cli/main.js}
  * @see {@link ../docs/patram.md}

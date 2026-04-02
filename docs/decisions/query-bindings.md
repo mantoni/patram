@@ -1,8 +1,8 @@
 # Query Bindings Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/query-bindings.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/query-bindings.md
 
 - Support explicit query-value bindings in the package query APIs.
 - Use `@binding_name` placeholders in bare value positions and list items.

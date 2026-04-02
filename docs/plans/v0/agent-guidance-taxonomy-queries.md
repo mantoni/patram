@@ -1,9 +1,9 @@
 # Agent Guidance Taxonomy Queries Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/agent-guidance-taxonomy-queries.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/agent-guidance-taxonomy-queries.md
 
 ## Goal
 

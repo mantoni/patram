@@ -1,8 +1,8 @@
 # Remove Derived Summaries Plan
 
-- Kind: plan
-- Status: active
-- Decided by: docs/decisions/remove-derived-summaries.md
+- kind: plan
+- status: active
+- decided_by: docs/decisions/remove-derived-summaries.md
 
 ## Goal
 

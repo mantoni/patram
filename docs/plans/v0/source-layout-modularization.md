@@ -1,8 +1,8 @@
 # Source Layout Modularization Plan
 
-- Kind: plan
-- Status: active
-- Decided by: docs/decisions/source-layout-modularization.md
+- kind: plan
+- status: active
+- decided_by: docs/decisions/source-layout-modularization.md
 
 ## Goal
 

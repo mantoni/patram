@@ -1,8 +1,8 @@
 # Package Public Type Exports Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/package-public-type-exports.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/package-public-type-exports.md
 
 - Expose stable package-root type exports for the graph and query result shapes
   returned by the supported `patram` library APIs.

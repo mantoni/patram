@@ -1,8 +1,8 @@
 # Declarative Derived Summary Side Effects Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/declarative-derived-summaries.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/declarative-derived-summaries.md
 
 - Treat derived summaries as output-time metadata only.
 - Do not materialize derived summary fields into graph nodes, claims, or stored

@@ -1,10 +1,10 @@
 # Query Summary Footer Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/query-pagination.md
-- Decided by: docs/decisions/query-summary-footer.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/query-pagination.md
+- decided_by: docs/decisions/query-summary-footer.md
 
 ## Goal
 

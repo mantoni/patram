@@ -1,11 +1,11 @@
 # Add Field Discovery Workflow
 
-- Kind: task
-- Status: done
-- Tracked in: docs/plans/v1/field-model-redesign.md
-- Decided by: docs/decisions/metadata-field-schema.md
-- Decided by: docs/decisions/query-validation-lifecycle.md
-- Decided by: docs/decisions/field-discovery-workflow.md
+- kind: task
+- status: done
+- tracked_in: docs/plans/v1/field-model-redesign.md
+- decided_by: docs/decisions/metadata-field-schema.md
+- decided_by: docs/decisions/query-validation-lifecycle.md
+- decided_by: docs/decisions/field-discovery-workflow.md
 - Blocked by: docs/tasks/v1/field-model-config-schema.md
 - Blocked by: docs/tasks/v1/field-model-materialization.md
 

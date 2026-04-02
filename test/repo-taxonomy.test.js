@@ -13,10 +13,10 @@ import repo_config from '../.patram.json' with { type: 'json' };
  * Verifies the canonical command and term taxonomy nodes stay queryable for
  * coding agents.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/repo-taxonomy-command-term-nodes.md
- * Decided by: ../docs/decisions/repo-taxonomy-command-term-nodes.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/repo-taxonomy-command-term-nodes.md
+ * decided_by: ../docs/decisions/repo-taxonomy-command-term-nodes.md
  * @patram
  * @see {@link ../lib/graph/load-project-graph.js}
  * @see {@link ../docs/decisions/repo-taxonomy-command-term-nodes.md}

@@ -1,8 +1,8 @@
 # Globby Source Scan Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/globby-source-scan.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/globby-source-scan.md
 
 - Source scanning uses `globby` for file discovery.
 - Source scanning uses `globby` for `.gitignore` handling.

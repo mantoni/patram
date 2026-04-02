@@ -1,10 +1,10 @@
 # Fix Rich Source Separated List Spacing
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/rich-source-separated-list-spacing.md
-- Decided by: docs/decisions/source-rendering.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/rich-source-separated-list-spacing.md
+- decided_by: docs/decisions/source-rendering.md
 
 ## Goal
 

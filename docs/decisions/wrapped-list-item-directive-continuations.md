@@ -1,8 +1,8 @@
 # Wrapped List-Item Directive Continuations Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/fix-wrapped-list-item-directive-continuations.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/fix-wrapped-list-item-directive-continuations.md
 
 - Treat indented continuation lines under a markdown list-item directive as part
   of that directive value.

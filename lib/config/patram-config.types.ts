@@ -1,26 +1,14 @@
 import type {
-  ClassIdentityConfig,
-  ClassSchemaConfig,
   MetadataFieldConfig,
-  PathClassConfig,
+  PatramRepoConfig,
+  TypeDefinitionConfig,
 } from './load-patram-config.types.ts';
 
-export type ClassDefinition = import('./patram-config.js').ClassDefinition;
-export type RelationDefinition =
-  import('./patram-config.js').RelationDefinition;
-export type MappingNodeDefinition =
-  import('./patram-config.js').MappingNodeDefinition;
-export type MappingEmitDefinition =
-  import('./patram-config.js').MappingEmitDefinition;
-export type MappingDefinition = import('./patram-config.js').MappingDefinition;
-export type PatramGraphConfig = import('./patram-config.js').PatramGraphConfig;
-export type PatramClassConfig = ClassDefinition & {
-  identity?: ClassIdentityConfig;
-  schema?: ClassSchemaConfig;
+export type PatramTypeConfig = TypeDefinitionConfig & {
+  label?: string;
 };
 
-export type PatramConfig = Omit<PatramGraphConfig, 'classes'> & {
-  classes: Record<string, PatramClassConfig>;
+export type PatramConfig = PatramRepoConfig & {
   fields?: Record<string, MetadataFieldConfig>;
-  path_classes?: Record<string, PathClassConfig>;
+  types?: Record<string, PatramTypeConfig>;
 };

@@ -1,7 +1,7 @@
 # Declarative Derived Summaries
 
-- Kind: idea
-- Status: planned
+- kind: idea
+- status: planned
 
 - Make derived summaries declarative in config instead of hardcoding one
   worktracking model in product behavior.

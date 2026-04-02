@@ -1,8 +1,8 @@
 # Stored Query Description Colors Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/fix-stored-query-description-colors.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/fix-stored-query-description-colors.md
 
 - Keep stored-query descriptions in `queries` rich output on the same lines and
   indentation as plain output.

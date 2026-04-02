@@ -1,12 +1,12 @@
 # Source Rendering Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/source-rendering.md
-- Decided by: docs/decisions/show-output.md
-- Decided by: docs/decisions/cli-output-architecture.md
-- Decided by: docs/decisions/cli-formatting-libraries.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/source-rendering.md
+- decided_by: docs/decisions/show-output.md
+- decided_by: docs/decisions/cli-output-architecture.md
+- decided_by: docs/decisions/cli-formatting-libraries.md
 
 ## Goal
 

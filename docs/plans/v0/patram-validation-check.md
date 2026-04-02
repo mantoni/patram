@@ -1,7 +1,7 @@
 # Patram Validation Check Plan
 
-- Kind: plan
-- Status: active
+- kind: plan
+- status: active
 
 ## Goal
 

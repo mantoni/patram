@@ -1,8 +1,8 @@
 # Show Incoming Summary Empty State Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/show-incoming-summary-empty-state.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/show-incoming-summary-empty-state.md
 
 - `patram show <file>` omits the `incoming refs:` summary block when the shown
   node has no incoming graph relations.

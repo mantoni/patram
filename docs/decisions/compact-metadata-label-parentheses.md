@@ -1,8 +1,8 @@
 # Compact Metadata Label Parentheses Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/compact-metadata-label-parentheses.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/compact-metadata-label-parentheses.md
 
 - Keep compact query-family title rows on one line with inline metadata.
 - Replace bracketed metadata labels such as `[kind: parse  status: active]` with

@@ -1,10 +1,10 @@
 # Query Help Contract
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/query-help-contract.md
-- Decided by: docs/decisions/query-language.md
-- Decided by: docs/decisions/query-traversal-and-aggregation.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/query-help-contract.md
+- decided_by: docs/decisions/query-language.md
+- decided_by: docs/decisions/query-traversal-and-aggregation.md
 
 - Document the shipped query language directly in `query --help`,
   `patram help query-language`, and the canonical query command reference.

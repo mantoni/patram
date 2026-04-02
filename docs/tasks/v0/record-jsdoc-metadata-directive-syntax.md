@@ -1,9 +1,9 @@
 # Record JSDoc Metadata Directive Syntax
 
-- Kind: task
-- Status: done
-- Tracked in: docs/plans/v0/jsdoc-metadata-directive-syntax.md
-- Decided by: docs/decisions/jsdoc-metadata-directive-syntax.md
+- kind: task
+- status: done
+- tracked_in: docs/plans/v0/jsdoc-metadata-directive-syntax.md
+- decided_by: docs/decisions/jsdoc-metadata-directive-syntax.md
 
 - Parse activated `@patram` JSDoc blocks in JavaScript and TypeScript source
   files.

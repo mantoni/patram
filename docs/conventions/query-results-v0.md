@@ -1,7 +1,7 @@
 # Query Results v0 Proposal
 
-- Kind: convention
-- Status: active
+- kind: convention
+- status: active
 
 - Canonical `query` and `queries` output now lives in
   `docs/conventions/cli-output-v0.md`.

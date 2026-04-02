@@ -1,8 +1,8 @@
 # JSDoc Metadata Directive Syntax Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/jsdoc-metadata-directive-syntax.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/jsdoc-metadata-directive-syntax.md
 
 - Support JSDoc-style Patram metadata blocks in JavaScript and TypeScript source
   files.
@@ -25,9 +25,9 @@
  * Here comes a longer description that might span more
  * than one line.
  *
- * Kind: task
- * Status: pending
- * Tracked in: docs/roadmap/v0-dogfood.md
+ * kind: task
+ * status: pending
+ * tracked_in: docs/roadmap/v0-dogfood.md
  *
  * @patram
  * @see ../docs/patram.md

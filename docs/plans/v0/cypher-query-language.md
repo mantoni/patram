@@ -1,9 +1,9 @@
 # Cypher Query Language Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/query-language-extensions.md
-- Decided by: docs/decisions/cypher-query-language.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/query-language-extensions.md
+- decided_by: docs/decisions/cypher-query-language.md
 
 ## Goal
 

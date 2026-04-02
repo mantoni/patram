@@ -1,8 +1,8 @@
 # Stored Query Keyword Colors Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/fix-stored-query-keyword-colors.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/fix-stored-query-keyword-colors.md
 
 - Keep parsed stored-query term styling in `queries`.
 - Use gray for stored query operators.

@@ -1,9 +1,9 @@
 # Query Management Where Flag Plan
 
-- Kind: plan
-- Status: active
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/query-management-where-flag.md
+- kind: plan
+- status: active
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/query-management-where-flag.md
 
 ## Goal
 

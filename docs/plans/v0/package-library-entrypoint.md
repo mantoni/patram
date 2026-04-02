@@ -1,9 +1,9 @@
 # Package Library Entrypoint Plan
 
-- Kind: plan
-- Status: done
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/package-library-entrypoint.md
+- kind: plan
+- status: done
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/package-library-entrypoint.md
 
 ## Goal
 

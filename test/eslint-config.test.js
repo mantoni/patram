@@ -13,7 +13,7 @@ it('enables typed linting for javascript files through project service', () => {
   const project_service_value = getJavaScriptProjectServiceValue();
 
   expect(project_service_value).toEqual({
-    allowDefaultProject: ['lib/patram.js'],
+    allowDefaultProject: ['lib/find-close-match.js', 'lib/patram.js'],
   });
 });
 
@@ -21,7 +21,7 @@ it('enables typed linting for typescript files through project service', () => {
   const project_service_value = getTypeScriptProjectServiceValue();
 
   expect(project_service_value).toEqual({
-    allowDefaultProject: ['lib/patram.js'],
+    allowDefaultProject: ['lib/find-close-match.js', 'lib/patram.js'],
   });
 });
 

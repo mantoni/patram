@@ -1,11 +1,11 @@
 # Query Management Commands
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/query-management-commands.md
-- Decided by: docs/decisions/cli-extra-argument-and-stored-query-errors.md
-- Decided by: docs/decisions/query-validation-lifecycle.md
-- Decided by: docs/decisions/single-config-file.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/query-management-commands.md
+- decided_by: docs/decisions/cli-extra-argument-and-stored-query-errors.md
+- decided_by: docs/decisions/query-validation-lifecycle.md
+- decided_by: docs/decisions/single-config-file.md
 
 - Add stored-query mutation commands under `patram queries`:
   - `patram queries add <name> --query "<clause>" [--desc "<text>"]`

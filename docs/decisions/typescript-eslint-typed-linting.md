@@ -1,8 +1,8 @@
 # TypeScript ESLint Typed Linting Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/typescript-eslint-typed-linting.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/typescript-eslint-typed-linting.md
 
 - Adopt the `typescript-eslint` flat-config package for repository linting.
 - Downgrade `typescript` to a stable `5.x` release supported by

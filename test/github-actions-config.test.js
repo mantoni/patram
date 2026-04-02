@@ -8,10 +8,10 @@ import { expect, it } from 'vitest';
  * Verifies the checks workflow keeps the documented CI matrix and validation
  * steps.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/validation-test-deduplication.md
- * Decided by: ../docs/decisions/validation-test-deduplication.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/validation-test-deduplication.md
+ * decided_by: ../docs/decisions/validation-test-deduplication.md
  * @patram
  * @see {@link ./repo-config.test.js}
  * @see {@link ../docs/decisions/validation-test-deduplication.md}

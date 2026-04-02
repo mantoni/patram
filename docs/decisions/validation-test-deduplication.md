@@ -1,8 +1,8 @@
 # Validation Test Deduplication Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/validation-test-deduplication.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/validation-test-deduplication.md
 
 - Keep `npm test` as the fast developer entrypoint for a plain Vitest run.
 - Change `npm run all` to run `npm run test:coverage` instead of running both

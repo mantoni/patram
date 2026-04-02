@@ -1,8 +1,8 @@
 # Test Layout Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/test-layout.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/test-layout.md
 
 - Keep implementation-coupled tests next to their `lib` modules.
 - Move repo-level contract tests out of `lib/` and into a top-level `test/`

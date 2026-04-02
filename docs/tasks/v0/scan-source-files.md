@@ -1,9 +1,9 @@
 # Scan Source Files
 
-- Kind: task
-- Status: done
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/source-scan.md
+- kind: task
+- status: done
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/source-scan.md
 
 - Scan `docs/**/*.md`.
 - Normalize repo-relative paths.

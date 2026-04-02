@@ -1,11 +1,11 @@
 # Implement CLI Output Renderers
 
-- Kind: task
-- Status: done
-- Tracked in: docs/roadmap/v0-dogfood.md
-- Decided by: docs/decisions/cli-output-architecture.md
-- Decided by: docs/decisions/cli-output-modes.md
-- Decided by: docs/decisions/cli-formatting-libraries.md
+- kind: task
+- status: done
+- tracked_in: docs/roadmap/v0-dogfood.md
+- decided_by: docs/decisions/cli-output-architecture.md
+- decided_by: docs/decisions/cli-output-modes.md
+- decided_by: docs/decisions/cli-formatting-libraries.md
 
 - Add the shared output view model for command results.
 - Implement `plain`, `rich`, and `json` renderers from that view model.

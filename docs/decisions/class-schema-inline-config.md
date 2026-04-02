@@ -1,7 +1,7 @@
 # Class Schema Inline Config Proposal
 
-- Kind: decision
-- Status: accepted
+- kind: decision
+- status: accepted
 
 - Patram config stores class-local schema under `classes.<name>.schema`.
 - Patram config no longer supports top-level `class_schemas`.

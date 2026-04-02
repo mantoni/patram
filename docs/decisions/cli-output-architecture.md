@@ -1,8 +1,8 @@
 # CLI Output Architecture Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/roadmap/v0-dogfood.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/roadmap/v0-dogfood.md
 
 - Separate command execution from output rendering.
 - Normalize command results into one shared view model.

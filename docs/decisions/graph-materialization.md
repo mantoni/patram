@@ -1,8 +1,8 @@
 # Graph Materialization Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/roadmap/v0-dogfood.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/roadmap/v0-dogfood.md
 
 - Graph materialization consumes validated schema config plus parsed claims.
 - Every claim materializes or updates its source `document` node.

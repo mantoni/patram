@@ -10,10 +10,10 @@ import package_json from '../package.json' with { type: 'json' };
  * Verifies npm version scripts and the tag-based release workflow stay
  * aligned.
  *
- * Kind: support
- * Status: active
- * Tracked in: ../docs/plans/v0/source-anchor-dogfooding.md
- * Decided by: ../docs/decisions/release-automation.md
+ * kind: support
+ * status: active
+ * tracked_in: ../docs/plans/v0/source-anchor-dogfooding.md
+ * decided_by: ../docs/decisions/release-automation.md
  * @patram
  * @see {@link ../scripts/update-changelog.js}
  * @see {@link ../docs/decisions/release-automation.md}

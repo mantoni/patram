@@ -1,8 +1,8 @@
 # Remove Derived Summaries Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/remove-derived-summaries.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/remove-derived-summaries.md
 
 - Remove the `derived_summaries` feature from Patram entirely.
 - Remove derived-summary evaluation from `query`, `refs`, and `show`.

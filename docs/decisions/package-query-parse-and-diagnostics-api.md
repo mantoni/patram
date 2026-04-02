@@ -1,8 +1,8 @@
 # Package Query Parse And Diagnostics API Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/package-query-parse-and-diagnostics-api.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/package-query-parse-and-diagnostics-api.md
 
 - Expose `parseWhereClause` from the `patram` package root.
 - Expose `getQuerySemanticDiagnostics` from the `patram` package root.

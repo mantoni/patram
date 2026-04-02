@@ -1,8 +1,8 @@
 # Package Test File Exclusion Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/package-test-file-exclusion.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/package-test-file-exclusion.md
 
 - Exclude test files from the published npm tarball.
 - Exclude test helper files from the published npm tarball.

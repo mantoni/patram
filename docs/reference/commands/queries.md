@@ -1,7 +1,7 @@
 # Queries
 
-- Command: queries
-- Command Summary: List and manage the stored queries defined in the project
+- command: queries
+- summary: List and manage the stored queries defined in the project
   configuration.
 
 `patram queries` prints the configured stored query names and their query text.

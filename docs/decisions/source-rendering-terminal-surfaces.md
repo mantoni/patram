@@ -1,8 +1,8 @@
 # Source Rendering Terminal Surfaces Proposal
 
-- Kind: decision
-- Status: accepted
-- Tracked in: docs/plans/v0/source-rendering-terminal-surfaces.md
+- kind: decision
+- status: accepted
+- tracked_in: docs/plans/v0/source-rendering-terminal-surfaces.md
 
 - Use terminal standard ANSI palette colors for Patram-owned rich-source
   surfaces and accents.
