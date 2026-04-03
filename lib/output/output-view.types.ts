@@ -1,3 +1,5 @@
+import type { MarkdownDirectiveStyle } from '../parse/parse-claims.types.ts';
+
 export interface OutputMetadataField {
   name: string;
   value: string | string[];
@@ -47,10 +49,20 @@ export interface OutputResolvedLinkTarget {
   visible_fields: OutputMetadataField[];
 }
 
+export interface OutputResolvedLinkSource {
+  claim_type: 'directive';
+  column: number;
+  line: number;
+  markdown_style?: MarkdownDirectiveStyle;
+  parser?: string;
+  raw_target: string;
+}
+
 export interface OutputResolvedLinkItem {
   kind: 'resolved_link';
   label: string;
   reference: number;
+  source?: OutputResolvedLinkSource;
   target: OutputResolvedLinkTarget;
 }
 

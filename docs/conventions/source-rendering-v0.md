@@ -38,6 +38,8 @@
 - Paragraphs inside list items must remain visible in the rendered output.
 - List items with resolved links render one indented `->` summary block per link
   directly below the owning item content.
+- Markdown directive list items with resolved references use the same indented
+  `->` summary block layout as markdown links.
 - Tables render through Patram-owned cell padding, alignment, and borders.
 - Tables use box-drawing borders sized to the widest visible rendered cell in
   each column.
@@ -50,6 +52,8 @@
 - Inline code, emphasis, and links render through Patram-owned inline styling.
 - Resolved prose links render one gray footnote marker immediately after the
   link text.
+- Markdown directive lines outside list items render one gray footnote marker
+  after the directive target text.
 - Rich markdown sections flush resolved-link footnotes before the next heading
   of equal or higher level and at end of document.
 - Inline code renders with terminal-palette colors on a visible dark-gray

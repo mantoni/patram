@@ -288,12 +288,20 @@ See [Some Guide][1], [Query Language v0][2], and
 - Treat resolved links as compact entity summaries, not path lookups.
 - Render an indented description paragraph only when the resolved target carries
   one.
+- Include path-like directive references in `show` resolved links when they
+  resolve to scanned documents.
 - For prose links, append stable footnote markers at the link site and render
   the footnote block at the end of the current section.
+- For directive lines outside list items, append stable footnote markers at the
+  directive target and render the footnote block at the end of the current
+  section.
 - Start prose footnote blocks with the markdown footnote token only, such as
   `[^1] document docs/guide.md`.
 - For list links, render one indented `->` line per resolved link directly under
   the owning list item and keep the summary body aligned under that line.
+- For directive list items, render one indented `->` line per resolved link
+  directly under the owning item and keep the summary body aligned under that
+  line.
 - Start list-item summary blocks without a reference token, such as
   `-> document docs/guide.md`.
 
