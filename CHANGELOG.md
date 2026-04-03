@@ -1,5 +1,54 @@
 # Changelog
 
+## 0.12.0 - 2026-04-03
+
+- Simplify Patram config to types and fields
+  ([`09c00f9`](https://github.com/mantoni/patram/commit/09c00f91860b730c36fb27f63919753cf93971b0))
+- Implement structural identity functions
+  ([`d2ee542`](https://github.com/mantoni/patram/commit/d2ee542064bc272fe8ab974f2cff156311829e67))
+- Add structural identity functions decision
+  ([`857f83f`](https://github.com/mantoni/patram/commit/857f83fd97680b720124665fe670fee310713566))
+- Remove Neo4j Cypher Syntax Dependency
+  ([`2dd38a3`](https://github.com/mantoni/patram/commit/2dd38a32b28ca8a9a081f23be9a71fce7dce5c98))
+- Remove legacy where query language
+  ([`6634091`](https://github.com/mantoni/patram/commit/66340919c992fe8285b477e085a15b72fafe5a47))
+- Adopt constrained Cypher queries
+  ([`bed7bde`](https://github.com/mantoni/patram/commit/bed7bdea887b3eb61f2c98a8fadf6425824ff618))
+- Remove derived summaries
+  ([`2aa29dc`](https://github.com/mantoni/patram/commit/2aa29dc7f5739aa69338f538f7afc7533e69ebdc))
+- Rename queries flag to where
+  ([`4d8450f`](https://github.com/mantoni/patram/commit/4d8450f450fafd5ed9714a69012227862ee79db7))
+- Add path glob query operator
+  ([`c115cba`](https://github.com/mantoni/patram/commit/c115cba517a827338629de8b7fbe0c488988de05))
+- Add codex environment
+  ([`e6105c8`](https://github.com/mantoni/patram/commit/e6105c85498c26d5d20c6baa5346c13752ba1260))
+- Fix wrapped list-item markdown directives
+  ([`11a7311`](https://github.com/mantoni/patram/commit/11a73115908547230a6848e9ea86f788d87f3d51))
+- Align ordered list markers in rich show output
+  ([`e031037`](https://github.com/mantoni/patram/commit/e03103717e993a8132c245b26a9576bd3d585558))
+- Render rich markdown tables
+  ([`a5fac21`](https://github.com/mantoni/patram/commit/a5fac21be5ee0f7b8e3c045f80ac382c9329bf9c))
+- Render node descriptions in gray
+  ([`28da35e`](https://github.com/mantoni/patram/commit/28da35ef8fa5c9aaa21f1cac039eb8f38ffd7a9a))
+- Add $filename query field
+  ([`ffd96a7`](https://github.com/mantoni/patram/commit/ffd96a71bfa0d3d4267a58dbf9dc142e52d3db84))
+- Compact refs tree layout
+  ([`69be38f`](https://github.com/mantoni/patram/commit/69be38fc6a90c81bb73d67d791d8e41826efc7d3))
+- Render derived summaries separately
+  ([`f943ff1`](https://github.com/mantoni/patram/commit/f943ff157da77ae9fbc68d7fda75d8887e41dd0c))
+- Align show footnotes with compact summaries
+  ([`548b74c`](https://github.com/mantoni/patram/commit/548b74c7e79c02912825dad2c01254b1ee4bb9d9))
+- Use parenthesized compact metadata labels
+  ([`0fecf4b`](https://github.com/mantoni/patram/commit/0fecf4b97fd11c00fad875b3ab8941b49ccddea9))
+- Fix markdown heading description parsing
+  ([`fd259da`](https://github.com/mantoni/patram/commit/fd259da9a5c0a66a8893c86647f20e9e3f22d173))
+- Compact query-family terminal output
+  ([`d17bd7d`](https://github.com/mantoni/patram/commit/d17bd7df7a080cb3bd65276dd2cd73c3fd053e34))
+- Add markdown node descriptions
+  ([`cff21e7`](https://github.com/mantoni/patram/commit/cff21e788013372d99188a4959801089c35e80ec))
+- Document markdown node descriptions
+  ([`573c190`](https://github.com/mantoni/patram/commit/573c190ca84a339b44cd823972ccc66f080cc1c0))
+
 ## 0.11.0 - 2026-03-31
 
 - Add package compatibility type aliases
