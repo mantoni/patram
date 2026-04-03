@@ -416,6 +416,10 @@ See [Some Guide][1], [Query Language v0][2], and
 - Keep diagnostic tables identical to plain output and add color only.
 - Keep inline resolved-link blocks identical to plain output and add color or
   hyperlinking only.
+- Keep inline resolved-link identity headers on the same green accent as other
+  Patram node references:
+  - prose footnotes keep only the `[^1]` token gray
+  - list annotations keep only the `->` token gray
 - Keep compact block column widths and wrapped line breaks identical to plain
   output.
 - Do not introduce indentation changes in `rich` mode that are not already

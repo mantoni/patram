@@ -1,6 +1,7 @@
 // @module-tag integration
 
 import { afterEach, expect, it } from 'vitest';
+import { Ansis } from 'ansis';
 
 import {
   cleanupTestContext,
@@ -31,6 +32,7 @@ import { main } from './patram.js';
  */
 
 const test_context = createTestContext();
+const colorAnsi = new Ansis(3);
 
 afterEach(async () => {
   await cleanupTestContext(test_context);
@@ -79,6 +81,7 @@ it('renders markdown show output with custom formatting in rich mode', async () 
   expect(stripAnsi(io_context.paged_output_chunks[0])).toContain(
     EXPECTED_RICH_RESOLVED_LINKS,
   );
+  expectRichInlineRefHeaderColors(io_context.paged_output_chunks[0]);
   expect(io_context.stdout_chunks).toEqual([]);
 });
 
@@ -156,3 +159,11 @@ const EXPECTED_RICH_SOURCE_OUTPUT =
   ` ${'ts [app.ts]'.padStart(78, ' ')} \n` +
   ` ${` ${'const value = 1;'}`.padEnd(78, ' ')} \n` +
   ` ${' '.padEnd(78, ' ')} \n`;
+
+/**
+ * @param {string} output_text
+ */
+function expectRichInlineRefHeaderColors(output_text) {
+  expect(output_text).toContain(colorAnsi.gray('[^1]'));
+  expect(output_text).toContain(colorAnsi.green('document docs/guide.md'));
+}
