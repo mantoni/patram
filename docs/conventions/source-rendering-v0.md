@@ -36,6 +36,8 @@
 - Wrap list-item continuation lines with a hanging indent that stays inside the
   list item.
 - Paragraphs inside list items must remain visible in the rendered output.
+- List items with resolved links render one indented `->` summary block per link
+  directly below the owning item content.
 - Tables render through Patram-owned cell padding, alignment, and borders.
 - Tables use box-drawing borders sized to the widest visible rendered cell in
   each column.
@@ -46,6 +48,10 @@
   - `:-:` centers the column
   - `--:` right-aligns the column
 - Inline code, emphasis, and links render through Patram-owned inline styling.
+- Resolved prose links render one gray footnote marker immediately after the
+  link text.
+- Rich markdown sections flush resolved-link footnotes before the next heading
+  of equal or higher level and at end of document.
 - Inline code renders with terminal-palette colors on a visible dark-gray
   terminal background, darker than blockquotes, and dimmed terminal-native text.
 - Inline-code backticks stay present in copied text but visually disappear into

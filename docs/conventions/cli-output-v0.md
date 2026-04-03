@@ -268,14 +268,12 @@ See [Some Guide][1], [Query Language v0][2], and
 
 ## Resolved Link Rendering
 
-- Render inline references in prose as label-plus-reference tokens such as
-  `[Some Guide][1]`.
+- Preserve original markdown links in the shown source text.
 - Keep reference numbering stable within one rendered document.
-- Separate rendered prose from resolved references with an unlabeled divider.
 - Do not render the shown document's own entity summary in the resolved summary
   section.
 - Prefer document titles over path-derived aliases for rendered link labels.
-- Start each resolved-link footnote with one compact title row:
+- Start each resolved-link inline summary block with one compact title row:
   - numbered reference token plus the identity header on the left, such as
     `[1] document docs/guide.md`
   - optional parenthesized `key=value` metadata label on the right
@@ -284,12 +282,20 @@ See [Some Guide][1], [Query Language v0][2], and
 - In TTY output, truncate only the inline metadata label and keep the closing
   `)` when width allows.
 - Always show the resolved target title in the indented content block.
-- Keep the resolved-link content block indented four spaces under the footnote
+- Keep the resolved-link content block indented four spaces under the summary
   header.
 - Show `kind`, `status`, and other target metadata only when present and useful.
 - Treat resolved links as compact entity summaries, not path lookups.
 - Render an indented description paragraph only when the resolved target carries
   one.
+- For prose links, append stable footnote markers at the link site and render
+  the footnote block at the end of the current section.
+- Start prose footnote blocks with the markdown footnote token only, such as
+  `[^1] document docs/guide.md`.
+- For list links, render one indented `->` line per resolved link directly under
+  the owning list item and keep the summary body aligned under that line.
+- Start list-item summary blocks without a reference token, such as
+  `-> document docs/guide.md`.
 
 ## Query Rendering
 
@@ -403,12 +409,13 @@ See [Some Guide][1], [Query Language v0][2], and
 - Keep diagnostic file group headers on the same accent color as entity-summary
   identity headers.
 - Make inline link labels clickable when the terminal supports hyperlinks.
-- Render inline link references from `[Some Guide][1]` as `Some Guide 1` while
-  preserving the same ordering and reference number.
+- Render prose footnote markers as gray `^1` tokens after the rendered link
+  text.
 - Expand plain dividers such as `----------------` into horizontal rules that
   span the available content width.
 - Keep diagnostic tables identical to plain output and add color only.
-- Keep footnotes identical to plain output and add color or hyperlinking only.
+- Keep inline resolved-link blocks identical to plain output and add color or
+  hyperlinking only.
 - Keep compact block column widths and wrapped line breaks identical to plain
   output.
 - Do not introduce indentation changes in `rich` mode that are not already

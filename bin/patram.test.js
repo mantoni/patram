@@ -268,16 +268,15 @@ it('prints resolved source and links for show', async () => {
   expect(io_context.stdout_chunks).toEqual([
     '# Patram\n' +
       '\n' +
-      'See [guide][1], [query language][2], and [implement query command][3].\n' +
+      'See [guide](./guide.md)[^1], [query language](./decisions/query-language-v0.md)[^2], and [implement query command](./tasks/v0/query-command.md)[^3].\n' +
       '\n' +
-      '----------------\n' +
-      '[1] document docs/guide.md\n' +
+      '[^1] document docs/guide.md\n' +
       '    Some Guide\n' +
       '\n' +
-      '[2] decision docs/decisions/query-language-v0.md  (status=accepted)\n' +
+      '[^2] decision docs/decisions/query-language-v0.md  (status=accepted)\n' +
       '    Query Language v0\n' +
       '\n' +
-      '[3] task docs/tasks/v0/query-command.md  (status=pending)\n' +
+      '[^3] task docs/tasks/v0/query-command.md  (status=pending)\n' +
       '    Implement query command\n',
   ]);
 });
@@ -303,7 +302,7 @@ it('sends tty show output through the pager', async () => {
   expect(io_context.stderr_chunks).toEqual([]);
   expect(io_context.stdout_chunks).toEqual([]);
   expect(stripped_output).toContain('# Patram\n');
-  expect(stripped_output).toContain('[1] document docs/guide.md\n');
+  expect(stripped_output).toContain('[^1] document docs/guide.md\n');
 });
 
 it('prints show results as json', async () => {

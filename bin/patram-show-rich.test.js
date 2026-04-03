@@ -30,8 +30,6 @@ import { main } from './patram.js';
  * @see {@link ../lib/output/render-output-view.js}
  */
 
-const FULL_WIDTH_DIVIDER = ` ${'─'.repeat(78)} `;
-
 const test_context = createTestContext();
 
 afterEach(async () => {
@@ -151,12 +149,10 @@ it('renders non-markdown source files with syntax highlighting in rich mode', as
 });
 
 const EXPECTED_RICH_RESOLVED_LINKS =
-  `${FULL_WIDTH_DIVIDER}\n\n` +
-  '[1] document docs/guide.md\n' +
-  '    Some Guide\n';
+  '[^1] document docs/guide.md\n' + '    Some Guide\n';
 
 const EXPECTED_RICH_SOURCE_OUTPUT =
-  '# Patram\n\nSee guide[1].\n\n' +
+  '# Patram\n\nSee guide^1.\n\n' +
   ` ${'ts [app.ts]'.padStart(78, ' ')} \n` +
   ` ${` ${'const value = 1;'}`.padEnd(78, ' ')} \n` +
   ` ${' '.padEnd(78, ' ')} \n`;
